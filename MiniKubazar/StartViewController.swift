@@ -338,7 +338,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     
                      completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
                     
-                    
+//
                 }
             }
         }
@@ -347,6 +347,23 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
+    
+    func retrieveFinishedHaiku(uid: String) {
+        let currentUserUID = ClientService.getCurrentUserUID()
+        let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
+        let finishedHaikuRef = completedHaikusForCurrentUserRef.child(uid)
+        
+        finishedHaikuRef.queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            print("FINISHED HAIKU REF SNAPSHOT = \(snapshot)")
+            
+            
+        })
+
+        
+        
+//        let finishedHaiku = Haiku(firstLineHaiku: <#T##String!#>, secondLineHaiku: <#T##String!#>, thirdLineHaiku: <#T##String!#>, imageHaikuDownloadURL: <#T##NSURL!#>, uuid: <#T##String!#>)
+
+    }
     
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

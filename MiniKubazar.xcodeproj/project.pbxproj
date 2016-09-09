@@ -34,6 +34,7 @@
 		F2A120411D82305800A39867 /* CompletedHaikusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1203D1D82305800A39867 /* CompletedHaikusTableViewCell.swift */; };
 		F2A120421D82305800A39867 /* CompletedHaikusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */; };
 		F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01521D82EEBF0094A45B /* Haiku.swift */; };
+		F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01541D8312710094A45B /* HaikuViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		F2A1203D1D82305800A39867 /* CompletedHaikusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusTableViewCell.swift; sourceTree = "<group>"; };
 		F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusTableViewCell.xib; sourceTree = "<group>"; };
 		F2BB01521D82EEBF0094A45B /* Haiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haiku.swift; sourceTree = "<group>"; };
+		F2BB01541D8312710094A45B /* HaikuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaikuViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				F2A120211D822B5600A39867 /* CompletedDetailViewController.swift */,
 				F2A120221D822B5600A39867 /* CompletedDetailViewController.xib */,
 				F2A120231D822B5600A39867 /* StartViewController.swift */,
+				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
 				F2A120241D822B5600A39867 /* StartViewController.xib */,
 				F2A120311D822B6300A39867 /* InfoViewController.swift */,
 				F2A120321D822B6300A39867 /* InfoViewController.xib */,
@@ -296,6 +299,7 @@
 				F2A120331D822B6300A39867 /* InfoViewController.swift in Sources */,
 				F2A120291D822B5600A39867 /* BazarViewController.swift in Sources */,
 				F2A1203A1D82303A00A39867 /* User.swift in Sources */,
+				F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

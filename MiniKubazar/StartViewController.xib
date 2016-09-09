@@ -39,10 +39,6 @@
                         <navigationItem title="start" id="nax-6v-Acn"/>
                     </items>
                 </navigationBar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1d-9K-4Wm" userLabel="Congrats View">
-                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
-                    <color key="backgroundColor" red="0.70327022179999998" green="1" blue="0.1177223126" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVS-bh-A8E" userLabel="Create New Haiku View">
                     <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                     <subviews>
@@ -298,6 +294,10 @@
                             <exclude reference="aIv-my-rdO"/>
                         </mask>
                     </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1d-9K-4Wm" userLabel="Congrats View">
+                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                    <color key="backgroundColor" red="0.70327022179999998" green="1" blue="0.1177223126" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <constraints>
