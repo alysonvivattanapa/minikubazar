@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 //BaseAPIService could be a better name
 struct ClientService {
@@ -23,6 +24,13 @@ struct ClientService {
     static let completedHaikusRef = rootRef.child("completedHaikus")
     
     static let friendsRef = rootRef.child("friends")
+    
+    static let storage = FIRStorage.storage()
+    
+    static let storageRef = storage.referenceForURL("gs://kubazar-68697.appspot.com")
+    
+    static let imagesRef = storageRef.child("images")
+    
     
     static func getCurrentUser(closure: (FIRUser) -> Void) {
         

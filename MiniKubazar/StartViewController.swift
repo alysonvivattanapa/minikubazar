@@ -8,13 +8,9 @@
 
 import UIKit
 
-class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     
-    
-    @IBOutlet weak var secondBackButton: UIButton!
-    
-    @IBOutlet weak var imageViewBoundary: UIImageView!
     
     @IBOutlet weak var firstKubazarMascot: UIImageView!
     
@@ -28,18 +24,19 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var enterHaikuView: UIView!
     
+    @IBOutlet weak var firstLineHaikuTextView: UITextView!
+    
+    @IBOutlet weak var secondLineHaikuTextView: UITextView!
+    
+    @IBOutlet weak var thirdLineHaikuTextView: UITextView!
+    
+    
     @IBOutlet weak var congratsView: UIView!
     // congratsView should take you to active bazar table view
     // table view selection goes to detail view that includes share button?
     
     
     @IBOutlet weak var haikuImageView: UIImageView!
-    
-    @IBOutlet weak var haikuFirstLine: UITextField!
-    
-    @IBOutlet weak var haikuSecondLine: UITextField!
-    
-    @IBOutlet weak var haikuThirdLine: UITextField!
     
     var animator: UIDynamicAnimator!
     
@@ -50,19 +47,36 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    haikuFirstLine.delegate = self
+        firstLineHaikuTextView.delegate = self
+        secondLineHaikuTextView.delegate = self
+        thirdLineHaikuTextView.delegate = self
         
-    haikuSecondLine.delegate = self
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-    haikuThirdLine.delegate = self
-        
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         
     stepOneCreateNewHaiku()
        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
+        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
+        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
+        firstLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.whiteColor()
+            textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
+            textView.layer.cornerRadius = 5
+            textView.clipsToBounds = true
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -140,9 +154,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     
     @IBAction func thirdBackButtonPressed(sender: AnyObject) {
-        haikuFirstLine.text? = ""
-        haikuSecondLine.text? = ""
-        haikuThirdLine.text? = ""
+//        haikuFirstLine.text? = ""
+//        haikuSecondLine.text? = ""
+//        haikuThirdLine.text? = ""
         setAllViewAlphasToZero()
         choosePictureView.alpha = 1
     }
@@ -228,13 +242,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     //keyboard code
     
-    
-    //textfield delegate
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+   
     
     func keyboardWillHide(sender: NSNotification) {
         let userInfo: [NSObject : AnyObject] = sender.userInfo!
@@ -266,7 +274,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func haikuImageViewTapped(sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = self.view.frame
+        newImageView.frame = enterHaikuView.frame
 //        newImageView.backgroundColor = .blackColor()
         newImageView.contentMode = .ScaleAspectFit
         newImageView.userInteractionEnabled = true
@@ -281,11 +289,72 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
+        saveHaiku()
         stepFourCongrats()
     }
     
     func saveHaiku() {
         
+        let firstLine = firstLineHaikuTextView.text
+        let secondLine = secondLineHaikuTextView.text
+        let thirdLine = thirdLineHaikuTextView.text
+        
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
+        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
+        
+        let uuid = NSUUID().UUIDString
+        
+        let currentImageRef = imagesRefForCurrentUser.child(uuid)
+        
+        let path = currentImageRef.fullPath
+        
+        let haikuImage = haikuImageView.image
+        if let data = UIImagePNGRepresentation(haikuImage!) {
+        currentImageRef.putData(data, metadata: nil) {
+                metadata, error in
+                if (error != nil) {
+                    print("uh-oh! trouble saving image")
+                } else {
+                    let downloadURL = metadata!.downloadURL
+                    var newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
+                    
+                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
+                    
+                    let uniqueHaikuUUID = newHaiku.uuid
+                    let firstLineHaiku = newHaiku.firstLineHaiku
+                    let secondLineHaiku = newHaiku.secondLineHaiku
+                    let thirdLineHaiku = newHaiku.thirdLineHaiku
+                    let imageHaikuDownloadURL = newHaiku.imageHaikuDownloadURL
+                    
+                    let imageHaikuDownloadStringFromURL = imageHaikuDownloadURL.absoluteString
+                    
+                    
+                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/firstLineHaiku").setValue(firstLineHaiku)
+                    
+                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/secondLineHaiku").setValue(secondLineHaiku)
+                    
+                     completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/thirdLineHaiku").setValue(thirdLineHaiku)
+                    
+                     completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
+                    
+                    
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
     
     
