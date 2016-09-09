@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BazarViewController" customModule="MiniKubazar" customModuleProvider="target">
+            <connections>
+                <outlet property="activeStartView" destination="cmP-43-EC0" id="ObK-Q7-Mmg"/>
+                <outlet property="activeTableView" destination="ROE-SG-FjZ" id="elu-gh-036"/>
+                <outlet property="activeView" destination="js3-FK-umV" id="uhA-Sh-A8S"/>
+                <outlet property="completedTableView" destination="h3q-nt-XX3" id="Z5p-Gh-f1g"/>
+                <outlet property="completedView" destination="nJ2-hc-cP7" id="pjQ-zw-0fP"/>
+                <outlet property="navigationBar" destination="RIk-g4-NuX" id="NZe-tY-Yib"/>
+                <outlet property="segmentedControl" destination="bXi-O9-DB2" id="eKw-c6-MgX"/>
+                <outlet property="startHaikuButton" destination="zhu-9A-N5G" id="wvK-E0-G26"/>
+                <outlet property="startHaikuLabel" destination="V3I-NU-m10" id="bAx-gQ-BeG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIk-g4-NuX">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                    <color key="backgroundColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="c3K-kJ-rR5"/>
+                    </constraints>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="bazar" id="a6g-1l-5Cf"/>
+                    </items>
+                </navigationBar>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-O9-DB2">
+                    <rect key="frame" x="5" y="71" width="590" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="179" id="0O6-ln-gKO"/>
+                        <constraint firstAttribute="height" constant="28" id="Hfy-Vc-38J"/>
+                    </constraints>
+                    <segments>
+                        <segment title="active haikus"/>
+                        <segment title="completed haikus"/>
+                    </segments>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0O6-ln-gKO"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="aOX-rV-NcV"/>
+                    </connections>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js3-FK-umV">
+                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ROE-SG-FjZ">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="ROE-SG-FjZ" firstAttribute="leading" secondItem="js3-FK-umV" secondAttribute="leading" id="HuE-gP-g74"/>
+                        <constraint firstAttribute="bottom" secondItem="ROE-SG-FjZ" secondAttribute="bottom" id="HyQ-77-qcB"/>
+                        <constraint firstAttribute="trailing" secondItem="ROE-SG-FjZ" secondAttribute="trailing" id="KRw-B4-L8V"/>
+                        <constraint firstItem="ROE-SG-FjZ" firstAttribute="top" secondItem="js3-FK-umV" secondAttribute="top" id="N8b-eq-Uu8"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
+                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h3q-nt-XX3">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.4039215686" green="1" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="h3q-nt-XX3" secondAttribute="bottom" id="PjH-Sd-Ffw"/>
+                        <constraint firstItem="h3q-nt-XX3" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="QXU-Wi-7WC"/>
+                        <constraint firstItem="h3q-nt-XX3" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="dtu-A0-y4m"/>
+                        <constraint firstAttribute="trailing" secondItem="h3q-nt-XX3" secondAttribute="trailing" id="t6j-zA-dqD"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmP-43-EC0" userLabel="ActiveStartView">
+                    <rect key="frame" x="100" y="175" width="400" height="250"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3I-NU-m10">
+                            <rect key="frame" x="0.0" y="59" width="400" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="9fh-Pf-A9T"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhu-9A-N5G">
+                            <rect key="frame" x="129" y="110" width="142" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="88" id="1ZB-Nd-DyG"/>
+                                <constraint firstAttribute="height" constant="30" id="MHv-Ew-5Pk"/>
+                                <constraint firstAttribute="width" constant="142" id="b1e-ZF-ill"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="Start a haiku! " backgroundImage="Continue"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="1ZB-Nd-DyG"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="startHaikuButton:" destination="-1" eventType="touchUpInside" id="tMd-ah-W4g"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="1Y5-vn-Lqe"/>
+                        <constraint firstAttribute="width" constant="400" id="ChG-ee-lCc"/>
+                        <constraint firstItem="zhu-9A-N5G" firstAttribute="leading" secondItem="cmP-43-EC0" secondAttribute="leading" id="F8q-Vy-N0K"/>
+                        <constraint firstItem="zhu-9A-N5G" firstAttribute="centerX" secondItem="cmP-43-EC0" secondAttribute="centerX" id="LQk-Ko-qfj"/>
+                        <constraint firstItem="zhu-9A-N5G" firstAttribute="centerY" secondItem="cmP-43-EC0" secondAttribute="centerY" id="SUn-hm-0Zg"/>
+                        <constraint firstAttribute="height" constant="250" id="Xhc-Qa-SI0"/>
+                        <constraint firstItem="V3I-NU-m10" firstAttribute="leading" secondItem="cmP-43-EC0" secondAttribute="leading" id="bev-Ut-SzR"/>
+                        <constraint firstAttribute="trailing" secondItem="zhu-9A-N5G" secondAttribute="trailing" id="hFZ-Cv-GBy"/>
+                        <constraint firstAttribute="trailing" secondItem="V3I-NU-m10" secondAttribute="trailing" id="hpD-0j-w2W"/>
+                        <constraint firstItem="zhu-9A-N5G" firstAttribute="top" secondItem="V3I-NU-m10" secondAttribute="bottom" constant="30" id="oz6-Si-X7H"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="q6s-4Z-rLN"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1Y5-vn-Lqe"/>
+                            <exclude reference="q6s-4Z-rLN"/>
+                            <exclude reference="F8q-Vy-N0K"/>
+                            <exclude reference="hFZ-Cv-GBy"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="RIk-g4-NuX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4mJ-Q3-ePM"/>
+                <constraint firstAttribute="trailing" secondItem="js3-FK-umV" secondAttribute="trailing" id="BvH-Ye-Nsm"/>
+                <constraint firstItem="js3-FK-umV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cip-JG-eDA"/>
+                <constraint firstAttribute="bottom" secondItem="nJ2-hc-cP7" secondAttribute="bottom" id="ESD-a3-Sui"/>
+                <constraint firstItem="nJ2-hc-cP7" firstAttribute="top" secondItem="bXi-O9-DB2" secondAttribute="bottom" constant="5" id="Fbo-oZ-Oye"/>
+                <constraint firstAttribute="trailing" secondItem="bXi-O9-DB2" secondAttribute="trailing" constant="5" id="JyD-Bv-zBi"/>
+                <constraint firstItem="js3-FK-umV" firstAttribute="top" secondItem="bXi-O9-DB2" secondAttribute="bottom" constant="5" id="Tqc-NO-v70"/>
+                <constraint firstAttribute="bottom" secondItem="js3-FK-umV" secondAttribute="bottom" id="Uh8-cD-CER"/>
+                <constraint firstItem="nJ2-hc-cP7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aCO-US-nXY"/>
+                <constraint firstItem="cmP-43-EC0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cEZ-Me-B0s"/>
+                <constraint firstItem="bXi-O9-DB2" firstAttribute="top" secondItem="RIk-g4-NuX" secondAttribute="bottom" constant="5" id="dRQ-1b-Mid"/>
+                <constraint firstItem="cmP-43-EC0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e4D-on-YIO"/>
+                <constraint firstAttribute="trailing" secondItem="RIk-g4-NuX" secondAttribute="trailing" id="hfn-9a-GLf"/>
+                <constraint firstItem="RIk-g4-NuX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="icB-qe-9kN"/>
+                <constraint firstItem="bXi-O9-DB2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="jhQ-Ac-tLa"/>
+                <constraint firstAttribute="trailing" secondItem="nJ2-hc-cP7" secondAttribute="trailing" id="rva-kN-x9J"/>
+                <constraint firstItem="bXi-O9-DB2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tXD-G2-ms3"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tXD-G2-ms3"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="Continue" width="465" height="121"/>
+    </resources>
+</document>

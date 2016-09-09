@@ -7,18 +7,51 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var tabBarController: UITabBarController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
+        
+        FIRApp.configure()
+        
+        tabBarController = UITabBarController()
+        let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
+        let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
+        let thirdTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
+        let controllers = [firstTab, secondTab, thirdTab]
+        tabBarController?.viewControllers = controllers
+        
+        UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+        
+        firstTab.tabBarItem = UITabBarItem(title: "Bazar", image: UIImage(named: "bazarA"), selectedImage: UIImage(named: "bazarB"))
+        
+        secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
+        
+         thirdTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            print("App Delegate says user is signed in with uid:", user.uid)
+            self.window?.rootViewController = self.tabBarController
+            self.tabBarController?.selectedIndex = 0
+            
+        } else {
+            print("App Delegate says no user is signed in.")
+            let welcomeVC = WelcomeViewController()
+            self.window?.rootViewController = welcomeVC
+        }
+
+        
+        
+        
         return true
     }
 
