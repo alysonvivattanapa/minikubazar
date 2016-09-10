@@ -22,6 +22,10 @@ class HaikuViewModel {
         return model.thirdLineHaiku
     }
     
+    var haikuImageNSURL: NSURL {
+        return model.imageHaikuDownloadURL
+    }
+    
     let model: Haiku
     
     init(model: Haiku) {

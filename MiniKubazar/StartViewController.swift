@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import Social
 
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
-    
-    
     @IBOutlet weak var firstKubazarMascot: UIImageView!
     
     @IBOutlet weak var startButton: UIButton!
@@ -38,11 +37,25 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var haikuImageView: UIImageView!
     
+    var recentlyFinishedHaikuUID: String!
+    
     var animator: UIDynamicAnimator!
     
     var gravity: UIGravityBehavior!
     
     var collision: UICollisionBehavior!
+    
+    @IBOutlet weak var finishedImageView: UIImageView!
+    
+    @IBOutlet weak var firstLineHaikuLabel: UILabel!
+    
+    @IBOutlet weak var secondLineHaikuLabel: UILabel!
+    
+    @IBOutlet weak var thirdLineHaikuLabel: UILabel!
+    
+    
+    @IBOutlet weak var shareableHaikuView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,11 +129,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
-   
-    
-    //refactor these steps functions, pass view to show
-    //hide all views function
-    
     
     func stepTwoChoosePicture() {
         setAllViewAlphasToZero()
@@ -139,7 +147,17 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func stepFourCongrats() {
         setAllViewAlphasToZero()
+        setShareableHaikuImage()
         congratsView.alpha = 1
+    }
+    
+    func setShareableHaikuImage() {
+        firstLineHaikuLabel.text = firstLineHaikuTextView.text
+        secondLineHaikuLabel.text = secondLineHaikuTextView.text
+        thirdLineHaikuLabel.text = thirdLineHaikuTextView.text
+        
+        finishedImageView.image = haikuImageView.image
+        
     }
     
     
@@ -290,6 +308,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
         saveHaiku()
+  //      print(recentlyFinishedHaikuUID)
+//        retrieveFinishedHaiku(recentlyFinishedHaikuUID)
+        
+        view.endEditing(true)
         stepFourCongrats()
     }
     
@@ -307,8 +329,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         let currentImageRef = imagesRefForCurrentUser.child(uuid)
         
-        let path = currentImageRef.fullPath
-        
         let haikuImage = haikuImageView.image
         if let data = UIImagePNGRepresentation(haikuImage!) {
         currentImageRef.putData(data, metadata: nil) {
@@ -317,11 +337,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     print("uh-oh! trouble saving image")
                 } else {
                     let downloadURL = metadata!.downloadURL
-                    var newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
+                    let newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
                     
                     let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
                     
                     let uniqueHaikuUUID = newHaiku.uuid
+                    
+                    self.recentlyFinishedHaikuUID = uniqueHaikuUUID
+                    
                     let firstLineHaiku = newHaiku.firstLineHaiku
                     let secondLineHaiku = newHaiku.secondLineHaiku
                     let thirdLineHaiku = newHaiku.thirdLineHaiku
@@ -338,7 +361,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     
                      completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
                     
-//
                 }
             }
         }
@@ -373,6 +395,45 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         return true
     }
+    
+    
+    
+    
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        
+        
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+            
+            
+            let shareableHaikuImage = createShareableHaikuImage()
+            
+            let facebookSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+// setting initial text doesn't work
+//            facebookSheet.setInitialText("Check out my Kubazar haiku!")
+            facebookSheet.addImage(shareableHaikuImage)
+            self.presentViewController(facebookSheet, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func createShareableHaikuImage() -> UIImage {
+        
+        var shareableHaikuImage: UIImage
+        
+        UIGraphicsBeginImageContextWithOptions(shareableHaikuView.bounds.size, false, UIScreen.mainScreen().scale)
+        
+        shareableHaikuView.drawViewHierarchyInRect(shareableHaikuView.bounds, afterScreenUpdates: true)
+
+        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return shareableHaikuImage
+       
+    }
+    
     
     
 }
