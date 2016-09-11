@@ -35,6 +35,8 @@
 		F2A120421D82305800A39867 /* CompletedHaikusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */; };
 		F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01521D82EEBF0094A45B /* Haiku.swift */; };
 		F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01541D8312710094A45B /* HaikuViewModel.swift */; };
+		F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */; };
+		F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusTableViewCell.xib; sourceTree = "<group>"; };
 		F2BB01521D82EEBF0094A45B /* Haiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haiku.swift; sourceTree = "<group>"; };
 		F2BB01541D8312710094A45B /* HaikuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaikuViewModel.swift; sourceTree = "<group>"; };
+		F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusCollectionViewCell.swift; sourceTree = "<group>"; };
+		F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
 				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
 				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
+				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
+				F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */,
 				F2A1201F1D822B5600A39867 /* ActiveDetailViewController.swift */,
 				F2A120201D822B5600A39867 /* ActiveDetailViewController.xib */,
 				F2A120211D822B5600A39867 /* CompletedDetailViewController.swift */,
@@ -223,6 +229,7 @@
 				F2A120401D82305800A39867 /* ActiveHaikusTableViewCell.xib in Resources */,
 				F2A1202E1D822B5600A39867 /* CompletedDetailViewController.xib in Resources */,
 				F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */,
+				F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */,
 				F2A1202A1D822B5600A39867 /* BazarViewController.xib in Resources */,
 				F2A120181D82291900A39867 /* GoogleService-Info.plist in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,
@@ -296,6 +303,7 @@
 				F2A1202D1D822B5600A39867 /* CompletedDetailViewController.swift in Sources */,
 				F2A120381D822B9700A39867 /* Alerts.swift in Sources */,
 				F2A1202B1D822B5600A39867 /* ActiveDetailViewController.swift in Sources */,
+				F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */,
 				F2A120331D822B6300A39867 /* InfoViewController.swift in Sources */,
 				F2A120291D822B5600A39867 /* BazarViewController.swift in Sources */,
 				F2A1203A1D82303A00A39867 /* User.swift in Sources */,

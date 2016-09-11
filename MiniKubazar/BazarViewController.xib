@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="activeStartView" destination="cmP-43-EC0" id="ObK-Q7-Mmg"/>
                 <outlet property="activeView" destination="js3-FK-umV" id="uhA-Sh-A8S"/>
-                <outlet property="completedTableView" destination="h3q-nt-XX3" id="Z5p-Gh-f1g"/>
+                <outlet property="completedHaikusCollectionView" destination="Jiq-vs-8SC" id="N9u-ml-OZQ"/>
                 <outlet property="completedView" destination="nJ2-hc-cP7" id="pjQ-zw-0fP"/>
                 <outlet property="navigationBar" destination="RIk-g4-NuX" id="NZe-tY-Yib"/>
                 <outlet property="segmentedControl" destination="bXi-O9-DB2" id="eKw-c6-MgX"/>
@@ -62,17 +62,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h3q-nt-XX3">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </tableView>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-vs-8SC">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kTv-0C-KHo">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="0.4039215686" green="1" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="h3q-nt-XX3" secondAttribute="bottom" id="PjH-Sd-Ffw"/>
-                        <constraint firstItem="h3q-nt-XX3" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="QXU-Wi-7WC"/>
-                        <constraint firstItem="h3q-nt-XX3" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="dtu-A0-y4m"/>
-                        <constraint firstAttribute="trailing" secondItem="h3q-nt-XX3" secondAttribute="trailing" id="t6j-zA-dqD"/>
+                        <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" id="Fs2-gu-bhO"/>
+                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="GZk-rR-7eJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="Jqu-6D-l8B"/>
+                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="niU-du-MGe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmP-43-EC0" userLabel="ActiveStartView">

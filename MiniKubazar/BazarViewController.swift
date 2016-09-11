@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BazarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     @IBOutlet weak var activeStartView: UIView!
     
@@ -21,6 +21,7 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var completedView: UIView!
     
 
+    @IBOutlet weak var completedHaikusCollectionView: UICollectionView!
     
     @IBOutlet weak var completedTableView: UITableView!
     
@@ -61,16 +62,23 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        
+        layout.itemSize = CGSize(width: 90, height: 90)
+        
+        completedHaikusCollectionView.dataSource = self
+        
+        completedHaikusCollectionView.delegate = self
+        
+        completedHaikusCollectionView.backgroundColor = UIColor.whiteColor()
+        
+            let completedNib = UINib.init(nibName: "CompletedHaikusCollectionViewCell", bundle: nil)
         
         
-       
+            completedHaikusCollectionView.registerNib(completedNib, forCellWithReuseIdentifier: "completedCell")
         
-        completedTableView.dataSource = self
-        
-        completedTableView.delegate = self
-        
-        let completedNib = UINib.init(nibName: "CompletedHaikusTableViewCell", bundle: nil)
-        completedTableView.registerNib(completedNib, forCellReuseIdentifier: "completedCell")
     }
     
     
@@ -216,6 +224,23 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select: \(indexPath.row)")
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sampleData1.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = completedHaikusCollectionView.dequeueReusableCellWithReuseIdentifier("completedCell", forIndexPath: indexPath) as! CompletedHaikusCollectionViewCell
+        
+        let previewDetail = sampleData1[indexPath.row]
+        cell.label.text = previewDetail.title
+        
+        return cell
     }
     
     
