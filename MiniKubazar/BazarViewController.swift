@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseStorage
 
-class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class BazarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     @IBOutlet weak var activeStartView: UIView!
     
@@ -27,6 +28,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     
     @IBOutlet weak var startHaikuButton: UIButton!
     
+    var arrayOfImageURLStrings = [String]()
+    
+    var arrayOfImages = [UIImage]()
     
     struct PreviewDetail {
         let title: String
@@ -66,7 +70,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         
-        layout.itemSize = CGSize(width: 90, height: 90)
+        layout.itemSize = CGSize(width: 250, height: 250)
+        
+        
         
         completedHaikusCollectionView.dataSource = self
         
@@ -183,6 +189,29 @@ class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 } else {
                     print("this snapshot exists")
 
+                    ClientService.getCompletedHaikuImageURLStringsForCurrentUser({ (arrayOfImages) in
+                        self.arrayOfImageURLStrings = arrayOfImages
+                        
+                        for imageString in self.arrayOfImageURLStrings {
+                        
+                        let completedHaikuImageHttpsRef = FIRStorage.storage().referenceForURL(imageString)
+                        
+                        completedHaikuImageHttpsRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
+                            if (error != nil) {
+                                print("image file too large to download?")
+                            } else {
+                                let completedHaikuImage: UIImage! = UIImage(data: data!)
+                                self.arrayOfImages.append(completedHaikuImage)
+                                if self.arrayOfImages.count == self.arrayOfImageURLStrings.count {
+                                    self.completedHaikusCollectionView.reloadData()
+                                }
+                            }
+                        })
+                            
+                        }
+                        
+                    })
+                    
                     self.activeView.alpha = 0
                     self.completedView.alpha = 1
                     self.activeStartView.alpha = 0
@@ -231,18 +260,21 @@ class BazarViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleData1.count
+        return arrayOfImages.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = completedHaikusCollectionView.dequeueReusableCellWithReuseIdentifier("completedCell", forIndexPath: indexPath) as! CompletedHaikusCollectionViewCell
         
-        let previewDetail = sampleData1[indexPath.row]
-        cell.label.text = previewDetail.title
-        
+        let haikuImage = arrayOfImages[indexPath.row]
+        cell.completedHaikuImageView.image = haikuImage
+       
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+         print("did select: \(indexPath.row)")
+    }
     
     
 }

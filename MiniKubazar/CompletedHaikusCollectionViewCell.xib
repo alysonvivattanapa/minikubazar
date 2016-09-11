@@ -13,26 +13,21 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="130" height="133"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-Wl-FPr">
-                        <rect key="frame" x="44" y="56" width="42" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="42" id="02a-am-Lds"/>
-                            <constraint firstAttribute="height" constant="21" id="sTY-vD-Y1y"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="019-BD-UoJ">
+                        <rect key="frame" x="0.0" y="0.0" width="130" height="133"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="D6G-Wl-FPr" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Y0v-So-cU8"/>
-                <constraint firstItem="D6G-Wl-FPr" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="dOI-iU-IL7"/>
+                <constraint firstItem="019-BD-UoJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1gL-8d-1tu"/>
+                <constraint firstItem="019-BD-UoJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6NM-wD-cmf"/>
+                <constraint firstAttribute="bottom" secondItem="019-BD-UoJ" secondAttribute="bottom" id="KH8-QT-0AP"/>
+                <constraint firstAttribute="trailing" secondItem="019-BD-UoJ" secondAttribute="trailing" id="QXO-Jq-Ax4"/>
             </constraints>
             <size key="customSize" width="130" height="133"/>
             <connections>
-                <outlet property="label" destination="D6G-Wl-FPr" id="bQr-PG-rF6"/>
+                <outlet property="completedHaikuImageView" destination="019-BD-UoJ" id="AQC-Qu-xpN"/>
             </connections>
             <point key="canvasLocation" x="179" y="195.5"/>
         </collectionViewCell>

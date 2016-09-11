@@ -115,5 +115,28 @@ struct ClientService {
         })
         
     }
+    
+    static func getCompletedHaikuImageURLStringsForCurrentUser(closure: [String] -> Void) {
+        
+        let currentUserUid = getCurrentUserUID()
+        
+        completedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            
+            var arrayOfCompletedHaikuImageURLStrings = [String]()
+            
+            for item in snapshot.children {
+                
+                let completedHaikuImageURLString = item.value.objectForKey("imageURLString") as! String
+                
+                arrayOfCompletedHaikuImageURLStrings.append(completedHaikuImageURLString)
+                
+            }
+            
+            closure(arrayOfCompletedHaikuImageURLStrings)
+            
+        })
+        
+    }
+
 
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E05EA5D66B3A6194114F12E1 /* Pods_MiniKubazar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */; };
+		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
+		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
 		F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1200A1D82287900A39867 /* AppDelegate.swift */; };
 		F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200C1D82287900A39867 /* Assets.xcassets */; };
 		F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */; };
@@ -43,6 +45,8 @@
 		1103529FB539798FA303A0B3 /* Pods-MiniKubazar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.debug.xcconfig"; sourceTree = "<group>"; };
 		3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiniKubazar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A4B02D5F12389EF6AFD39E /* Pods-MiniKubazar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.release.xcconfig"; sourceTree = "<group>"; };
+		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
+		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F2A120071D82287900A39867 /* MiniKubazar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniKubazar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A1200A1D82287900A39867 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2A1200C1D82287900A39867 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
 				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
 				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
+				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
+				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
 				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
 				F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */,
 				F2A1201F1D822B5600A39867 /* ActiveDetailViewController.swift */,
@@ -223,6 +229,7 @@
 			files = (
 				F2A120421D82305800A39867 /* CompletedHaikusTableViewCell.xib in Resources */,
 				F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */,
+				F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */,
 				F2A120281D822B5600A39867 /* SignupViewController.xib in Resources */,
 				F2A120301D822B5600A39867 /* StartViewController.xib in Resources */,
 				F2A1202C1D822B5600A39867 /* ActiveDetailViewController.xib in Resources */,
@@ -296,6 +303,7 @@
 				F2A120271D822B5600A39867 /* SignupViewController.swift in Sources */,
 				F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */,
 				F2A1202F1D822B5600A39867 /* StartViewController.swift in Sources */,
+				F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */,
 				F2A1203F1D82305800A39867 /* ActiveHaikusTableViewCell.swift in Sources */,
 				F2A120361D822B8700A39867 /* ClientService.swift in Sources */,
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,

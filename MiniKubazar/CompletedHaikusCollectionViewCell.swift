@@ -10,8 +10,8 @@ import UIKit
 
 class CompletedHaikusCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var label: UILabel!
-    
+    @IBOutlet weak var completedHaikuImageView: UIImageView!
+ 
 
     override func awakeFromNib() {
         super.awakeFromNib()
