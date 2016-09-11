@@ -307,7 +307,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
-        saveHaiku()
+        setShareableHaikuImage()
+        saveFinishedHaiku()
   //      print(recentlyFinishedHaikuUID)
 //        retrieveFinishedHaiku(recentlyFinishedHaikuUID)
         
@@ -315,7 +316,44 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         stepFourCongrats()
     }
     
-    func saveHaiku() {
+    func saveFinishedHaiku() {
+        
+        let shareableHaikuImage = createShareableHaikuImage()
+        
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
+        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
+        
+        let uniqueHaikuUUID = NSUUID().UUIDString
+        
+        let currentImageRef = imagesRefForCurrentUser.child(uniqueHaikuUUID)
+        
+        if let data = UIImagePNGRepresentation(shareableHaikuImage) {
+            currentImageRef.putData(data, metadata: nil) {
+                metadata, error in
+                if (error != nil) {
+                    print("uh-oh! trouble saving image")
+                } else {
+                    let downloadURL = metadata!.downloadURL
+
+                    
+                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
+                    
+                    let imageHaikuDownloadStringFromURL = downloadURL()?.absoluteString
+                    
+                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
+                    
+                }
+            }
+        }
+        
+
+        
+    }
+    
+    func saveActiveHaiku() {
+        
+        // this code is really good for saving active Haikus in Kubazar! but for minikubazar, you can do something much simpler. just save screenshot to backend. for completed Haikus in Kubazar, you can also just save the screenshot to the backend.
         
         let firstLine = firstLineHaikuTextView.text
         let secondLine = secondLineHaikuTextView.text

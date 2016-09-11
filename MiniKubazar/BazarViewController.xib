@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BazarViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
                 <outlet property="activeStartView" destination="cmP-43-EC0" id="ObK-Q7-Mmg"/>
-                <outlet property="activeTableView" destination="ROE-SG-FjZ" id="elu-gh-036"/>
                 <outlet property="activeView" destination="js3-FK-umV" id="uhA-Sh-A8S"/>
                 <outlet property="completedTableView" destination="h3q-nt-XX3" id="Z5p-Gh-f1g"/>
                 <outlet property="completedView" destination="nJ2-hc-cP7" id="pjQ-zw-0fP"/>
@@ -44,7 +43,7 @@
                         <constraint firstAttribute="height" constant="28" id="Hfy-Vc-38J"/>
                     </constraints>
                     <segments>
-                        <segment title="active haikus"/>
+                        <segment title="how to play kubazar"/>
                         <segment title="completed haikus"/>
                     </segments>
                     <variation key="default">
@@ -58,19 +57,7 @@
                 </segmentedControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js3-FK-umV">
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ROE-SG-FjZ">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="496"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </tableView>
-                    </subviews>
                     <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="ROE-SG-FjZ" firstAttribute="leading" secondItem="js3-FK-umV" secondAttribute="leading" id="HuE-gP-g74"/>
-                        <constraint firstAttribute="bottom" secondItem="ROE-SG-FjZ" secondAttribute="bottom" id="HyQ-77-qcB"/>
-                        <constraint firstAttribute="trailing" secondItem="ROE-SG-FjZ" secondAttribute="trailing" id="KRw-B4-L8V"/>
-                        <constraint firstItem="ROE-SG-FjZ" firstAttribute="top" secondItem="js3-FK-umV" secondAttribute="top" id="N8b-eq-Uu8"/>
-                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>

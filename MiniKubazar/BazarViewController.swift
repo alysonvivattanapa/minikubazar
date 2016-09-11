@@ -20,7 +20,7 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var completedView: UIView!
     
-    @IBOutlet weak var activeTableView: UITableView!
+
     
     @IBOutlet weak var completedTableView: UITableView!
     
@@ -63,12 +63,7 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         
         
-        activeTableView.dataSource = self
-        
-        activeTableView.delegate = self
-        
-        let activeNib = UINib.init(nibName: "ActiveHaikusTableViewCell", bundle: nil)
-        activeTableView.registerNib(activeNib, forCellReuseIdentifier: "activeCell")
+       
         
         completedTableView.dataSource = self
         
@@ -201,13 +196,9 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count:Int?
         
-        if tableView == self.activeTableView {
-            count = sampleData.count
-        }
-        
-        if tableView == self.completedTableView {
+      
             count = sampleData1.count
-        }
+ 
         
         return count!
     }
@@ -216,17 +207,10 @@ class BazarViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         var cell: UITableViewCell?
         
-        if tableView == self.activeTableView {
-            cell = tableView.dequeueReusableCellWithIdentifier("activeCell", forIndexPath: indexPath) as! ActiveHaikusTableViewCell
-            let previewDetail = sampleData[indexPath.row]
-            cell!.textLabel?.text = previewDetail.title
-        }
-    
-        if tableView == self.completedTableView {
             cell = tableView.dequeueReusableCellWithIdentifier("completedCell", forIndexPath: indexPath) as! CompletedHaikusTableViewCell
             let previewDetail = sampleData1[indexPath.row]
             cell!.textLabel?.text = previewDetail.title
-        }
+      
         return cell!
     }
     

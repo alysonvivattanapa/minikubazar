@@ -84,7 +84,7 @@
                         <constraint firstAttribute="height" constant="28" id="A05-Dr-6ba"/>
                     </constraints>
                     <segments>
-                        <segment title="how to play kubazar"/>
+                        <segment title="about kubazar"/>
                         <segment title="my account"/>
                     </segments>
                     <connections>
