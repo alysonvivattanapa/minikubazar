@@ -72,8 +72,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         layout.itemSize = CGSize(width: 250, height: 250)
         
-        
-        
         completedHaikusCollectionView.dataSource = self
         
         completedHaikusCollectionView.delegate = self
@@ -229,31 +227,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController?.selectedIndex = 1
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count:Int?
-        
-      
-            count = sampleData1.count
  
-        
-        return count!
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell: UITableViewCell?
-        
-            cell = tableView.dequeueReusableCellWithIdentifier("completedCell", forIndexPath: indexPath) as! CompletedHaikusTableViewCell
-            let previewDetail = sampleData1[indexPath.row]
-            cell!.textLabel?.text = previewDetail.title
-      
-        return cell!
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did select: \(indexPath.row)")
-    }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
