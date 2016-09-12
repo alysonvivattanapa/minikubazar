@@ -33,6 +33,13 @@
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="FTY-Mm-e2A"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmB-i0-MPv">
+                    <rect key="frame" x="277" y="421" width="46" height="30"/>
+                    <state key="normal" title="Share"/>
+                    <connections>
+                        <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="ZaZ-Xn-vCi"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

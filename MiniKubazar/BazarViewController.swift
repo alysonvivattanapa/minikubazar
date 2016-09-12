@@ -19,6 +19,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var howToPlayView: UIView!
+    
+    
    
     @IBOutlet weak var activeStartView: UIView!
     
@@ -141,26 +144,10 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             //show active haikus
             
-            currentActiveHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                
-                if snapshot.value is NSNull {
-                    
-                    print("You have no active haikus. Start a haiku!")
-                
-                 
-                    self.completedView.alpha = 0
-                    self.activeStartView.alpha = 1
-                    self.startHaikuLabel.text = "How to Play Kubazar"
-                    
-                    
-                } else {
-                    print("this snapshot exists")
-
-                  
-                    self.completedView.alpha = 0
-                    self.activeStartView.alpha = 0
-                }
-            })
+            
+                    self.completedView.hidden = true
+                    self.activeStartView.hidden = true
+                    self.howToPlayView.hidden = false
 
         case 1:
            
@@ -172,9 +159,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     
                     print("You have no completed haikus. Start a haiku!")
                     
-                    
-                    self.completedView.alpha = 0
-                    self.activeStartView.alpha = 1
+                    self.howToPlayView.hidden = true
+                    self.completedView.hidden = true
+                    self.activeStartView.hidden = false
                     self.startHaikuLabel.text = "You have no completed haikus."
                     
                 } else {
@@ -203,9 +190,12 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                         
                     })
                     
-                    
                     self.completedView.alpha = 1
-                    self.activeStartView.alpha = 0
+                    self.completedView.hidden = false
+                    self.howToPlayView.hidden = true
+                    self.activeStartView.hidden = true
+                   
+                    
                 }
             })
 

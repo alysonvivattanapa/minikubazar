@@ -28,4 +28,14 @@ class CompletedHaikuDetailViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        
+        if let shareableHaikuImage = completedHaikuDetailImageView.image {
+        let activityItemsArray = [shareableHaikuImage]
+        let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
+        presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    
 }
