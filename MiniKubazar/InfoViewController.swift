@@ -18,6 +18,7 @@ class InfoViewController: UIViewController {
     
     @IBOutlet weak var currentlyLoggedInLabel: UILabel!
    
+    @IBOutlet weak var aboutKubazarView: UIView!
     
     
     override func viewDidLoad() {
@@ -57,8 +58,10 @@ class InfoViewController: UIViewController {
         case 0:
             print("first item selected")
             myAccountView.hidden = true
+            aboutKubazarView.hidden = false
         case 1:
             print("second item selected")
+            aboutKubazarView.hidden = true
             myAccountView.hidden = false
             
             

@@ -111,7 +111,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 self.completedView.alpha = 0
                 self.activeStartView.alpha = 1
-                self.startHaikuLabel.text = "You have no active haikus."
+                self.startHaikuLabel.text = "How to Play Kubazar"
                 
                 UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
                     self.startHaikuButton.transform = CGAffineTransformIdentity

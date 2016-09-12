@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
+                <outlet property="aboutKubazarView" destination="qKJ-Pb-bx5" id="6d9-0y-rBb"/>
                 <outlet property="currentlyLoggedInLabel" destination="JnO-v6-7PI" id="pQy-fQ-kbA"/>
                 <outlet property="myAccountView" destination="95R-hp-W6m" id="z5w-wl-pXs"/>
                 <outlet property="segmentedControl" destination="kiO-Y4-8BM" id="YcJ-vG-LhA"/>
@@ -22,7 +23,7 @@
                     <rect key="frame" x="0.0" y="104" width="600" height="446"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f20-Zv-NRr">
-                            <rect key="frame" x="263.5" y="408" width="73" height="30"/>
+                            <rect key="frame" x="263" y="408" width="73" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="73" id="Hce-Lj-QEM"/>
                                 <constraint firstAttribute="width" constant="65" id="Jyi-YN-7GR"/>
@@ -91,15 +92,49 @@
                         <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="qdP-2X-7Mh"/>
                     </connections>
                 </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-Pb-bx5">
+                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KubazarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-mI-bvo">
+                            <rect key="frame" x="180" y="230" width="240" height="128"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="KIV-sb-Gfl"/>
+                                <constraint firstAttribute="width" constant="240" id="UKy-rf-7kB"/>
+                            </constraints>
+                        </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-LU-sal">
+                            <rect key="frame" x="150" y="15" width="300" height="200"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="phj-hH-OFG"/>
+                                <constraint firstAttribute="width" constant="300" id="z0q-ph-gYC"/>
+                            </constraints>
+                            <string key="text">Kubazar is a project by Crowd Effect, a startup based in Utrecht, The Netherlands. MiniKubazar is the beta version of the app, which allows users to write and share haikus with pictures. The next version of Kubazar will include additional features, such as allowing users to post photos and write haikus with their friends. Thank you for trying out MiniKubazar! Stay tuned for the next update.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="iLt-mI-bvo" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="BFf-qc-LcN"/>
+                        <constraint firstItem="GMB-LU-sal" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="K9n-sd-cfV"/>
+                        <constraint firstItem="GMB-LU-sal" firstAttribute="top" secondItem="qKJ-Pb-bx5" secondAttribute="top" constant="15" id="ZF2-fR-bPy"/>
+                        <constraint firstItem="iLt-mI-bvo" firstAttribute="top" secondItem="GMB-LU-sal" secondAttribute="bottom" constant="15" id="ozX-G3-qmY"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="qKJ-Pb-bx5" secondAttribute="trailing" id="09i-ct-SFS"/>
+                <constraint firstItem="qKJ-Pb-bx5" firstAttribute="top" secondItem="kiO-Y4-8BM" secondAttribute="bottom" constant="5" id="1db-a6-sVS"/>
                 <constraint firstAttribute="trailing" secondItem="vQf-SZ-TBE" secondAttribute="trailing" id="3vY-3H-DUY"/>
+                <constraint firstAttribute="bottom" secondItem="qKJ-Pb-bx5" secondAttribute="bottom" id="7u9-3N-vss"/>
                 <constraint firstItem="95R-hp-W6m" firstAttribute="top" secondItem="kiO-Y4-8BM" secondAttribute="bottom" constant="5" id="9LF-MV-5ZG"/>
                 <constraint firstAttribute="trailing" secondItem="kiO-Y4-8BM" secondAttribute="trailing" constant="5" id="GvF-XD-iDo"/>
                 <constraint firstItem="vQf-SZ-TBE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QwZ-kN-YED"/>
                 <constraint firstItem="kiO-Y4-8BM" firstAttribute="top" secondItem="vQf-SZ-TBE" secondAttribute="bottom" constant="5" id="TBG-me-Bmm"/>
                 <constraint firstItem="kiO-Y4-8BM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="TJH-dQ-EZn"/>
+                <constraint firstItem="qKJ-Pb-bx5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zb4-cN-xQ7"/>
                 <constraint firstAttribute="bottom" secondItem="95R-hp-W6m" secondAttribute="bottom" constant="50" id="gHt-8G-h3t"/>
                 <constraint firstItem="vQf-SZ-TBE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kAd-yh-g2b"/>
                 <constraint firstAttribute="trailing" secondItem="95R-hp-W6m" secondAttribute="trailing" id="nQe-Sp-FsL"/>
@@ -110,5 +145,6 @@
     </objects>
     <resources>
         <image name="Continue" width="465" height="121"/>
+        <image name="KubazarLogo" width="969" height="1869"/>
     </resources>
 </document>
