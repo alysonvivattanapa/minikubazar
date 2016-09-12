@@ -307,11 +307,16 @@
                             <rect key="frame" x="125" y="126" width="350" height="300"/>
                             <subviews>
                                 <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ePp-3s-W9F">
-                                    <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
-                                    <color key="backgroundColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="210"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="Lif-fe-sl2"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Lif-fe-sl2"/>
+                                        </mask>
+                                    </variation>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSa-A1-eVh">
                                     <rect key="frame" x="5" y="212" width="340" height="21"/>
@@ -407,7 +412,7 @@
                             <constraints>
                                 <constraint firstItem="NUI-Sz-wGC" firstAttribute="centerX" secondItem="tUx-Dk-AQU" secondAttribute="centerX" id="063-mX-rOl"/>
                                 <constraint firstItem="TH2-sA-s1v" firstAttribute="top" secondItem="TSa-A1-eVh" secondAttribute="bottom" constant="2" id="5d8-94-kLe"/>
-                                <constraint firstItem="TSa-A1-eVh" firstAttribute="top" secondItem="ePp-3s-W9F" secondAttribute="bottom" constant="12" id="9h1-bm-63P"/>
+                                <constraint firstItem="TSa-A1-eVh" firstAttribute="top" secondItem="ePp-3s-W9F" secondAttribute="bottom" constant="2" id="9h1-bm-63P"/>
                                 <constraint firstItem="TH2-sA-s1v" firstAttribute="centerX" secondItem="tUx-Dk-AQU" secondAttribute="centerX" id="BjO-7C-Skv"/>
                                 <constraint firstAttribute="trailing" secondItem="TH2-sA-s1v" secondAttribute="trailing" constant="5" id="HxX-VP-OJ2"/>
                                 <constraint firstAttribute="width" constant="350" id="JGN-44-Vqv"/>
@@ -421,8 +426,10 @@
                                 <constraint firstAttribute="trailing" secondItem="cGj-B4-cr3" secondAttribute="trailing" constant="5" id="SdM-0n-nMI"/>
                                 <constraint firstAttribute="trailing" secondItem="ePp-3s-W9F" secondAttribute="trailing" id="UIQ-YG-o8f"/>
                                 <constraint firstItem="NUI-Sz-wGC" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" constant="5" id="WQq-jO-Fsm"/>
+                                <constraint firstItem="ePp-3s-W9F" firstAttribute="top" secondItem="tUx-Dk-AQU" secondAttribute="top" id="WnU-VM-gNa"/>
                                 <constraint firstItem="TSa-A1-eVh" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" constant="5" id="X4S-NI-bwf"/>
                                 <constraint firstItem="NUI-Sz-wGC" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" constant="5" id="Z3s-TQ-XjC"/>
+                                <constraint firstItem="ePp-3s-W9F" firstAttribute="top" secondItem="tUx-Dk-AQU" secondAttribute="top" id="Zu0-WU-fAz"/>
                                 <constraint firstAttribute="trailing" secondItem="TSa-A1-eVh" secondAttribute="trailing" constant="5" id="a0T-3a-rCb"/>
                                 <constraint firstItem="NUI-Sz-wGC" firstAttribute="top" secondItem="TH2-sA-s1v" secondAttribute="bottom" constant="2" id="aTk-NZ-Cmi"/>
                                 <constraint firstItem="TSa-A1-eVh" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" constant="5" id="bnA-ND-0Th"/>
@@ -434,11 +441,14 @@
                                 <constraint firstAttribute="trailing" secondItem="NUI-Sz-wGC" secondAttribute="trailing" constant="5" id="qTK-db-lf5"/>
                                 <constraint firstItem="cGj-B4-cr3" firstAttribute="centerX" secondItem="tUx-Dk-AQU" secondAttribute="centerX" id="qbd-Ww-coG"/>
                                 <constraint firstItem="TH2-sA-s1v" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" constant="5" id="rjI-Zj-NW5"/>
+                                <constraint firstItem="cGj-B4-cr3" firstAttribute="top" secondItem="NUI-Sz-wGC" secondAttribute="bottom" constant="8" id="uRL-Wa-11Z"/>
                                 <constraint firstItem="cGj-B4-cr3" firstAttribute="leading" secondItem="tUx-Dk-AQU" secondAttribute="leading" id="wZE-8w-N7H"/>
-                                <constraint firstItem="ePp-3s-W9F" firstAttribute="top" secondItem="tUx-Dk-AQU" secondAttribute="top" id="wqc-EV-4Z7"/>
+                                <constraint firstItem="ePp-3s-W9F" firstAttribute="top" secondItem="tUx-Dk-AQU" secondAttribute="top" constant="16" id="wqc-EV-4Z7"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="Zu0-WU-fAz"/>
+                                    <exclude reference="wqc-EV-4Z7"/>
                                     <exclude reference="N37-W9-dyS"/>
                                     <exclude reference="RRy-yM-iPj"/>
                                     <exclude reference="X4S-NI-bwf"/>

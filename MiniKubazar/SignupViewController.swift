@@ -259,7 +259,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         self.congratsLabel.layer.addAnimation(animation, forKey: nil)
                         self.congratsKubazar.layer.addAnimation(animation, forKey: nil)
                         
-                        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(SignupViewController.changeRootViewToTabBarController), userInfo: nil, repeats: false)
+                        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(SignupViewController.changeRootViewToTabBarController), userInfo: nil, repeats: false)
 
                 }
                 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Social
 
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -307,6 +306,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
+        self.view.endEditing(true)
         setShareableHaikuImage()
         saveFinishedHaiku()
   //      print(recentlyFinishedHaikuUID)
@@ -439,22 +439,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
         
-        
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-            
-            
-            let shareableHaikuImage = createShareableHaikuImage()
-            
-            let facebookSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-// setting initial text doesn't work
-//            facebookSheet.setInitialText("Check out my Kubazar haiku!")
-            facebookSheet.addImage(shareableHaikuImage)
-            self.presentViewController(facebookSheet, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
+        let shareableHaikuImage = createShareableHaikuImage()
+        let activityItemsArray = [shareableHaikuImage]
+        let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
+        presentViewController(activityVC, animated: true, completion: nil)
+
     }
     
     func createShareableHaikuImage() -> UIImage {
@@ -471,6 +460,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         return shareableHaikuImage
        
     }
+    
+    
     
     
     
