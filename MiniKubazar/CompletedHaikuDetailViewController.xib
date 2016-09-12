@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompletedHaikuDetailViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
+                <outlet property="completedHaikuDetailImageView" destination="vhB-P3-hmd" id="ExO-9t-a0I"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,33 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhB-P3-hmd">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="350"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="kci-CK-3cq"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoi-xh-en9">
+                    <rect key="frame" x="8" y="562" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="hhg-xO-qVK"/>
+                        <constraint firstAttribute="height" constant="30" id="ltE-eo-s9e"/>
+                    </constraints>
+                    <state key="normal" title="Back"/>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="FTY-Mm-e2A"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hoi-xh-en9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Dqm-eb-jhO"/>
+                <constraint firstItem="vhB-P3-hmd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QYc-Cv-o4K"/>
+                <constraint firstAttribute="bottom" secondItem="hoi-xh-en9" secondAttribute="bottom" constant="8" id="v0S-2q-SDk"/>
+                <constraint firstItem="vhB-P3-hmd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="w9T-qq-AWx"/>
+                <constraint firstAttribute="trailing" secondItem="vhB-P3-hmd" secondAttribute="trailing" id="wDf-dV-puM"/>
+            </constraints>
         </view>
     </objects>
 </document>
