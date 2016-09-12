@@ -462,6 +462,16 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     
+    @IBAction func createANewHaikuButtonPressed(sender: AnyObject) {
+        
+       stepOneCreateNewHaiku()
+        firstLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        secondLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        thirdLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        
+    }
+    
+    
     
     
     

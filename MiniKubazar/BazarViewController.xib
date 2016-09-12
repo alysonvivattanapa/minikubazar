@@ -54,26 +54,6 @@
                         <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="aOX-rV-NcV"/>
                     </connections>
                 </segmentedControl>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
-                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
-                    <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-vs-8SC">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kTv-0C-KHo">
-                                <size key="itemSize" width="50" height="50"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                        </collectionView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" id="Fs2-gu-bhO"/>
-                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="GZk-rR-7eJ"/>
-                        <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="Jqu-6D-l8B"/>
-                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="niU-du-MGe"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmP-43-EC0" userLabel="ActiveStartView">
                     <rect key="frame" x="100" y="175" width="400" height="250"/>
                     <subviews>
@@ -127,6 +107,26 @@
                             <exclude reference="hFZ-Cv-GBy"/>
                         </mask>
                     </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
+                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-vs-8SC">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kTv-0C-KHo">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" id="Fs2-gu-bhO"/>
+                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="GZk-rR-7eJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="Jqu-6D-l8B"/>
+                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="niU-du-MGe"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
