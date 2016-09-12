@@ -11,13 +11,16 @@ import FirebaseStorage
 
 class BazarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
-    @IBOutlet weak var activeStartView: UIView!
+ 
+
+   
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var activeView: UIView!
+   
+    @IBOutlet weak var activeStartView: UIView!
     
     @IBOutlet weak var completedView: UIView!
     
@@ -32,25 +35,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     var arrayOfImages = [UIImage]()
     
-    struct PreviewDetail {
-        let title: String
-        let preferredHeight: Double
-    }
-    
-    let sampleData = [
-        PreviewDetail(title: "Small", preferredHeight: 160.0),
-        PreviewDetail(title: "Medium", preferredHeight: 320.0),
-        PreviewDetail(title: "Large", preferredHeight: 0.0) // 0.0 to get the default height.
-    ]
-    
-    let sampleData1 = [
-        PreviewDetail(title: "One", preferredHeight: 160.0),
-        PreviewDetail(title: "Two", preferredHeight: 320.0),
-        PreviewDetail(title: "Three", preferredHeight: 0.0), // 0.0 to get the default height.
-        PreviewDetail(title: "More", preferredHeight: 0.0) // 0.0 to get the default height.
-    ]
-    
     // URGENT: probably shouldn't put this here because if there's no internet, it can't do this
+    // should probably specify type here, then declare in viewDidLoad
     
     let currentUserUID = ClientService.getCurrentUserUID()
     
@@ -66,11 +52,13 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setInitialViewAndSeletedIndex()
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
         
-        layout.itemSize = CGSize(width: 250, height: 250)
+//        layout.itemSize = CGSize(width: 250, height: 250)
         
         completedHaikusCollectionView.dataSource = self
         
@@ -94,20 +82,25 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewWillAppear(animated: Bool) {
         
-       
         
+        //include what happens when Reachabiity says there's no internet
+        
+      
+    }
+    
+    func setInitialViewAndSeletedIndex() {
         let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
-
+        
         segmentedControl.layer.borderColor = kubazarDarkGreen.CGColor
         segmentedControl.tintColor = kubazarDarkGreen
-            
+        
         
         setAllViewsToZero()
         
         //include what happens when Reachabiity says there's no internet
         
-         self.segmentedControl.selectedSegmentIndex = 0
-         currentActiveHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        self.segmentedControl.selectedSegmentIndex = 0
+        currentActiveHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             
             if snapshot.value is NSNull {
                 
@@ -115,7 +108,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 self.startHaikuButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
                 
-                self.activeView.alpha = 0
+                
                 self.completedView.alpha = 0
                 self.activeStartView.alpha = 1
                 self.startHaikuLabel.text = "You have no active haikus."
@@ -123,13 +116,13 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
                     self.startHaikuButton.transform = CGAffineTransformIdentity
                     }, completion: nil)
-
+                
                 
                 
             } else {
                 print("this snapshot exists")
                 
-                self.activeView.alpha = 1
+                
                 self.completedView.alpha = 0
                 self.activeStartView.alpha = 0
             }
@@ -137,7 +130,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
    
     func setAllViewsToZero() {
-        self.activeView.alpha = 0
+    
         self.completedView.alpha = 0
         self.activeStartView.alpha = 0
     }
@@ -154,7 +147,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     
                     print("You have no active haikus. Start a haiku!")
                 
-                    self.activeView.alpha = 0
+                 
                     self.completedView.alpha = 0
                     self.activeStartView.alpha = 1
                     self.startHaikuLabel.text = "You have no active haikus."
@@ -163,7 +156,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 } else {
                     print("this snapshot exists")
 
-                    self.activeView.alpha = 1
+                  
                     self.completedView.alpha = 0
                     self.activeStartView.alpha = 0
                 }
@@ -179,7 +172,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     
                     print("You have no completed haikus. Start a haiku!")
                     
-                    self.activeView.alpha = 0
+                    
                     self.completedView.alpha = 0
                     self.activeStartView.alpha = 1
                     self.startHaikuLabel.text = "You have no completed haikus."
@@ -210,7 +203,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                         
                     })
                     
-                    self.activeView.alpha = 0
+                    
                     self.completedView.alpha = 1
                     self.activeStartView.alpha = 0
                 }

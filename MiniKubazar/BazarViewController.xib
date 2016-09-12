@@ -7,8 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BazarViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
-                <outlet property="activeStartView" destination="cmP-43-EC0" id="ObK-Q7-Mmg"/>
-                <outlet property="activeView" destination="js3-FK-umV" id="uhA-Sh-A8S"/>
+                <outlet property="activeStartView" destination="cmP-43-EC0" id="Uh7-3f-ETP"/>
                 <outlet property="completedHaikusCollectionView" destination="Jiq-vs-8SC" id="N9u-ml-OZQ"/>
                 <outlet property="completedView" destination="nJ2-hc-cP7" id="pjQ-zw-0fP"/>
                 <outlet property="navigationBar" destination="RIk-g4-NuX" id="NZe-tY-Yib"/>
@@ -55,10 +54,6 @@
                         <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="aOX-rV-NcV"/>
                     </connections>
                 </segmentedControl>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js3-FK-umV">
-                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJ2-hc-cP7">
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                     <subviews>
@@ -137,13 +132,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="RIk-g4-NuX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4mJ-Q3-ePM"/>
-                <constraint firstAttribute="trailing" secondItem="js3-FK-umV" secondAttribute="trailing" id="BvH-Ye-Nsm"/>
-                <constraint firstItem="js3-FK-umV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cip-JG-eDA"/>
                 <constraint firstAttribute="bottom" secondItem="nJ2-hc-cP7" secondAttribute="bottom" id="ESD-a3-Sui"/>
                 <constraint firstItem="nJ2-hc-cP7" firstAttribute="top" secondItem="bXi-O9-DB2" secondAttribute="bottom" constant="5" id="Fbo-oZ-Oye"/>
                 <constraint firstAttribute="trailing" secondItem="bXi-O9-DB2" secondAttribute="trailing" constant="5" id="JyD-Bv-zBi"/>
-                <constraint firstItem="js3-FK-umV" firstAttribute="top" secondItem="bXi-O9-DB2" secondAttribute="bottom" constant="5" id="Tqc-NO-v70"/>
-                <constraint firstAttribute="bottom" secondItem="js3-FK-umV" secondAttribute="bottom" id="Uh8-cD-CER"/>
                 <constraint firstItem="nJ2-hc-cP7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aCO-US-nXY"/>
                 <constraint firstItem="cmP-43-EC0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cEZ-Me-B0s"/>
                 <constraint firstItem="bXi-O9-DB2" firstAttribute="top" secondItem="RIk-g4-NuX" secondAttribute="bottom" constant="5" id="dRQ-1b-Mid"/>

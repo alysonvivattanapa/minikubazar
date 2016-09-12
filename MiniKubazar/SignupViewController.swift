@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
     
@@ -268,8 +269,26 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     func changeRootViewToTabBarController() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.tabBarController?.viewControllers?.removeAll()
+        let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
+        let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
+        let thirdTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
+        let controllers = [firstTab, secondTab, thirdTab]
+        appDelegate.tabBarController?.viewControllers = controllers
         
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+        
+        firstTab.tabBarItem = UITabBarItem(title: "Bazar", image: UIImage(named: "bazarA"), selectedImage: UIImage(named: "bazarB"))
+        
+        secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
+        
+        thirdTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
+        
+        
+        appDelegate.window?.rootViewController = appDelegate.tabBarController
+        appDelegate.tabBarController?.selectedIndex = 0
+        
         
 //        UIView.transitionFromView((appDelegate.window?.rootViewController?.view)! , toView: (appDelegate.tabBarController?.view)!, duration: 1.0, options: .TransitionCrossDissolve) { (Bool) in
 //            appDelegate.window?.rootViewController = appDelegate.tabBarController
@@ -277,10 +296,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 //            self.dismissViewControllerAnimated(true, completion: nil)
 //            
 //        }
-        
-    appDelegate.window?.rootViewController = appDelegate.tabBarController
-    appDelegate.tabBarController?.selectedIndex = 0
-    dismissViewControllerAnimated(true, completion: nil)
         
     }
    

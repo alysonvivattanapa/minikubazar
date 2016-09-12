@@ -148,6 +148,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             } else {
             
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.tabBarController?.viewControllers?.removeAll()
+            let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
+            let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
+            let thirdTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
+            let controllers = [firstTab, secondTab, thirdTab]
+            appDelegate.tabBarController?.viewControllers = controllers
+            
+            UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                
+            firstTab.tabBarItem = UITabBarItem(title: "Bazar", image: UIImage(named: "bazarA"), selectedImage: UIImage(named: "bazarB"))
+                
+            secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
+                
+            thirdTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
+
+
             appDelegate.window?.rootViewController = appDelegate.tabBarController
             appDelegate.tabBarController?.selectedIndex = 0
             }
