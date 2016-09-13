@@ -442,6 +442,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let shareableHaikuImage = createShareableHaikuImage()
         let activityItemsArray = [shareableHaikuImage]
         let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
+        //excluded iMessage from activity types because it was messing with keyboard UI with resigningFirstResponder stuff again.
+        activityVC.excludedActivityTypes = [UIActivityTypeMessage, UIActivityTypeAddToReadingList, UIActivityTypeOpenInIBooks]
         presentViewController(activityVC, animated: true, completion: nil)
 
     }
