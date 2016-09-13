@@ -286,23 +286,23 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    
+//commented out this function for now because it  doesn't really do much. better to enable pinch and zoom later instead
   
-    @IBAction func haikuImageViewTapped(sender: UITapGestureRecognizer) {
-        let imageView = sender.view as! UIImageView
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = enterHaikuView.frame
-//        newImageView.backgroundColor = .blackColor()
-        newImageView.contentMode = .ScaleAspectFit
-        newImageView.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(StartViewController.dismissFullscreenImage(_:)))
-        newImageView.addGestureRecognizer(tap)
-        self.view.addSubview(newImageView)
-    }
-    
-    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-        sender.view?.removeFromSuperview()
-    }
+//    @IBAction func haikuImageViewTapped(sender: UITapGestureRecognizer) {
+//        let imageView = sender.view as! UIImageView
+//        let newImageView = UIImageView(image: imageView.image)
+//        newImageView.frame = enterHaikuView.frame
+////        newImageView.backgroundColor = .blackColor()
+//        newImageView.contentMode = .ScaleAspectFit
+//        newImageView.userInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(StartViewController.dismissFullscreenImage(_:)))
+//        newImageView.addGestureRecognizer(tap)
+//        self.view.addSubview(newImageView)
+//    }
+//    
+//    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+//        sender.view?.removeFromSuperview()
+//    }
 
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
