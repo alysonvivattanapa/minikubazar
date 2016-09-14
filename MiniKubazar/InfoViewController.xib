@@ -95,32 +95,73 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-Pb-bx5">
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KubazarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-mI-bvo">
-                            <rect key="frame" x="180" y="230" width="240" height="128"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="KubazarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-mI-bvo">
+                            <rect key="frame" x="5" y="165" width="590" height="261"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="128" id="KIV-sb-Gfl"/>
                                 <constraint firstAttribute="width" constant="240" id="UKy-rf-7kB"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="KIV-sb-Gfl"/>
+                                    <exclude reference="UKy-rf-7kB"/>
+                                </mask>
+                            </variation>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-LU-sal">
-                            <rect key="frame" x="150" y="15" width="300" height="200"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about kubazar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgU-vz-wgQ">
+                            <rect key="frame" x="242" y="5" width="116" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="200" id="phj-hH-OFG"/>
-                                <constraint firstAttribute="width" constant="300" id="z0q-ph-gYC"/>
+                                <constraint firstAttribute="height" constant="21" id="WlD-KL-jP4"/>
+                                <constraint firstAttribute="width" constant="116" id="kmX-pl-wFp"/>
                             </constraints>
-                            <string key="text">Kubazar is a project by Crowd Effect, a startup based in Utrecht, The Netherlands. MiniKubazar is the beta version of the app, which allows users to write and share haikus with pictures. The next version of Kubazar will include additional features, such as allowing users to post photos and write haikus with their friends. Thank you for trying out MiniKubazar! Stay tuned for the next update.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD3-lg-xNY">
+                            <rect key="frame" x="15" y="103" width="570" height="47"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="57" id="QaE-J1-aNR"/>
+                            </constraints>
+                            <string key="text">The next version of Kubazar will include additional features, such as allowing users to post photos and write haikus with their friends. Thank you for trying out MiniKubazar! Stay tuned for the next update.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="QaE-J1-aNR"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-gp-T3k">
+                            <rect key="frame" x="15" y="41" width="570" height="47"/>
+                            <string key="text">Kubazar is a project by Crowd Effect, a startup based in Utrecht, The Netherlands. MiniKubazar is the beta version of the app, which allows users to write and share haikus with pictures.  </string>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="iLt-mI-bvo" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="BFf-qc-LcN"/>
-                        <constraint firstItem="GMB-LU-sal" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="K9n-sd-cfV"/>
-                        <constraint firstItem="GMB-LU-sal" firstAttribute="top" secondItem="qKJ-Pb-bx5" secondAttribute="top" constant="15" id="ZF2-fR-bPy"/>
-                        <constraint firstItem="iLt-mI-bvo" firstAttribute="top" secondItem="GMB-LU-sal" secondAttribute="bottom" constant="15" id="ozX-G3-qmY"/>
+                        <constraint firstItem="kgU-vz-wgQ" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="Jvc-8g-kfh"/>
+                        <constraint firstAttribute="trailing" secondItem="FD3-lg-xNY" secondAttribute="trailing" constant="15" id="Lbo-2o-mF3"/>
+                        <constraint firstAttribute="trailing" secondItem="iLt-mI-bvo" secondAttribute="trailing" constant="5" id="RlG-zu-War"/>
+                        <constraint firstItem="iLt-mI-bvo" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="5" id="Tjy-aj-VQH"/>
+                        <constraint firstItem="FD3-lg-xNY" firstAttribute="top" secondItem="b1f-gp-T3k" secondAttribute="bottom" constant="15" id="Vfh-rE-can"/>
+                        <constraint firstItem="b1f-gp-T3k" firstAttribute="top" secondItem="kgU-vz-wgQ" secondAttribute="bottom" constant="15" id="Zzp-Jb-YBO"/>
+                        <constraint firstAttribute="trailing" secondItem="b1f-gp-T3k" secondAttribute="trailing" constant="15" id="e4L-xQ-yAw"/>
+                        <constraint firstItem="kgU-vz-wgQ" firstAttribute="top" secondItem="qKJ-Pb-bx5" secondAttribute="top" constant="5" id="iy3-GU-xap"/>
+                        <constraint firstItem="b1f-gp-T3k" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="15" id="jy3-In-V6a"/>
+                        <constraint firstItem="iLt-mI-bvo" firstAttribute="top" secondItem="FD3-lg-xNY" secondAttribute="bottom" constant="15" id="l7O-Jb-sFx"/>
+                        <constraint firstAttribute="bottom" secondItem="iLt-mI-bvo" secondAttribute="bottom" constant="70" id="oEn-dj-R9d"/>
+                        <constraint firstItem="FD3-lg-xNY" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="15" id="xV6-dD-IT0"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="BFf-qc-LcN"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

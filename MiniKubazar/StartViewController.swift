@@ -219,7 +219,29 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func inspireMeButtonPressed(sender: AnyObject) {
         
-// cannot specify custom source type for image picker. may have to implement collection view and choose images from database in collection view. for now, button does nothing!
+        let random = arc4random_uniform(4)
+        
+        switch random {
+        case 0:
+           
+             haikuImageView.image = UIImage(named: "randomDaisy")
+            
+        case 1:
+            
+            haikuImageView.image = UIImage(named: "randomBabbetje")
+            
+        case 2:
+            
+            haikuImageView.image = UIImage(named: "randomBear")
+            
+    
+        default:
+            
+             haikuImageView.image = UIImage(named: "randomMannequin")
+            
+        }
+        
+        stepThreeEnterHaiku()
 
     }
     
@@ -286,23 +308,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-//commented out this function for now because it  doesn't really do much. better to enable pinch and zoom later instead
-  
-//    @IBAction func haikuImageViewTapped(sender: UITapGestureRecognizer) {
-//        let imageView = sender.view as! UIImageView
-//        let newImageView = UIImageView(image: imageView.image)
-//        newImageView.frame = enterHaikuView.frame
-////        newImageView.backgroundColor = .blackColor()
-//        newImageView.contentMode = .ScaleAspectFit
-//        newImageView.userInteractionEnabled = true
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(StartViewController.dismissFullscreenImage(_:)))
-//        newImageView.addGestureRecognizer(tap)
-//        self.view.addSubview(newImageView)
-//    }
-//    
-//    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
-//        sender.view?.removeFromSuperview()
-//    }
 
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
@@ -473,6 +478,24 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
+    //commented out this function for now because it  doesn't really do much. better to enable pinch and zoom later instead
+    
+    //    @IBAction func haikuImageViewTapped(sender: UITapGestureRecognizer) {
+    //        let imageView = sender.view as! UIImageView
+    //        let newImageView = UIImageView(image: imageView.image)
+    //        newImageView.frame = enterHaikuView.frame
+    ////        newImageView.backgroundColor = .blackColor()
+    //        newImageView.contentMode = .ScaleAspectFit
+    //        newImageView.userInteractionEnabled = true
+    //        let tap = UITapGestureRecognizer(target: self, action: #selector(StartViewController.dismissFullscreenImage(_:)))
+    //        newImageView.addGestureRecognizer(tap)
+    //        self.view.addSubview(newImageView)
+    //    }
+    //
+    //    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+    //        sender.view?.removeFromSuperview()
+    //    }
+
     
     
     

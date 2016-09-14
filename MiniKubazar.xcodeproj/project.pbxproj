@@ -167,6 +167,7 @@
 				F2A120051D82287900A39867 /* Resources */,
 				F0977D1F881478A0E272B978 /* [CP] Embed Pods Frameworks */,
 				B3FA69AD8F94FA788482FCEF /* [CP] Copy Pods Resources */,
+				F2AAF79B1D894BD500D9F8FF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -263,6 +264,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F2AAF79B1D894BD500D9F8FF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
 		};
 		F83F3C6C413D112B4900C239 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

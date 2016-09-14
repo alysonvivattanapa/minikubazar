@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import HockeySDK
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         
         FIRApp.configure()
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("aff36663a8984d5c8d947b5bd884e3c6")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
         
         tabBarController = UITabBarController()
         let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
