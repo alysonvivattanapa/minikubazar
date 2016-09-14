@@ -53,6 +53,11 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+        
+        segmentedControl.layer.borderColor = kubazarDarkGreen.CGColor
+        segmentedControl.tintColor = kubazarDarkGreen
+        
         fetchHaikusAndSetToDataSource()
         
 //        setInitialViewAndSelectedIndex()
@@ -76,8 +81,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func fetchHaikusAndSetToDataSource() {
         
-//        completedCollectionViewDataSource.completedHaikus = []
-        
         ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
             
             NSOperationQueue.mainQueue().addOperationWithBlock() {
@@ -92,57 +95,62 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                             let haikuImage = UIImage(data: data!)
                             let completedHaiku = CompletedHaiku(imageString: imageString, image: haikuImage)
                             self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
+                           
+                           self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
+                            
                         }
-                         self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
+                       
+                        
                     })
                     
                 }
+               
                 
             }
         }
     }
     
-    func setInitialDataForCollectionView() {
-        
-        completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            
-            if snapshot.value is NSNull {
-                
-                print("You have no completed haikus. Start a haiku!")
-                
-                self.activeStartView.hidden = false
-                self.startHaikuLabel.text = "You have no completed haikus."
-                
-            } else {
-                print("this snapshot exists")
-                
-                ClientService.getCompletedHaikuImageURLStringsForCurrentUser({ (arrayOfImages) in
-                    self.arrayOfImageURLStrings = arrayOfImages
-                    
-                    for imageString in self.arrayOfImageURLStrings {
-                        
-                        let completedHaikuImageHttpsRef = FIRStorage.storage().referenceForURL(imageString)
-                        
-                        completedHaikuImageHttpsRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
-                            if (error != nil) {
-                                print("image file too large to download?")
-                            } else {
-                                let completedHaikuImage: UIImage! = UIImage(data: data!)
-                                self.arrayOfImages.append(completedHaikuImage)
-                                if self.arrayOfImages.count == self.arrayOfImageURLStrings.count {
-                                    self.completedHaikusCollectionView.reloadData()
-                                }
-                            }
-                        })
-                        
-                    }
-                    
-                })
-           
-        }
-        })
-
-    }
+//    func setInitialDataForCollectionView() {
+//        
+//        completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+//            
+//            if snapshot.value is NSNull {
+//                
+//                print("You have no completed haikus. Start a haiku!")
+//                
+//                self.activeStartView.hidden = false
+//                self.startHaikuLabel.text = "You have no completed haikus."
+//                
+//            } else {
+//                print("this snapshot exists")
+//                
+//                ClientService.getCompletedHaikuImageURLStringsForCurrentUser({ (arrayOfImages) in
+//                    self.arrayOfImageURLStrings = arrayOfImages
+//                    
+//                    for imageString in self.arrayOfImageURLStrings {
+//                        
+//                        let completedHaikuImageHttpsRef = FIRStorage.storage().referenceForURL(imageString)
+//                        
+//                        completedHaikuImageHttpsRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
+//                            if (error != nil) {
+//                                print("image file too large to download?")
+//                            } else {
+//                                let completedHaikuImage: UIImage! = UIImage(data: data!)
+//                                self.arrayOfImages.append(completedHaikuImage)
+//                                if self.arrayOfImages.count == self.arrayOfImageURLStrings.count {
+//                                    self.completedHaikusCollectionView.reloadData()
+//                                }
+//                            }
+//                        })
+//                        
+//                    }
+//                    
+//                })
+//           
+//        }
+//        })
+//
+//    }
     
     
     @IBAction func startHaikuButton(sender: AnyObject) {
@@ -193,10 +201,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func setInitialViewAndSelectedIndex() {
-        let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
-        
-        segmentedControl.layer.borderColor = kubazarDarkGreen.CGColor
-        segmentedControl.tintColor = kubazarDarkGreen
+      
         
         setSegmentedViewsToHidden()
         
@@ -272,8 +277,20 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
+//    func fetchImageForCompletedHaiku(completedHaiku: CompletedHaiku, completion: (ImageResult) -> Void ) {
+//        let haikuURLString = completedHaiku.imageString
+//        let
+//    }
+    
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        
         let haikuImage = completedCollectionViewDataSource.completedHaikus[indexPath.row]
+        
+//        
+//        ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
+//            
+////            NSOperationQueue.mainQueue().addOperationWithBlock() {
+//
         
         let haikuImageIndex = completedCollectionViewDataSource.completedHaikus.indexOf(haikuImage)!
         
@@ -281,6 +298,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         if let cell = self.completedHaikusCollectionView.cellForItemAtIndexPath(haikuImageIndexPath) as? CompletedHaikusCollectionViewCell {
             cell.updateWithImage(haikuImage.image)
+
+
+            
         }
         
     }
