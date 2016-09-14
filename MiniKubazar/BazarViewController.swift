@@ -31,11 +31,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let completedCollectionViewDataSource = CompletedCollectionViewDataSource()
     
-    
-    var arrayOfImageURLStrings = [String]()
-    
-    var arrayOfImages = [UIImage]()
-    
     // URGENT: probably shouldn't put this here because if there's no internet, it can't do this
     // should probably specify type here, then declare in viewDidLoad
     
@@ -60,6 +55,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         fetchHaikusAndSetToDataSource()
         
+      
+        
 //        setInitialViewAndSelectedIndex()
 //        
 //        setInitialDataForCollectionView()
@@ -80,115 +77,45 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func fetchHaikusAndSetToDataSource() {
+       
+        print("fetch Data gets called")
         
         ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
-            
-            NSOperationQueue.mainQueue().addOperationWithBlock() {
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                
+                
                 let imageStringArray = arrayOfImageStrings
+                
+                self.completedCollectionViewDataSource.completedHaikus = []
                 
                 for imageString in imageStringArray {
                     let haikuImageRef = FIRStorage.storage().referenceForURL(imageString)
-                    haikuImageRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
+                    haikuImageRef.dataWithMaxSize(1 * 3000 * 3000, completion: { (data, error) in
                         if (error != nil) {
+                            print(error)
                             print("something wrong with image download; maybe file too large")
                         } else {
+                            
                             let haikuImage = UIImage(data: data!)
                             let completedHaiku = CompletedHaiku(imageString: imageString, image: haikuImage)
-                            self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
-                           
-                           self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
                             
+                            print("/(completedHaiku) appended")
+                            self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
+                            
+                            self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
                         }
-                       
                         
                     })
-                    
                 }
-               
                 
             }
+            
         }
     }
-    
-//    func setInitialDataForCollectionView() {
-//        
-//        completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-//            
-//            if snapshot.value is NSNull {
-//                
-//                print("You have no completed haikus. Start a haiku!")
-//                
-//                self.activeStartView.hidden = false
-//                self.startHaikuLabel.text = "You have no completed haikus."
-//                
-//            } else {
-//                print("this snapshot exists")
-//                
-//                ClientService.getCompletedHaikuImageURLStringsForCurrentUser({ (arrayOfImages) in
-//                    self.arrayOfImageURLStrings = arrayOfImages
-//                    
-//                    for imageString in self.arrayOfImageURLStrings {
-//                        
-//                        let completedHaikuImageHttpsRef = FIRStorage.storage().referenceForURL(imageString)
-//                        
-//                        completedHaikuImageHttpsRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
-//                            if (error != nil) {
-//                                print("image file too large to download?")
-//                            } else {
-//                                let completedHaikuImage: UIImage! = UIImage(data: data!)
-//                                self.arrayOfImages.append(completedHaikuImage)
-//                                if self.arrayOfImages.count == self.arrayOfImageURLStrings.count {
-//                                    self.completedHaikusCollectionView.reloadData()
-//                                }
-//                            }
-//                        })
-//                        
-//                    }
-//                    
-//                })
-//           
-//        }
-//        })
-//
-//    }
-    
     
     @IBAction func startHaikuButton(sender: AnyObject) {
         startHaiku()
     }
-    
-    
-    func checkForNewHaikus() {
-        ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfStrings) in
-            
-            for imageString in arrayOfStrings {
-                if self.arrayOfImageURLStrings.contains(imageString) {
-                    
-                    print("collection view should already contain data from this image string \(imageString)")
-                    
-                } else {
-                    
-                    let completedHaikuImageHttpsRef = FIRStorage.storage().referenceForURL(imageString)
-                    
-                    completedHaikuImageHttpsRef.dataWithMaxSize(1 * 1024 * 1024, completion: { (data, error) in
-                        
-                        if (error != nil) {
-                            print("image file for new cell is too big?")
-                            
-                        } else {
-                            
-                            if self.arrayOfImageURLStrings.count > 1 {
-                                let completedHaikuImage: UIImage! = UIImage(data: data!)
-                                self.arrayOfImages.append(completedHaikuImage)
-                                let newIndexPath = NSIndexPath(forItem: self.arrayOfImages.indexOf(completedHaikuImage)!, inSection: 0)
-                                self.completedHaikusCollectionView.insertItemsAtIndexPaths([newIndexPath])
-                            }
-                        }
-                    })
-                }
-                }}
-            }
-            
     
     
     func buttonAnimation(button: UIButton) {
@@ -268,42 +195,30 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     
     @IBAction func refreshButtonPressed(sender: AnyObject) {
-//        
-//        self.arrayOfImages = []
-//        self.arrayOfImageURLStrings = []
-//
-//        setInitialDataForCollectionView()
         
+ //       completedCollectionViewDataSource.completedHaikus = []
+        
+//        fetchHaikusAndSetToDataSource()
+        
+        print("refresh button pressed")
         
     }
     
-//    func fetchImageForCompletedHaiku(completedHaiku: CompletedHaiku, completion: (ImageResult) -> Void ) {
-//        let haikuURLString = completedHaiku.imageString
-//        let
-//    }
-    
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let haikuImage = completedCollectionViewDataSource.completedHaikus[indexPath.row]
-        
+
+//    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
 //        
-//        ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
+//        let haikuImage = completedCollectionViewDataSource.completedHaikus[indexPath.row]
+//        
+//        let haikuImageIndex = completedCollectionViewDataSource.completedHaikus.indexOf(haikuImage)!
+//        
+//        let haikuImageIndexPath = NSIndexPath(forRow: haikuImageIndex, inSection: 0)
+//        
+//        if let cell = self.completedHaikusCollectionView.cellForItemAtIndexPath(haikuImageIndexPath) as? CompletedHaikusCollectionViewCell {
+//            cell.updateWithImage(haikuImage.image)
 //            
-////            NSOperationQueue.mainQueue().addOperationWithBlock() {
-//
-        
-        let haikuImageIndex = completedCollectionViewDataSource.completedHaikus.indexOf(haikuImage)!
-        
-        let haikuImageIndexPath = NSIndexPath(forRow: haikuImageIndex, inSection: 0)
-        
-        if let cell = self.completedHaikusCollectionView.cellForItemAtIndexPath(haikuImageIndexPath) as? CompletedHaikusCollectionViewCell {
-            cell.updateWithImage(haikuImage.image)
-
-
-            
-        }
-        
-    }
+//        }
+//        
+//    }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let completedHaikuDetailVC = CompletedHaikuDetailViewController()
@@ -312,6 +227,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             completedHaikuDetailVC.completedHaikuDetailImageView.image = haikuImage.image
         }
     }
+    
     
     
 }

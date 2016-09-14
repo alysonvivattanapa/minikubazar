@@ -56,126 +56,6 @@
                         <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="aOX-rV-NcV"/>
                     </connections>
                 </segmentedControl>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g2-05-jTt" userLabel="HowToPlayView">
-                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Choose a picture." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0v-y7-ScG">
-                            <rect key="frame" x="5" y="26" width="590" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="165" id="QXu-H6-STE"/>
-                                <constraint firstAttribute="width" constant="348" id="SUQ-XP-MU1"/>
-                                <constraint firstAttribute="height" constant="21" id="fOS-0N-rYf"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="QXu-H6-STE"/>
-                                    <exclude reference="SUQ-XP-MU1"/>
-                                </mask>
-                            </variation>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Write a haiku." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFf-11-ZpL">
-                            <rect key="frame" x="5" y="71" width="590" height="14.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 3: Share!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eep-45-R8S">
-                            <rect key="frame" x="5" y="125" width="590" height="14.5"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo, choose from your camera roll, or let Kubazar inspire you with a random image." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBx-nC-Zfk">
-                            <rect key="frame" x="5" y="47" width="590" height="14.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLY-Hp-12g">
-                            <rect key="frame" x="5" y="86" width="590" height="29"/>
-                            <string key="text">A haiku is a form of Japanese poetry consisting of three lines. The first and third lines have 5 syllables each. The second line has 7 syllables.</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="t7R-S3-Miu">
-                            <rect key="frame" x="5" y="213" width="590" height="366"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSN-zN-n9v">
-                            <rect key="frame" x="5" y="5" width="590" height="16"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1C-ZX-56X">
-                            <rect key="frame" x="229" y="178" width="142" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="P1h-8H-Aok"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Y2X-Jy-rHV"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="j6h-Pj-0MO"/>
-                                <constraint firstAttribute="width" constant="142" id="pGe-vT-gNV"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Start a haiku!" backgroundImage="Continue">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share your Kubazar haiku!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMF-uG-8qL">
-                            <rect key="frame" x="5" y="139" width="590" height="14.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="fSN-zN-n9v" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="1gW-2e-kVl"/>
-                        <constraint firstItem="t7R-S3-Miu" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="4vh-38-dGM"/>
-                        <constraint firstAttribute="trailing" secondItem="t7R-S3-Miu" secondAttribute="trailing" constant="5" id="62f-VX-00a"/>
-                        <constraint firstAttribute="bottom" secondItem="t7R-S3-Miu" secondAttribute="bottom" constant="70" id="6MP-YX-cGz"/>
-                        <constraint firstAttribute="bottom" secondItem="t7R-S3-Miu" secondAttribute="bottom" constant="70" id="6uW-99-G6R"/>
-                        <constraint firstItem="h1C-ZX-56X" firstAttribute="top" secondItem="CMF-uG-8qL" secondAttribute="bottom" constant="25" id="8NC-p9-LB3"/>
-                        <constraint firstAttribute="trailing" secondItem="CMF-uG-8qL" secondAttribute="trailing" constant="5" id="9C6-IC-OKX"/>
-                        <constraint firstAttribute="trailing" secondItem="w0v-y7-ScG" secondAttribute="trailing" constant="5" id="FMB-aF-BVd"/>
-                        <constraint firstItem="BBx-nC-Zfk" firstAttribute="top" secondItem="w0v-y7-ScG" secondAttribute="bottom" id="Fx8-dE-JGf"/>
-                        <constraint firstAttribute="trailing" secondItem="rFf-11-ZpL" secondAttribute="trailing" constant="5" id="GZW-DT-Dy8"/>
-                        <constraint firstItem="w0v-y7-ScG" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="H9k-cl-lMs"/>
-                        <constraint firstItem="CMF-uG-8qL" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="IYI-XM-V5j"/>
-                        <constraint firstAttribute="trailing" secondItem="t7R-S3-Miu" secondAttribute="trailing" constant="5" id="KGd-KI-JW7"/>
-                        <constraint firstItem="eep-45-R8S" firstAttribute="top" secondItem="gLY-Hp-12g" secondAttribute="bottom" constant="10" id="MJE-EN-z7w"/>
-                        <constraint firstItem="w0v-y7-ScG" firstAttribute="top" secondItem="fSN-zN-n9v" secondAttribute="bottom" constant="5" id="Peu-Ol-5RE"/>
-                        <constraint firstAttribute="trailing" secondItem="fSN-zN-n9v" secondAttribute="trailing" constant="5" id="QDm-37-vJu"/>
-                        <constraint firstItem="eep-45-R8S" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="Qg9-cF-iDa"/>
-                        <constraint firstItem="rFf-11-ZpL" firstAttribute="top" secondItem="BBx-nC-Zfk" secondAttribute="bottom" constant="10" id="TkO-F3-4AH"/>
-                        <constraint firstItem="rFf-11-ZpL" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="Z6K-2B-FyB"/>
-                        <constraint firstItem="h1C-ZX-56X" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="ZkE-zL-6bm"/>
-                        <constraint firstItem="fSN-zN-n9v" firstAttribute="top" secondItem="1g2-05-jTt" secondAttribute="top" constant="5" id="cbl-Y7-Glv"/>
-                        <constraint firstAttribute="trailing" secondItem="BBx-nC-Zfk" secondAttribute="trailing" constant="5" id="gUG-S8-ZEb"/>
-                        <constraint firstItem="w0v-y7-ScG" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="h9r-zs-mS0"/>
-                        <constraint firstAttribute="trailing" secondItem="gLY-Hp-12g" secondAttribute="trailing" constant="5" id="iBn-uO-JvY"/>
-                        <constraint firstItem="gLY-Hp-12g" firstAttribute="top" secondItem="rFf-11-ZpL" secondAttribute="bottom" id="k8H-Qc-n32"/>
-                        <constraint firstItem="w0v-y7-ScG" firstAttribute="top" secondItem="1g2-05-jTt" secondAttribute="top" constant="50" id="pK0-pE-9cd"/>
-                        <constraint firstItem="BBx-nC-Zfk" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="qpa-eo-eCC"/>
-                        <constraint firstItem="gLY-Hp-12g" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="rb8-C4-rfK"/>
-                        <constraint firstItem="t7R-S3-Miu" firstAttribute="top" secondItem="h1C-ZX-56X" secondAttribute="bottom" constant="5" id="vE1-DU-s7B"/>
-                        <constraint firstItem="t7R-S3-Miu" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="w4o-nP-wQd"/>
-                        <constraint firstAttribute="trailing" secondItem="eep-45-R8S" secondAttribute="trailing" constant="5" id="w7f-ZD-sfx"/>
-                        <constraint firstItem="CMF-uG-8qL" firstAttribute="top" secondItem="eep-45-R8S" secondAttribute="bottom" id="zdS-GW-VXl"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="h9r-zs-mS0"/>
-                            <exclude reference="pK0-pE-9cd"/>
-                            <exclude reference="62f-VX-00a"/>
-                            <exclude reference="6MP-YX-cGz"/>
-                            <exclude reference="6uW-99-G6R"/>
-                            <exclude reference="w4o-nP-wQd"/>
-                        </mask>
-                    </variation>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmP-43-EC0" userLabel="ActiveStartView">
                     <rect key="frame" x="100" y="175" width="400" height="250"/>
                     <subviews>
@@ -234,7 +114,7 @@
                     <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-vs-8SC">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="373"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kTv-0C-KHo">
                                 <size key="itemSize" width="90" height="90"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -242,40 +122,244 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er3-AC-2gx">
-                            <rect key="frame" x="257" y="388" width="86" height="33"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="86" id="3el-wv-jW0"/>
-                                <constraint firstAttribute="height" constant="33" id="AhQ-DS-EP4"/>
-                                <constraint firstAttribute="width" constant="33" id="Nyb-Wx-JRb"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Refresh" backgroundImage="Continue">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Nyb-Wx-JRb"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="refreshButtonPressed:" destination="-1" eventType="touchUpInside" id="z2J-IV-GKv"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="er3-AC-2gx" firstAttribute="centerX" secondItem="nJ2-hc-cP7" secondAttribute="centerX" id="4vb-MK-PGw"/>
-                        <constraint firstAttribute="bottom" secondItem="er3-AC-2gx" secondAttribute="bottom" constant="75" id="FP9-oh-6Kk"/>
+                        <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="2mq-TE-I7C"/>
                         <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" id="Fs2-gu-bhO"/>
                         <constraint firstItem="Jiq-vs-8SC" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="GZk-rR-7eJ"/>
                         <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="Jqu-6D-l8B"/>
-                        <constraint firstItem="er3-AC-2gx" firstAttribute="top" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="15" id="TT9-e9-MrR"/>
                         <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="niU-du-MGe"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="Jqu-6D-l8B"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g2-05-jTt" userLabel="HowToPlayView">
+                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Choose a picture." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0v-y7-ScG">
+                            <rect key="frame" x="5" y="36" width="149" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="165" id="QXu-H6-STE"/>
+                                <constraint firstAttribute="width" constant="348" id="SUQ-XP-MU1"/>
+                                <constraint firstAttribute="height" constant="21" id="fOS-0N-rYf"/>
+                                <constraint firstAttribute="width" constant="149" id="xJR-Xc-RYO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="QXu-H6-STE"/>
+                                    <exclude reference="SUQ-XP-MU1"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Write a haiku." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFf-11-ZpL">
+                            <rect key="frame" x="5" y="74" width="590" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 3: Share!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eep-45-R8S">
+                            <rect key="frame" x="5" y="203" width="91" height="14.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="91" id="FgQ-7a-tVQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A haiku is a form of Japanese poetry consisting of three lines, each with a set number of syllables:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLY-Hp-12g">
+                            <rect key="frame" x="5" y="88" width="590" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="hAi-ah-nGc"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="t7R-S3-Miu">
+                            <rect key="frame" x="5" y="272.5" width="590" height="366"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSN-zN-n9v">
+                            <rect key="frame" x="5" y="10" width="590" height="16"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1C-ZX-56X">
+                            <rect key="frame" x="229" y="237.5" width="142" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="P1h-8H-Aok"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Y2X-Jy-rHV"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="j6h-Pj-0MO"/>
+                                <constraint firstAttribute="width" constant="142" id="pGe-vT-gNV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="Start a haiku!" backgroundImage="Continue">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Y2X-Jy-rHV"/>
+                                    <exclude reference="j6h-Pj-0MO"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kubazarCamera" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-pI-bgw">
+                            <rect key="frame" x="157" y="29" width="31" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="31" id="5Me-Wu-HEX"/>
+                                <constraint firstAttribute="height" constant="35" id="Tdr-3m-4Al"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the first line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1W1-9h-RM8">
+                            <rect key="frame" x="219" y="130" width="162" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="162" id="BpZ-Uk-Rxs"/>
+                                <constraint firstAttribute="width" constant="126" id="cjR-EL-YnI"/>
+                                <constraint firstAttribute="height" constant="21" id="ma6-co-sOR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="cjR-EL-YnI"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the second line has seven" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0v7-PG-bC4">
+                            <rect key="frame" x="219" y="151" width="162" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Bzv-UG-v3N"/>
+                                <constraint firstAttribute="width" constant="162" id="Hr1-LK-Yqn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the third line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bef-m0-hPR">
+                            <rect key="frame" x="219" y="172" width="162" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="162" id="1m2-sx-ImY"/>
+                                <constraint firstAttribute="width" constant="131" id="TdC-QQ-leA"/>
+                                <constraint firstAttribute="height" constant="21" id="VAX-hU-Bxa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="TdC-QQ-leA"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ow-r5-ncr">
+                            <rect key="frame" x="384" y="130" width="11" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="11" id="eA1-qg-YNj"/>
+                                <constraint firstAttribute="height" constant="21" id="ssK-Bu-DZS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAZ-Dn-J3x">
+                            <rect key="frame" x="384" y="151" width="11" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="11" id="RXE-dW-HGh"/>
+                                <constraint firstAttribute="height" constant="21" id="b1l-Ji-zHK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBY-1v-MVT">
+                            <rect key="frame" x="384" y="172" width="11" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="woR-tP-1aB"/>
+                                <constraint firstAttribute="width" constant="11" id="zuh-zc-gI4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vvi-47-n5E">
+                            <rect key="frame" x="98" y="195" width="33" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="WaL-ym-4dR"/>
+                                <constraint firstAttribute="width" constant="33" id="c8o-vK-6KF"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="fSN-zN-n9v" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="1gW-2e-kVl"/>
+                        <constraint firstItem="t7R-S3-Miu" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="4vh-38-dGM"/>
+                        <constraint firstAttribute="trailing" secondItem="t7R-S3-Miu" secondAttribute="trailing" constant="5" id="62f-VX-00a"/>
+                        <constraint firstAttribute="bottom" secondItem="t7R-S3-Miu" secondAttribute="bottom" constant="70" id="6MP-YX-cGz"/>
+                        <constraint firstAttribute="bottom" secondItem="t7R-S3-Miu" secondAttribute="bottom" constant="70" id="6uW-99-G6R"/>
+                        <constraint firstItem="0v7-PG-bC4" firstAttribute="top" secondItem="1W1-9h-RM8" secondAttribute="bottom" id="77R-mr-S3A"/>
+                        <constraint firstItem="1W1-9h-RM8" firstAttribute="top" secondItem="rFf-11-ZpL" secondAttribute="bottom" id="80J-Ya-hQP"/>
+                        <constraint firstAttribute="trailing" secondItem="w0v-y7-ScG" secondAttribute="trailing" constant="5" id="FMB-aF-BVd"/>
+                        <constraint firstItem="kC8-pI-bgw" firstAttribute="leading" secondItem="w0v-y7-ScG" secondAttribute="trailing" constant="3" id="FSQ-81-LXh"/>
+                        <constraint firstAttribute="trailing" secondItem="rFf-11-ZpL" secondAttribute="trailing" constant="5" id="GZW-DT-Dy8"/>
+                        <constraint firstItem="7Ow-r5-ncr" firstAttribute="centerY" secondItem="1W1-9h-RM8" secondAttribute="centerY" id="Gpt-et-Kk5"/>
+                        <constraint firstItem="w0v-y7-ScG" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="H9k-cl-lMs"/>
+                        <constraint firstAttribute="trailing" secondItem="t7R-S3-Miu" secondAttribute="trailing" constant="5" id="KGd-KI-JW7"/>
+                        <constraint firstItem="eep-45-R8S" firstAttribute="top" secondItem="gLY-Hp-12g" secondAttribute="bottom" constant="10" id="MJE-EN-z7w"/>
+                        <constraint firstItem="rFf-11-ZpL" firstAttribute="top" secondItem="kC8-pI-bgw" secondAttribute="bottom" constant="10" id="PV9-JD-cDq"/>
+                        <constraint firstItem="w0v-y7-ScG" firstAttribute="top" secondItem="fSN-zN-n9v" secondAttribute="bottom" constant="10" id="Peu-Ol-5RE"/>
+                        <constraint firstAttribute="trailing" secondItem="fSN-zN-n9v" secondAttribute="trailing" constant="5" id="QDm-37-vJu"/>
+                        <constraint firstItem="eep-45-R8S" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="Qg9-cF-iDa"/>
+                        <constraint firstItem="kC8-pI-bgw" firstAttribute="centerY" secondItem="w0v-y7-ScG" secondAttribute="centerY" id="RkG-AH-AV9"/>
+                        <constraint firstItem="1W1-9h-RM8" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="VtE-Tq-P14"/>
+                        <constraint firstItem="1W1-9h-RM8" firstAttribute="top" secondItem="gLY-Hp-12g" secondAttribute="bottom" id="VwK-ii-ikF"/>
+                        <constraint firstItem="fAZ-Dn-J3x" firstAttribute="leading" secondItem="0v7-PG-bC4" secondAttribute="trailing" constant="3" id="X0c-cp-Zkp"/>
+                        <constraint firstItem="rFf-11-ZpL" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="Z6K-2B-FyB"/>
+                        <constraint firstItem="h1C-ZX-56X" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="ZkE-zL-6bm"/>
+                        <constraint firstItem="fSN-zN-n9v" firstAttribute="top" secondItem="1g2-05-jTt" secondAttribute="top" constant="10" id="cbl-Y7-Glv"/>
+                        <constraint firstItem="h1C-ZX-56X" firstAttribute="top" secondItem="eep-45-R8S" secondAttribute="bottom" constant="20" id="fZG-jT-sAf"/>
+                        <constraint firstItem="lBY-1v-MVT" firstAttribute="leading" secondItem="bef-m0-hPR" secondAttribute="trailing" constant="3" id="gS8-0H-2P9"/>
+                        <constraint firstItem="w0v-y7-ScG" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="h9r-zs-mS0"/>
+                        <constraint firstItem="0v7-PG-bC4" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="hbc-s2-gsL"/>
+                        <constraint firstItem="vvi-47-n5E" firstAttribute="leading" secondItem="eep-45-R8S" secondAttribute="trailing" constant="2" id="hnq-yh-OE2"/>
+                        <constraint firstAttribute="trailing" secondItem="gLY-Hp-12g" secondAttribute="trailing" constant="5" id="iBn-uO-JvY"/>
+                        <constraint firstItem="gLY-Hp-12g" firstAttribute="top" secondItem="rFf-11-ZpL" secondAttribute="bottom" id="k8H-Qc-n32"/>
+                        <constraint firstItem="0v7-PG-bC4" firstAttribute="top" secondItem="gLY-Hp-12g" secondAttribute="bottom" id="ksh-cd-OVz"/>
+                        <constraint firstItem="bef-m0-hPR" firstAttribute="centerX" secondItem="1g2-05-jTt" secondAttribute="centerX" id="nRv-KY-Yhr"/>
+                        <constraint firstItem="w0v-y7-ScG" firstAttribute="top" secondItem="1g2-05-jTt" secondAttribute="top" constant="50" id="pK0-pE-9cd"/>
+                        <constraint firstItem="bef-m0-hPR" firstAttribute="top" secondItem="0v7-PG-bC4" secondAttribute="bottom" id="qhW-uJ-xuL"/>
+                        <constraint firstItem="gLY-Hp-12g" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="rb8-C4-rfK"/>
+                        <constraint firstItem="7Ow-r5-ncr" firstAttribute="leading" secondItem="1W1-9h-RM8" secondAttribute="trailing" constant="3" id="saB-pA-27P"/>
+                        <constraint firstItem="t7R-S3-Miu" firstAttribute="top" secondItem="h1C-ZX-56X" secondAttribute="bottom" constant="5" id="vE1-DU-s7B"/>
+                        <constraint firstItem="vvi-47-n5E" firstAttribute="centerY" secondItem="eep-45-R8S" secondAttribute="centerY" id="vKk-hL-aT4"/>
+                        <constraint firstItem="t7R-S3-Miu" firstAttribute="leading" secondItem="1g2-05-jTt" secondAttribute="leading" constant="5" id="w4o-nP-wQd"/>
+                        <constraint firstAttribute="trailing" secondItem="eep-45-R8S" secondAttribute="trailing" constant="5" id="w7f-ZD-sfx"/>
+                        <constraint firstItem="bef-m0-hPR" firstAttribute="top" secondItem="1W1-9h-RM8" secondAttribute="bottom" id="wMc-ts-rit"/>
+                        <constraint firstItem="lBY-1v-MVT" firstAttribute="centerY" secondItem="bef-m0-hPR" secondAttribute="centerY" id="x0O-1G-bhe"/>
+                        <constraint firstItem="fAZ-Dn-J3x" firstAttribute="centerY" secondItem="0v7-PG-bC4" secondAttribute="centerY" id="ydL-Z9-Y9B"/>
+                        <constraint firstItem="eep-45-R8S" firstAttribute="top" secondItem="bef-m0-hPR" secondAttribute="bottom" constant="10" id="ytg-6Q-j74"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="FMB-aF-BVd"/>
+                            <exclude reference="h9r-zs-mS0"/>
+                            <exclude reference="pK0-pE-9cd"/>
+                            <exclude reference="MJE-EN-z7w"/>
+                            <exclude reference="w7f-ZD-sfx"/>
+                            <exclude reference="80J-Ya-hQP"/>
+                            <exclude reference="62f-VX-00a"/>
+                            <exclude reference="6MP-YX-cGz"/>
+                            <exclude reference="6uW-99-G6R"/>
+                            <exclude reference="w4o-nP-wQd"/>
+                            <exclude reference="ksh-cd-OVz"/>
+                            <exclude reference="wMc-ts-rit"/>
                         </mask>
                     </variation>
                 </view>
@@ -309,6 +393,8 @@
     </objects>
     <resources>
         <image name="Continue" width="465" height="121"/>
+        <image name="emailIcon" width="35" height="35"/>
+        <image name="kubazarCamera" width="33" height="26"/>
         <image name="kubazarMascotBackgroundRemoved" width="242" height="366"/>
     </resources>
 </document>

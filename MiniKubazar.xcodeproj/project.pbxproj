@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		E05EA5D66B3A6194114F12E1 /* Pods_MiniKubazar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */; };
+		F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */; };
 		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
 		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
 		F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1200A1D82287900A39867 /* AppDelegate.swift */; };
 		F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200C1D82287900A39867 /* Assets.xcassets */; };
 		F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */; };
-		F2A120181D82291900A39867 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2A120171D82291900A39867 /* GoogleService-Info.plist */; };
 		F2A120251D822B5600A39867 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120191D822B5600A39867 /* WelcomeViewController.swift */; };
 		F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A1201A1D822B5600A39867 /* WelcomeViewController.xib */; };
 		F2A120271D822B5600A39867 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1201B1D822B5600A39867 /* SignupViewController.swift */; };
@@ -43,6 +43,7 @@
 		1103529FB539798FA303A0B3 /* Pods-MiniKubazar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.debug.xcconfig"; sourceTree = "<group>"; };
 		3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiniKubazar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A4B02D5F12389EF6AFD39E /* Pods-MiniKubazar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.release.xcconfig"; sourceTree = "<group>"; };
+		F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F2A120071D82287900A39867 /* MiniKubazar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniKubazar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +51,6 @@
 		F2A1200C1D82287900A39867 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2A1200F1D82287900A39867 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2A120111D82287900A39867 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2A120171D82291900A39867 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2A120191D822B5600A39867 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F2A1201A1D822B5600A39867 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		F2A1201B1D822B5600A39867 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -134,9 +134,9 @@
 				F2A1201B1D822B5600A39867 /* SignupViewController.swift */,
 				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
 				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
+				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
 				F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */,
 				F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */,
-				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
 				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
 				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
 				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
@@ -155,7 +155,7 @@
 				F2A1200C1D82287900A39867 /* Assets.xcassets */,
 				F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */,
 				F2A120111D82287900A39867 /* Info.plist */,
-				F2A120171D82291900A39867 /* GoogleService-Info.plist */,
+				F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */,
 			);
 			path = MiniKubazar;
 			sourceTree = "<group>";
@@ -227,12 +227,12 @@
 				F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */,
 				F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */,
 				F2A120281D822B5600A39867 /* SignupViewController.xib in Resources */,
+				F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */,
 				F2A120301D822B5600A39867 /* StartViewController.xib in Resources */,
 				F2A120401D82305800A39867 /* ActiveHaikusTableViewCell.xib in Resources */,
 				F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */,
 				F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */,
 				F2A1202A1D822B5600A39867 /* BazarViewController.xib in Resources */,
-				F2A120181D82291900A39867 /* GoogleService-Info.plist in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,
 				F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */,
 			);

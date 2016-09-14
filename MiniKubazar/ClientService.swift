@@ -27,7 +27,7 @@ struct ClientService {
     
     static let storage = FIRStorage.storage()
     
-    static let storageRef = storage.referenceForURL("gs://kubazar-68697.appspot.com")
+    static let storageRef = storage.referenceForURL("gs://minikubazar.appspot.com")
     
     static let imagesRef = storageRef.child("images")
     

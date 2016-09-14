@@ -314,9 +314,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.view.endEditing(true)
         setShareableHaikuImage()
         saveFinishedHaiku()
-  //      print(recentlyFinishedHaikuUID)
-//        retrieveFinishedHaiku(recentlyFinishedHaikuUID)
-        
         view.endEditing(true)
         stepFourCongrats()
     }
@@ -337,6 +334,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             currentImageRef.putData(data, metadata: nil) {
                 metadata, error in
                 if (error != nil) {
+                    print(error)
                     print("uh-oh! trouble saving image")
                 } else {
                     let downloadURL = metadata!.downloadURL
@@ -347,6 +345,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let imageHaikuDownloadStringFromURL = downloadURL()?.absoluteString
                     
                     completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
+                    
+                    print("imageURL should be saved to backend now")
                     
                 }
             }

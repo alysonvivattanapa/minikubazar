@@ -10,6 +10,8 @@ import UIKit
 
 class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    var urlStringArray = [String]()
+    
     var completedHaikus = [CompletedHaiku]()
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
