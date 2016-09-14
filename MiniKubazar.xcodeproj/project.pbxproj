@@ -31,6 +31,8 @@
 		F2A120401D82305800A39867 /* ActiveHaikusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A1203C1D82305800A39867 /* ActiveHaikusTableViewCell.xib */; };
 		F2A120411D82305800A39867 /* CompletedHaikusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1203D1D82305800A39867 /* CompletedHaikusTableViewCell.swift */; };
 		F2A120421D82305800A39867 /* CompletedHaikusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */; };
+		F2AEDBF01D8959C800BB07CC /* CompletedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */; };
+		F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */; };
 		F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01521D82EEBF0094A45B /* Haiku.swift */; };
 		F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01541D8312710094A45B /* HaikuViewModel.swift */; };
 		F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */; };
@@ -66,6 +68,8 @@
 		F2A1203C1D82305800A39867 /* ActiveHaikusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHaikusTableViewCell.xib; sourceTree = "<group>"; };
 		F2A1203D1D82305800A39867 /* CompletedHaikusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusTableViewCell.swift; sourceTree = "<group>"; };
 		F2A1203E1D82305800A39867 /* CompletedHaikusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusTableViewCell.xib; sourceTree = "<group>"; };
+		F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaiku.swift; sourceTree = "<group>"; };
 		F2BB01521D82EEBF0094A45B /* Haiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haiku.swift; sourceTree = "<group>"; };
 		F2BB01541D8312710094A45B /* HaikuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaikuViewModel.swift; sourceTree = "<group>"; };
 		F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				F2A1201B1D822B5600A39867 /* SignupViewController.swift */,
 				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
 				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
+				F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */,
+				F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */,
 				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
 				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
 				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
@@ -301,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A120411D82305800A39867 /* CompletedHaikusTableViewCell.swift in Sources */,
+				F2AEDBF01D8959C800BB07CC /* CompletedCollectionViewDataSource.swift in Sources */,
 				F2A120271D822B5600A39867 /* SignupViewController.swift in Sources */,
 				F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */,
 				F2A1202F1D822B5600A39867 /* StartViewController.swift in Sources */,
@@ -309,6 +316,7 @@
 				F2A120361D822B8700A39867 /* ClientService.swift in Sources */,
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,
 				F2A120251D822B5600A39867 /* WelcomeViewController.swift in Sources */,
+				F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */,
 				F2A120381D822B9700A39867 /* Alerts.swift in Sources */,
 				F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */,
 				F2A120331D822B6300A39867 /* InfoViewController.swift in Sources */,

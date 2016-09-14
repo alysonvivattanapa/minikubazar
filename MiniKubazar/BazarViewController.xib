@@ -236,7 +236,7 @@
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Jiq-vs-8SC">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="373"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kTv-0C-KHo">
-                                <size key="itemSize" width="50" height="50"/>
+                                <size key="itemSize" width="90" height="90"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -258,6 +258,9 @@
                                     <exclude reference="Nyb-Wx-JRb"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="refreshButtonPressed:" destination="-1" eventType="touchUpInside" id="z2J-IV-GKv"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

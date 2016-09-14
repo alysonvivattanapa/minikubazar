@@ -20,6 +20,13 @@
                             <constraint firstAttribute="width" constant="200" id="ZM4-97-6Xb"/>
                         </constraints>
                     </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pqM-Oa-gGt">
+                        <rect key="frame" x="78" y="77" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="BbG-rO-rdR"/>
+                            <constraint firstAttribute="height" constant="45" id="qiF-jv-PNq"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -27,10 +34,13 @@
                 <constraint firstItem="019-BD-UoJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1gL-8d-1tu"/>
                 <constraint firstItem="019-BD-UoJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6NM-wD-cmf"/>
                 <constraint firstAttribute="bottom" secondItem="019-BD-UoJ" secondAttribute="bottom" id="KH8-QT-0AP"/>
+                <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="LyZ-yT-tcl"/>
                 <constraint firstAttribute="trailing" secondItem="019-BD-UoJ" secondAttribute="trailing" id="QXO-Jq-Ax4"/>
+                <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="pSa-Ty-8ZH"/>
             </constraints>
             <size key="customSize" width="200" height="200"/>
             <connections>
+                <outlet property="activityIndicator" destination="pqM-Oa-gGt" id="ufs-d0-h12"/>
                 <outlet property="completedHaikuImageView" destination="019-BD-UoJ" id="AQC-Qu-xpN"/>
             </connections>
             <point key="canvasLocation" x="214" y="229"/>
