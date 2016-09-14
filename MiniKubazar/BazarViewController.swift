@@ -29,6 +29,9 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var howToPlayStartButton: UIButton!
     
+    @IBOutlet weak var kubazarMascot: UIImageView!
+    
+    
     let completedCollectionViewDataSource = CompletedCollectionViewDataSource()
     
     // URGENT: probably shouldn't put this here because if there's no internet, it can't do this
@@ -55,25 +58,23 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         fetchHaikusAndSetToDataSource()
         
-      
-        
-//        setInitialViewAndSelectedIndex()
-//        
-//        setInitialDataForCollectionView()
-                
-//        completedHaikusCollectionView.dataSource = self
-//        
+        setInitialViewAndSelectedIndex()
+
         completedHaikusCollectionView.dataSource = completedCollectionViewDataSource
         
         completedHaikusCollectionView.delegate = self
         
         completedHaikusCollectionView.backgroundColor = UIColor.whiteColor()
         
-            let completedNib = UINib.init(nibName: "CompletedHaikusCollectionViewCell", bundle: nil)
+        let completedNib = UINib.init(nibName: "CompletedHaikusCollectionViewCell", bundle: nil)
         
+        completedHaikusCollectionView.registerNib(completedNib, forCellWithReuseIdentifier: "completedCell")
         
-            completedHaikusCollectionView.registerNib(completedNib, forCellWithReuseIdentifier: "completedCell")
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+           buttonAnimation(howToPlayStartButton)
+           imageAnimation(kubazarMascot)
     }
     
     func fetchHaikusAndSetToDataSource() {
@@ -117,6 +118,18 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         startHaiku()
     }
     
+    @IBAction func howToPlayStartButtonPressed(sender: AnyObject) {
+        startHaiku()
+    }
+    
+    
+    func imageAnimation(imageView: UIImageView) {
+        imageView.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        
+        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+            imageView.transform = CGAffineTransformIdentity
+            }, completion: nil)
+    }
     
     func buttonAnimation(button: UIButton) {
         
@@ -129,21 +142,12 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func setInitialViewAndSelectedIndex() {
       
-        
         setSegmentedViewsToHidden()
         
         self.segmentedControl.selectedSegmentIndex = 0
         
         self.howToPlayView.hidden = false
-        
-        //button animation isn't working for some reason???
-//        buttonAnimation(howToPlayStartButton)
-//        
-//        self.howToPlayStartButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
-//        
-//        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
-//            self.howToPlayStartButton.transform = CGAffineTransformIdentity
-//            }, completion: nil)
+    
     }
    
     func setSegmentedViewsToHidden() {
@@ -158,28 +162,23 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             // show howToPlayView
             setSegmentedViewsToHidden()
             self.howToPlayView.hidden = false
+            buttonAnimation(self.howToPlayStartButton)
+            imageAnimation(self.kubazarMascot)
 
         case 1:
             
             setSegmentedViewsToHidden()
-//            if self.arrayOfImages.count > 0 {
-//                self.completedView.hidden = false
-//            } else {
-//                self.activeStartView.hidden = false
-//            }
-            completedView.hidden = false
-          
             
-//            if self.arrayOfImages.count < 1 {
-//            setInitialDataForCollectionView()
-//            } else {
-            //    checkForNewHaikus()
-//            }
+            completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                
+                if snapshot.value is NSNull {
+                    self.activeStartView.hidden = false
+                } else {
+                    self.completedView.hidden = false
+                }
+                })
+
             
-        
-//            self.completedView.hidden = false
-//            self.howToPlayView.hidden = true
-//            self.activeStartView.hidden = true
 
         default:
             
@@ -194,15 +193,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     
-    @IBAction func refreshButtonPressed(sender: AnyObject) {
-        
- //       completedCollectionViewDataSource.completedHaikus = []
-        
-//        fetchHaikusAndSetToDataSource()
-        
-        print("refresh button pressed")
-        
-    }
     
 
 //    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {

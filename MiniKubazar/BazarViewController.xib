@@ -12,6 +12,7 @@
                 <outlet property="completedView" destination="nJ2-hc-cP7" id="pjQ-zw-0fP"/>
                 <outlet property="howToPlayStartButton" destination="h1C-ZX-56X" id="ICp-40-Ik6"/>
                 <outlet property="howToPlayView" destination="1g2-05-jTt" id="W9N-DS-Zs4"/>
+                <outlet property="kubazarMascot" destination="t7R-S3-Miu" id="xYr-y6-PF6"/>
                 <outlet property="navigationBar" destination="RIk-g4-NuX" id="NZe-tY-Yib"/>
                 <outlet property="segmentedControl" destination="bXi-O9-DB2" id="eKw-c6-MgX"/>
                 <outlet property="startHaikuButton" destination="zhu-9A-N5G" id="wvK-E0-G26"/>
@@ -209,6 +210,9 @@
                                     <exclude reference="j6h-Pj-0MO"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="howToPlayStartButtonPressed:" destination="-1" eventType="touchUpInside" id="OIr-nj-RC3"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kubazarCamera" translatesAutoresizingMaskIntoConstraints="NO" id="kC8-pI-bgw">
                             <rect key="frame" x="157" y="29" width="31" height="35"/>
@@ -266,7 +270,7 @@
                                 <constraint firstAttribute="height" constant="21" id="ssK-Bu-DZS"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAZ-Dn-J3x">
@@ -276,7 +280,7 @@
                                 <constraint firstAttribute="height" constant="21" id="b1l-Ji-zHK"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBY-1v-MVT">
@@ -286,7 +290,7 @@
                                 <constraint firstAttribute="width" constant="11" id="zuh-zc-gI4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vvi-47-n5E">
