@@ -8,6 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompletedHaikuDetailViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
                 <outlet property="completedHaikuDetailImageView" destination="vhB-P3-hmd" id="ExO-9t-a0I"/>
+                <outlet property="congratsLabel" destination="Rsn-JD-atc" id="BzO-oV-DuK"/>
+                <outlet property="createANewHaikuButton" destination="IWd-jf-Aov" id="6hA-FU-GAh"/>
+                <outlet property="kubazarMascot" destination="nhH-6f-RTD" id="nis-OJ-LOY"/>
+                <outlet property="shareButton" destination="CmB-i0-MPv" id="SBz-Al-TE1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,8 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhB-P3-hmd">
-                    <rect key="frame" x="0.0" y="62" width="600" height="438"/>
+                    <rect key="frame" x="125" y="62" width="350" height="300"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="350" id="Xb7-nX-VN6"/>
+                        <constraint firstAttribute="height" constant="300" id="c7W-Rf-kGk"/>
                         <constraint firstAttribute="height" constant="350" id="kci-CK-3cq"/>
                     </constraints>
                     <variation key="default">
@@ -33,7 +39,9 @@
                         <constraint firstAttribute="width" constant="46" id="hhg-xO-qVK"/>
                         <constraint firstAttribute="height" constant="30" id="ltE-eo-s9e"/>
                     </constraints>
-                    <state key="normal" title="Back"/>
+                    <state key="normal" title="Back">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="FTY-Mm-e2A"/>
                     </connections>
@@ -41,16 +49,20 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3W-X9-cKK" userLabel="YayView">
                     <rect key="frame" x="0.0" y="22" width="600" height="40"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Congrats! You're a poet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsn-JD-atc">
-                            <rect key="frame" x="237" y="10" width="348" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsn-JD-atc">
+                            <rect key="frame" x="65" y="19" width="530" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="6CD-E6-stw"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <color key="textColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorKubazar" translatesAutoresizingMaskIntoConstraints="NO" id="nhH-6f-RTD">
-                            <rect key="frame" x="5" y="2" width="232" height="36"/>
+                            <rect key="frame" x="15" y="0.0" width="45" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="72" id="1Jb-5q-3NZ"/>
+                                <constraint firstAttribute="width" constant="45" id="Q3g-0R-ZaX"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -62,13 +74,22 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Rsn-JD-atc" firstAttribute="centerY" secondItem="M3W-X9-cKK" secondAttribute="centerY" id="5s2-fB-TCr"/>
+                        <constraint firstItem="nhH-6f-RTD" firstAttribute="top" secondItem="M3W-X9-cKK" secondAttribute="top" id="CKz-ei-yqp"/>
+                        <constraint firstItem="Rsn-JD-atc" firstAttribute="centerY" secondItem="M3W-X9-cKK" secondAttribute="centerY" id="CUS-hv-4xZ"/>
+                        <constraint firstItem="nhH-6f-RTD" firstAttribute="leading" secondItem="M3W-X9-cKK" secondAttribute="leading" constant="15" id="CgL-dc-u5e"/>
                         <constraint firstAttribute="height" constant="40" id="H1D-oS-2G7"/>
+                        <constraint firstItem="Rsn-JD-atc" firstAttribute="centerX" secondItem="M3W-X9-cKK" secondAttribute="centerX" id="Jt5-QS-MGm"/>
                         <constraint firstItem="Rsn-JD-atc" firstAttribute="leading" secondItem="nhH-6f-RTD" secondAttribute="trailing" id="N1S-sn-Esk"/>
                         <constraint firstAttribute="trailing" secondItem="Rsn-JD-atc" secondAttribute="trailing" constant="15" id="PX9-04-cHS"/>
+                        <constraint firstAttribute="bottom" secondItem="Rsn-JD-atc" secondAttribute="bottom" id="R0U-ee-LP5"/>
+                        <constraint firstItem="Rsn-JD-atc" firstAttribute="leading" secondItem="nhH-6f-RTD" secondAttribute="trailing" constant="5" id="RVn-d2-mSR"/>
                         <constraint firstAttribute="bottom" secondItem="nhH-6f-RTD" secondAttribute="bottom" constant="2" id="VM5-AA-TKE"/>
                         <constraint firstItem="Rsn-JD-atc" firstAttribute="leading" secondItem="nhH-6f-RTD" secondAttribute="trailing" id="a3c-wl-opF"/>
+                        <constraint firstItem="nhH-6f-RTD" firstAttribute="leading" secondItem="M3W-X9-cKK" secondAttribute="leading" constant="133" id="fdU-KX-nov"/>
                         <constraint firstItem="nhH-6f-RTD" firstAttribute="leading" secondItem="M3W-X9-cKK" secondAttribute="leading" constant="5" id="hLb-5H-NHE"/>
+                        <constraint firstAttribute="trailing" secondItem="Rsn-JD-atc" secondAttribute="trailing" constant="5" id="hzJ-O9-92x"/>
                         <constraint firstItem="nhH-6f-RTD" firstAttribute="centerY" secondItem="M3W-X9-cKK" secondAttribute="centerY" id="k2u-K5-aoQ"/>
+                        <constraint firstAttribute="bottom" secondItem="nhH-6f-RTD" secondAttribute="bottom" id="l0b-HA-XJp"/>
                         <constraint firstItem="Rsn-JD-atc" firstAttribute="centerX" secondItem="M3W-X9-cKK" secondAttribute="centerX" id="riU-sC-tg1"/>
                         <constraint firstItem="nhH-6f-RTD" firstAttribute="leading" secondItem="M3W-X9-cKK" secondAttribute="leading" constant="79" id="suv-iB-T0v"/>
                         <constraint firstItem="nhH-6f-RTD" firstAttribute="top" secondItem="M3W-X9-cKK" secondAttribute="top" constant="8" id="unr-lo-1te"/>
@@ -77,16 +98,26 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="VM5-AA-TKE"/>
+                            <exclude reference="fdU-KX-nov"/>
+                            <exclude reference="hLb-5H-NHE"/>
+                            <exclude reference="k2u-K5-aoQ"/>
                             <exclude reference="suv-iB-T0v"/>
                             <exclude reference="unr-lo-1te"/>
+                            <exclude reference="zNr-S5-R0f"/>
+                            <exclude reference="5s2-fB-TCr"/>
+                            <exclude reference="CUS-hv-4xZ"/>
+                            <exclude reference="Jt5-QS-MGm"/>
                             <exclude reference="N1S-sn-Esk"/>
+                            <exclude reference="PX9-04-cHS"/>
+                            <exclude reference="a3c-wl-opF"/>
                             <exclude reference="riU-sC-tg1"/>
                             <exclude reference="vSp-cj-6Ta"/>
                         </mask>
                     </variation>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWd-jf-Aov">
-                    <rect key="frame" x="211" y="554" width="178" height="30"/>
+                    <rect key="frame" x="211" y="422" width="178" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="LpG-XU-Lat"/>
                         <constraint firstAttribute="width" constant="178" id="PcZ-Y0-Eqr"/>
@@ -95,9 +126,12 @@
                     <state key="normal" title="Create a new haiku!" backgroundImage="Continue">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="createANewHaiku:" destination="-1" eventType="touchUpInside" id="Coe-MR-oCd"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmB-i0-MPv">
-                    <rect key="frame" x="211" y="516" width="178" height="30"/>
+                    <rect key="frame" x="211" y="377" width="178" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="IsE-vH-U7X"/>
                         <constraint firstAttribute="width" constant="46" id="PhG-fC-Gdb"/>
@@ -119,21 +153,23 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="CmB-i0-MPv" firstAttribute="top" secondItem="vhB-P3-hmd" secondAttribute="bottom" constant="71" id="5nt-Xg-Rnt"/>
                 <constraint firstItem="vhB-P3-hmd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7Zq-88-qsD"/>
                 <constraint firstItem="M3W-X9-cKK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AGU-7H-HHZ"/>
                 <constraint firstItem="hoi-xh-en9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Dqm-eb-jhO"/>
+                <constraint firstItem="CmB-i0-MPv" firstAttribute="top" secondItem="vhB-P3-hmd" secondAttribute="bottom" constant="15" id="Fae-s9-c3G"/>
                 <constraint firstItem="vhB-P3-hmd" firstAttribute="top" secondItem="M3W-X9-cKK" secondAttribute="bottom" id="MVy-qc-KAA"/>
                 <constraint firstItem="M3W-X9-cKK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="Owu-aA-Oys"/>
                 <constraint firstItem="vhB-P3-hmd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QYc-Cv-o4K"/>
-                <constraint firstItem="IWd-jf-Aov" firstAttribute="top" secondItem="CmB-i0-MPv" secondAttribute="bottom" constant="8" id="S2P-e1-h5k"/>
+                <constraint firstItem="IWd-jf-Aov" firstAttribute="top" secondItem="CmB-i0-MPv" secondAttribute="bottom" constant="15" id="S2P-e1-h5k"/>
                 <constraint firstAttribute="bottom" secondItem="hoi-xh-en9" secondAttribute="bottom" constant="8" id="Y4s-P2-Vht"/>
                 <constraint firstItem="hoi-xh-en9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="YZf-1l-Q4e"/>
                 <constraint firstItem="CmB-i0-MPv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bEE-e9-7c0"/>
                 <constraint firstItem="IWd-jf-Aov" firstAttribute="top" secondItem="CmB-i0-MPv" secondAttribute="bottom" constant="5" id="bo6-tG-MRp"/>
                 <constraint firstItem="CmB-i0-MPv" firstAttribute="top" secondItem="vhB-P3-hmd" secondAttribute="bottom" constant="15" id="fRM-Tf-Kdb"/>
+                <constraint firstItem="vhB-P3-hmd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gaj-rP-gr1"/>
                 <constraint firstItem="IWd-jf-Aov" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="j8S-fx-i3q"/>
                 <constraint firstAttribute="bottom" secondItem="IWd-jf-Aov" secondAttribute="bottom" constant="16" id="jNA-Av-NY3"/>
                 <constraint firstItem="CmB-i0-MPv" firstAttribute="top" secondItem="vhB-P3-hmd" secondAttribute="bottom" constant="16" id="ppK-mZ-OaK"/>
@@ -145,15 +181,19 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="7Zq-88-qsD"/>
+                    <exclude reference="QYc-Cv-o4K"/>
                     <exclude reference="w9T-qq-AWx"/>
+                    <exclude reference="wDf-dV-puM"/>
                     <exclude reference="5nt-Xg-Rnt"/>
                     <exclude reference="fRM-Tf-Kdb"/>
+                    <exclude reference="ppK-mZ-OaK"/>
                     <exclude reference="Dqm-eb-jhO"/>
                     <exclude reference="v0S-2q-SDk"/>
                     <exclude reference="bo6-tG-MRp"/>
+                    <exclude reference="jNA-Av-NY3"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="255" y="303"/>
+            <point key="canvasLocation" x="674" y="269"/>
         </view>
     </objects>
     <resources>

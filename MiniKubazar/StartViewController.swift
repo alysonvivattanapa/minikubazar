@@ -55,6 +55,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var shareableHaikuView: UIView!
     
+    @IBOutlet weak var cameraButton: UIButton!
+    
+    @IBOutlet weak var cameraRollButton: UIButton!
+    
+    @IBOutlet weak var inspireMeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +71,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-
         
     stepOneCreateNewHaiku()
+    
+    startAnimation()
        
     }
     
@@ -79,6 +85,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         firstLineHaikuTextView.textColor = UIColor.lightGrayColor()
         secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
         thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        
+        if createNewHaikuView.hidden == false {
+            startAnimation()
+        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -102,12 +112,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func stepOneCreateNewHaiku() {
-       
+        
+        setAllSubviewsToHidden()
+        createNewHaikuView.hidden = false
+    }
+    
+    func startAnimation() {
         startButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
-        setAllViewAlphasToZero()
-        createNewHaikuView.alpha = 1
-       
         animator = UIDynamicAnimator(referenceView: self.createNewHaikuView)
         gravity = UIGravityBehavior(items: [firstKubazarMascot])
         animator.addBehavior(gravity)
@@ -128,26 +140,44 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
+    func imageViewAnimation(imageView: UIImageView){
+        imageView.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+            imageView.transform = CGAffineTransformIdentity
+            }, completion: nil)
+    }
+    
+    func buttonAnimation(button: UIButton){
+        button.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+            button.transform = CGAffineTransformIdentity
+            }, completion: nil)
+    }
     
     func stepTwoChoosePicture() {
-        setAllViewAlphasToZero()
-        choosePictureView.alpha = 1
+        setAllSubviewsToHidden()
+        choosePictureView.hidden = false
+        buttonAnimation(cameraButton)
+        buttonAnimation(cameraRollButton)
+        buttonAnimation(inspireMeButton)
     }
     
     @IBAction func choosePictureBackButtonPressed(sender: AnyObject) {
         stepOneCreateNewHaiku()
+        startAnimation()
     }
     
     
     func stepThreeEnterHaiku() {
-        setAllViewAlphasToZero()
-        enterHaikuView.alpha = 1
+        setAllSubviewsToHidden()
+        enterHaikuView.hidden = false
+        imageViewAnimation(haikuImageView)
     }
     
     func stepFourCongrats() {
-        setAllViewAlphasToZero()
+//        setAllSubviewsToHidden()
         setShareableHaikuImage()
-        congratsView.alpha = 1
+//        congratsView.hidden = false
     }
     
     func setShareableHaikuImage() {
@@ -159,12 +189,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
-    
-    @IBAction func startOverButtonPressed(sender: AnyObject) {
-        stepOneCreateNewHaiku()
-    }
-    
-    
+        
     @IBAction func startButtonPressed(sender: AnyObject) {
         stepTwoChoosePicture()
     }
@@ -174,16 +199,15 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        haikuFirstLine.text? = ""
 //        haikuSecondLine.text? = ""
 //        haikuThirdLine.text? = ""
-        setAllViewAlphasToZero()
-        choosePictureView.alpha = 1
+       stepTwoChoosePicture()
     }
     
     
-    func setAllViewAlphasToZero() {
-        createNewHaikuView.alpha = 0
-        choosePictureView.alpha = 0
-        enterHaikuView.alpha = 0
-        congratsView.alpha = 0
+    func setAllSubviewsToHidden() {
+        createNewHaikuView.hidden = true
+        choosePictureView.hidden = true
+        enterHaikuView.hidden = true
+        congratsView.hidden = true
     }
     
     @IBAction func cameraButtonPressed(sender: AnyObject) {
@@ -352,7 +376,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
         
-
+        let completedDetailVC = CompletedHaikuDetailViewController()
+        presentViewController(completedDetailVC, animated: true) {
+            completedDetailVC.completedHaikuDetailImageView.image = shareableHaikuImage
+        }
+        
         
     }
     
@@ -407,8 +435,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 }
             }
         }
-        
-        
         
     }
     
