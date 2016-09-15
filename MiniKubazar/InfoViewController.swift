@@ -42,6 +42,47 @@ class InfoViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+        } catch {
+            print("Unable to create Reachability")
+            return
+        }
+        
+        reachability!.whenReachable = { reachability in
+            // this is called on a background thread, but UI updates must
+            // be on the main thread, like this:
+            dispatch_async(dispatch_get_main_queue()) {
+                if reachability.isReachableViaWiFi() {
+                    print("Reachable via WiFi")
+                } else {
+                    print("Reachable via Cellular")
+                }
+            }
+        }
+        
+        reachability!.whenUnreachable = { reachability in
+            // this is called on a background thread, but UI updates must
+            // be on the main thread, like this:
+            dispatch_async(dispatch_get_main_queue()) {
+                print("Not reachable")
+                
+                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .Alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .Default) { (action: UIAlertAction) -> Void in
+                }
+                alert.addAction(okayAction)
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+            }
+        }
+        
+        do {
+            try reachability!.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
+        
        ClientService.getCurrentUser({ (user) in
         if let userEmail = user.email {
         self.currentlyLoggedInLabel.text = "You are currently logged in as \(userEmail)"
