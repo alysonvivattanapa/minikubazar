@@ -242,6 +242,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        haikuSecondLine.text? = ""
 //        haikuThirdLine.text? = ""
        stepTwoChoosePicture()
+     self.view.endEditing(true)
+        firstLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        secondLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        thirdLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+    
     }
     
     
