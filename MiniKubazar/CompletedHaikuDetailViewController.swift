@@ -160,8 +160,11 @@ class CompletedHaikuDetailViewController: UIViewController {
     
     
     @IBAction func createANewHaiku(sender: AnyObject) {
+    
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.tabBarController?.selectedIndex = 1
+        
+        dismissViewControllerAnimated(true, completion: nil)
 
     }
     

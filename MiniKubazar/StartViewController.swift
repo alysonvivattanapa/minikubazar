@@ -382,6 +382,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         saveFinishedHaiku()
         view.endEditing(true)
         stepFourCongrats()
+        stepOneCreateNewHaiku()
     }
     
     func saveFinishedHaiku() {
