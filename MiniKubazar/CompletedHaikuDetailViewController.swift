@@ -116,11 +116,24 @@ class CompletedHaikuDetailViewController: UIViewController {
     }
     
     func animateButtons() {
-        shareButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        congratsLabel.transform = CGAffineTransformMakeScale(0.6, 0.6)
         
-        createANewHaikuButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        shareButton.transform = CGAffineTransformMakeScale(0.9, 0.9)
         
-        UIView.animateWithDuration(1.6, delay: 0.5, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+        createANewHaikuButton.transform = CGAffineTransformMakeScale(0.9, 0.9)
+        
+        kubazarMascot.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        
+        completedHaikuDetailImageView.transform =
+            CGAffineTransformMakeScale(0.7, 0.7)
+        
+        UIView.animateWithDuration(1.6, delay: 0.3, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+            self.congratsLabel.transform = CGAffineTransformIdentity
+            
+            self.kubazarMascot.transform = CGAffineTransformIdentity
+            
+            self.completedHaikuDetailImageView.transform = CGAffineTransformIdentity
+            
             self.shareButton.transform = CGAffineTransformIdentity
             
             self.createANewHaikuButton.transform = CGAffineTransformIdentity

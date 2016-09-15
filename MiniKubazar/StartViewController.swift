@@ -419,8 +419,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         let completedDetailVC = CompletedHaikuDetailViewController()
-        presentViewController(completedDetailVC, animated: true) {
+        presentViewController(completedDetailVC, animated: false) {
             completedDetailVC.completedHaikuDetailImageView.image = shareableHaikuImage
+            completedDetailVC.animateButtons()
         }
         
         

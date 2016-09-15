@@ -40,7 +40,7 @@
                         <constraint firstAttribute="height" constant="30" id="ltE-eo-s9e"/>
                     </constraints>
                     <state key="normal" title="Back">
-                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="FTY-Mm-e2A"/>
@@ -187,10 +187,10 @@
                     <exclude reference="5nt-Xg-Rnt"/>
                     <exclude reference="fRM-Tf-Kdb"/>
                     <exclude reference="ppK-mZ-OaK"/>
-                    <exclude reference="Dqm-eb-jhO"/>
-                    <exclude reference="v0S-2q-SDk"/>
                     <exclude reference="bo6-tG-MRp"/>
                     <exclude reference="jNA-Av-NY3"/>
+                    <exclude reference="Dqm-eb-jhO"/>
+                    <exclude reference="v0S-2q-SDk"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="674" y="269"/>

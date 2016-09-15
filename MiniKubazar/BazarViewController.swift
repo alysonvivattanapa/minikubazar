@@ -253,9 +253,10 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let completedHaikuDetailVC = CompletedHaikuDetailViewController()
-        presentViewController(completedHaikuDetailVC, animated: true) {
+        presentViewController(completedHaikuDetailVC, animated: false) {
             let haikuImage = self.completedCollectionViewDataSource.completedHaikus[indexPath.row]
             completedHaikuDetailVC.completedHaikuDetailImageView.image = haikuImage.image
+            completedHaikuDetailVC.animateButtons()
         }
     }
     

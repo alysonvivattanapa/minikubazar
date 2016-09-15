@@ -65,9 +65,6 @@
                                     <exclude reference="uj5-kT-xtH"/>
                                 </mask>
                             </variation>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="wbo-yD-rLA" appends="YES" id="3KM-WR-5FP"/>
-                            </connections>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaU-pM-LKH">
                             <rect key="frame" x="257" y="439" width="86" height="30"/>
@@ -773,11 +770,6 @@
             </constraints>
             <point key="canvasLocation" x="191" y="22"/>
         </view>
-        <tapGestureRecognizer id="wbo-yD-rLA">
-            <connections>
-                <action selector="haikuImageViewTapped:" destination="-1" id="dKh-57-3GV"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="Continue" width="465" height="121"/>
