@@ -74,8 +74,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     stepOneCreateNewHaiku()
     
-    startAnimation()
-       
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -157,27 +156,36 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         setAllSubviewsToHidden()
         createNewHaikuView.hidden = false
+        startAnimation()
+
     }
     
     func startAnimation() {
         startButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
-        animator = UIDynamicAnimator(referenceView: self.createNewHaikuView)
-        gravity = UIGravityBehavior(items: [firstKubazarMascot])
-        animator.addBehavior(gravity)
+        firstKubazarMascot.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
-        collision = UICollisionBehavior(items: [firstKubazarMascot])
-        collision.addBoundaryWithIdentifier("createNewHaikuLabel", forPath: UIBezierPath(rect: createNewHaikuLabel.frame))
+        createNewHaikuLabel.transform = CGAffineTransformMakeScale(0.7, 0.7)
+
         
-        collision.translatesReferenceBoundsIntoBoundary = true
-        animator.addBehavior(collision)
-        
-        let itemBehavior = UIDynamicItemBehavior(items: [firstKubazarMascot])
-        itemBehavior.elasticity = 0.7
-        animator.addBehavior(itemBehavior)
+//        animator = UIDynamicAnimator(referenceView: self.createNewHaikuView)
+//        gravity = UIGravityBehavior(items: [firstKubazarMascot])
+//        animator.addBehavior(gravity)
+//        
+//        collision = UICollisionBehavior(items: [firstKubazarMascot])
+//        collision.addBoundaryWithIdentifier("createNewHaikuLabel", forPath: UIBezierPath(rect: createNewHaikuLabel.frame))
+//        
+//        collision.translatesReferenceBoundsIntoBoundary = true
+//        animator.addBehavior(collision)
+//        
+//        let itemBehavior = UIDynamicItemBehavior(items: [firstKubazarMascot])
+//        itemBehavior.elasticity = 0.7
+//        animator.addBehavior(itemBehavior)
         
         UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
             self.startButton.transform = CGAffineTransformIdentity
+            self.firstKubazarMascot.transform = CGAffineTransformIdentity
+            self.createNewHaikuLabel.transform = CGAffineTransformIdentity
             }, completion: nil)
         
     }
@@ -206,7 +214,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func choosePictureBackButtonPressed(sender: AnyObject) {
         stepOneCreateNewHaiku()
-        startAnimation()
+       
     }
     
     
