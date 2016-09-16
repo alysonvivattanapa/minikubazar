@@ -296,25 +296,49 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func inspireMeButtonPressed(sender: AnyObject) {
         
-        let random = arc4random_uniform(4)
+        let random = arc4random_uniform(8)
         
         switch random {
         case 0:
            
-             haikuImageView.image = UIImage(named: "randomDaisy")
+             haikuImageView.image = UIImage(named: "inspireMe1")
             
         case 1:
             
-            haikuImageView.image = UIImage(named: "randomBabbetje")
+            haikuImageView.image = UIImage(named: "inspireMe2")
             
         case 2:
             
-            haikuImageView.image = UIImage(named: "randomBear")
+            haikuImageView.image = UIImage(named: "inspireMe3")
             
-    
+        case 3:
+            
+            haikuImageView.image = UIImage(named: "inspireMe4")
+            
+        case 4:
+            
+            haikuImageView.image = UIImage(named: "inspireMe5")
+            
+        case 5:
+            
+            haikuImageView.image = UIImage(named: "inspireMe6")
+            
+        case 6:
+            
+            haikuImageView.image = UIImage(named: "inspireMe7")
+            
+        case 7:
+            
+            haikuImageView.image = UIImage(named: "inspireMe8")
+            
+        case 8:
+            
+            haikuImageView.image = UIImage(named: "inspireMe9")
+            
         default:
             
-             haikuImageView.image = UIImage(named: "randomMannequin")
+            haikuImageView.image = UIImage(named: "inspireMe10")
+    
             
         }
         

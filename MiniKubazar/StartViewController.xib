@@ -217,64 +217,6 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVS-bh-A8E" userLabel="Create New Haiku View">
-                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="xju-HC-Pdo">
-                            <rect key="frame" x="35" y="1" width="250" height="250"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="250" id="rdl-Nh-5xo"/>
-                                <constraint firstAttribute="height" constant="250" id="tJa-ng-9gL"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new haiku!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii3-DJ-djh">
-                            <rect key="frame" x="0.0" y="283" width="600" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="aE7-zI-na0"/>
-                                <constraint firstAttribute="width" constant="286" id="q7G-3A-SQQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="q7G-3A-SQQ"/>
-                                </mask>
-                            </variation>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-wt-mXm">
-                            <rect key="frame" x="259" y="358" width="82" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="o33-La-xTP"/>
-                                <constraint firstAttribute="width" constant="82" id="qRJ-cc-lxy"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Start" backgroundImage="Continue">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="iji-Ky-MPx"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="ii3-DJ-djh" firstAttribute="top" secondItem="xju-HC-Pdo" secondAttribute="bottom" constant="32" id="Gld-Xw-W2M"/>
-                        <constraint firstItem="ii3-DJ-djh" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="Rsv-bw-WRD"/>
-                        <constraint firstItem="ii3-DJ-djh" firstAttribute="leading" secondItem="QVS-bh-A8E" secondAttribute="leading" id="Yqg-kM-F4T"/>
-                        <constraint firstItem="OLT-wt-mXm" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="fob-c3-kSE"/>
-                        <constraint firstItem="xju-HC-Pdo" firstAttribute="leading" secondItem="QVS-bh-A8E" secondAttribute="leading" constant="35" id="p5U-ao-l9a"/>
-                        <constraint firstAttribute="trailing" secondItem="ii3-DJ-djh" secondAttribute="trailing" id="rZr-g0-qFK"/>
-                        <constraint firstItem="xju-HC-Pdo" firstAttribute="top" secondItem="QVS-bh-A8E" secondAttribute="top" constant="1" id="rbE-S3-5sK"/>
-                        <constraint firstItem="xju-HC-Pdo" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="ue5-sx-4QL"/>
-                        <constraint firstItem="OLT-wt-mXm" firstAttribute="top" secondItem="ii3-DJ-djh" secondAttribute="bottom" constant="54" id="vFM-DF-Bs9"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="ue5-sx-4QL"/>
-                        </mask>
-                    </variation>
-                </view>
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="B1d-9K-4Wm" userLabel="Congrats View">
                     <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                     <subviews>
@@ -742,6 +684,81 @@
                             <exclude reference="Ea3-5G-urj"/>
                             <exclude reference="nXr-oa-gR5"/>
                             <exclude reference="rgC-Tz-cl0"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVS-bh-A8E" userLabel="Create New Haiku View">
+                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new haiku!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii3-DJ-djh">
+                            <rect key="frame" x="0.0" y="358" width="600" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="aE7-zI-na0"/>
+                                <constraint firstAttribute="width" constant="286" id="q7G-3A-SQQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="q7G-3A-SQQ"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-wt-mXm">
+                            <rect key="frame" x="259" y="404" width="82" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="o33-La-xTP"/>
+                                <constraint firstAttribute="width" constant="82" id="qRJ-cc-lxy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="Start" backgroundImage="Continue">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="iji-Ky-MPx"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="xju-HC-Pdo">
+                            <rect key="frame" x="0.0" y="1" width="600" height="346"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="250" id="rdl-Nh-5xo"/>
+                                <constraint firstAttribute="height" constant="250" id="tJa-ng-9gL"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="rdl-Nh-5xo"/>
+                                    <exclude reference="tJa-ng-9gL"/>
+                                </mask>
+                            </variation>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="xju-HC-Pdo" firstAttribute="leading" secondItem="QVS-bh-A8E" secondAttribute="leading" id="7ev-eV-g1t"/>
+                        <constraint firstAttribute="trailing" secondItem="xju-HC-Pdo" secondAttribute="trailing" id="9sf-p0-3E4"/>
+                        <constraint firstItem="xju-HC-Pdo" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="DKT-RV-eHM"/>
+                        <constraint firstItem="ii3-DJ-djh" firstAttribute="top" secondItem="xju-HC-Pdo" secondAttribute="bottom" constant="32" id="Gld-Xw-W2M"/>
+                        <constraint firstItem="ii3-DJ-djh" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="Rsv-bw-WRD"/>
+                        <constraint firstAttribute="bottom" secondItem="OLT-wt-mXm" secondAttribute="bottom" constant="100" id="Sbr-1t-chf"/>
+                        <constraint firstItem="ii3-DJ-djh" firstAttribute="top" secondItem="xju-HC-Pdo" secondAttribute="bottom" constant="11" id="T7k-8y-RqN"/>
+                        <constraint firstItem="ii3-DJ-djh" firstAttribute="leading" secondItem="QVS-bh-A8E" secondAttribute="leading" id="Yqg-kM-F4T"/>
+                        <constraint firstItem="OLT-wt-mXm" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="fob-c3-kSE"/>
+                        <constraint firstItem="OLT-wt-mXm" firstAttribute="top" secondItem="ii3-DJ-djh" secondAttribute="bottom" constant="25" id="gGb-4K-SmU"/>
+                        <constraint firstItem="xju-HC-Pdo" firstAttribute="leading" secondItem="QVS-bh-A8E" secondAttribute="leading" constant="35" id="p5U-ao-l9a"/>
+                        <constraint firstAttribute="trailing" secondItem="ii3-DJ-djh" secondAttribute="trailing" id="rZr-g0-qFK"/>
+                        <constraint firstItem="xju-HC-Pdo" firstAttribute="top" secondItem="QVS-bh-A8E" secondAttribute="top" constant="1" id="rbE-S3-5sK"/>
+                        <constraint firstItem="xju-HC-Pdo" firstAttribute="centerX" secondItem="QVS-bh-A8E" secondAttribute="centerX" id="ue5-sx-4QL"/>
+                        <constraint firstItem="OLT-wt-mXm" firstAttribute="top" secondItem="ii3-DJ-djh" secondAttribute="bottom" constant="54" id="vFM-DF-Bs9"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="DKT-RV-eHM"/>
+                            <exclude reference="p5U-ao-l9a"/>
+                            <exclude reference="ue5-sx-4QL"/>
+                            <exclude reference="Gld-Xw-W2M"/>
+                            <exclude reference="Rsv-bw-WRD"/>
+                            <exclude reference="vFM-DF-Bs9"/>
                         </mask>
                     </variation>
                 </view>
