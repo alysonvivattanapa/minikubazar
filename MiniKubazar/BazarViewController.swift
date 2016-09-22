@@ -15,9 +15,12 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var howToPlayView: UIView!
+    
+    @IBOutlet weak var activeView: UIView!
+    
+    
+    @IBOutlet weak var noHaikusView: UIView!
    
-    @IBOutlet weak var activeStartView: UIView!
     
     @IBOutlet weak var completedView: UIView!
     
@@ -26,8 +29,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var completedTableView: UITableView!
     
     @IBOutlet weak var startHaikuButton: UIButton!
-    
-    @IBOutlet weak var howToPlayStartButton: UIButton!
     
     @IBOutlet weak var kubazarMascot: UIImageView!
     
@@ -39,13 +40,14 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let currentUserUID = ClientService.getCurrentUserUID()
     
-    let currentActiveHaikusRef = ClientService.activeHaikusRef.child("\(ClientService.getCurrentUserUID())")
+    let activeHaikusRef = ClientService.activeHaikusRef.child("\(ClientService.getCurrentUserUID())")
     
     let completedHaikusRef = ClientService.completedHaikusRef.child("\(ClientService.getCurrentUserUID())")
     
     //up to here ^: should put somewhere else because what if there's no internet connection or internet connection gets lost between 
     
-    @IBOutlet weak var startHaikuLabel: UILabel!
+    @IBOutlet weak var noHaikusLabel: UILabel!
+  
     
     
     override func viewDidLoad() {
@@ -114,8 +116,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
         
         
-           buttonAnimation(howToPlayStartButton)
-           imageAnimation(kubazarMascot)
+//           buttonAnimation(howToPlayStartButton)
+//           imageAnimation(kubazarMascot)
     }
     
     func fetchHaikusAndSetToDataSource() {
@@ -187,24 +189,42 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         self.segmentedControl.selectedSegmentIndex = 0
         
-        self.howToPlayView.hidden = false
+        activeHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            if snapshot.value is NSNull {
+                self.noHaikusLabel.text = "You don't have any active haikus yet."
+                self.noHaikusView.hidden = false
+            } else {
+                self.completedView.hidden = false
+            }
+        })
+
     
     }
    
     func setSegmentedViewsToHidden() {
-        self.howToPlayView.hidden = true
+        self.activeView.hidden = true
         self.completedView.hidden = true
-        self.activeStartView.hidden = true
+        self.noHaikusView.hidden = true
     }
     
     @IBAction func segmentedControlIndexChanged(sender: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            // show howToPlayView
             setSegmentedViewsToHidden()
-            self.howToPlayView.hidden = false
-            buttonAnimation(self.howToPlayStartButton)
-            imageAnimation(self.kubazarMascot)
+            
+            activeHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                
+                if snapshot.value is NSNull {
+                    self.noHaikusLabel.text = "You don't have any active haikus yet."
+                    self.noHaikusView.hidden = false
+                } else {
+                    self.completedView.hidden = false
+                }
+            })
+            //if there are active haikus, then show active haikus. otherwise, show no haikusview.
+//            buttonAnimation(self.howToPlayStartButton)
+//            imageAnimation(self.kubazarMascot)
 
         case 1:
             
@@ -213,7 +233,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
                 if snapshot.value is NSNull {
-                    self.activeStartView.hidden = false
+                    self.noHaikusLabel.text = "You don't have any completed haikus yet."
+                    self.noHaikusView.hidden = false
                 } else {
                     self.completedView.hidden = false
                 }

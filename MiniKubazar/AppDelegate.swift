@@ -34,8 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController = UITabBarController()
         let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
         let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
-        let thirdTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
-        let controllers = [firstTab, secondTab, thirdTab]
+        let thirdTab = FriendsViewController(nibName: "FriendsViewController", bundle: nil)
+        let fourthTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
+        let controllers = [firstTab, secondTab, thirdTab, fourthTab]
         tabBarController?.viewControllers = controllers
         
         UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
@@ -44,7 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
         
-         thirdTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
+        thirdTab.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(named: "friendsA"), selectedImage: UIImage(named: "friendsB"))
+        
+         fourthTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
         
         if let user = FIRAuth.auth()?.currentUser {
             print("App Delegate says user is signed in with uid:", user.uid)

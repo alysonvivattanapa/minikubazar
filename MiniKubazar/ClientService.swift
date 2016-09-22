@@ -42,13 +42,20 @@ struct ClientService {
         
     }
     
-   static func getCurrentUserUID() -> String {
-    
-    
-    if let user = FIRAuth.auth()?.currentUser {
-        return user.uid } else {
-        return "no user id"
+    static func getCurrentUserUID() -> String {
+        
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            return user.uid } else {
+            return "no user id"
+        }
     }
+    
+    static func getCurrentUserEmail() -> String {
+        if let user = FIRAuth.auth()?.currentUser {
+            return user.email! } else {
+            return "no email address?"
+        }
     }
     
     static func checkIfUserExistsByEmailOrUsername(closure: String -> Void) {
@@ -75,23 +82,23 @@ struct ClientService {
     
     //CODE BELOW DOESN'T WORK, WHY??????
     
-    static func getArrayOfUsersFromArrayOfUIDs(arrayOfUIDs: [String], closure: [User] -> Void) {
-        
-        var arrayOfUsers = [User]()
-        
-        for uid in arrayOfUIDs {
-            ClientService.profileRef.child("\(uid)").queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (friend) in
-                let uid = friend.value?.objectForKey("uid") as! String
-                let email = friend.value?.objectForKey("email") as! String
-                let username = friend.value?.objectForKey("username") as! String
-                let user = User(username: username, email: email, uid: uid)
-                arrayOfUsers.append(user)
-        })
-            
-        closure(arrayOfUsers)
-    }
-    }
-    
+//    static func getArrayOfUsersFromArrayOfUIDs(arrayOfUIDs: [String], closure: [User] -> Void) {
+//        
+//        var arrayOfUsers = [User]()
+//        
+//        for uid in arrayOfUIDs {
+//            ClientService.profileRef.child("\(uid)").queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (friend) in
+//                let uid = friend.value?.objectForKey("uid") as! String
+//                let email = friend.value?.objectForKey("email") as! String
+//                let username = friend.value?.objectForKey("username") as! String
+//                let user = User(username: username, email: email, uid: uid)
+//                arrayOfUsers.append(user)
+//        })
+//            
+//        closure(arrayOfUsers)
+//    }
+//    }
+//    
     
     static func getFriendUIDsForCurrentUser(closure: [String] -> Void) {
         
@@ -99,18 +106,16 @@ struct ClientService {
         
         friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
-            var friendUIDs = [String]()
+            var arrayOfFriendUIDs = [String]()
             
             for item in snapshot.children {
                 
                 let friendUID = item.value.objectForKey("uid") as! String
                 
-                friendUIDs.append(friendUID)
+                arrayOfFriendUIDs.append(friendUID)
             }
             
-            //             print(users)
-            
-            closure(friendUIDs)
+            closure(arrayOfFriendUIDs)
             
         })
         
@@ -137,6 +142,30 @@ struct ClientService {
         })
         
     }
+    
+    static func getFriendEmailsForCurrentUser(closure: [String] -> Void) {
+        
+        let currentUserUiD = getCurrentUserUID()
+        
+        friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            
+            var friendEmails = [String]()
+            
+            for item in snapshot.children {
+                
+                let friendEmail = item.value.objectForKey("email") as! String
+                
+                friendEmails.append(friendEmail)
+            }
+            
+            //             print(users)
+            
+            closure(friendEmails)
+            
+        })
+        
+    }
+
 
 
 }

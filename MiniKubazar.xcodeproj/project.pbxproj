@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E05EA5D66B3A6194114F12E1 /* Pods_MiniKubazar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */; };
+		F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */; };
+		F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */; };
+		F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */; };
+		F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */; };
+		F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */; };
 		F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */; };
 		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
 		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
@@ -40,6 +45,11 @@
 		1103529FB539798FA303A0B3 /* Pods-MiniKubazar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.debug.xcconfig"; sourceTree = "<group>"; };
 		3A9234348B000B38F371895F /* Pods_MiniKubazar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MiniKubazar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A4B02D5F12389EF6AFD39E /* Pods-MiniKubazar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MiniKubazar.release.xcconfig"; path = "Pods/Target Support Files/Pods-MiniKubazar/Pods-MiniKubazar.release.xcconfig"; sourceTree = "<group>"; };
+		F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewDataSource.swift; sourceTree = "<group>"; };
+		F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
+		F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
@@ -99,6 +109,72 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F236DD341D92898300B1FA31 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F2A120191D822B5600A39867 /* WelcomeViewController.swift */,
+				F2A1201A1D822B5600A39867 /* WelcomeViewController.xib */,
+				F2A1201B1D822B5600A39867 /* SignupViewController.swift */,
+				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
+				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
+				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
+				F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */,
+				F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */,
+				F2A120311D822B6300A39867 /* InfoViewController.swift */,
+				F2A120321D822B6300A39867 /* InfoViewController.xib */,
+				F2A120231D822B5600A39867 /* StartViewController.swift */,
+				F2A120241D822B5600A39867 /* StartViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F236DD351D9289AC00B1FA31 /* Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F2A120371D822B9700A39867 /* Alerts.swift */,
+				F2A120391D82303A00A39867 /* User.swift */,
+				F2BB01521D82EEBF0094A45B /* Haiku.swift */,
+				F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */,
+			);
+			name = "Model Objects";
+			sourceTree = "<group>";
+		};
+		F236DD361D928A1600B1FA31 /* Detail View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
+				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
+			);
+			name = "Detail View Controllers";
+			sourceTree = "<group>";
+		};
+		F236DD371D928A2C00B1FA31 /* Table Views */ = {
+			isa = PBXGroup;
+			children = (
+				F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */,
+				F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */,
+				F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */,
+			);
+			name = "Table Views";
+			sourceTree = "<group>";
+		};
+		F236DD381D928A4E00B1FA31 /* Collection Views */ = {
+			isa = PBXGroup;
+			children = (
+				F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */,
+				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
+				F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */,
+			);
+			name = "Collection Views";
+			sourceTree = "<group>";
+		};
+		F236DD391D928F4100B1FA31 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Supporting;
+			sourceTree = "<group>";
+		};
 		F2A11FFE1D82287900A39867 = {
 			isa = PBXGroup;
 			children = (
@@ -120,29 +196,16 @@
 		F2A120091D82287900A39867 /* MiniKubazar */ = {
 			isa = PBXGroup;
 			children = (
+				F236DD381D928A4E00B1FA31 /* Collection Views */,
+				F236DD371D928A2C00B1FA31 /* Table Views */,
+				F236DD361D928A1600B1FA31 /* Detail View Controllers */,
+				F236DD351D9289AC00B1FA31 /* Model Objects */,
+				F236DD341D92898300B1FA31 /* View Controllers */,
+				F236DD391D928F4100B1FA31 /* Supporting */,
 				F2A1200A1D82287900A39867 /* AppDelegate.swift */,
-				F2A120391D82303A00A39867 /* User.swift */,
-				F2BB01521D82EEBF0094A45B /* Haiku.swift */,
-				F2A120191D822B5600A39867 /* WelcomeViewController.swift */,
-				F2A1201A1D822B5600A39867 /* WelcomeViewController.xib */,
-				F2A1201B1D822B5600A39867 /* SignupViewController.swift */,
-				F2A1201C1D822B5600A39867 /* SignupViewController.xib */,
-				F2A1201D1D822B5600A39867 /* BazarViewController.swift */,
-				F2A1201E1D822B5600A39867 /* BazarViewController.xib */,
-				F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */,
-				F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */,
-				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
-				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
-				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
-				F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */,
-				F2A120231D822B5600A39867 /* StartViewController.swift */,
-				F2A120241D822B5600A39867 /* StartViewController.xib */,
 				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
-				F2A120311D822B6300A39867 /* InfoViewController.swift */,
-				F2A120321D822B6300A39867 /* InfoViewController.xib */,
 				F2A120351D822B8700A39867 /* ClientService.swift */,
 				F25372191D8A38E60065D51D /* Reachability.swift */,
-				F2A120371D822B9700A39867 /* Alerts.swift */,
 				F2A1200C1D82287900A39867 /* Assets.xcassets */,
 				F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */,
 				F2A120111D82287900A39867 /* Info.plist */,
@@ -222,8 +285,10 @@
 				F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */,
 				F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */,
 				F2A1202A1D822B5600A39867 /* BazarViewController.xib in Resources */,
+				F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,
 				F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */,
+				F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,10 +367,13 @@
 				F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */,
 				F2A120361D822B8700A39867 /* ClientService.swift in Sources */,
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,
+				F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */,
+				F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */,
 				F2A120251D822B5600A39867 /* WelcomeViewController.swift in Sources */,
 				F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */,
 				F2A120381D822B9700A39867 /* Alerts.swift in Sources */,
 				F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */,
+				F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */,
 				F2A120331D822B6300A39867 /* InfoViewController.swift in Sources */,
 				F253721A1D8A38E60065D51D /* Reachability.swift in Sources */,
 				F2A120291D822B5600A39867 /* BazarViewController.swift in Sources */,
@@ -419,6 +487,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MiniKubazar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,6 +503,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MiniKubazar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
