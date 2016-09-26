@@ -637,7 +637,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func chooseFriendsBackButtonPressed(sender: AnyObject) {
         stepOneCreateNewHaiku()
+        clearSelectedRows()
         
+    }
+    
+    func clearSelectedRows() {
         if let indexPathsForSelectedRows = chooseFriendsTableView.indexPathsForSelectedRows {
             
             for indexPath in indexPathsForSelectedRows {
@@ -647,6 +651,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 }
             }
         }
+
     }
     
     
