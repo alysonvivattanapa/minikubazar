@@ -53,88 +53,134 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         view.endEditing(true)
         
         if let email = friendsEmailTextField.text {
-           
-                switch isValidEmail(email) {
-                    
-                case true:
-                    
-                    checkIfFriendIsAlreadyAdded(email)
-                    
-                case false:
+            
+            if isValidEmail(email) == true {
                 
-                presentViewController(Alerts.showErrorMessage("Please enter a valid email."), animated: true, completion: nil)
-                    
-                default:
-                    
-                    break
-                }
-    
+                print("this is a valid email")
+                
+                checkIfFriendIsAlreadyAdded(email)
+                
+            } else {
+                
+                 presentViewController(Alerts.showErrorMessage("Please enter a valid email."), animated: true, completion: nil)
             }
-                
+            
+        }
+        
     }
     
     func checkIfFriendIsAlreadyAdded(emailStri: String) {
         
         ClientService.getFriendEmailsForCurrentUser { (friendEmails) in
+            
             if friendEmails.contains(emailStri) {
-                // this is working!
+                
                 self.presentViewController(Alerts.showErrorMessage("\(emailStri) is already added to your friends list. Try another friend."), animated: true, completion: nil)
-            } else {
-                //this is working!
-                let currentUserEmail = ClientService.getCurrentUserEmail()
-                if emailStri == currentUserEmail {
+                
+            } else  {
+                if self.checkIfUserIsTryingToAddSelfAsFriend(emailStri) == true {
                     self.presentViewController(Alerts.showErrorMessage("Sorry! You can't add yourself as a friend at this time :)"), animated: true, completion: nil)
                 } else {
-                    
-                    ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(emailStri).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                       
-                        if snapshot.exists() {
-                             print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
-                            print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
-                            
-                            // ISSUES HERE FIX THIS!!! EVERYTHING ELSE IS WORKING JUST NEED TO PROPERLY RETRIEVE FRIEND INFO, TURN TO USER OBJECT, ADD OBJECT TO FRIEND LIST.
-                            let friendObject = snapshot.value
-                            
-//                            let friendEmail = friendObject?.objectForKey("email") as! String
-//                            let username = friendObject?.objectForKey("username") as! String
-//                            let uid = friendObject?.objectForKey("uid") as! String
-//                            let friendUser = User(username: username, email: friendEmail, uid: uid)
-//                            print(friendUser)
-                            
-                        } else {
-                            //if snapshot is null, it means that friend is not an existing Kubazar user. if friend is not an existing Kubazar user, this code triggers an email invitation to friend to join Kubazar. 
-                            // this code is working!!
-                            print("THIS PROFILE SNAPSHOT DOES NOT EXIST: \(snapshot)")
-                            self.sendInvitationEmail(emailStri)
-                        }
-                    })
+                  
+                    self.checkIfFriendAlreadyUsesKubazar(emailStri)
                     
                 }
             }
+    }
+    }
+    
+    
+    
+    func checkIfUserIsTryingToAddSelfAsFriend(emailStr: String) -> Bool {
+        let currentUserEmail = ClientService.getCurrentUserEmail()
+        if emailStr == currentUserEmail {
+
+           return true
+            
+        } else {
+            
+            return false
+    }
+    }
+    
+    func checkIfFriendAlreadyUsesKubazar(emailStri: String) {
+        
+        //block only fires when snapshot exists
+        
+        ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(emailStri).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            if snapshot.exists() {
+                
+                ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(emailStri).observeSingleEventOfType(.ChildAdded, withBlock: { (friendSnapshot) in
+                print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
+                print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
+                
+                let friendUID = friendSnapshot.value?.objectForKey("uid") as! String
+                let friendEmail = friendSnapshot.value?.objectForKey("email") as! String
+                let friendUsername = friendSnapshot.value?.objectForKey("username") as! String
+                
+                print("\(friendEmail) & \(friendUID) & \(friendUsername)")
+                
+                let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
+                
+                print(friendUser)
+                
+                ClientService.addFriendToCurrentUserFriendsList(friendUser)
+                
+                self.presentViewController(Alerts.showSuccessMessage("\(emailStri) added to friends list. Add another friend."), animated: true, completion: nil)
+                })
+                
+            } else {
+                self.sendInvitationEmail(emailStri)
+            }
+            
+            
+        })
+
+    
+    }
+    
+    func isFriendAlreadyAdded(emailStri: String) {
+        
+        ClientService.getFriendEmailsForCurrentUser { (friendEmails) in
+            let currentUserEmail = ClientService.getCurrentUserEmail()
+            if friendEmails.contains(emailStri) {
+                self.presentViewController(Alerts.showErrorMessage("\(emailStri) is already added to your friends list. Try another friend."), animated: true, completion: nil)
+            } else if emailStri == currentUserEmail {
+                //this is working!
+                self.presentViewController(Alerts.showErrorMessage("Sorry! You can't add yourself as a friend at this time :)"), animated: true, completion: nil)
+            } else if !friendEmails.contains(emailStri) {
+                
+                ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(emailStri).observeSingleEventOfType(.ChildAdded, withBlock: { (snapshot) in
+                    
+                    if snapshot.exists() {
+                        print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
+                        print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
+                        
+                        
+                        let friendUID = snapshot.value?.objectForKey("uid") as! String
+                        let friendEmail = snapshot.value?.objectForKey("email") as! String
+                        let friendUsername = snapshot.value?.objectForKey("username") as! String
+                        
+                        print("\(friendEmail) & \(friendUID) & \(friendUsername)")
+                        
+                        let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
+                        
+                        print(friendUser)
+                        
+                        ClientService.addFriendToCurrentUserFriendsList(friendUser)
+                        
+                    } else {
+                        self.sendInvitationEmail(emailStri)
+                    }
+                })
+                
+            }
+            
         }
     }
 
-//    func addExistingUserAsFriend(snapshot: FDataSna?) {
-//        
-//    }
-//    
-    
-//        all of these are working!!
-//        let alysonEmail = "alyson.vivagmail.com"
-//        if isValidEmail(alysonEmail) == true {
-//            sendInvitationEmail(alysonEmail)
-//        } else {
-//            presentViewController(Alerts.showErrorMessage("Please enter a valid email address."), animated: true, completion: {
-//                
-//            })
-//        }
 
-//        sendInvitationEmail("alyson.viva@gmail.com")
-//        presentViewController(Alerts.showErrorMessage("You aren't currently able to send an invitation email. Please try again later."), animated: true, completion: nil)
-    
-    
-
-// check for valid email address
     
     func isValidEmail(emailStr: String) -> Bool {
         if emailStr.containsString("@") {
@@ -165,10 +211,11 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
         controller.dismissViewControllerAnimated(true) {
-            if let friendsEmail = self.friendsEmailTextField.text {
-                self.presentViewController(Alerts.showSuccessMessage("Email sent to \(friendsEmail). Invite another friend."), animated: true, completion: nil)
-            }
+//            if let friendsEmail = self.friendsEmailTextField.text {
+//                self.presentViewController(Alerts.showSuccessMessage("Email sent to \(friendsEmail). Invite another friend."), animated: true, completion: nil)
+//            }
             self.showInviteFriends()
             self.friendsEmailTextField.text = ""
         }
@@ -186,8 +233,7 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         
         ClientService.getFriendUIDsForCurrentUser { (arrayOfFriendUIDs) in
             
-            
-            NSOperationQueue.mainQueue().addOperationWithBlock {
+             NSOperationQueue.mainQueue().addOperationWithBlock  {
                 let friendUIDArray = arrayOfFriendUIDs
                 
                 self.friendsTableViewDataSource.friendArray = []
@@ -200,7 +246,7 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
                         let username = friend.value!.objectForKey("username") as! String
                         let friend = User(username: username, email: email, uid: uid)
                         self.friendsTableViewDataSource.friendArray.append(friend)
-                        
+                       
                         self.friendsTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
                         
                     })

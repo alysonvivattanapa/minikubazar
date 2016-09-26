@@ -58,47 +58,6 @@ struct ClientService {
         }
     }
     
-    static func checkIfUserExistsByEmailOrUsername(closure: String -> Void) {
-        
-    }
-    
-    
-//    static func getArrayOfUsersFromArrayOfUIDs(arrayOfUIDs: [String]) ->  [User] {
-//        
-//        var arrayOfUsers = [User]()
-////
-//        for uid in arrayOfUIDs {
-//            profileRef.child("\(uid)").queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (friend) in
-//                let uid = friend.value?.objectForKey("uid") as! String
-//                let email = friend.value?.objectForKey("email") as! String
-//                let username = friend.value?.objectForKey("username") as! String
-//                let user = User(username: username, email: email, uid: uid)
-//                arrayOfUsers.append(user)
-//            })
-//        }
-//        return arrayOfUsers
-//    }
-    
-    
-    //CODE BELOW DOESN'T WORK, WHY??????
-    
-//    static func getArrayOfUsersFromArrayOfUIDs(arrayOfUIDs: [String], closure: [User] -> Void) {
-//        
-//        var arrayOfUsers = [User]()
-//        
-//        for uid in arrayOfUIDs {
-//            ClientService.profileRef.child("\(uid)").queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (friend) in
-//                let uid = friend.value?.objectForKey("uid") as! String
-//                let email = friend.value?.objectForKey("email") as! String
-//                let username = friend.value?.objectForKey("username") as! String
-//                let user = User(username: username, email: email, uid: uid)
-//                arrayOfUsers.append(user)
-//        })
-//            
-//        closure(arrayOfUsers)
-//    }
-//    }
-//    
     
     static func getFriendUIDsForCurrentUser(closure: [String] -> Void) {
         
@@ -166,6 +125,18 @@ struct ClientService {
         
     }
 
-
+    static func addFriendToCurrentUserFriendsList (friend: User) {
+        let currentUserUID = ClientService.getCurrentUserUID()
+        let currentUserFriendsRef = friendsRef.child(currentUserUID)
+        
+        let uid = friend.uid
+        let email = friend.email
+        let username = friend.username
+        
+        let userDictionary: NSDictionary = ["uid": uid!, "email": email, "username": username]
+        
+        currentUserFriendsRef.child(uid).setValue(userDictionary)
+        
+    }
 
 }
