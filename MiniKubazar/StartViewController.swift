@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITableViewDelegate {
 
     @IBOutlet weak var firstKubazarMascot: UIImageView!
     
@@ -61,12 +61,29 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var inspireMeButton: UIButton!
     
+    @IBOutlet weak var chooseFriendsTableView: UITableView!
+    
+    let chooseFriendsTableViewDataSource = FriendsTableViewDataSource()
+    
+    
+    @IBOutlet weak var chooseFriendsView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         firstLineHaikuTextView.delegate = self
         secondLineHaikuTextView.delegate = self
         thirdLineHaikuTextView.delegate = self
+        
+        chooseFriendsTableView.dataSource = chooseFriendsTableViewDataSource
+        chooseFriendsTableView.delegate = self
+       
+        
+        fetchFriendsAndSetToDataSource()
+        
+        let friendsNib = UINib.init(nibName: "FriendsTableViewCell", bundle: nil)
+        chooseFriendsTableView.registerNib(friendsNib, forCellReuseIdentifier: "friendsCell")
         
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
@@ -269,6 +286,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         choosePictureView.hidden = true
         enterHaikuView.hidden = true
         congratsView.hidden = true
+        chooseFriendsView.hidden = true
     }
     
     @IBAction func cameraButtonPressed(sender: AnyObject) {
@@ -610,6 +628,78 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     //    }
 
     
+    @IBAction func playWithOneFriendButtonPressed(sender: AnyObject) {
+        
+        selectOneFriend()
+        
+    }
+    
+    
+    @IBAction func chooseFriendsBackButtonPressed(sender: AnyObject) {
+        stepOneCreateNewHaiku()
+    }
+    
+    
+    @IBAction func playWithTwoFriendsButtonPressed(sender: AnyObject) {
+        selectTwoFriends()
+    }
+    
+    func selectOneFriend() {
+        setAllSubviewsToHidden()
+        chooseFriendsView.hidden = false
+        chooseFriendsTableView.allowsMultipleSelection = false
+        chooseFriendsTableView.allowsSelection = true
+    }
+    
+    func selectTwoFriends() {
+        setAllSubviewsToHidden()
+        chooseFriendsView.hidden = false
+        chooseFriendsTableView.allowsMultipleSelection = true
+    }
+    
+    
+    //table view stuff
+    
+    func fetchFriendsAndSetToDataSource() {
+        print ("fetch friends data gets called")
+        
+        ClientService.getFriendUIDsForCurrentUser { (arrayOfFriendUIDs) in
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock  {
+                let friendUIDArray = arrayOfFriendUIDs
+                
+                self.chooseFriendsTableViewDataSource.friendArray = []
+                
+                for friendUID in friendUIDArray {
+                    ClientService.profileRef.child("\(friendUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { (friend) in
+                        print("FRIEND is \(friend)")
+                        let uid = friend.value!.objectForKey("uid") as! String
+                        let email = friend.value!.objectForKey("email") as! String
+                        let username = friend.value!.objectForKey("username") as! String
+                        let friend = User(username: username, email: email, uid: uid)
+                        self.chooseFriendsTableViewDataSource.friendArray.append(friend)
+                        
+                        self.chooseFriendsTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                        
+                    })
+                }
+            }
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+        //adjust height later
+    }
+    
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("did select: \(indexPath.row)")
+        
+    }
+    
+
     
     
     
