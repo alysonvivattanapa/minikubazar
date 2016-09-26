@@ -35,8 +35,8 @@
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="bKW-Xj-eId"/>
                                     <exclude reference="3hO-L4-TqU"/>
+                                    <exclude reference="bKW-Xj-eId"/>
                                 </mask>
                             </variation>
                         </label>
@@ -64,7 +64,7 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0">
                             <rect key="frame" x="5" y="272" width="590" height="366"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT1-VT-fVV">
@@ -233,14 +233,14 @@
                             <exclude reference="I54-gE-BbL"/>
                             <exclude reference="Rkn-bf-AWa"/>
                             <exclude reference="azW-A5-KON"/>
-                            <exclude reference="hwP-Ls-3gH"/>
                             <exclude reference="hNl-a9-H50"/>
+                            <exclude reference="hwP-Ls-3gH"/>
                             <exclude reference="yi9-Zr-jCL"/>
                             <exclude reference="H1N-SI-F7T"/>
-                            <exclude reference="sTY-RH-qKt"/>
-                            <exclude reference="dcO-Wx-pzO"/>
-                            <exclude reference="ZiL-C1-QwU"/>
                             <exclude reference="ZCd-4O-I2j"/>
+                            <exclude reference="ZiL-C1-QwU"/>
+                            <exclude reference="dcO-Wx-pzO"/>
+                            <exclude reference="sTY-RH-qKt"/>
                             <exclude reference="KCR-lZ-gJz"/>
                         </mask>
                     </variation>

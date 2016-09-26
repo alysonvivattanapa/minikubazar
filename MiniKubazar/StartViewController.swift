@@ -14,6 +14,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var playWithOneFriendButton: UIButton!
+    
+    @IBOutlet weak var playWithTwoFriendsButton: UIButton!
+    
+    
     @IBOutlet weak var createNewHaikuView: UIView!
     
     @IBOutlet weak var createNewHaikuLabel: UILabel!
@@ -67,6 +72,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     
     @IBOutlet weak var chooseFriendsView: UIView!
+    
+    
+    @IBOutlet weak var chooseFriendsContineButton: UIButton!
+    
+    
+    @IBOutlet weak var chooseFriendsLabel: UILabel!
+    
+    var oneFriendOptionChosen: Bool!
+    
+    var twoFriendsOptionChosen: Bool!
+    
+    var arrayOfChosenFriends = [String]()
     
     
     override func viewDidLoad() {
@@ -180,6 +197,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func startAnimation() {
         startButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
+        playWithOneFriendButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        
+        playWithTwoFriendsButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        
         firstKubazarMascot.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
         createNewHaikuLabel.transform = CGAffineTransformMakeScale(0.7, 0.7)
@@ -201,6 +222,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
             self.startButton.transform = CGAffineTransformIdentity
+            self.playWithOneFriendButton.transform = CGAffineTransformIdentity
+            self.playWithTwoFriendsButton.transform = CGAffineTransformIdentity
             self.firstKubazarMascot.transform = CGAffineTransformIdentity
             self.createNewHaikuLabel.transform = CGAffineTransformIdentity
             }, completion: nil)
@@ -638,6 +661,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func chooseFriendsBackButtonPressed(sender: AnyObject) {
         stepOneCreateNewHaiku()
         clearSelectedRows()
+        arrayOfChosenFriends = []
+        oneFriendOptionChosen = false
+        twoFriendsOptionChosen = false
         
     }
     
@@ -661,15 +687,20 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func selectOneFriend() {
         setAllSubviewsToHidden()
+        chooseFriendsLabel.text = "Choose one friend."
         chooseFriendsView.hidden = false
         chooseFriendsTableView.allowsMultipleSelection = false
         chooseFriendsTableView.allowsSelection = true
+        oneFriendOptionChosen = true
+        
     }
     
     func selectTwoFriends() {
         setAllSubviewsToHidden()
+        chooseFriendsLabel.text = "Choose two friends."
         chooseFriendsView.hidden = false
         chooseFriendsTableView.allowsMultipleSelection = true
+        twoFriendsOptionChosen = true
     }
     
     
@@ -709,12 +740,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if let selectedRows = tableView.indexPathsForSelectedRows {
-            if selectedRows.count > 2 {
-                let alertController = UIAlertController(title: "Choose only two friends.", message: "To continue, please deselect extra friends.", preferredStyle: .Alert)
+            if selectedRows.count == 2 {
+                let alertController = UIAlertController(title: "Choose only two friends.", message: "You can only choose two friends. To continue, please deselect any additional friends.", preferredStyle: .Alert)
                 let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
                 alertController.addAction(okayAction)
                 self.presentViewController(alertController, animated: true, completion: nil)
-                
+            }
+            
+            if selectedRows.count > 2 {
                 return nil
             }
         }
@@ -726,19 +759,77 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select: \(indexPath.row)")
         
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            if cell.selected {
-                cell.accessoryType = .Checkmark
+        var indexPath = tableView.indexPathForSelectedRow
+        
+        var selectedCell = tableView.cellForRowAtIndexPath(indexPath!) as! FriendsTableViewCell
+        
+        if selectedCell.selected {
+            selectedCell.accessoryType = .Checkmark
+            if let email = selectedCell.friendsUsername.text {
+                if self.arrayOfChosenFriends.contains(email) {
+                    print("\(email) already added to array")
+                } else {
+                self.arrayOfChosenFriends.append(email)
+                print(self.arrayOfChosenFriends)
+                }
             }
-
         }
+        
+        
+        
+//        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+//            if cell.selected {
+//                cell.accessoryType = .Checkmark
+//            }
+//           
+//        }
         
         }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            cell.accessoryType = .None
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FriendsTableViewCell
+        cell.accessoryType = .None
+        if let email = cell.friendsUsername.text {
+            let updatedArray = self.arrayOfChosenFriends.filter {$0 != email}
+            self.arrayOfChosenFriends = updatedArray
         }
+        
+//       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+//            if let email = cell.textLabel?.text {
+//               let updatedArray = self.arrayOfChosenFriends.filter {$0 != email}
+//               self.arrayOfChosenFriends = updatedArray
+//            }
+//            cell.accessoryType = .None
+//        }
+        
+    }
+    
+    
+    @IBAction func chooseFriendsContinueButtonPressed(sender: AnyObject) {
+        
+        print("choose friends continue button pressed")
+        
+//        print(oneFriendOptionChosen)
+//        
+//        print(twoFriendsOptionChosen)
+        
+//        if oneFriendOptionChosen == true {
+//            
+//            if self.arrayOfChosenFriends.count == 1 {
+//                print("exactly one friend chosen, put code here for next step: friend chosen = \(self.arrayOfChosenFriends)")
+//            }
+//            
+//        } else if twoFriendsOptionChosen == true {
+//            
+//            if self.arrayOfChosenFriends.count == 2 {
+//                print("exactly one friend chosen, put code here for next step: friends chosen = = \(self.arrayOfChosenFriends)")
+//            }
+//            
+//        } else {
+//            
+//            print("choose friends continue button chosen, but neither oneFriendOption nor twoFriendsOption is chosen, so what's happening here? YOU HAVE A BUG. FIX IT. SOMETHING WENT WRONG.")
+//        }
         
     }
     

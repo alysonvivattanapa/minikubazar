@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="cameraButton" destination="IqM-0a-Oz7" id="ayW-p1-thO"/>
                 <outlet property="cameraRollButton" destination="P5p-g5-kwW" id="Atj-aK-XKg"/>
+                <outlet property="chooseFriendsContineButton" destination="939-Sn-qif" id="OZB-N9-Efg"/>
+                <outlet property="chooseFriendsLabel" destination="S56-ES-Jru" id="Ld3-Es-rES"/>
                 <outlet property="chooseFriendsTableView" destination="he3-dv-nGh" id="YxV-aD-JgY"/>
                 <outlet property="chooseFriendsView" destination="ItL-CJ-Jn1" id="RjU-x5-c8I"/>
                 <outlet property="choosePictureView" destination="ib5-H7-ToO" id="lAo-TH-DGA"/>
@@ -22,6 +24,8 @@
                 <outlet property="firstLineHaikuTextView" destination="Xcg-a5-goi" id="S9t-wy-IJU"/>
                 <outlet property="haikuImageView" destination="n3k-Km-8on" id="lUg-As-ld0"/>
                 <outlet property="inspireMeButton" destination="yui-BX-bQO" id="mxR-el-HHS"/>
+                <outlet property="playWithOneFriendButton" destination="AP0-dl-f6f" id="BTl-ER-oeW"/>
+                <outlet property="playWithTwoFriendsButton" destination="W7M-fh-bcc" id="NRP-6w-cCr"/>
                 <outlet property="secondLineHaikuLabel" destination="TH2-sA-s1v" id="m0u-jM-Ljq"/>
                 <outlet property="secondLineHaikuTextView" destination="eyX-8z-MIm" id="1Sc-N9-o9f"/>
                 <outlet property="shareableHaikuView" destination="tUx-Dk-AQU" id="nJn-nV-FmJ"/>
@@ -222,7 +226,7 @@
                                     </variation>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dvA-dc-fBB">
-                                    <rect key="frame" x="74" y="14" width="5" height="11"/>
+                                    <rect key="frame" x="30" y="-56" width="83" height="96"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -695,41 +699,6 @@
                         <navigationItem title="start" id="nax-6v-Acn"/>
                     </items>
                 </navigationBar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItL-CJ-Jn1" userLabel="Choose Friends View">
-                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="he3-dv-nGh">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="374"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xk-Ks-IZC">
-                            <rect key="frame" x="14" y="439" width="46" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="ioA-Vp-QZe"/>
-                                <constraint firstAttribute="width" constant="46" id="sei-cd-yx8"/>
-                            </constraints>
-                            <state key="normal" title="Back"/>
-                            <connections>
-                                <action selector="chooseFriendsBackButtonPressed:" destination="-1" eventType="touchUpInside" id="kUy-ia-Q80"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="he3-dv-nGh" secondAttribute="trailing" id="2hM-UY-xFW"/>
-                        <constraint firstItem="he3-dv-nGh" firstAttribute="leading" secondItem="ItL-CJ-Jn1" secondAttribute="leading" id="6Tl-F8-t53"/>
-                        <constraint firstAttribute="bottom" secondItem="0Xk-Ks-IZC" secondAttribute="bottom" constant="65" id="B5c-D4-Snf"/>
-                        <constraint firstItem="he3-dv-nGh" firstAttribute="top" secondItem="ItL-CJ-Jn1" secondAttribute="top" id="GRt-my-cBl"/>
-                        <constraint firstAttribute="bottom" secondItem="he3-dv-nGh" secondAttribute="bottom" constant="44" id="jJP-XF-rno"/>
-                        <constraint firstItem="0Xk-Ks-IZC" firstAttribute="top" secondItem="he3-dv-nGh" secondAttribute="bottom" constant="65" id="jXw-Y8-sbh"/>
-                        <constraint firstItem="0Xk-Ks-IZC" firstAttribute="leading" secondItem="ItL-CJ-Jn1" secondAttribute="leading" constant="14" id="u6d-oc-bNY"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="jJP-XF-rno"/>
-                        </mask>
-                    </variation>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVS-bh-A8E" userLabel="Create New Haiku View">
                     <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                     <subviews>
@@ -777,14 +746,14 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLT-wt-mXm">
-                            <rect key="frame" x="224" y="285" width="151" height="30"/>
+                            <rect key="frame" x="214" y="285" width="171" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="151" id="49L-wK-3Rt"/>
+                                <constraint firstAttribute="width" constant="171" id="49L-wK-3Rt"/>
                                 <constraint firstAttribute="height" constant="30" id="o33-La-xTP"/>
                                 <constraint firstAttribute="width" constant="82" id="qRJ-cc-lxy"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Play by yourself" backgroundImage="Continue">
+                            <state key="normal" title="Play By Yourself" backgroundImage="Continue">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -846,6 +815,72 @@
                             <exclude reference="Sbr-1t-chf"/>
                             <exclude reference="gGb-4K-SmU"/>
                             <exclude reference="vFM-DF-Bs9"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItL-CJ-Jn1" userLabel="Choose Friends View">
+                    <rect key="frame" x="0.0" y="66" width="600" height="534"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="he3-dv-nGh">
+                            <rect key="frame" x="0.0" y="37" width="600" height="337"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xk-Ks-IZC">
+                            <rect key="frame" x="14" y="439" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="ioA-Vp-QZe"/>
+                                <constraint firstAttribute="width" constant="46" id="sei-cd-yx8"/>
+                            </constraints>
+                            <state key="normal" title="Back"/>
+                            <connections>
+                                <action selector="chooseFriendsBackButtonPressed:" destination="-1" eventType="touchUpInside" id="kUy-ia-Q80"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S56-ES-Jru">
+                            <rect key="frame" x="15" y="8" width="570" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="txj-qF-rbp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="939-Sn-qif">
+                            <rect key="frame" x="261" y="439" width="78" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="78" id="RjW-Kt-baG"/>
+                                <constraint firstAttribute="height" constant="30" id="nw8-pH-xGr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="Continue" backgroundImage="Continue">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="chooseFriendsContinueButtonPressed:" destination="-1" eventType="touchUpInside" id="4A1-Im-1Vl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="he3-dv-nGh" secondAttribute="trailing" id="2hM-UY-xFW"/>
+                        <constraint firstItem="S56-ES-Jru" firstAttribute="top" secondItem="ItL-CJ-Jn1" secondAttribute="top" constant="8" id="4jd-Fa-ogS"/>
+                        <constraint firstItem="he3-dv-nGh" firstAttribute="leading" secondItem="ItL-CJ-Jn1" secondAttribute="leading" id="6Tl-F8-t53"/>
+                        <constraint firstItem="S56-ES-Jru" firstAttribute="centerX" secondItem="ItL-CJ-Jn1" secondAttribute="centerX" id="885-7g-hTo"/>
+                        <constraint firstAttribute="bottom" secondItem="0Xk-Ks-IZC" secondAttribute="bottom" constant="65" id="B5c-D4-Snf"/>
+                        <constraint firstItem="he3-dv-nGh" firstAttribute="top" secondItem="ItL-CJ-Jn1" secondAttribute="top" id="GRt-my-cBl"/>
+                        <constraint firstAttribute="trailing" secondItem="S56-ES-Jru" secondAttribute="trailing" constant="15" id="MCd-D2-j3V"/>
+                        <constraint firstItem="he3-dv-nGh" firstAttribute="top" secondItem="S56-ES-Jru" secondAttribute="bottom" constant="8" id="Tk9-1Q-0j2"/>
+                        <constraint firstItem="939-Sn-qif" firstAttribute="centerX" secondItem="ItL-CJ-Jn1" secondAttribute="centerX" id="c7h-Cq-bex"/>
+                        <constraint firstAttribute="bottom" secondItem="he3-dv-nGh" secondAttribute="bottom" constant="44" id="jJP-XF-rno"/>
+                        <constraint firstItem="0Xk-Ks-IZC" firstAttribute="top" secondItem="he3-dv-nGh" secondAttribute="bottom" constant="65" id="jXw-Y8-sbh"/>
+                        <constraint firstItem="0Xk-Ks-IZC" firstAttribute="leading" secondItem="ItL-CJ-Jn1" secondAttribute="leading" constant="14" id="u6d-oc-bNY"/>
+                        <constraint firstItem="S56-ES-Jru" firstAttribute="leading" secondItem="ItL-CJ-Jn1" secondAttribute="leading" constant="15" id="xJZ-Qe-ggU"/>
+                        <constraint firstItem="939-Sn-qif" firstAttribute="centerY" secondItem="0Xk-Ks-IZC" secondAttribute="centerY" id="yVx-T2-h0e"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GRt-my-cBl"/>
+                            <exclude reference="jJP-XF-rno"/>
                         </mask>
                     </variation>
                 </view>
