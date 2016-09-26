@@ -637,6 +637,16 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func chooseFriendsBackButtonPressed(sender: AnyObject) {
         stepOneCreateNewHaiku()
+        
+        if let indexPathsForSelectedRows = chooseFriendsTableView.indexPathsForSelectedRows {
+            
+            for indexPath in indexPathsForSelectedRows {
+                self.chooseFriendsTableView.deselectRowAtIndexPath(indexPath, animated: true)
+                if let cell = chooseFriendsTableView.cellForRowAtIndexPath(indexPath) {
+                    cell.accessoryType = .None
+                }
+            }
+        }
     }
     
     
@@ -692,14 +702,40 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         //adjust height later
     }
     
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if let selectedRows = tableView.indexPathsForSelectedRows {
+            if selectedRows.count > 2 {
+                let alertController = UIAlertController(title: "Choose only two friends.", message: "To continue, please deselect extra friends.", preferredStyle: .Alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alertController.addAction(okayAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                return nil
+            }
+        }
+        
+        return indexPath
+    }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select: \(indexPath.row)")
         
-    }
-    
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            if cell.selected {
+                cell.accessoryType = .Checkmark
+            }
 
+        }
+        
+        }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            cell.accessoryType = .None
+        }
+        
+    }
     
     
     
