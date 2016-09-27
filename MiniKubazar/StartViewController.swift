@@ -86,6 +86,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     var arrayOfChosenFriends = [String]()
     
     
+    @IBOutlet weak var enterHaikuFinishButton: UIButton!
+   
+    
+    @IBOutlet weak var enterHaikuContinueButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -250,6 +256,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         buttonAnimation(cameraButton)
         buttonAnimation(cameraRollButton)
         buttonAnimation(inspireMeButton)
+        enterHaikuContinueButton.hidden = true
+        enterHaikuFinishButton.hidden = false
     }
     
     @IBAction func choosePictureBackButtonPressed(sender: AnyObject) {
@@ -300,6 +308,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         firstLineHaikuTextView.textColor = UIColor.lightGrayColor()
         secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
         thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        
+        enterHaikuContinueButton.hidden = true
+        enterHaikuFinishButton.hidden = false
     
     }
     
@@ -664,6 +675,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         arrayOfChosenFriends = []
         oneFriendOptionChosen = false
         twoFriendsOptionChosen = false
+        enterHaikuContinueButton.hidden = true
+        enterHaikuFinishButton.hidden = false
         
     }
     
@@ -759,9 +772,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("did select: \(indexPath.row)")
         
-        var indexPath = tableView.indexPathForSelectedRow
+        let indexPath = tableView.indexPathForSelectedRow
         
-        var selectedCell = tableView.cellForRowAtIndexPath(indexPath!) as! FriendsTableViewCell
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath!) as! FriendsTableViewCell
         
         if selectedCell.selected {
             selectedCell.accessoryType = .Checkmark
@@ -810,29 +823,91 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         print("choose friends continue button pressed")
         
-//        print(oneFriendOptionChosen)
-//        
-//        print(twoFriendsOptionChosen)
-        
-//        if oneFriendOptionChosen == true {
-//            
-//            if self.arrayOfChosenFriends.count == 1 {
-//                print("exactly one friend chosen, put code here for next step: friend chosen = \(self.arrayOfChosenFriends)")
-//            }
-//            
-//        } else if twoFriendsOptionChosen == true {
-//            
-//            if self.arrayOfChosenFriends.count == 2 {
-//                print("exactly one friend chosen, put code here for next step: friends chosen = = \(self.arrayOfChosenFriends)")
-//            }
-//            
-//        } else {
-//            
-//            print("choose friends continue button chosen, but neither oneFriendOption nor twoFriendsOption is chosen, so what's happening here? YOU HAVE A BUG. FIX IT. SOMETHING WENT WRONG.")
-//        }
+        if oneFriendOptionChosen == true {
+            
+            if self.arrayOfChosenFriends.count == 1 {
+                print("exactly one friend chosen, put code here for next step: friend chosen = \(self.arrayOfChosenFriends)")
+                enterNewHaikuWithOneFriend()
+                clearSelectedRows()
+                
+            } else {
+                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alertController.addAction(okayAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            
+        } else if twoFriendsOptionChosen == true {
+            
+            if self.arrayOfChosenFriends.count == 2 {
+                print("exactly one friend chosen, put code here for next step: friends chosen = = \(self.arrayOfChosenFriends)")
+                enterNewHaikuWithTwoFriends()
+                clearSelectedRows()
+            } else {
+                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                alertController.addAction(okayAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            
+        } else {
+            
+            print("choose friends continue button chosen, but neither oneFriendOption nor twoFriendsOption is chosen, so what's happening here? YOU HAVE A BUG. FIX IT. SOMETHING WENT WRONG.")
+        }
         
     }
     
+    func enterNewHaikuWithOneFriend() {
+        setAllSubviewsToHidden()
+        choosePictureView.hidden = false
+        
+        enterHaikuFinishButton.hidden = true
+        enterHaikuContinueButton.hidden = false
+        
+        if let email = arrayOfChosenFriends.first {
+        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
+        secondLineHaikuTextView.text = "\(email) enters second line of haiku."
+        secondLineHaikuTextView.userInteractionEnabled = false
+        
+        thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
+        thirdLineHaikuTextView.userInteractionEnabled = false
+        
+        secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        }
+    }
     
+    func enterNewHaikuWithTwoFriends() {
+        setAllSubviewsToHidden()
+        choosePictureView.hidden = false
+        
+        enterHaikuFinishButton.hidden = true
+        enterHaikuContinueButton.hidden = false
+        
+        if let firstFriendEmail = arrayOfChosenFriends.first, secondFriendEmail = arrayOfChosenFriends.last {
+            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then press Continue."
+            secondLineHaikuTextView.text = "\(firstFriendEmail) enters second line of haiku."
+            secondLineHaikuTextView.userInteractionEnabled = false
+            
+            thirdLineHaikuTextView.text = "\(secondFriendEmail) enters third line of haiku."
+            thirdLineHaikuTextView.userInteractionEnabled = false
+            
+            secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
+            thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        }
+        
+        
+
+        
+    }
+    
+    @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
+        
+        if arrayOfChosenFriends.count == 1 {
+           //create active haiku object and save to backend; then populate active tableview
+        } else if arrayOfChosenFriends.count == 2 {
+            //create active haiku object and save to backend; then populate active tableview
+        }
+    }
     
 }

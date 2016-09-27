@@ -33,6 +33,7 @@
 		F2A120361D822B8700A39867 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120351D822B8700A39867 /* ClientService.swift */; };
 		F2A120381D822B9700A39867 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120371D822B9700A39867 /* Alerts.swift */; };
 		F2A1203A1D82303A00A39867 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120391D82303A00A39867 /* User.swift */; };
+		F2AB4E931D99E3D8003CB6FD /* ActiveHaiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB4E921D99E3D8003CB6FD /* ActiveHaiku.swift */; };
 		F2AEDBF01D8959C800BB07CC /* CompletedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */; };
 		F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */; };
 		F2BB01531D82EEBF0094A45B /* Haiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01521D82EEBF0094A45B /* Haiku.swift */; };
@@ -72,6 +73,7 @@
 		F2A120351D822B8700A39867 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		F2A120371D822B9700A39867 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		F2A120391D82303A00A39867 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F2AB4E921D99E3D8003CB6FD /* ActiveHaiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveHaiku.swift; sourceTree = "<group>"; };
 		F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaiku.swift; sourceTree = "<group>"; };
 		F2BB01521D82EEBF0094A45B /* Haiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haiku.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				F2A120391D82303A00A39867 /* User.swift */,
 				F2BB01521D82EEBF0094A45B /* Haiku.swift */,
 				F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */,
+				F2AB4E921D99E3D8003CB6FD /* ActiveHaiku.swift */,
 			);
 			name = "Model Objects";
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				F2A1202F1D822B5600A39867 /* StartViewController.swift in Sources */,
 				F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */,
 				F2A120361D822B8700A39867 /* ClientService.swift in Sources */,
+				F2AB4E931D99E3D8003CB6FD /* ActiveHaiku.swift in Sources */,
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,
 				F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */,
 				F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */,
