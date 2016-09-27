@@ -407,39 +407,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
 
-//    @IBAction func startButtonPressed(sender: AnyObject) {
-    
-        /*
-         
-         save image example code, write to Firebase somehow?:
-         
-         var imageData = UIImageJPEGRepresentation(imagePicked.image, 0.6)
-         var compressedJPGImage = UIImage(data: imageData)
-         UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
-         
-         */
-        
-        //save active haiku to firebase...model object? gahh...first player, second player, third player OR first player, second player, third player = first player
-    
-  //  }
-    
-  
-    
-    // write haiku to Firebase...Firebase generates unique ID for each haiku post:
-    /*
- let postRef = ref.childByAppendingPath("posts")
- let post1 = ["author": "gracehop", "title": "Announcing COBOL, a New Programming Language"]
- let post1Ref = postRef.childByAutoId()
- post1Ref.setValue(post1)
- 
- let post2 = ["author": "alanisawesome", "title": "The Turing Machine"]
- let post2Ref = postRef.childByAutoId()
- post2Ref.setValue(post2)
-     
- postID = post1Ref.key 
-  // calling .key gets the unique ID of that post
- */
-
     //keyboard code
     
    
@@ -521,25 +488,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
         
         
-    }
-    
-    
-    
-    func retrieveFinishedHaiku(uid: String) {
-        let currentUserUID = ClientService.getCurrentUserUID()
-        let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
-        let finishedHaikuRef = completedHaikusForCurrentUserRef.child(uid)
-        
-        finishedHaikuRef.queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
-            print("FINISHED HAIKU REF SNAPSHOT = \(snapshot)")
-            
-            
-        })
-
-        
-        
-//        let finishedHaiku = Haiku(firstLineHaiku: <#T##String!#>, secondLineHaiku: <#T##String!#>, thirdLineHaiku: <#T##String!#>, imageHaikuDownloadURL: <#T##NSURL!#>, uuid: <#T##String!#>)
-
     }
     
     
@@ -842,10 +790,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
             thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
         }
-        
-        
-
-        
     }
     
     @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
@@ -881,10 +825,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 if (error != nil) {
                     print("uh-oh! trouble saving image")
                 } else {
-                  let imageDownloadURL = metadata!.downloadURL()
+                    let imageDownloadURL = metadata!.downloadURL()
                     
-                 let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
-            
+                    let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
+                    
                     if let secondPlayerEmail = self.arrayOfChosenFriends.first {
                         ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(secondPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (friendSnapshot) in
                             
@@ -901,11 +845,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                         } )}
                     
-
+                    
                 }
                 
-            
-    }
+                
+            }
         }
     }
     
@@ -940,16 +884,16 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                 
                                 ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(thirdPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (thirdPlayerSnapshot) in
                                     
-                                   let thirdPlayerUID = thirdPlayerSnapshot.value?.objectForKey("uid") as! String
+                                    let thirdPlayerUID = thirdPlayerSnapshot.value?.objectForKey("uid") as! String
                                     
                                     let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                                     
                                     ClientService.addActiveHaikuForPlayers(newActiveHaiku)
-
+                                    
                                     
                                 })
                                 
-
+                                
                             }
                             
                             //save image and create imageHiakuDOwnloadURL

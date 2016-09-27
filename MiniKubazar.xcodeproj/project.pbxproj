@@ -11,6 +11,8 @@
 		F220BE391D9AA35400264DFF /* ActiveCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F220BE381D9AA35400264DFF /* ActiveCollectionViewDataSource.swift */; };
 		F220BE3C1D9AA6BA00264DFF /* ActiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F220BE3A1D9AA6BA00264DFF /* ActiveCollectionViewCell.swift */; };
 		F220BE3D1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F220BE3B1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib */; };
+		F220BE401D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */; };
+		F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */; };
 		F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */; };
 		F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */; };
 		F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */; };
@@ -52,6 +54,8 @@
 		F220BE381D9AA35400264DFF /* ActiveCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		F220BE3A1D9AA6BA00264DFF /* ActiveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		F220BE3B1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveCollectionViewCell.xib; sourceTree = "<group>"; };
+		F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveHaikuDetailViewController.swift; sourceTree = "<group>"; };
+		F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewDataSource.swift; sourceTree = "<group>"; };
 		F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			children = (
 				F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */,
 				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
+				F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */,
+				F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */,
 			);
 			name = "Detail View Controllers";
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 				F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */,
 				F2A120301D822B5600A39867 /* StartViewController.xib in Resources */,
 				F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */,
+				F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */,
 				F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */,
 				F2A1202A1D822B5600A39867 /* BazarViewController.xib in Resources */,
 				F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */,
@@ -387,6 +394,7 @@
 				F2A120251D822B5600A39867 /* WelcomeViewController.swift in Sources */,
 				F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */,
 				F220BE391D9AA35400264DFF /* ActiveCollectionViewDataSource.swift in Sources */,
+				F220BE401D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift in Sources */,
 				F2A120381D822B9700A39867 /* Alerts.swift in Sources */,
 				F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */,
 				F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */,

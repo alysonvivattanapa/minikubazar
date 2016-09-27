@@ -141,7 +141,7 @@
                     <rect key="frame" x="0.0" y="100" width="600" height="500"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qpM-SP-dXw">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="425"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3hT-Ae-G36">
                                 <size key="itemSize" width="180" height="180"/>
@@ -155,7 +155,7 @@
                     <constraints>
                         <constraint firstItem="qpM-SP-dXw" firstAttribute="top" secondItem="wUk-IA-J4T" secondAttribute="top" id="AkP-cT-x7r"/>
                         <constraint firstItem="qpM-SP-dXw" firstAttribute="leading" secondItem="wUk-IA-J4T" secondAttribute="leading" id="Bc0-yi-pvX"/>
-                        <constraint firstAttribute="bottom" secondItem="qpM-SP-dXw" secondAttribute="bottom" id="MKQ-bo-L73"/>
+                        <constraint firstAttribute="bottom" secondItem="qpM-SP-dXw" secondAttribute="bottom" constant="75" id="MKQ-bo-L73"/>
                         <constraint firstAttribute="trailing" secondItem="qpM-SP-dXw" secondAttribute="trailing" id="epC-o9-Ogt"/>
                     </constraints>
                 </view>

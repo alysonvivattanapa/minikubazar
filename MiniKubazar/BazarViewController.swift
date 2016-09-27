@@ -26,8 +26,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var completedHaikusCollectionView: UICollectionView!
     
-    @IBOutlet weak var completedTableView: UITableView!
-    
     @IBOutlet weak var startHaikuButton: UIButton!
     
     @IBOutlet weak var kubazarMascot: UIImageView!
@@ -72,6 +70,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         completedHaikusCollectionView.delegate = self
         
         activeCollectionView.dataSource = activeCollectionViewDataSource
+        
+        activeCollectionView.delegate = self
         
         activeCollectionView.backgroundColor = UIColor.whiteColor()
         
@@ -303,14 +303,40 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
 //    }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        print("did select \(indexPath.row)")
+        
+        if collectionView == self.activeCollectionView {
+        
+        let cell = self.activeCollectionView.cellForItemAtIndexPath(indexPath) as! ActiveCollectionViewCell
+        
+        let activeHaikuDetailVC = ActiveHaikuDetailViewController()
+        presentViewController(activeHaikuDetailVC, animated: true, completion: {
+            let activeHaiku = self.activeCollectionViewDataSource.activeHaikus[indexPath.row]
+            activeHaikuDetailVC.imageView.image = cell.imageView.image
+            activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
+            
+            print(activeHaiku)
+            activeHaikuDetailVC.secondLineTextView.text = activeHaiku.secondLineString
+            activeHaikuDetailVC.thirdLineTextView.text = activeHaiku.thirdLineString
+//            activeHaikuDetailVC.haiku = activeHaiku
+            
+            
+        })
+        
+        }
+        
+        if collectionView == self.completedHaikusCollectionView {
+        
         let completedHaikuDetailVC = CompletedHaikuDetailViewController()
         presentViewController(completedHaikuDetailVC, animated: false) {
             let haikuImage = self.completedCollectionViewDataSource.completedHaikus[indexPath.row]
             completedHaikuDetailVC.completedHaikuDetailImageView.image = haikuImage.image
             completedHaikuDetailVC.animateButtons()
         }
+        }
     }
-    
+//
     
     
 }
