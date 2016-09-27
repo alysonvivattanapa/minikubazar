@@ -308,23 +308,83 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         if collectionView == self.activeCollectionView {
         
+         let activeHaikuDetailVC = ActiveHaikuDetailViewController()
+        
+        
+            
         let cell = self.activeCollectionView.cellForItemAtIndexPath(indexPath) as! ActiveCollectionViewCell
-        
-        let activeHaikuDetailVC = ActiveHaikuDetailViewController()
-        presentViewController(activeHaikuDetailVC, animated: true, completion: {
+            
             let activeHaiku = self.activeCollectionViewDataSource.activeHaikus[indexPath.row]
-            activeHaikuDetailVC.imageView.image = cell.imageView.image
-            activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
             
-            print(activeHaiku)
-            activeHaikuDetailVC.secondLineTextView.text = activeHaiku.secondLineString
-            activeHaikuDetailVC.thirdLineTextView.text = activeHaiku.thirdLineString
-//            activeHaikuDetailVC.haiku = activeHaiku
+            if let firstPersonString = activeHaiku.firstPlayerUUID {
+                print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
+                activeHaikuDetailVC.firstPlayerUUID = firstPersonString
+                
+            }
             
             
-        })
-        
+            if let secondPersonString = activeHaiku.secondPlayerUUID {
+                print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
+                activeHaikuDetailVC.secondPlayerUUID = secondPersonString
+            }
+            
+            if let thirdPersonString = activeHaiku.thirdPlayerUUID {
+                print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
+                activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
+            }
+
+            
+                        presentViewController(activeHaikuDetailVC, animated: true, completion: {
+                            
+//                                        if let firstPersonString = activeHaiku.firstPlayerUUID {
+//                                            print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
+//                                            activeHaikuDetailVC.firstPlayerUUID = firstPersonString
+//                                            
+//                                        }
+//                            
+//                            
+//                                        if let secondPersonString = activeHaiku.secondPlayerUUID {
+//                                            print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
+//                                            activeHaikuDetailVC.secondPlayerUUID = secondPersonString
+//                                        }
+//                            
+//                                        if let thirdPersonString = activeHaiku.thirdPlayerUUID {
+//                                            print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
+//                                            activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
+//                                        }
+
+                            
+                            activeHaikuDetailVC.imageView.image = cell.imageView.image
+                            activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
+                            
+                            print(activeHaiku)
+                            activeHaikuDetailVC.secondLineTextView.text = activeHaiku.secondLineString
+                            activeHaikuDetailVC.thirdLineTextView.text = activeHaiku.thirdLineString
+                            
+
+            })
         }
+       
+            
+        
+       
+//            if let firstPersonString = activeHaiku.firstPlayerUUID {
+//                print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
+//                activeHaikuDetailVC.firstPlayerUUID = firstPersonString
+//            }
+//            
+//            
+//            if let secondPersonString = activeHaiku.secondPlayerUUID {
+//                print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
+//                activeHaikuDetailVC.secondPlayerUUID = secondPersonString
+//            }
+//            
+//            if let thirdPersonString = activeHaiku.thirdPlayerUUID {
+//                print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
+//                activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
+//            }
+//            
+      
         
         if collectionView == self.completedHaikusCollectionView {
         
