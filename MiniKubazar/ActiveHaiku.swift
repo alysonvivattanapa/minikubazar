@@ -13,9 +13,10 @@ struct ActiveHaiku {
     let firstLineString: String!
     let secondLineString: String!
     let thirdLineString: String!
-    let imageHaikuDownloadURL: NSURL!
+    let imageURLString: String!
     let firstPlayerUUID: String!
     let secondPlayerUUID: String!
     let thirdPlayerUUID: String!
+    let uniqueHaikuUUID: String!
 
 }

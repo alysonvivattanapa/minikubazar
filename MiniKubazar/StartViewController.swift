@@ -523,59 +523,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
-    func saveActiveHaiku() {
-        
-        // this code is really good for saving active Haikus in Kubazar! but for minikubazar, you can do something much simpler. just save screenshot to backend. for completed Haikus in Kubazar, you can also just save the screenshot to the backend.
-        
-        let firstLine = firstLineHaikuTextView.text
-        let secondLine = secondLineHaikuTextView.text
-        let thirdLine = thirdLineHaikuTextView.text
-        
-        let currentUserUID = ClientService.getCurrentUserUID()
-        
-        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
-        
-        let uuid = NSUUID().UUIDString
-        
-        let currentImageRef = imagesRefForCurrentUser.child(uuid)
-        
-        let haikuImage = haikuImageView.image
-        if let data = UIImagePNGRepresentation(haikuImage!) {
-        currentImageRef.putData(data, metadata: nil) {
-                metadata, error in
-                if (error != nil) {
-                    print("uh-oh! trouble saving image")
-                } else {
-                    let downloadURL = metadata!.downloadURL
-                    let newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
-                    
-                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
-                    
-                    let uniqueHaikuUUID = newHaiku.uuid
-                    
-                    self.recentlyFinishedHaikuUID = uniqueHaikuUUID
-                    
-                    let firstLineHaiku = newHaiku.firstLineHaiku
-                    let secondLineHaiku = newHaiku.secondLineHaiku
-                    let thirdLineHaiku = newHaiku.thirdLineHaiku
-                    let imageHaikuDownloadURL = newHaiku.imageHaikuDownloadURL
-                    
-                    let imageHaikuDownloadStringFromURL = imageHaikuDownloadURL.absoluteString
-                    
-                    
-                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/firstLineHaiku").setValue(firstLineHaiku)
-                    
-                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/secondLineHaiku").setValue(secondLineHaiku)
-                    
-                     completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/thirdLineHaiku").setValue(thirdLineHaiku)
-                    
-                     completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
-                    
-                }
-            }
-        }
-        
-    }
     
     
     func retrieveFinishedHaiku(uid: String) {
@@ -903,11 +850,111 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
         
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
         if arrayOfChosenFriends.count == 1 {
+            
+            saveActiveHaiku(currentUserUID)
+            
            //create active haiku object and save to backend; then populate active tableview
         } else if arrayOfChosenFriends.count == 2 {
             //create active haiku object and save to backend; then populate active tableview
         }
     }
     
+    
+    func saveActiveHaiku(currentUserUID: String) {
+        
+        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
+        
+        let uuid = NSUUID().UUIDString
+        
+        let currentImageRef = imagesRefForCurrentUser.child(uuid)
+        
+        let haikuImage = haikuImageView.image
+        
+        if let data = UIImagePNGRepresentation(haikuImage!) {
+            currentImageRef.putData(data, metadata: nil) {
+                metadata, error in
+                if (error != nil) {
+                    print("uh-oh! trouble saving image")
+                } else {
+                  let imageDownloadURL = metadata!.downloadURL()
+                    
+                 let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
+            
+                    if let secondPlayerEmail = self.arrayOfChosenFriends.first {
+                        ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(secondPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (friendSnapshot) in
+                            
+                            let firstPlayerUID = currentUserUID
+                            let thirdPlayerUID = currentUserUID
+                            
+                            let secondPlayerUID = friendSnapshot.value?.objectForKey("uid") as! String
+                            
+                            //save image and create imageHiakuDOwnloadURL
+                            
+                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                            
+                            ClientService.addActiveHaikuForPlayers(newActiveHaiku)
+                            
+                        } )}
+                    
+
+                }
+                
+            
+    }
+        }
+    }
+
+        // this code is really good for saving active Haikus in Kubazar! but for minikubazar, you can do something much simpler. just save screenshot to backend. for completed Haikus in Kubazar, you can also just save the screenshot to the backend.
+        
+    
+        
+//        let currentUserUID = ClientService.getCurrentUserUID()
+//        
+//        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
+//        
+//        let uuid = NSUUID().UUIDString
+//        
+//        let currentImageRef = imagesRefForCurrentUser.child(uuid)
+//        
+//        let haikuImage = haikuImageView.image
+//        if let data = UIImagePNGRepresentation(haikuImage!) {
+//            currentImageRef.putData(data, metadata: nil) {
+//                metadata, error in
+//                if (error != nil) {
+//                    print("uh-oh! trouble saving image")
+//                } else {
+//                    let downloadURL = metadata!.downloadURL
+//                    let newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
+//                    
+//                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
+//                    
+//                    let uniqueHaikuUUID = newHaiku.uuid
+//                    
+//                    self.recentlyFinishedHaikuUID = uniqueHaikuUUID
+//                    
+//                    let firstLineHaiku = newHaiku.firstLineHaiku
+//                    let secondLineHaiku = newHaiku.secondLineHaiku
+//                    let thirdLineHaiku = newHaiku.thirdLineHaiku
+//                    let imageHaikuDownloadURL = newHaiku.imageHaikuDownloadURL
+//                    
+//                    let imageHaikuDownloadStringFromURL = imageHaikuDownloadURL.absoluteString
+//                    
+//                    
+//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/firstLineHaiku").setValue(firstLineHaiku)
+//                    
+//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/secondLineHaiku").setValue(secondLineHaiku)
+//                    
+//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/thirdLineHaiku").setValue(thirdLineHaiku)
+//                    
+//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
+//                    
+//                }
+//            }
+//        }
+        
+ //   }
+
 }

@@ -138,5 +138,39 @@ struct ClientService {
         currentUserFriendsRef.child(uid).setValue(userDictionary)
         
     }
+    
+    static func addActiveHaikuForPlayers (activeHaiku: ActiveHaiku) {
+        let currentUserUID = ClientService.getCurrentUserUID()
+        let currentUserActiveHaikusRef = activeHaikusRef.child(currentUserUID)
+        
+        let firstLineString = activeHaiku.firstLineString
+        let secondLineString = activeHaiku.secondLineString
+        let thirdLineString = activeHaiku.thirdLineString
+        let imageURLString = activeHaiku.imageURLString
+        let firstPlayerUUID = activeHaiku.firstPlayerUUID
+        let secondPlayerUUID = activeHaiku.secondPlayerUUID
+        let thirdPlayerUUID = activeHaiku.thirdPlayerUUID
+        let uniqueHaikuUUID = activeHaiku.uniqueHaikuUUID
+        
+        let activeHaikuDictionary: NSDictionary = ["firstLineString": firstLineString!, "secondLineString": secondLineString!, "thirdLineString": thirdLineString!, "imageURLString": imageURLString!, "firstPlayerUUID": firstPlayerUUID!, "secondPlayerUUID": secondPlayerUUID!, "thirdPlayerUUID": thirdPlayerUUID!, "uniqueHaikuUUID": uniqueHaikuUUID!]
+        
+        currentUserActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+        
+        if firstPlayerUUID != secondPlayerUUID {
+            let secondPlayerActiveHaikusRef = activeHaikusRef.child(secondPlayerUUID)
+            secondPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+        }
+        
+        if thirdPlayerUUID != firstPlayerUUID {
+            let thirdPlayerActiveHaikusRef = activeHaikusRef.child(thirdPlayerUUID)
+            
+            thirdPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+        }
+        
+    }
+    
+    static func addActiveHaikuForFriend (activeHaiku: ActiveHaiku) {
+        
+    }
 
 }
