@@ -20,3 +20,9 @@ struct ActiveHaiku {
     let uniqueHaikuUUID: String!
 
 }
+
+extension ActiveHaiku: Equatable {}
+
+func ==(lhs: ActiveHaiku, rhs: ActiveHaiku) -> Bool {
+    return lhs.uniqueHaikuUUID == rhs.uniqueHaikuUUID
+}

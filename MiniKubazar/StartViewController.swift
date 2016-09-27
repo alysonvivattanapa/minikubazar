@@ -854,16 +854,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         if arrayOfChosenFriends.count == 1 {
             
-            saveActiveHaiku(currentUserUID)
+            saveActiveHaikuForTwoPlayers(currentUserUID)
             
            //create active haiku object and save to backend; then populate active tableview
         } else if arrayOfChosenFriends.count == 2 {
+            
+            saveActiveHaikuForThreePlayers(currentUserUID)
             //create active haiku object and save to backend; then populate active tableview
         }
     }
     
     
-    func saveActiveHaiku(currentUserUID: String) {
+    func saveActiveHaikuForTwoPlayers(currentUserUID: String) {
         
         let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
         
@@ -906,6 +908,63 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
         }
     }
+    
+    func saveActiveHaikuForThreePlayers(currentUserUID: String) {
+        
+        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
+        
+        let uuid = NSUUID().UUIDString
+        
+        let currentImageRef = imagesRefForCurrentUser.child(uuid)
+        
+        let haikuImage = haikuImageView.image
+        
+        if let data = UIImagePNGRepresentation(haikuImage!) {
+            currentImageRef.putData(data, metadata: nil) {
+                metadata, error in
+                if (error != nil) {
+                    print("uh-oh! trouble saving image")
+                } else {
+                    let imageDownloadURL = metadata!.downloadURL()
+                    
+                    let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
+                    
+                    if let secondPlayerEmail = self.arrayOfChosenFriends.first {
+                        ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(secondPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (secondPlayerSnapshot) in
+                            
+                            let firstPlayerUID = currentUserUID
+                            
+                            let secondPlayerUID = secondPlayerSnapshot.value?.objectForKey("uid") as! String
+                            
+                            if let thirdPlayerEmail = self.arrayOfChosenFriends.last {
+                                
+                                ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(thirdPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (thirdPlayerSnapshot) in
+                                    
+                                   let thirdPlayerUID = thirdPlayerSnapshot.value?.objectForKey("uid") as! String
+                                    
+                                    let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                                    
+                                    ClientService.addActiveHaikuForPlayers(newActiveHaiku)
+
+                                    
+                                })
+                                
+
+                            }
+                            
+                            //save image and create imageHiakuDOwnloadURL
+                            
+                            
+                        } )}
+                    
+                    
+                }
+                
+                
+            }
+        }
+    }
+
 
         // this code is really good for saving active Haikus in Kubazar! but for minikubazar, you can do something much simpler. just save screenshot to backend. for completed Haikus in Kubazar, you can also just save the screenshot to the backend.
         

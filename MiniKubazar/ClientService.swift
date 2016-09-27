@@ -80,6 +80,35 @@ struct ClientService {
         
     }
     
+    static func getActiveHaikuObjectsForCurrentUser(closure: [ActiveHaiku] -> Void) {
+        
+        let currentUserUid = getCurrentUserUID()
+        
+       activeHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            
+            var arrayOfActiveHaikuObjects = [ActiveHaiku]()
+        
+        for haiku in snapshot.children {
+            let firstLineString = haiku.value.objectForKey("firstLineString") as! String
+            let secondLineString = haiku.value.objectForKey("secondLineString") as! String
+            let thirdLineString = haiku.value.objectForKey("thirdLineString") as! String
+            let firstPlayerUUID = haiku.value.objectForKey("firstPlayerUUID") as! String
+            let secondPlayerUUID = haiku.value.objectForKey("secondPlayerUUID") as! String
+            let thirdPlayerUUID = haiku.value.objectForKey("thirdPlayerUUID") as! String
+            let imageURLString = haiku.value.objectForKey("imageURLString") as! String
+            let uniqueHaikuUUID = haiku.value.objectForKey("uniqueHaikuUUID") as! String
+            
+            
+            let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID)
+            
+            arrayOfActiveHaikuObjects.append(newHaikuObject)
+        }
+        
+         closure(arrayOfActiveHaikuObjects)
+        
+        })
+    }
+    
     static func getCompletedHaikuImageURLStringsForCurrentUser(closure: [String] -> Void) {
         
         let currentUserUid = getCurrentUserUID()

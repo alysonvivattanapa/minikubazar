@@ -35,6 +35,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let completedCollectionViewDataSource = CompletedCollectionViewDataSource()
     
+    let activeCollectionViewDataSource = ActiveCollectionViewDataSource()
+    
     // URGENT: probably shouldn't put this here because if there's no internet, it can't do this
     // should probably specify type here, then declare in viewDidLoad
     
@@ -48,6 +50,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var noHaikusLabel: UILabel!
   
+    @IBOutlet weak var activeCollectionView: UICollectionView!
     
     
     override func viewDidLoad() {
@@ -58,13 +61,23 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         segmentedControl.layer.borderColor = kubazarDarkGreen.CGColor
         segmentedControl.tintColor = kubazarDarkGreen
         
-        fetchHaikusAndSetToDataSource()
+        fetchCompletedHaikusAndSetToDataSource()
+        
+        fetchActiveHaikusAndSetToDataSource()
         
         setInitialViewAndSelectedIndex()
 
         completedHaikusCollectionView.dataSource = completedCollectionViewDataSource
         
         completedHaikusCollectionView.delegate = self
+        
+        activeCollectionView.dataSource = activeCollectionViewDataSource
+        
+        activeCollectionView.backgroundColor = UIColor.whiteColor()
+        
+        let activeNib = UINib.init(nibName: "ActiveCollectionViewCell", bundle: nil)
+        
+        activeCollectionView.registerNib(activeNib, forCellWithReuseIdentifier: "activeCell")
         
         completedHaikusCollectionView.backgroundColor = UIColor.whiteColor()
         
@@ -120,9 +133,24 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
 //           imageAnimation(kubazarMascot)
     }
     
-    func fetchHaikusAndSetToDataSource() {
+    func fetchActiveHaikusAndSetToDataSource() {
+        
+        print("fetch active haiku data gets called")
+        
+      ClientService.getActiveHaikuObjectsForCurrentUser { (arrayOfActiveHaikus) in
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+        self.activeCollectionViewDataSource.activeHaikus = arrayOfActiveHaikus
+        self.activeCollectionView.reloadSections(NSIndexSet(index: 0))
+        }
+        }
+        //get activeHaikuObjects
+        // do something to get image from imageURL in collection view cellForIndexPath
+        // append 
+    }
+    
+    func fetchCompletedHaikusAndSetToDataSource() {
        
-        print("fetch Data gets called")
+        print("fetch completed haiku Data gets called")
         
         ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
             NSOperationQueue.mainQueue().addOperationWithBlock {
@@ -195,7 +223,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.noHaikusLabel.text = "You don't have any active haikus yet."
                 self.noHaikusView.hidden = false
             } else {
-                self.completedView.hidden = false
+                self.completedView.hidden = true
+                self.activeView.hidden = false
             }
         })
 
@@ -219,7 +248,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     self.noHaikusLabel.text = "You don't have any active haikus yet."
                     self.noHaikusView.hidden = false
                 } else {
-                    self.completedView.hidden = false
+                    self.completedView.hidden = true
+                    self.activeView.hidden = false
                 }
             })
             //if there are active haikus, then show active haikus. otherwise, show no haikusview.
