@@ -124,13 +124,19 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func continueButtonPressed(sender: AnyObject) {
         
-        print(uniqueHaikuUUID)
+        ifSecondTextFieldWasEdited()
         
     }
     
     func ifSecondTextFieldWasEdited() {
         if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
             //update
+            
+            if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
+                let currentUserUID = ClientService.getCurrentUserUID()
+                let updateDictionary = ["secondLineString": secondLineText]
+                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+            }
         }
     }
     
