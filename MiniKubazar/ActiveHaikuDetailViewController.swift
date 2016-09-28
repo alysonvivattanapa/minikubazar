@@ -34,6 +34,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var continueButton: UIButton!
+    
+    let currentUserUID = ClientService.getCurrentUserUID()
 
     
     override func viewDidLoad() {
@@ -127,11 +129,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
         ifSecondTextFieldWasEdited()
         
+        ifThirdTextFieldWasEdited()
+        
     }
     
     func ifSecondTextFieldWasEdited() {
         
-        let currentUserUID = ClientService.getCurrentUserUID()
+        
         
         if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
             //update
@@ -160,17 +164,28 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     func ifThirdTextFieldWasEdited() {
         
+//         ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(currentUserUID)
+        
         if !thirdLineTextView.text.containsString("enters second line, you can write third line") || !thirdLineTextView.text.containsString("Write here after second player's turn") {
+            
+            print("THIS SHOULD BE TRIFERED IF THIRD TEXT FIELD WAS EDITED")
+            
+            if let uniqueUUID = uniqueHaikuUUID {
+            
+            ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID)
+           
+            }
+            
             //update
             
-            if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
-                let currentUserUID = ClientService.getCurrentUserUID()
-                
-                let updateDictionary = ["thirdLineString": thirdLineText]
-                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                
-                let completedHaikuDictionary: NSDictionary = ["":""]
-            }
+//            if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
+//                let currentUserUID = ClientService.getCurrentUserUID()
+//                
+//                let updateDictionary = ["thirdLineString": thirdLineText]
+//                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+//                
+//                let completedHaikuDictionary: NSDictionary = ["":""]
+//            }
             
             
             

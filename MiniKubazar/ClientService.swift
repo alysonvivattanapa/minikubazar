@@ -205,10 +205,14 @@ struct ClientService {
     }
     
     static func fetchActiveHaikuAndMoveToNewCompletedHaikus (uniqueHaikuUUID: String) {
+        
+        print("THIS CLIENT SERVICE FUNCTION SHOULD BE TRIGGGERED OF THIRD TEXT FIELD WAS EDITED for unique id \(uniqueHaikuUUID)")
+        
         let currentUserUID = getCurrentUserUID()
-        activeHaikusRef.child(currentUserUID).queryOrderedByChild("uniqueHaikuUUID").queryEqualToValue(uniqueHaikuUUID).observeEventType(.Value, withBlock: { snapshot in
+        
+        activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
-            print(snapshot)
+            print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
             
         })
     }
