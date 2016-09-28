@@ -142,6 +142,28 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     func ifThirdTextFieldWasEdited() {
         
+        if !thirdLineTextView.text.containsString("enters second line, you can write third line") || !thirdLineTextView.text.containsString("Write here after second player's turn") {
+            //update
+            
+            if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
+                let currentUserUID = ClientService.getCurrentUserUID()
+                let updateDictionary = ["thirdLineString": thirdLineText]
+                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                
+                let completedHaikuDictionary: NSDictionary = ["":""]
+            }
+            
+            
+            
+        }
+        
+        // don't have to save thirdLineTextView.text to update active. just create new Haiku Object and save to new completed haik ref for current user and other users?
+        
+        //SAVE COMPLETED HAIKU; REMOVE ACTIVE HAIKU FROM CURRENT USER
+        
+        //REMOVE ACTIVE HAIKU FROM OTHER USERS
+
+        
     }
     
 
