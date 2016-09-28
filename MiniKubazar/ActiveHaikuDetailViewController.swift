@@ -170,9 +170,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             
             print("THIS SHOULD BE TRIFERED IF THIRD TEXT FIELD WAS EDITED")
             
-            if let uniqueUUID = uniqueHaikuUUID {
+            if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
             
-            ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID)
+            ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
            
             }
             
