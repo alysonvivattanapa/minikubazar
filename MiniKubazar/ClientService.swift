@@ -31,6 +31,8 @@ struct ClientService {
     
     static let imagesRef = storageRef.child("images")
     
+    static let newCompletedHaikusRef = rootRef.child("newCompletedHaikus")
+    
     
     static func getCurrentUser(closure: (FIRUser) -> Void) {
         
@@ -201,5 +203,16 @@ struct ClientService {
     static func addActiveHaikuForFriend (activeHaiku: ActiveHaiku) {
         
     }
+    
+    static func fetchActiveHaikuAndMoveToNewCompletedHaikus (uniqueHaikuUUID: String) {
+        let currentUserUID = getCurrentUserUID()
+        activeHaikusRef.child(currentUserUID).queryOrderedByChild("uniqueHaikuUUID").queryEqualToValue(uniqueHaikuUUID).observeEventType(.Value, withBlock: { snapshot in
+            
+            print(snapshot)
+            
+        })
+    }
+    
+    
 
 }

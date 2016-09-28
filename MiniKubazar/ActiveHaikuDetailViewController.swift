@@ -63,6 +63,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
        print("DETAIL FIRST \(firstPlayerUUID)")
     print("DETAIL SECOND \(secondPlayerUUID)")
     print("DETAIL THIRD \(thirdPlayerUUID)")
+    
     }
     
 
@@ -129,13 +130,30 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func ifSecondTextFieldWasEdited() {
+        
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
         if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
             //update
             
             if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
-                let currentUserUID = ClientService.getCurrentUserUID()
+                
                 let updateDictionary = ["secondLineString": secondLineText]
+                
                 ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+            
+                
+                if let secondPlayer = secondPlayerUUID {
+                    if secondPlayer != currentUserUID {
+                    ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                    }
+                }
+                
+                if let thirdPlayer = thirdPlayerUUID {
+                    if thirdPlayer != currentUserUID {
+                        ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                    }
+                }
             }
         }
     }
@@ -147,6 +165,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             
             if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
                 let currentUserUID = ClientService.getCurrentUserUID()
+                
                 let updateDictionary = ["thirdLineString": thirdLineText]
                 ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                 
