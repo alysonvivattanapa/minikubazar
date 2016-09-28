@@ -316,12 +316,13 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let activeHaiku = self.activeCollectionViewDataSource.activeHaikus[indexPath.row]
             
+              let currentUserUID = ClientService.getCurrentUserUID()
+            
             if let firstPersonString = activeHaiku.firstPlayerUUID {
                 print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
                 activeHaikuDetailVC.firstPlayerUUID = firstPersonString
                 
             }
-            
             
             if let secondPersonString = activeHaiku.secondPlayerUUID {
                 print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
@@ -331,28 +332,12 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             if let thirdPersonString = activeHaiku.thirdPlayerUUID {
                 print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
                 activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
+                
             }
-
+            
+        
             
                         presentViewController(activeHaikuDetailVC, animated: true, completion: {
-                            
-//                                        if let firstPersonString = activeHaiku.firstPlayerUUID {
-//                                            print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
-//                                            activeHaikuDetailVC.firstPlayerUUID = firstPersonString
-//                                            
-//                                        }
-//                            
-//                            
-//                                        if let secondPersonString = activeHaiku.secondPlayerUUID {
-//                                            print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
-//                                            activeHaikuDetailVC.secondPlayerUUID = secondPersonString
-//                                        }
-//                            
-//                                        if let thirdPersonString = activeHaiku.thirdPlayerUUID {
-//                                            print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
-//                                            activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
-//                                        }
-
                             
                             activeHaikuDetailVC.imageView.image = cell.imageView.image
                             activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
@@ -361,29 +346,57 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                             activeHaikuDetailVC.secondLineTextView.text = activeHaiku.secondLineString
                             activeHaikuDetailVC.thirdLineTextView.text = activeHaiku.thirdLineString
                             
+                            if let haikuUUID = activeHaiku.uniqueHaikuUUID {
+                                activeHaikuDetailVC.uniqueHaikuUUID = haikuUUID
+                            }
+                            
+                            if let secondPlayer = activeHaikuDetailVC.secondPlayerUUID {
+                            
+                                            if secondPlayer == currentUserUID && activeHaiku.secondLineString.containsString("enters second line of haiku.") {
+                                                activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellowColor()
+                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor.cyanColor()
+                                                activeHaikuDetailVC.secondLineTextView.userInteractionEnabled = true
+                                                activeHaikuDetailVC.continueButton.enabled = true
+                                                activeHaikuDetailVC.continueButton.hidden = false
+                                                activeHaikuDetailVC.waitForOtherPlayersLabel.hidden = true
+                              }
+                            
+                                            if secondPlayer == currentUserUID && activeHaiku.secondLineString.containsString("Waiting on second player") {
+                                                activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellowColor()
+                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor.cyanColor()
+                                                activeHaikuDetailVC.secondLineTextView.userInteractionEnabled = true
+                                                activeHaikuDetailVC.continueButton.enabled = true
+                                                activeHaikuDetailVC.waitForOtherPlayersLabel.hidden = true
+                                                activeHaikuDetailVC.continueButton.hidden = false
+                                            }
+                            }
+                            
+                            if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID {
+                                
+                                                if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.containsString("enters second line, you can write third line") && !activeHaiku.secondLineString.containsString("Waiting on second player"){
+                                
+                                                   activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellowColor()
+                                                   activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.cyanColor()
+                                                  activeHaikuDetailVC.thirdLineTextView.userInteractionEnabled = true
+                                                    activeHaikuDetailVC.continueButton.enabled = true
+                                                    activeHaikuDetailVC.waitForOtherPlayersLabel.hidden = true
+                                                activeHaikuDetailVC.continueButton.hidden = false
+                                                    }
+                                
+                                            if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.containsString("Write here after second player's turn") && !activeHaiku.secondLineString.containsString("Waiting on second player"){
+                            
+                                                activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellowColor()
+                                                activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.cyanColor()
+                                                activeHaikuDetailVC.thirdLineTextView.userInteractionEnabled = true
+                                                activeHaikuDetailVC.continueButton.enabled = true
+                                                activeHaikuDetailVC.waitForOtherPlayersLabel.hidden = true
+                                                activeHaikuDetailVC.continueButton.hidden = false
+                                                
+                                } }
+
 
             })
         }
-       
-            
-        
-       
-//            if let firstPersonString = activeHaiku.firstPlayerUUID {
-//                print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
-//                activeHaikuDetailVC.firstPlayerUUID = firstPersonString
-//            }
-//            
-//            
-//            if let secondPersonString = activeHaiku.secondPlayerUUID {
-//                print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
-//                activeHaikuDetailVC.secondPlayerUUID = secondPersonString
-//            }
-//            
-//            if let thirdPersonString = activeHaiku.thirdPlayerUUID {
-//                print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
-//                activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
-//            }
-//            
       
         
         if collectionView == self.completedHaikusCollectionView {

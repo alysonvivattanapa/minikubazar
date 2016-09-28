@@ -28,7 +28,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     var thirdPlayerUUID: String?
     
-//    var haiku: ActiveHaiku!
+    var uniqueHaikuUUID: String?
+    
+    @IBOutlet weak var waitForOtherPlayersLabel: UILabel!
+    
+    
+    @IBOutlet weak var continueButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +43,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         secondLineTextView.delegate = self
         thirdLineTextView.delegate = self
         
-      
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -51,30 +56,16 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     disableUserinteractionForAllTextViews()
     
-    let currentUserUID = ClientService.getCurrentUserUID()
+    continueButton.hidden = true
     
-    if let firstPlayer = firstPlayerUUID {
-        print("FIRST PLAYER = \(firstPlayer)")
-        if currentUserUID == firstPlayer {
-            firstLineTextView.userInteractionEnabled = true
-        }
-    }
+    waitForOtherPlayersLabel.hidden = false
     
-    if let secondPlayer = secondPlayerUUID {
-        if currentUserUID == secondPlayer {
-          secondLineTextView.userInteractionEnabled = true
-        }
-    }
-    
-    if let thirdPlayer = thirdPlayerUUID {
-        if currentUserUID == thirdPlayer {
-            thirdLineTextView.userInteractionEnabled = true
-        }
-    }
-    print("DETAIL FIRST \(firstPlayerUUID)")
+       print("DETAIL FIRST \(firstPlayerUUID)")
     print("DETAIL SECOND \(secondPlayerUUID)")
     print("DETAIL THIRD \(thirdPlayerUUID)")
     }
+    
+
     
     func disableUserinteractionForAllTextViews() {
         firstLineTextView.userInteractionEnabled = false
@@ -82,6 +73,11 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         thirdLineTextView.userInteractionEnabled = false
     }
     
+    
+    func hideContinueButtonAndLabel() {
+        continueButton.hidden = true
+        waitForOtherPlayersLabel.hidden = true
+    }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         view.endEditing(true)
@@ -126,5 +122,21 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         return true
     }
 
+    @IBAction func continueButtonPressed(sender: AnyObject) {
+        
+        print(uniqueHaikuUUID)
+        
+    }
+    
+    func ifSecondTextFieldWasEdited() {
+        if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
+            //update
+        }
+    }
+    
+    func ifThirdTextFieldWasEdited() {
+        
+    }
+    
 
 }
