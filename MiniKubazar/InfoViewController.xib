@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="aboutKubazarView" destination="qKJ-Pb-bx5" id="6d9-0y-rBb"/>
                 <outlet property="currentlyLoggedInLabel" destination="JnO-v6-7PI" id="pQy-fQ-kbA"/>
+                <outlet property="howToPlayView" destination="yye-JP-Qm8" id="U7Z-os-6v8"/>
                 <outlet property="myAccountView" destination="95R-hp-W6m" id="z5w-wl-pXs"/>
                 <outlet property="segmentedControl" destination="kiO-Y4-8BM" id="YcJ-vG-LhA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yye-JP-Qm8" userLabel="HowToPlayView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="99" width="600" height="501"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Choose a picture." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rO-TzI">
                             <rect key="frame" x="5" y="36" width="149" height="21"/>
@@ -64,7 +65,7 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0">
                             <rect key="frame" x="5" y="272" width="590" height="366"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT1-VT-fVV">
@@ -393,30 +394,44 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="qKJ-Pb-bx5" secondAttribute="trailing" id="09i-ct-SFS"/>
+                <constraint firstAttribute="bottom" secondItem="yye-JP-Qm8" secondAttribute="bottom" id="1Ns-er-xBi"/>
                 <constraint firstItem="qKJ-Pb-bx5" firstAttribute="top" secondItem="kiO-Y4-8BM" secondAttribute="bottom" constant="5" id="1db-a6-sVS"/>
                 <constraint firstItem="yye-JP-Qm8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3ht-Fe-P6s"/>
                 <constraint firstAttribute="trailing" secondItem="vQf-SZ-TBE" secondAttribute="trailing" id="3vY-3H-DUY"/>
                 <constraint firstAttribute="bottom" secondItem="qKJ-Pb-bx5" secondAttribute="bottom" id="7u9-3N-vss"/>
                 <constraint firstItem="95R-hp-W6m" firstAttribute="top" secondItem="kiO-Y4-8BM" secondAttribute="bottom" constant="5" id="9LF-MV-5ZG"/>
+                <constraint firstAttribute="trailing" secondItem="yye-JP-Qm8" secondAttribute="trailing" id="AIw-tY-EeX"/>
+                <constraint firstAttribute="trailing" secondItem="yye-JP-Qm8" secondAttribute="trailing" id="B7n-Th-5Vn"/>
                 <constraint firstItem="yye-JP-Qm8" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BNk-x5-9b9"/>
                 <constraint firstAttribute="bottom" secondItem="yye-JP-Qm8" secondAttribute="bottom" id="Dv6-ku-Ffh"/>
                 <constraint firstAttribute="trailing" secondItem="kiO-Y4-8BM" secondAttribute="trailing" constant="5" id="GvF-XD-iDo"/>
+                <constraint firstItem="yye-JP-Qm8" firstAttribute="top" secondItem="kiO-Y4-8BM" secondAttribute="bottom" id="Lj2-db-Zsl"/>
+                <constraint firstItem="yye-JP-Qm8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MoC-j6-dUI"/>
                 <constraint firstItem="yye-JP-Qm8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OZS-lQ-Ro6"/>
                 <constraint firstItem="vQf-SZ-TBE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QwZ-kN-YED"/>
                 <constraint firstItem="kiO-Y4-8BM" firstAttribute="top" secondItem="vQf-SZ-TBE" secondAttribute="bottom" constant="5" id="TBG-me-Bmm"/>
                 <constraint firstItem="kiO-Y4-8BM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="TJH-dQ-EZn"/>
                 <constraint firstItem="qKJ-Pb-bx5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zb4-cN-xQ7"/>
+                <constraint firstItem="yye-JP-Qm8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dTx-7a-Qfx"/>
                 <constraint firstAttribute="bottom" secondItem="95R-hp-W6m" secondAttribute="bottom" constant="50" id="gHt-8G-h3t"/>
                 <constraint firstItem="vQf-SZ-TBE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kAd-yh-g2b"/>
                 <constraint firstItem="yye-JP-Qm8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kZ5-9Y-lYv"/>
                 <constraint firstAttribute="trailing" secondItem="95R-hp-W6m" secondAttribute="trailing" id="nQe-Sp-FsL"/>
                 <constraint firstItem="95R-hp-W6m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nRe-z4-KdJ"/>
+                <constraint firstAttribute="bottom" secondItem="yye-JP-Qm8" secondAttribute="bottom" id="uym-66-4C7"/>
                 <constraint firstAttribute="trailing" secondItem="yye-JP-Qm8" secondAttribute="trailing" id="y9L-LF-dyE"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="3ht-Fe-P6s"/>
+                    <exclude reference="AIw-tY-EeX"/>
                     <exclude reference="BNk-x5-9b9"/>
+                    <exclude reference="Dv6-ku-Ffh"/>
                     <exclude reference="OZS-lQ-Ro6"/>
+                    <exclude reference="dTx-7a-Qfx"/>
+                    <exclude reference="kZ5-9Y-lYv"/>
+                    <exclude reference="uym-66-4C7"/>
+                    <exclude reference="y9L-LF-dyE"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="311" y="21"/>

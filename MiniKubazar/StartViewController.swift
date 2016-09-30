@@ -802,11 +802,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             saveActiveHaikuForTwoPlayers(currentUserUID)
             
+            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(self.arrayOfChosenFriends.first)"), animated: true, completion: nil)
+            
            //create active haiku object and save to backend; then populate active tableview
         } else if arrayOfChosenFriends.count == 2 {
             
             saveActiveHaikuForThreePlayers(currentUserUID)
             //create active haiku object and save to backend; then populate active tableview
+            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(self.arrayOfChosenFriends.first) and \(self.arrayOfChosenFriends.last)"), animated: true, completion: nil)
         }
     }
     

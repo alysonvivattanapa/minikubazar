@@ -20,9 +20,15 @@ class InfoViewController: UIViewController {
    
     @IBOutlet weak var aboutKubazarView: UIView!
     
+    @IBOutlet weak var howToPlayView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //FOR NOW, HOW TO PLAY VIEW IS HIDDEN, BUT SHOULD EVENTUALLY BE ADDED TO ABOUT KUBAZAR SCROLL VIEW. SO YOU HAVE TO ADD A SCROLL VIEW.
+        
+        howToPlayView.hidden = true
         
         let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
         
