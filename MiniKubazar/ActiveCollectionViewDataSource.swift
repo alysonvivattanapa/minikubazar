@@ -34,7 +34,8 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 print("something wrong with active haiku image from storage. check active collection view data source code")
             } else {
                 let haikuImage = UIImage(data: data!)
-                cell.imageView.image = haikuImage
+//                cell.imageView.image = haikuImage
+                cell.updateWithImage(haikuImage)
             }
             }
             return cell
