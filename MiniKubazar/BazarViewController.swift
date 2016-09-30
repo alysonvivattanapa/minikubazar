@@ -302,6 +302,14 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
 //        
 //    }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        
+        return CGSize(width: screenWidth, height: screenWidth);
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         print("did select \(indexPath.row)")
