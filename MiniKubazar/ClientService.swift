@@ -187,12 +187,18 @@ struct ClientService {
         
         currentUserActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
         
-        if firstPlayerUUID != secondPlayerUUID {
+        if currentUserUID != firstPlayerUUID {
+            let firstPlayerActiveHaikusRef = activeHaikusRef.child(firstPlayerUUID)
+            firstPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+        }
+
+        
+        if currentUserUID != secondPlayerUUID {
             let secondPlayerActiveHaikusRef = activeHaikusRef.child(secondPlayerUUID)
             secondPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
         }
         
-        if thirdPlayerUUID != firstPlayerUUID {
+        if currentUserUID != thirdPlayerUUID {
             let thirdPlayerActiveHaikusRef = activeHaikusRef.child(thirdPlayerUUID)
             
             thirdPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
@@ -212,6 +218,8 @@ struct ClientService {
         
         activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
+//            NSOperationQueue.mainQueue().addOperationWithBlock {
+            
             print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
             
             let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
@@ -229,11 +237,47 @@ struct ClientService {
             
             currentUserNewCompletedHaikusRef.child(uniqueHaikuUUID).setValue(newCompleteHaikuDictionary)
             
-            // move snapshot
+          
+            
+           // }
+                // move snapshot
             //
         })
+        
+       
     }
     
+    static func fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueHaikuUUID: String, thirdLineTextString: String, closure: String -> Void) {
+        
+        print("THIS CLIENT SERVICE FUNCTION SHOULD BE TRIGGGERED OF THIRD TEXT FIELD WAS EDITED for unique id \(uniqueHaikuUUID)")
+        
+        let currentUserUID = getCurrentUserUID()
+        
+        activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            
+            //            NSOperationQueue.mainQueue().addOperationWithBlock {
+            
+            print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
+            
+            let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
+            let secondLine = snapshot.value?.objectForKey("secondLineString") as! String
+            let imageURL = snapshot.value?.objectForKey("imageURLString") as! String
+            let firstPlayer = snapshot.value?.objectForKey("firstPlayerUUID") as! String
+            let secondPlayer = snapshot.value?.objectForKey("secondPlayerUUID") as! String
+            let thirdPlayer = snapshot.value?.objectForKey("thirdPlayerUUID") as! String
+            
+            let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID)
+            
+            let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID]
+            
+            let currentUserNewCompletedHaikusRef = newCompletedHaikusRef.child(currentUserUID)
+            
+            currentUserNewCompletedHaikusRef.child(uniqueHaikuUUID).setValue(newCompleteHaikuDictionary)
+            
+        })
+        
+        closure("should be able to remove active ref now")
+    }
     
 
 }

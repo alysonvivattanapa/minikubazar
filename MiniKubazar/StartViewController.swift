@@ -794,6 +794,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
         
+        print("enterHaikuConinueButton pressed")
+        
         let currentUserUID = ClientService.getCurrentUserUID()
         
         if arrayOfChosenFriends.count == 1 {

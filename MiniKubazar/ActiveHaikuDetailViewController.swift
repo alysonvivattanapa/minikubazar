@@ -127,9 +127,21 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func continueButtonPressed(sender: AnyObject) {
         
-        ifSecondTextFieldWasEdited()
+        print("Active haiku detail view controller continue button pressed")
         
-        ifThirdTextFieldWasEdited()
+        if !secondLineTextView.text.containsString("enters second line of haiku") && !secondLineTextView.text.containsString("Waiting on second player") {
+            
+             ifSecondTextFieldWasEdited()
+            
+        }
+        
+        //OKAY THIS LOGIC IS WRONG
+        
+        if !thirdLineTextView.text.containsString("enters second line, you can write third line") && !thirdLineTextView.text.containsString("after second player's turn") {
+            
+            ifThirdTextFieldWasEdited()
+            
+        }
         
     }
     
@@ -137,7 +149,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
         
         
-        if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
+//        if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
             //update
             
             if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
@@ -159,23 +171,36 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     }
                 }
             }
-        }
+      //  }
     }
     
     func ifThirdTextFieldWasEdited() {
         
-//         ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(currentUserUID)
-        
-        if !thirdLineTextView.text.containsString("enters second line, you can write third line") || !thirdLineTextView.text.containsString("Write here after second player's turn") {
-            
-            print("THIS SHOULD BE TRIFERED IF THIRD TEXT FIELD WAS EDITED")
+//        if !thirdLineTextView.text.containsString("enters second line, you can write third line") || !thirdLineTextView.text.containsString("after second player's turn") {
+//            
+            print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
             
             if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
             
-            ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+//                 ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
+                
+                ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText, closure: { (string) in
+                    
+                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
+                    
+                })
+            })
+                
+//            if let uniqueUID = self.uniqueHaikuUUID {
+//                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUID)").removeValue()
+//                }
+                
            
             }
-            
+        }
+  //  }
+    
             //update
             
 //            if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
@@ -189,7 +214,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             
             
             
-        }
+    
         
         // don't have to save thirdLineTextView.text to update active. just create new Haiku Object and save to new completed haik ref for current user and other users?
         
@@ -198,7 +223,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         //REMOVE ACTIVE HAIKU FROM OTHER USERS
 
         
-    }
+
     
 
 }

@@ -180,8 +180,8 @@
 				F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */,
 				F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */,
 				F220BE381D9AA35400264DFF /* ActiveCollectionViewDataSource.swift */,
-				F220BE3A1D9AA6BA00264DFF /* ActiveCollectionViewCell.swift */,
 				F220BE3B1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib */,
+				F220BE3A1D9AA6BA00264DFF /* ActiveCollectionViewCell.swift */,
 			);
 			name = "Collection Views";
 			sourceTree = "<group>";
@@ -189,6 +189,10 @@
 		F236DD391D928F4100B1FA31 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				F2A1200A1D82287900A39867 /* AppDelegate.swift */,
+				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
+				F2A120351D822B8700A39867 /* ClientService.swift */,
+				F25372191D8A38E60065D51D /* Reachability.swift */,
 			);
 			name = Supporting;
 			sourceTree = "<group>";
@@ -220,10 +224,6 @@
 				F236DD351D9289AC00B1FA31 /* Model Objects */,
 				F236DD341D92898300B1FA31 /* View Controllers */,
 				F236DD391D928F4100B1FA31 /* Supporting */,
-				F2A1200A1D82287900A39867 /* AppDelegate.swift */,
-				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
-				F2A120351D822B8700A39867 /* ClientService.swift */,
-				F25372191D8A38E60065D51D /* Reachability.swift */,
 				F2A1200C1D82287900A39867 /* Assets.xcassets */,
 				F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */,
 				F2A120111D82287900A39867 /* Info.plist */,
