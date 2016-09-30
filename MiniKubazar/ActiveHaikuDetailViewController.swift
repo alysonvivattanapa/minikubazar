@@ -48,10 +48,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-//        print(haiku)
-
-        // Do any additional setup after loading the view.
     }
     
    override func viewWillAppear(animated: Bool) {
@@ -135,8 +131,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             
         }
         
-        //OKAY THIS LOGIC IS WRONG
-        
         if !thirdLineTextView.text.containsString("enters second line, you can write third line") && !thirdLineTextView.text.containsString("after second player's turn") {
             
             ifThirdTextFieldWasEdited()
@@ -146,17 +140,18 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func ifSecondTextFieldWasEdited() {
-        
-        
-        
-//        if !secondLineTextView.text.containsString("enters second line of haiku") || !secondLineTextView.text.containsString("Waiting on second player") {
-            //update
             
             if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
                 
                 let updateDictionary = ["secondLineString": secondLineText]
                 
                 ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                
+                if let firstPlayer = firstPlayerUUID {
+                    if firstPlayer != currentUserUID {
+                         ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                    }
+                }
             
                 
                 if let secondPlayer = secondPlayerUUID {
@@ -171,13 +166,10 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     }
                 }
             }
-      //  }
     }
     
     func ifThirdTextFieldWasEdited() {
         
-//        if !thirdLineTextView.text.containsString("enters second line, you can write third line") || !thirdLineTextView.text.containsString("after second player's turn") {
-//            
             print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
             
             if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
@@ -185,38 +177,30 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             NSOperationQueue.mainQueue().addOperationWithBlock({
                  ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
                 
-//                ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText, closure: { (string) in
-                
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
                 
+                if let firstPlayer = self.firstPlayerUUID {
+                   if firstPlayer != self.currentUserUID {
+                    ClientService.activeHaikusRef.child("\(firstPlayer)/\(uniqueUUID)").removeValue()
+                    }
+                }
+                
+                if let secondPlayer = self.secondPlayerUUID {
+                    if secondPlayer != self.currentUserUID {
+                        ClientService.activeHaikusRef.child("\(secondPlayer)/\(uniqueUUID)").removeValue()
+                    }
+                    
+                }
+                
+                if let thirdPlayer = self.thirdPlayerUUID {
+                    if thirdPlayer != self.currentUserUID {
+                        ClientService.activeHaikusRef.child("\(thirdPlayer)/\(uniqueUUID)").removeValue()
+                    }
+                }
+                
                 })
-          //  })
         
-//            NSOperationQueue.mainQueue().addOperationWithBlock({
-//                
-//            if let uniqueUID = self.uniqueHaikuUUID {
-//                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUID)").removeValue()
-//                }
-//                
-//           })
+
             }
         }
-  //  }
-    
-
-            
-            
-            
-    
-        
-        // don't have to save thirdLineTextView.text to update active. just create new Haiku Object and save to new completed haik ref for current user and other users?
-        
-        //SAVE COMPLETED HAIKU; REMOVE ACTIVE HAIKU FROM CURRENT USER
-        
-        //REMOVE ACTIVE HAIKU FROM OTHER USERS
-
-        
-
-    
-
 }
