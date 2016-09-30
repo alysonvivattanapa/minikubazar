@@ -183,34 +183,27 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
             
             NSOperationQueue.mainQueue().addOperationWithBlock({
-//                 ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
+                 ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
                 
-                ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText, closure: { (string) in
-                    
+//                ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText, closure: { (string) in
+                
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
-                    
-                })
-            })
                 
+                })
+          //  })
+        
+//            NSOperationQueue.mainQueue().addOperationWithBlock({
+//                
 //            if let uniqueUID = self.uniqueHaikuUUID {
 //                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUID)").removeValue()
 //                }
-                
-           
+//                
+//           })
             }
         }
   //  }
     
-            //update
-            
-//            if let haikuUniqeUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
-//                let currentUserUID = ClientService.getCurrentUserUID()
-//                
-//                let updateDictionary = ["thirdLineString": thirdLineText]
-//                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-//                
-//                let completedHaikuDictionary: NSDictionary = ["":""]
-//            }
+
             
             
             

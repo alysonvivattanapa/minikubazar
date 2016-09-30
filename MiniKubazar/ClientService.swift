@@ -219,7 +219,7 @@ struct ClientService {
         activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
 //            NSOperationQueue.mainQueue().addOperationWithBlock {
-            
+            if snapshot.exists() {
             print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
             
             let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
@@ -237,7 +237,7 @@ struct ClientService {
             
             currentUserNewCompletedHaikusRef.child(uniqueHaikuUUID).setValue(newCompleteHaikuDictionary)
             
-          
+            }
             
            // }
                 // move snapshot
@@ -259,20 +259,27 @@ struct ClientService {
             
             print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
             
-            let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
-            let secondLine = snapshot.value?.objectForKey("secondLineString") as! String
-            let imageURL = snapshot.value?.objectForKey("imageURLString") as! String
-            let firstPlayer = snapshot.value?.objectForKey("firstPlayerUUID") as! String
-            let secondPlayer = snapshot.value?.objectForKey("secondPlayerUUID") as! String
-            let thirdPlayer = snapshot.value?.objectForKey("thirdPlayerUUID") as! String
+//            let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
+//            let secondLine = snapshot.value?.objectForKey("secondLineString") as! String
+//            let imageURL = snapshot.value?.objectForKey("imageURLString") as! String
+//            let firstPlayer = snapshot.value?.objectForKey("firstPlayerUUID") as! String
+//            let secondPlayer = snapshot.value?.objectForKey("secondPlayerUUID") as! String
+//            let thirdPlayer = snapshot.value?.objectForKey("thirdPlayerUUID") as! String
+            
+          if let firstLine = snapshot.value?.objectForKey("firstLineString") as? String, secondLine = snapshot.value?.objectForKey("secondLineString") as? String,
+           imageURL = snapshot.value?.objectForKey("imageURLString") as? String, firstPlayer = snapshot.value?.objectForKey("firstPlayerUUID") as? String, secondPlayer = snapshot.value?.objectForKey("secondPlayerUUID") as? String,
+            thirdPlayer = snapshot.value?.objectForKey("thirdPlayerUUID") as? String {
             
             let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID)
             
             let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID]
             
+//            let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID]
+            
             let currentUserNewCompletedHaikusRef = newCompletedHaikusRef.child(currentUserUID)
             
             currentUserNewCompletedHaikusRef.child(uniqueHaikuUUID).setValue(newCompleteHaikuDictionary)
+            }
             
         })
         
