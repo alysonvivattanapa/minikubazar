@@ -41,6 +41,10 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let uniqueUID = uniqueHaikuUUID {
+            print(uniqueUID)
+        }
+        
         firstLineTextView.delegate = self
         secondLineTextView.delegate = self
         thirdLineTextView.delegate = self
@@ -140,38 +144,72 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func ifSecondTextFieldWasEdited() {
+        
+        if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
             
-            if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
-                
-                let updateDictionary = ["secondLineString": secondLineText]
-                
-                ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                
-                if let firstPlayer = firstPlayerUUID {
-                    if firstPlayer != currentUserUID {
-                         ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                    }
-                }
+            let updateDictionary = ["secondLineString": secondLineText]
             
+            print(updateDictionary)
+            
+            ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
                 
-                if let secondPlayer = secondPlayerUUID {
-                    if secondPlayer != currentUserUID {
-                    ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                    }
+                print(snapshot)
+                
+                print(snapshot.exists())
+                
+                if snapshot.exists() {
+                    
+                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                 }
-                
-                if let thirdPlayer = thirdPlayerUUID {
-                    if thirdPlayer != currentUserUID {
-                        ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                    }
+            })
+            
+            
+            
+            if let firstPlayer = firstPlayerUUID {
+                if firstPlayer != currentUserUID {
+                    ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                        
+                        if snapshot.exists() {
+                            
+                            ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                        }})
                 }
             }
+            
+            
+            if let secondPlayer = secondPlayerUUID {
+                if secondPlayer != currentUserUID {
+                    
+                    ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                        
+                        if snapshot.exists() {
+                            
+                            ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                        }})
+                }
+            }
+            
+            
+            
+            
+            if let thirdPlayer = thirdPlayerUUID {
+                if thirdPlayer != currentUserUID {
+                    
+                    ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                        
+                        if snapshot.exists() {
+                            
+                            ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                        }})
+                }
+            }
+        }
     }
     
     func ifThirdTextFieldWasEdited() {
         
             print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
-            
+        
             if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
             
             NSOperationQueue.mainQueue().addOperationWithBlock({

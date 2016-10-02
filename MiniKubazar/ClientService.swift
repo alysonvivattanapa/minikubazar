@@ -206,10 +206,10 @@ struct ClientService {
         
     }
     
-    static func addActiveHaikuForFriend (activeHaiku: ActiveHaiku) {
-        
-    }
-    
+//    static func addActiveHaikuForFriend (activeHaiku: ActiveHaiku) {
+//        
+//    }
+//    
     static func fetchActiveHaikuAndMoveToNewCompletedHaikus (uniqueHaikuUUID: String, thirdLineTextString: String) {
         
         print("THIS CLIENT SERVICE FUNCTION SHOULD BE TRIGGGERED OF THIRD TEXT FIELD WAS EDITED for unique id \(uniqueHaikuUUID)")

@@ -178,45 +178,45 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed(sender: AnyObject) {
         
         if emailTextField.text == "" || passwordTextField.text == "" {
-           self.presentViewController( Alerts.showErrorMessage("Please enter your email & password."), animated: true, completion: nil)
+            self.presentViewController( Alerts.showErrorMessage("Please enter your email & password."), animated: true, completion: nil)
             
-           
+            
         } else {
-        
-        if let email = emailTextField.text, password = passwordTextField.text {
-        
-        FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
             
-            if error != nil {
-            self.presentViewController(Alerts.showErrorMessage((error?.localizedDescription)!), animated: true, completion: nil)
-            } else {
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.tabBarController?.viewControllers?.removeAll()
-            
-                let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
-                let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
-                let thirdTab = FriendsViewController(nibName: "FriendsViewController", bundle: nil)
-                let fourthTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
-                let controllers = [firstTab, secondTab, thirdTab, fourthTab]
-
-            appDelegate.tabBarController?.viewControllers = controllers
-            
-            UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+            if let email = emailTextField.text, password = passwordTextField.text {
                 
-                firstTab.tabBarItem = UITabBarItem(title: "Bazar", image: UIImage(named: "bazarA"), selectedImage: UIImage(named: "bazarB"))
-                
-                secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
-                
-                thirdTab.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(named: "friendsA"), selectedImage: UIImage(named: "friendsB"))
-                
-                fourthTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
-
-            appDelegate.window?.rootViewController = appDelegate.tabBarController
-            appDelegate.tabBarController?.selectedIndex = 0
+                FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+                    
+                    if error != nil {
+                        self.presentViewController(Alerts.showErrorMessage((error?.localizedDescription)!), animated: true, completion: nil)
+                    } else {
+                        
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.tabBarController?.viewControllers?.removeAll()
+                        
+                        let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
+                        let secondTab = StartViewController(nibName: "StartViewController", bundle: nil)
+                        let thirdTab = FriendsViewController(nibName: "FriendsViewController", bundle: nil)
+                        let fourthTab = InfoViewController(nibName: "InfoViewController", bundle: nil)
+                        let controllers = [firstTab, secondTab, thirdTab, fourthTab]
+                        
+                        appDelegate.tabBarController?.viewControllers = controllers
+                        
+                        UITabBar.appearance().tintColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                        
+                        firstTab.tabBarItem = UITabBarItem(title: "Bazar", image: UIImage(named: "bazarA"), selectedImage: UIImage(named: "bazarB"))
+                        
+                        secondTab.tabBarItem = UITabBarItem(title: "Start", image: UIImage(named: "startA"), selectedImage: UIImage(named: "startB"))
+                        
+                        thirdTab.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(named: "friendsA"), selectedImage: UIImage(named: "friendsB"))
+                        
+                        fourthTab.tabBarItem = UITabBarItem(title: "Info", image: UIImage(named: "infoA"), selectedImage: UIImage(named: "infoB"))
+                        
+                        appDelegate.window?.rootViewController = appDelegate.tabBarController
+                        appDelegate.tabBarController?.selectedIndex = 0
+                    }
+                }
             }
-        }
-        }
         }
     }
 
