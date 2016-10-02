@@ -101,7 +101,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         chooseFriendsTableView.dataSource = chooseFriendsTableViewDataSource
         chooseFriendsTableView.delegate = self
-       
         
         fetchFriendsAndSetToDataSource()
         
@@ -113,6 +112,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
     stepOneCreateNewHaiku()
+        
+    oneFriendOptionChosen = false
+    twoFriendsOptionChosen = false
     
         
     }
@@ -713,45 +715,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
-    
-    @IBAction func chooseFriendsContinueButtonPressed(sender: AnyObject) {
-        
-        print("choose friends continue button pressed")
-        
-        if oneFriendOptionChosen == true {
-            
-            if self.arrayOfChosenFriends.count == 1 {
-                print("exactly one friend chosen, put code here for next step: friend chosen = \(self.arrayOfChosenFriends)")
-                enterNewHaikuWithOneFriend()
-                clearSelectedRows()
-                
-            } else {
-                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alertController.addAction(okayAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-            
-        } else if twoFriendsOptionChosen == true {
-            
-            if self.arrayOfChosenFriends.count == 2 {
-                print("exactly one friend chosen, put code here for next step: friends chosen = = \(self.arrayOfChosenFriends)")
-                enterNewHaikuWithTwoFriends()
-                clearSelectedRows()
-            } else {
-                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                alertController.addAction(okayAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-            
-        } else {
-            
-            print("choose friends continue button chosen, but neither oneFriendOption nor twoFriendsOption is chosen, so what's happening here? YOU HAVE A BUG. FIX IT. SOMETHING WENT WRONG.")
-        }
-        
-    }
-    
     func enterNewHaikuWithOneFriend() {
         setAllSubviewsToHidden()
         choosePictureView.hidden = false
@@ -760,15 +723,15 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         enterHaikuContinueButton.hidden = false
         
         if let email = arrayOfChosenFriends.first {
-        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
-        secondLineHaikuTextView.text = "\(email) enters second line of haiku."
-        secondLineHaikuTextView.userInteractionEnabled = false
-        
-        thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
-        thirdLineHaikuTextView.userInteractionEnabled = false
-        
-        secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
-        thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
+            secondLineHaikuTextView.text = "\(email) enters second line of haiku."
+            secondLineHaikuTextView.userInteractionEnabled = false
+            
+            thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
+            thirdLineHaikuTextView.userInteractionEnabled = false
+            
+            secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
+            thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
         }
     }
     
@@ -792,6 +755,34 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    
+    
+    @IBAction func chooseFriendsContinueButtonPressed(sender: AnyObject) {
+        
+        print("one friend option chosen = \(oneFriendOptionChosen)")
+        print("two friend options chosen = \(twoFriendsOptionChosen)")
+        
+        print("choose friends continue button pressed")
+        
+        if oneFriendOptionChosen == true && self.arrayOfChosenFriends.count == 1 {
+                print("exactly one friend chosen, put code here for next step: friend chosen = \(self.arrayOfChosenFriends)")
+                enterNewHaikuWithOneFriend()
+                clearSelectedRows()
+            
+        } else if twoFriendsOptionChosen == true && self.arrayOfChosenFriends.count == 2 {
+            print(arrayOfChosenFriends)
+                                print("exactly two friends chosen, put code here for next step: friends chosen = \(self.arrayOfChosenFriends)")
+                                enterNewHaikuWithTwoFriends()
+                                clearSelectedRows()
+                            } else {
+                                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
+                                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                                alertController.addAction(okayAction)
+                                self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
     @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
         
         print("enterHaikuConinueButton pressed")
@@ -802,14 +793,19 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             saveActiveHaikuForTwoPlayers(currentUserUID)
             
-            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(self.arrayOfChosenFriends.first)"), animated: true, completion: nil)
+            if let oneFriend = self.arrayOfChosenFriends.first {
+            
+            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(oneFriend)"), animated: true, completion: nil)
+            }
             
            //create active haiku object and save to backend; then populate active tableview
         } else if arrayOfChosenFriends.count == 2 {
             
             saveActiveHaikuForThreePlayers(currentUserUID)
             //create active haiku object and save to backend; then populate active tableview
-            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(self.arrayOfChosenFriends.first) and \(self.arrayOfChosenFriends.last)"), animated: true, completion: nil)
+            if let firstFriend = self.arrayOfChosenFriends.first, secondFriend = self.arrayOfChosenFriends.last {
+            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(firstFriend) and \(secondFriend)"), animated: true, completion: nil)
+            }
         }
     }
     
@@ -901,9 +897,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                 
                             }
                             
-                            //save image and create imageHiakuDOwnloadURL
-                            
-                            
                         } )}
                     
                     
@@ -913,56 +906,5 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
     }
-
-
-        // this code is really good for saving active Haikus in Kubazar! but for minikubazar, you can do something much simpler. just save screenshot to backend. for completed Haikus in Kubazar, you can also just save the screenshot to the backend.
-        
-    
-        
-//        let currentUserUID = ClientService.getCurrentUserUID()
-//        
-//        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
-//        
-//        let uuid = NSUUID().UUIDString
-//        
-//        let currentImageRef = imagesRefForCurrentUser.child(uuid)
-//        
-//        let haikuImage = haikuImageView.image
-//        if let data = UIImagePNGRepresentation(haikuImage!) {
-//            currentImageRef.putData(data, metadata: nil) {
-//                metadata, error in
-//                if (error != nil) {
-//                    print("uh-oh! trouble saving image")
-//                } else {
-//                    let downloadURL = metadata!.downloadURL
-//                    let newHaiku = Haiku(firstLineHaiku: firstLine, secondLineHaiku: secondLine, thirdLineHaiku: thirdLine, imageHaikuDownloadURL: downloadURL(), uuid: uuid)
-//                    
-//                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
-//                    
-//                    let uniqueHaikuUUID = newHaiku.uuid
-//                    
-//                    self.recentlyFinishedHaikuUID = uniqueHaikuUUID
-//                    
-//                    let firstLineHaiku = newHaiku.firstLineHaiku
-//                    let secondLineHaiku = newHaiku.secondLineHaiku
-//                    let thirdLineHaiku = newHaiku.thirdLineHaiku
-//                    let imageHaikuDownloadURL = newHaiku.imageHaikuDownloadURL
-//                    
-//                    let imageHaikuDownloadStringFromURL = imageHaikuDownloadURL.absoluteString
-//                    
-//                    
-//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/firstLineHaiku").setValue(firstLineHaiku)
-//                    
-//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/secondLineHaiku").setValue(secondLineHaiku)
-//                    
-//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/thirdLineHaiku").setValue(thirdLineHaiku)
-//                    
-//                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
-//                    
-//                }
-//            }
-//        }
-        
- //   }
 
 }
