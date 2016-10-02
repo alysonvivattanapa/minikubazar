@@ -167,13 +167,31 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .Alert)
                     let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
                     alertController.addAction(okayAction)
+//                    alertController.modalPresentationStyle = .OverCurrentContext
+                    self.presentViewController(alertController, animated: true, completion: nil)
                     
-                    if self.presentedViewController == nil {
-                        self.presentViewController(alertController, animated: true, completion: nil)               } }
-            })
-            
-            
-            
+//                    if (self.navigationController?.visibleViewController?.isKindOfClass(UIAlertController)) == true {
+//                    self.presentViewController(alertController, animated: true, completion: nil)
+//                    }
+                }})
+                    
+//                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    
+//                    var rootViewController = appDelegate.keyW
+//                    
+//                    if (rootViewController is UINavigationController) {
+//                        rootViewController = (rootViewController as! UINavigationController).viewControllers.first!
+//                    }
+//                    
+//                    if (rootViewController is UITabBarController) {
+//                        rootViewController = (rootViewController as! UITabBarController).selectedViewController!
+//                    }
+//                    
+                    //this code is still being weird
+                    
+//                    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController?.presentViewController(alertController, animated: true, completion: nil)
+                    
+        
             if let firstPlayer = firstPlayerUUID {
                 if firstPlayer != currentUserUID {
                     ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
