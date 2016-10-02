@@ -144,6 +144,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     func ifSecondTextFieldWasEdited() {
+/*
+        I think I fixed the bug that was causing Elisa and Anja's apps to crash. Theoretically, because the UI/UX hasn't been implemented in the flow yet, or because there was something weird about Firebase's realtime database, it would update the second line sometimes after the active haiku was already removed. To fix, I wrote an if statement that executes the code only when the snapshot exists for that path. So if the snapshot does not exist, that means that the active haiku was removed, and the code to update the second line shouldn't execute. (otherwise it adds a second line even though the active haiku has already been removed and then causes the app to crash because the existing path has incomplete child values.
+        */
         
         if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
             
