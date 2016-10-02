@@ -109,9 +109,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let friendsNib = UINib.init(nibName: "FriendsTableViewCell", bundle: nil)
         chooseFriendsTableView.registerNib(friendsNib, forCellReuseIdentifier: "friendsCell")
         
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+//        
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
     stepOneCreateNewHaiku()
         
