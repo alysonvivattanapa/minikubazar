@@ -95,6 +95,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         firstLineHaikuTextView.delegate = self
         secondLineHaikuTextView.delegate = self
         thirdLineHaikuTextView.delegate = self
