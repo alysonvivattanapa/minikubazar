@@ -163,7 +163,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 if snapshot.exists() {
                     
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
-                }
+                    
+                    let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .Alert)
+                    let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                    alertController.addAction(okayAction)
+                    
+                    if self.presentedViewController == nil {
+                        self.presentViewController(alertController, animated: true, completion: nil)               } }
             })
             
             
