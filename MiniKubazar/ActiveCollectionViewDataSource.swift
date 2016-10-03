@@ -15,6 +15,10 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var activeHaikus = [ActiveHaiku]()
     
+    var imageCache = NSCache()
+    
+    var imageDownloadingQueue = NSOperationQueue()
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return activeHaikus.count
     }
@@ -27,17 +31,31 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let imageURL = activeHaiku.imageURLString
         
-        let haikuImageRef = FIRStorage.storage().referenceForURL(imageURL)
-        haikuImageRef.dataWithMaxSize(1 * 3000 * 3000) { (data, error) in
-            if (error != nil) {
-                print(error)
-                print("something wrong with active haiku image from storage. check active collection view data source code")
-            } else {
-                let haikuImage = UIImage(data: data!)
-//                cell.imageView.image = haikuImage
-                cell.updateWithImage(haikuImage)
-            }
-            }
+        let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
+        
+        if ((cachedImage) != nil) {
+            cell.updateWithImage(cachedImage)
+        } else {
+            self.imageDownloadingQueue.addOperationWithBlock({
+                let haikuImageRef = FIRStorage.storage().referenceForURL(imageURL)
+                haikuImageRef.dataWithMaxSize(1 * 3000 * 3000) { (data, error) in
+                    if (error != nil) {
+                        print(error)
+                        print("something wrong with active haiku image from storage. check active collection view data source code")
+                    } else {
+                        let haikuImage = UIImage(data: data!)
+                        //                cell.imageView.image = haikuImage
+                        cell.updateWithImage(haikuImage)
+                        
+                        if haikuImage != nil {
+                            self.imageCache.setObject(haikuImage!, forKey: imageURL)
+                        }
+                    }
+                }
+            })
+        }
+        
+        
             return cell
         }
 
