@@ -11,8 +11,8 @@ import UIKit
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITableViewDelegate {
 
     @IBOutlet weak var firstKubazarMascot: UIImageView!
-    
-    @IBOutlet weak var startButton: UIButton!
+
+    @IBOutlet weak var byYourselfButton: UIButton!
     
     @IBOutlet weak var playWithOneFriendButton: UIButton!
     
@@ -94,8 +94,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         firstLineHaikuTextView.delegate = self
         secondLineHaikuTextView.delegate = self
@@ -205,7 +203,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func startAnimation() {
-        startButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        byYourselfButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
         playWithOneFriendButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
@@ -231,7 +229,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        animator.addBehavior(itemBehavior)
         
         UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
-            self.startButton.transform = CGAffineTransformIdentity
+            self.byYourselfButton.transform = CGAffineTransformIdentity
             self.playWithOneFriendButton.transform = CGAffineTransformIdentity
             self.playWithTwoFriendsButton.transform = CGAffineTransformIdentity
             self.firstKubazarMascot.transform = CGAffineTransformIdentity
@@ -292,10 +290,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
         
-    @IBAction func startButtonPressed(sender: AnyObject) {
+//    @IBAction func startButtonPressed(sender: AnyObject) {
+//        stepTwoChoosePicture()
+//    }
+    
+    @IBAction func byYourselfButtonPressed(sender: AnyObject) {
         stepTwoChoosePicture()
     }
-    
     
     @IBAction func thirdBackButtonPressed(sender: AnyObject) {
 //        haikuFirstLine.text? = ""
@@ -444,11 +445,21 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func finishButtonPressed(sender: AnyObject) {
         self.view.endEditing(true)
+        
+        if firstLineHaikuTextView.text == "Enter first line of haiku: 5 syllables" ||
+        secondLineHaikuTextView.text == "Enter second line of haiku: 7 syllables" ||
+            thirdLineHaikuTextView.text == "Enter third line of haiku: 5 syllables" {
+            // prevent player from entering haiku without editing all three lines
+            self.presentViewController(Alerts.showErrorMessage("Please enter a full haiku to finish."), animated: true, completion: nil)
+            
+        } else {
+        
         setShareableHaikuImage()
         saveFinishedHaiku()
         view.endEditing(true)
         stepFourCongrats()
         stepOneCreateNewHaiku()
+        }
     }
     
     func saveFinishedHaiku() {

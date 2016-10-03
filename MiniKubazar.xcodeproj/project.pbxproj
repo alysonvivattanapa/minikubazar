@@ -515,7 +515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "08d9eab6-ab0d-46d4-9ea9-dcc92fdd4949";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -531,7 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "08d9eab6-ab0d-46d4-9ea9-dcc92fdd4949";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

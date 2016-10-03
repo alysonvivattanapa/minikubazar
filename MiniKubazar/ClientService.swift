@@ -170,6 +170,10 @@ struct ClientService {
         
     }
     
+    static func addActiveHaikuForSoloPlayer (activeHaiku: ActiveHaiku) {
+        
+    }
+    
     static func addActiveHaikuForPlayers (activeHaiku: ActiveHaiku) {
         let currentUserUID = ClientService.getCurrentUserUID()
         let currentUserActiveHaikusRef = activeHaikusRef.child(currentUserUID)
