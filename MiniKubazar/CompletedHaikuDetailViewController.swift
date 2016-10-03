@@ -18,6 +18,14 @@ class CompletedHaikuDetailViewController: UIViewController {
     
     @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var firstLineLabel: UILabel!
+    
+    @IBOutlet weak var secondLineLabel: UILabel!
+    
+    @IBOutlet weak var thirdLineLabel: UILabel!
+    
+    
+    @IBOutlet weak var shareableView: UIView!
     
 //    @IBOutlet weak var createANewHaikuButton: UIButton!
     
@@ -151,11 +159,27 @@ class CompletedHaikuDetailViewController: UIViewController {
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
         
-        if let shareableHaikuImage = completedHaikuDetailImageView.image {
+        let shareableHaikuImage = createShareableHaikuImage()
         let activityItemsArray = [shareableHaikuImage]
         let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
         presentViewController(activityVC, animated: true, completion: nil)
-        }
+        
+    }
+    
+    
+    func createShareableHaikuImage() -> UIImage {
+        
+        var shareableHaikuImage: UIImage
+        
+        UIGraphicsBeginImageContextWithOptions(shareableView.bounds.size, false, UIScreen.mainScreen().scale)
+        
+    shareableView.drawViewHierarchyInRect(shareableView.bounds, afterScreenUpdates: true)
+        
+        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return shareableHaikuImage
+        
     }
     
 //    
