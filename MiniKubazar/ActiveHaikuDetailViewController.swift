@@ -49,9 +49,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         secondLineTextView.delegate = self
         thirdLineTextView.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+//        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
    override func viewWillAppear(animated: Bool) {
