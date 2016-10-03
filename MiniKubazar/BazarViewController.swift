@@ -152,33 +152,35 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
        
         print("fetch completed haiku Data gets called")
         
-        ClientService.getCompletedHaikuImageURLStringsForCurrentUser { (arrayOfImageStrings) in
+        ClientService.getCompletedHaikuObjectsForCurrentUser { (arrayOfCompletedHaikuObjects) in
+          
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 
+                self.completedCollectionViewDataSource.completedHaikus = arrayOfCompletedHaikuObjects
                 
-                let imageStringArray = arrayOfImageStrings
+                self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
                 
-                self.completedCollectionViewDataSource.completedHaikus = []
-                
-                for imageString in imageStringArray {
-                    let haikuImageRef = FIRStorage.storage().referenceForURL(imageString)
-                    haikuImageRef.dataWithMaxSize(1 * 3000 * 3000, completion: { (data, error) in
-                        if (error != nil) {
-                            print(error)
-                            print("something wrong with image download; maybe file too large")
-                        } else {
-                            
-                            let haikuImage = UIImage(data: data!)
-                            let completedHaiku = CompletedHaiku(imageString: imageString, image: haikuImage)
-                            
-                            print("/(completedHaiku) appended")
-                            self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
-                            
-                            self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
-                        }
+//                for 
+//                
+//                for imageString in imageStringArray {
+//                    let haikuImageRef = FIRStorage.storage().referenceForURL(imageString)
+//                    haikuImageRef.dataWithMaxSize(1 * 3000 * 3000, completion: { (data, error) in
+//                        if (error != nil) {
+//                            print(error)
+//                            print("something wrong with image download; maybe file too large")
+//                        } else {
+//                            
+//                            let haikuImage = UIImage(data: data!)
+//                            let completedHaiku = CompletedHaiku(imageString: imageString, image: haikuImage)
+//                            
+//                            print("/(completedHaiku) appended")
+//                            self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
+//                            
+//                            self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
+                      //  }
                         
-                    })
-                }
+                 //   })
+              //  }
                 
             }
             
@@ -410,9 +412,15 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         if collectionView == self.completedHaikusCollectionView {
         
         let completedHaikuDetailVC = CompletedHaikuDetailViewController()
+            
+            let cell = self.completedHaikusCollectionView.cellForItemAtIndexPath(indexPath) as! CompletedHaikusCollectionViewCell
+
         presentViewController(completedHaikuDetailVC, animated: false) {
-            let haikuImage = self.completedCollectionViewDataSource.completedHaikus[indexPath.row]
-            completedHaikuDetailVC.completedHaikuDetailImageView.image = haikuImage.image
+            let haikuObject = self.completedCollectionViewDataSource.completedHaikus[indexPath.row]
+            completedHaikuDetailVC.completedHaikuDetailImageView.image = cell.completedHaikuImageView.image
+            completedHaikuDetailVC.firstLineLabel.text = cell.firstHaikuLine.text
+            completedHaikuDetailVC.secondLineLabel.text = haikuObject.secondLineString
+            completedHaikuDetailVC.thirdLineLabel.text = haikuObject.thirdLineString
             completedHaikuDetailVC.animateButtons()
         }
         }

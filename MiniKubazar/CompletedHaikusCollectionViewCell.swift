@@ -13,6 +13,9 @@ class CompletedHaikusCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var completedHaikuImageView: UIImageView!
  
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var firstHaikuLine: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

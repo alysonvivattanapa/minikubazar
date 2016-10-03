@@ -111,27 +111,61 @@ struct ClientService {
         })
     }
     
-    static func getCompletedHaikuImageURLStringsForCurrentUser(closure: [String] -> Void) {
+    
+    static func getCompletedHaikuObjectsForCurrentUser(closure: [ActiveHaiku] -> Void) {
         
         let currentUserUid = getCurrentUserUID()
         
         newCompletedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
-            var arrayOfCompletedHaikuImageURLStrings = [String]()
+            var arrayOfCompletedHaikuObjects = [ActiveHaiku]()
             
-            for item in snapshot.children {
+            for haiku in snapshot.children {
+                let firstLineString = haiku.value.objectForKey("firstLineString") as! String
+                let secondLineString = haiku.value.objectForKey("secondLineString") as! String
+                let thirdLineString = haiku.value.objectForKey("thirdLineString") as! String
+                let firstPlayerUUID = haiku.value.objectForKey("firstPlayerUUID") as! String
+                let secondPlayerUUID = haiku.value.objectForKey("secondPlayerUUID") as! String
+                let thirdPlayerUUID = haiku.value.objectForKey("thirdPlayerUUID") as! String
+                let imageURLString = haiku.value.objectForKey("imageURLString") as! String
+                let uniqueHaikuUUID = haiku.value.objectForKey("uniqueHaikuUUID") as! String
                 
-                let completedHaikuImageURLString = item.value.objectForKey("imageURLString") as! String
                 
-                arrayOfCompletedHaikuImageURLStrings.append(completedHaikuImageURLString)
+                let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID)
                 
+                arrayOfCompletedHaikuObjects.append(newHaikuObject)
             }
             
-            closure(arrayOfCompletedHaikuImageURLStrings)
+            closure(arrayOfCompletedHaikuObjects)
             
         })
-        
     }
+
+    
+    
+    
+    
+//    static func getCompletedHaikuImageURLStringsForCurrentUser(closure: [String] -> Void) {
+//        
+//        let currentUserUid = getCurrentUserUID()
+//        
+//        newCompletedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+//            
+//            var arrayOfCompletedHaikuImageURLStrings = [String]()
+//            
+//            for item in snapshot.children {
+//                
+//                let completedHaikuImageURLString = item.value.objectForKey("imageURLString") as! String
+//                
+//                arrayOfCompletedHaikuImageURLStrings.append(completedHaikuImageURLString)
+//                
+//            }
+//            
+//            closure(arrayOfCompletedHaikuImageURLStrings)
+//            
+//        })
+//        
+//    }
     
     static func getFriendEmailsForCurrentUser(closure: [String] -> Void) {
         

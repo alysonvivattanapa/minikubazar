@@ -33,21 +33,43 @@
                             <constraint firstAttribute="height" constant="45" id="qiF-jv-PNq"/>
                         </constraints>
                     </activityIndicatorView>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hs-y1-djP">
+                        <rect key="frame" x="0.0" y="159" width="180" height="21"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-1V-pEg">
+                        <rect key="frame" x="2" y="159" width="176" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="NM1-3S-29q"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="019-BD-UoJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1gL-8d-1tu"/>
+                <constraint firstAttribute="trailing" secondItem="7Hs-y1-djP" secondAttribute="trailing" id="22x-mz-w2U"/>
                 <constraint firstItem="019-BD-UoJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6NM-wD-cmf"/>
+                <constraint firstItem="7Hs-y1-djP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9Iv-gc-GpI"/>
                 <constraint firstAttribute="bottom" secondItem="019-BD-UoJ" secondAttribute="bottom" id="KH8-QT-0AP"/>
                 <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="LyZ-yT-tcl"/>
+                <constraint firstItem="7Hs-y1-djP" firstAttribute="centerX" secondItem="zRB-1V-pEg" secondAttribute="centerX" id="OTm-JT-5gh"/>
                 <constraint firstAttribute="trailing" secondItem="019-BD-UoJ" secondAttribute="trailing" id="QXO-Jq-Ax4"/>
+                <constraint firstAttribute="trailing" secondItem="zRB-1V-pEg" secondAttribute="trailing" constant="2" id="VKi-Qx-p67"/>
+                <constraint firstItem="7Hs-y1-djP" firstAttribute="centerY" secondItem="zRB-1V-pEg" secondAttribute="centerY" id="gGG-QV-qsN"/>
+                <constraint firstItem="zRB-1V-pEg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="gTc-YS-BWW"/>
+                <constraint firstItem="7Hs-y1-djP" firstAttribute="height" secondItem="zRB-1V-pEg" secondAttribute="height" id="o9m-Pf-TvI"/>
                 <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="pSa-Ty-8ZH"/>
+                <constraint firstAttribute="bottom" secondItem="zRB-1V-pEg" secondAttribute="bottom" id="x2U-cx-W3a"/>
             </constraints>
             <size key="customSize" width="200" height="200"/>
             <connections>
                 <outlet property="activityIndicator" destination="pqM-Oa-gGt" id="ufs-d0-h12"/>
                 <outlet property="completedHaikuImageView" destination="019-BD-UoJ" id="AQC-Qu-xpN"/>
+                <outlet property="firstHaikuLine" destination="zRB-1V-pEg" id="gYj-zu-I8W"/>
             </connections>
             <point key="canvasLocation" x="44" y="121"/>
         </collectionViewCell>
