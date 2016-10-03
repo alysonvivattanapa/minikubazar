@@ -18,7 +18,6 @@
 		F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */; };
 		F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */; };
 		F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */; };
-		F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */; };
 		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
 		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
 		F253721A1D8A38E60065D51D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25372191D8A38E60065D51D /* Reachability.swift */; };
@@ -38,6 +37,7 @@
 		F2A120361D822B8700A39867 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120351D822B8700A39867 /* ClientService.swift */; };
 		F2A120381D822B9700A39867 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120371D822B9700A39867 /* Alerts.swift */; };
 		F2A1203A1D82303A00A39867 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A120391D82303A00A39867 /* User.swift */; };
+		F2A5A4DD1DA2414C001E3FE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2A5A4DC1DA2414C001E3FE1 /* GoogleService-Info.plist */; };
 		F2AB4E931D99E3D8003CB6FD /* ActiveHaiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AB4E921D99E3D8003CB6FD /* ActiveHaiku.swift */; };
 		F2AEDBF01D8959C800BB07CC /* CompletedCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */; };
 		F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */; };
@@ -61,7 +61,6 @@
 		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
-		F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F25372191D8A38E60065D51D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		F2A120351D822B8700A39867 /* ClientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		F2A120371D822B9700A39867 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		F2A120391D82303A00A39867 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F2A5A4DC1DA2414C001E3FE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2AB4E921D99E3D8003CB6FD /* ActiveHaiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveHaiku.swift; sourceTree = "<group>"; };
 		F2AEDBEF1D8959C800BB07CC /* CompletedCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		F2AEDBF11D895BB100BB07CC /* CompletedHaiku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaiku.swift; sourceTree = "<group>"; };
@@ -193,6 +193,7 @@
 				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
 				F2A120351D822B8700A39867 /* ClientService.swift */,
 				F25372191D8A38E60065D51D /* Reachability.swift */,
+				F2A5A4DC1DA2414C001E3FE1 /* GoogleService-Info.plist */,
 			);
 			name = Supporting;
 			sourceTree = "<group>";
@@ -227,7 +228,6 @@
 				F2A1200C1D82287900A39867 /* Assets.xcassets */,
 				F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */,
 				F2A120111D82287900A39867 /* Info.plist */,
-				F238D4BA1D89FB6000C4ABA1 /* GoogleService-Info.plist */,
 			);
 			path = MiniKubazar;
 			sourceTree = "<group>";
@@ -298,7 +298,6 @@
 				F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */,
 				F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */,
 				F2A120281D822B5600A39867 /* SignupViewController.xib in Resources */,
-				F238D4BB1D89FB6000C4ABA1 /* GoogleService-Info.plist in Resources */,
 				F2A120301D822B5600A39867 /* StartViewController.xib in Resources */,
 				F2A120261D822B5600A39867 /* WelcomeViewController.xib in Resources */,
 				F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */,
@@ -307,6 +306,7 @@
 				F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */,
 				F220BE3D1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,
+				F2A5A4DD1DA2414C001E3FE1 /* GoogleService-Info.plist in Resources */,
 				F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */,
 				F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */,
 			);
@@ -515,7 +515,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "08d9eab6-ab0d-46d4-9ea9-dcc92fdd4949";
 			};
 			name = Debug;
 		};
@@ -531,7 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "08d9eab6-ab0d-46d4-9ea9-dcc92fdd4949";
 			};
 			name = Release;
 		};

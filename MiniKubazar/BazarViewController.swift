@@ -42,7 +42,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let activeHaikusRef = ClientService.activeHaikusRef.child("\(ClientService.getCurrentUserUID())")
     
-    let completedHaikusRef = ClientService.completedHaikusRef.child("\(ClientService.getCurrentUserUID())")
+    let newCompletedHaikusRef = ClientService.newCompletedHaikusRef.child("\(ClientService.getCurrentUserUID())")
     
     //up to here ^: should put somewhere else because what if there's no internet connection or internet connection gets lost between 
     
@@ -260,7 +260,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             setSegmentedViewsToHidden()
             
-            completedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            newCompletedHaikusRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
                 if snapshot.value is NSNull {
                     self.noHaikusLabel.text = "You don't have any completed haikus yet."

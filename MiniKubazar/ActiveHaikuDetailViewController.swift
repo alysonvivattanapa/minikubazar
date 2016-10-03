@@ -135,11 +135,14 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
         if !secondLineTextView.text.containsString("enters second line of haiku") && !secondLineTextView.text.containsString("Waiting on second player") {
             
+            if thirdLineTextView.text.containsString("enters second line, you can write third line") || thirdLineTextView.text.containsString("after second player's turn") {
+            
              ifSecondTextFieldWasEdited()
+            }
             
         }
         
-        if !thirdLineTextView.text.containsString("enters second line, you can write third line") && !thirdLineTextView.text.containsString("after second player's turn") {
+        if !secondLineTextView.text.containsString("enters second line of haiku") && !secondLineTextView.text.containsString("Waiting on second player") && !thirdLineTextView.text.containsString("enters second line, you can write third line") && !thirdLineTextView.text.containsString("after second player's turn") {
             
             ifThirdTextFieldWasEdited()
             
@@ -164,7 +167,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 
                 print(snapshot.exists())
                 
-                if snapshot.exists() {
+                if snapshot.exists() && snapshot.hasChild("firstLineString") {
                     
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                     
@@ -198,27 +201,35 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
             if let firstPlayer = firstPlayerUUID {
                 if firstPlayer != currentUserUID {
+                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                    
                     ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
                         
-                        if snapshot.exists() {
+                        if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
                             ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                         }})
-                }
+                    })
+            }
             }
             
             
             if let secondPlayer = secondPlayerUUID {
                 if secondPlayer != currentUserUID {
                     
+                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                    
                     ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
                         
-                        if snapshot.exists() {
+                        if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
                             ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                         }})
+                    })
                 }
             }
+            
+            
             
             
             
@@ -226,12 +237,15 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             if let thirdPlayer = thirdPlayerUUID {
                 if thirdPlayer != currentUserUID {
                     
+                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                    
                     ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
                         
-                        if snapshot.exists() {
+                        if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
                             ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                         }})
+                    })
                 }
             }
         }
@@ -268,6 +282,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 }
                 
                 })
+                
+                presentViewController(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product?"), animated: true, completion: nil)
         
 
             }

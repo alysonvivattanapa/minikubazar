@@ -27,7 +27,7 @@ struct ClientService {
     
     static let storage = FIRStorage.storage()
     
-    static let storageRef = storage.referenceForURL("gs://minikubazar.appspot.com")
+    static let storageRef = storage.referenceForURL("gs://kubazar-2.appspot.com")
     
     static let imagesRef = storageRef.child("images")
     
@@ -115,7 +115,7 @@ struct ClientService {
         
         let currentUserUid = getCurrentUserUID()
         
-        completedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+        newCompletedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
             
             var arrayOfCompletedHaikuImageURLStrings = [String]()
             
