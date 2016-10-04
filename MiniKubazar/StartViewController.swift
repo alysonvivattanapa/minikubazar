@@ -361,48 +361,48 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func inspireMeButtonPressed(sender: AnyObject) {
         
-        let random = arc4random_uniform(8)
+        let random = arc4random_uniform(9)
         
         switch random {
         case 0:
            
-             haikuImageView.image = UIImage(named: "inspireMe1")
+             haikuImageView.image = UIImage(named: "inspire1")
             
         case 1:
             
-            haikuImageView.image = UIImage(named: "inspireMe2")
+            haikuImageView.image = UIImage(named: "inspire2")
             
         case 2:
             
-            haikuImageView.image = UIImage(named: "inspireMe3")
+            haikuImageView.image = UIImage(named: "inspire3")
             
         case 3:
             
-            haikuImageView.image = UIImage(named: "inspireMe4")
+            haikuImageView.image = UIImage(named: "inspire4")
             
         case 4:
             
-            haikuImageView.image = UIImage(named: "inspireMe5")
+            haikuImageView.image = UIImage(named: "inspire5")
             
         case 5:
             
-            haikuImageView.image = UIImage(named: "inspireMe6")
+            haikuImageView.image = UIImage(named: "inspire6")
             
         case 6:
             
-            haikuImageView.image = UIImage(named: "inspireMe7")
+            haikuImageView.image = UIImage(named: "inspire7")
             
         case 7:
             
-            haikuImageView.image = UIImage(named: "inspireMe8")
+            haikuImageView.image = UIImage(named: "inspire8")
             
         case 8:
             
-            haikuImageView.image = UIImage(named: "inspireMe9")
+            haikuImageView.image = UIImage(named: "inspire9")
             
         default:
             
-            haikuImageView.image = UIImage(named: "inspireMe10")
+            haikuImageView.image = UIImage(named: "inspire10")
     
             
         }

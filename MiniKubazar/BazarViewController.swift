@@ -418,7 +418,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         presentViewController(completedHaikuDetailVC, animated: false) {
             let haikuObject = self.completedCollectionViewDataSource.completedHaikus[indexPath.row]
             completedHaikuDetailVC.completedHaikuDetailImageView.image = cell.completedHaikuImageView.image
-            completedHaikuDetailVC.firstLineLabel.text = cell.firstHaikuLine.text
+            completedHaikuDetailVC.firstLineLabel.text = haikuObject.firstLineString
             completedHaikuDetailVC.secondLineLabel.text = haikuObject.secondLineString
             completedHaikuDetailVC.thirdLineLabel.text = haikuObject.thirdLineString
             completedHaikuDetailVC.animateButtons()

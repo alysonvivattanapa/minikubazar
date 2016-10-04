@@ -34,6 +34,8 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let imageURL = completedHaiku.imageURLString
         
+        let firstLine = completedHaiku.firstLineString
+        
         let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
         
         if ((cachedImage) != nil) {
@@ -50,7 +52,8 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                     let haikuImage = UIImage(data: data!)
                     //                cell.imageView.image = haikuImage
                     cell.updateWithImage(haikuImage)
-                    cell.firstHaikuLine.text = completedHaiku.firstLineString
+//                    cell.firstHaikuLine.text = completedHaiku.firstLineString
+                    cell.firstHaikuLine.text = firstLine
                     
                     if haikuImage != nil {
                         self.imageCache.setObject(haikuImage!, forKey: imageURL)
