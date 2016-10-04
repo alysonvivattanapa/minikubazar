@@ -82,7 +82,7 @@ class CompletedHaikuDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let reachability = Reachability()!
+//        let reachability = Reachability()!
         
         reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must

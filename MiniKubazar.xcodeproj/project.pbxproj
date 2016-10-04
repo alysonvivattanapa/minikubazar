@@ -56,6 +56,7 @@
 		F220BE3B1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveCollectionViewCell.xib; sourceTree = "<group>"; };
 		F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHaikuDetailViewController.xib; sourceTree = "<group>"; };
+		F235E2D71DA44A0800826DD5 /* MiniKubazar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniKubazar.entitlements; sourceTree = "<group>"; };
 		F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewDataSource.swift; sourceTree = "<group>"; };
 		F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 		F2A120091D82287900A39867 /* MiniKubazar */ = {
 			isa = PBXGroup;
 			children = (
+				F235E2D71DA44A0800826DD5 /* MiniKubazar.entitlements */,
 				F236DD381D928A4E00B1FA31 /* Collection Views */,
 				F236DD371D928A2C00B1FA31 /* Table Views */,
 				F236DD361D928A1600B1FA31 /* Detail View Controllers */,
@@ -271,6 +273,11 @@
 						DevelopmentTeam = 62QTD3LMCM;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -515,6 +522,7 @@
 			baseConfigurationReference = 1103529FB539798FA303A0B3 /* Pods-MiniKubazar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MiniKubazar/MiniKubazar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 62QTD3LMCM;
@@ -533,6 +541,7 @@
 			baseConfigurationReference = 41A4B02D5F12389EF6AFD39E /* Pods-MiniKubazar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MiniKubazar/MiniKubazar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 62QTD3LMCM;

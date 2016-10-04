@@ -184,6 +184,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
                 FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
                     
                     if error != nil {
+//                        self.view.endEditing(true)
                         self.present(Alerts.showErrorMessage((error?.localizedDescription)!), animated: true, completion: nil)
                     } else {
                         

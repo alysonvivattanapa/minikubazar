@@ -447,6 +447,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
         } else {
         
+        showCompletedDetailView()
         setShareableHaikuImage()
         saveFinishedHaiku()
         view.endEditing(true)
@@ -455,9 +456,26 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    func showCompletedDetailView() {
+        let completedDetailVC = CompletedHaikuDetailViewController()
+        
+        self.present(completedDetailVC, animated: false) {
+           
+            if let firstLine = self.firstLineHaikuTextView.text, let secondLine =
+                self.secondLineHaikuTextView.text, let thirdLine =
+                self.thirdLineHaikuTextView.text{
+            completedDetailVC.completedHaikuDetailImageView.image = self.finishedImageView.image
+            completedDetailVC.firstLineLabel.text = firstLine
+            completedDetailVC.secondLineLabel.text = secondLine
+            completedDetailVC.thirdLineLabel.text = thirdLine
+            }
+            
+            completedDetailVC.animateButtons()
+        }
+        
+    }
+    
     func saveFinishedHaiku() {
-        
-        
         
         let currentUserUID = ClientService.getCurrentUserUID()
         
@@ -474,6 +492,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     print(error)
                     print("uh-oh! trouble saving image")
                 } else {
+                    
+                    
                     let downloadURL = metadata!.downloadURL
                     let imageHaikuDownloadStringFromURL = downloadURL()?.absoluteString
                     
@@ -486,50 +506,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         let newHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLine, imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: currentUserUID, secondPlayerUUID: currentUserUID, thirdPlayerUUID: currentUserUID, uniqueHaikuUUID: uniqueHaikuUUID)
                         
                         let newHaikuDictionary: NSDictionary = ["firstLineString": newHaiku.firstLineString, "secondLineString": newHaiku.secondLineString, "thirdLineString": newHaiku.thirdLineString, "imageURLString": newHaiku.imageURLString, "firstPlayerUUID": newHaiku.firstPlayerUUID, "secondPlayerUUID": newHaiku.secondPlayerUUID, "thirdPlayerUUID": newHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newHaiku.uniqueHaikuUUID]
+                        
                         newCompletedHaikusForCurrentUserRef.child(uniqueHaikuUUID).setValue(newHaikuDictionary)
                         
-                        
-                        //        let shareableHaikuImage = createShareableHaikuImage()
-                        //
-                        //        let currentUserUID = ClientService.getCurrentUserUID()
-                        //
-                        //        let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
-                        //
-                        //        let uniqueHaikuUUID = NSUUID().UUIDString
-                        //
-                        //        let currentImageRef = imagesRefForCurrentUser.child(uniqueHaikuUUID)
-                        //
-                        //        if let data = UIImagePNGRepresentation(shareableHaikuImage) {
-                        //            currentImageRef.putData(data, metadata: nil) {
-                        //                metadata, error in
-                        //                if (error != nil) {
-                        //                    print(error)
-                        //                    print("uh-oh! trouble saving image")
-                        //                } else {
-                        //                    let downloadURL = metadata!.downloadURL
-                        //
-                        //
-                        //                    let completedHaikusForCurrentUserRef = ClientService.completedHaikusRef.child(currentUserUID)
-                        //
-                        //                    let imageHaikuDownloadStringFromURL = downloadURL()?.absoluteString
-                        //
-                        //                    completedHaikusForCurrentUserRef.child("\(uniqueHaikuUUID)/imageURLString").setValue(imageHaikuDownloadStringFromURL)
-                        //
-                        //                    print("imageURL should be saved to backend now")
-                        //                    
-                        //                }
-                        //            }
-                        // }
-                        
-                        let completedDetailVC = CompletedHaikuDetailViewController()
-                        self.present(completedDetailVC, animated: false) {
-                            completedDetailVC.completedHaikuDetailImageView.image = self.finishedImageView.image
-                            completedDetailVC.firstLineLabel.text = firstLine
-                            completedDetailVC.secondLineLabel.text = secondLine
-                            completedDetailVC.thirdLineLabel.text = thirdLine
-                            
-                            completedDetailVC.animateButtons()
-                        }
                     }
                     
                 }
