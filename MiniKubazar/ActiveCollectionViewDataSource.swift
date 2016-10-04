@@ -17,6 +17,8 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var imageCache = NSCache()
     
+    var stringCache = NSCache()
+    
     var imageDownloadingQueue = NSOperationQueue()
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -30,6 +32,8 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let activeHaiku = activeHaikus[indexPath.row]
         
         let imageURL = activeHaiku.imageURLString
+        
+  
         
         let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
         
@@ -54,6 +58,8 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 }
             })
         }
+        
+        
         
         
             return cell

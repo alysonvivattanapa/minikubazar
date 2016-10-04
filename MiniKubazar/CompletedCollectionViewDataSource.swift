@@ -17,6 +17,12 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var imageCache = NSCache()
     
+    var firstLineCache = NSCache()
+    
+    var secondLineCache = NSCache()
+    
+    var thirdLineCache = NSCache()
+    
     var imageDownloadingQueue = NSOperationQueue()
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -36,7 +42,17 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let firstLine = completedHaiku.firstLineString
         
+        let secondLine = completedHaiku.secondLineString
+        
+        let thirdLine = completedHaiku.thirdLineString
+        
         let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
+        
+        let cachedFirstLine = firstLineCache.objectForKey(imageURL) as? String
+        
+        let cachedSecondLine = secondLineCache.objectForKey(imageURL) as? String
+        
+        let cachedThirdLine = thirdLineCache.objectForKey(imageURL) as? String
         
         if ((cachedImage) != nil) {
             cell.updateWithImage(cachedImage)
@@ -58,12 +74,14 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                     if haikuImage != nil {
                         self.imageCache.setObject(haikuImage!, forKey: imageURL)
                     }
-                    
-                    
                 }
             }})
-            
+        }
         
+        if ((cachedFirstLine) != nil) {
+            cell.firstHaikuLine.text = cachedFirstLine
+        } else {
+            cell.firstHaikuLine.text = firstLine
         }
 
         
