@@ -54,17 +54,17 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-   override func viewWillAppear(animated: Bool) {
+   override func viewWillAppear(_ animated: Bool) {
     
     disableUserinteractionForAllTextViews()
     
-    continueButton.hidden = true
+    continueButton.isHidden = true
     
-    waitForOtherPlayersLabel.hidden = false
+    waitForOtherPlayersLabel.isHidden = false
     
        print("DETAIL FIRST \(firstPlayerUUID)")
     print("DETAIL SECOND \(secondPlayerUUID)")
@@ -75,20 +75,20 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
 
     
     func disableUserinteractionForAllTextViews() {
-        firstLineTextView.userInteractionEnabled = false
-        secondLineTextView.userInteractionEnabled = false
-        thirdLineTextView.userInteractionEnabled = false
+        firstLineTextView.isUserInteractionEnabled = false
+        secondLineTextView.isUserInteractionEnabled = false
+        thirdLineTextView.isUserInteractionEnabled = false
     }
     
     
     func hideContinueButtonAndLabel() {
-        continueButton.hidden = true
-        waitForOtherPlayersLabel.hidden = true
+        continueButton.isHidden = true
+        waitForOtherPlayersLabel.isHidden = true
     }
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
         view.endEditing(true)
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,32 +96,32 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func keyboardWillHide(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+    func keyboardWillHide(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
         self.view.frame.origin.y += keyboardSize.height
     }
     
-    func keyboardWillShow(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+    func keyboardWillShow(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
         
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
-        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        let offset: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size
         
         if keyboardSize.height == offset.height {
             if self.view.frame.origin.y == 0 {
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
                     self.view.frame.origin.y -= keyboardSize.height
                 })
             }
         } else {
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.view.frame.origin.y += keyboardSize.height - offset.height
             })
         }
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
             return false
@@ -129,20 +129,20 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         return true
     }
 
-    @IBAction func continueButtonPressed(sender: AnyObject) {
+    @IBAction func continueButtonPressed(_ sender: AnyObject) {
         
         print("Active haiku detail view controller continue button pressed")
         
-        if !secondLineTextView.text.containsString("enters second line of haiku") && !secondLineTextView.text.containsString("Waiting on second player") {
+        if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") {
             
-            if thirdLineTextView.text.containsString("enters second line, you can write third line") || thirdLineTextView.text.containsString("after second player's turn") {
+            if thirdLineTextView.text.contains("enters second line, you can write third line") || thirdLineTextView.text.contains("after second player's turn") {
             
              ifSecondTextFieldWasEdited()
             }
             
         }
         
-        if !secondLineTextView.text.containsString("enters second line of haiku") && !secondLineTextView.text.containsString("Waiting on second player") && !thirdLineTextView.text.containsString("enters second line, you can write third line") && !thirdLineTextView.text.containsString("after second player's turn") {
+        if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") && !thirdLineTextView.text.contains("enters second line, you can write third line") && !thirdLineTextView.text.contains("after second player's turn") {
             
             ifThirdTextFieldWasEdited()
             
@@ -155,13 +155,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         I think I fixed the bug that was causing Elisa and Anja's apps to crash. Theoretically, because the UI/UX hasn't been implemented in the flow yet, or because there was something weird about Firebase's realtime database, it would update the second line sometimes after the active haiku was already removed. To fix, I wrote an if statement that executes the code only when the snapshot exists for that path. So if the snapshot does not exist, that means that the active haiku was removed, and the code to update the second line shouldn't execute. (otherwise it adds a second line even though the active haiku has already been removed and then causes the app to crash because the existing path has incomplete child values.
         */
         
-        if let haikuUniqeUUID = uniqueHaikuUUID, secondLineText = secondLineTextView.text {
+        if let haikuUniqeUUID = uniqueHaikuUUID, let secondLineText = secondLineTextView.text {
             
             let updateDictionary = ["secondLineString": secondLineText]
             
             print(updateDictionary)
             
-            ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+            ClientService.activeHaikusRef.child("\(currentUserUID)/\(haikuUniqeUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
                 
                 print(snapshot)
                 
@@ -171,11 +171,11 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                     
-                    let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .Alert)
-                    let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                    let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .alert)
+                    let okayAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alertController.addAction(okayAction)
 //                    alertController.modalPresentationStyle = .OverCurrentContext
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
                     
 //                    if (self.navigationController?.visibleViewController?.isKindOfClass(UIAlertController)) == true {
 //                    self.presentViewController(alertController, animated: true, completion: nil)
@@ -201,9 +201,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
             if let firstPlayer = firstPlayerUUID {
                 if firstPlayer != currentUserUID {
-                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                     OperationQueue.main.addOperation({
                     
-                    ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                    ClientService.activeHaikusRef.child("\(firstPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
                         
                         if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
@@ -217,9 +217,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             if let secondPlayer = secondPlayerUUID {
                 if secondPlayer != currentUserUID {
                     
-                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                     OperationQueue.main.addOperation({
                     
-                    ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                    ClientService.activeHaikusRef.child("\(secondPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
                         
                         if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
@@ -237,9 +237,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
             if let thirdPlayer = thirdPlayerUUID {
                 if thirdPlayer != currentUserUID {
                     
-                     NSOperationQueue.mainQueue().addOperationWithBlock({
+                     OperationQueue.main.addOperation({
                     
-                    ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+                    ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
                         
                         if snapshot.exists() && snapshot.hasChild("firstLineString") {
                             
@@ -255,9 +255,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
             print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
         
-            if let uniqueUUID = uniqueHaikuUUID, thirdLineText = thirdLineTextView.text {
+            if let uniqueUUID = uniqueHaikuUUID, let thirdLineText = thirdLineTextView.text {
             
-            NSOperationQueue.mainQueue().addOperationWithBlock({
+            OperationQueue.main.addOperation({
                  ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
                 
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
@@ -283,7 +283,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 
                 })
                 
-                presentViewController(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product?"), animated: true, completion: nil)
+                present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product?"), animated: true, completion: nil)
         
 
             }

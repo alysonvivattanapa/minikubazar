@@ -1,3 +1,4 @@
+
 //
 //  InfoViewController.swift
 //  Kubazar
@@ -28,16 +29,16 @@ class InfoViewController: UIViewController {
         
         //FOR NOW, HOW TO PLAY VIEW IS HIDDEN, BUT SHOULD EVENTUALLY BE ADDED TO ABOUT KUBAZAR SCROLL VIEW. SO YOU HAVE TO ADD A SCROLL VIEW.
         
-        howToPlayView.hidden = true
+        howToPlayView.isHidden = true
         
         let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
         
-        segmentedControl.layer.borderColor = kubazarDarkGreen.CGColor
+        segmentedControl.layer.borderColor = kubazarDarkGreen.cgColor
         segmentedControl.tintColor = kubazarDarkGreen
 
         self.segmentedControl.selectedSegmentIndex = 0
 
-        myAccountView.hidden = true
+        myAccountView.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -46,20 +47,14 @@ class InfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            return
-        }
-        
-        reachability!.whenReachable = { reachability in
+      
+        reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
-                if reachability.isReachableViaWiFi() {
+            DispatchQueue.main.async {
+                if reachability.isReachableViaWiFi {
                     print("Reachable via WiFi")
                 } else {
                     print("Reachable via Cellular")
@@ -67,23 +62,23 @@ class InfoViewController: UIViewController {
             }
         }
         
-        reachability!.whenUnreachable = { reachability in
+        reachability.whenUnreachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print("Not reachable")
                 
-                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default) { (action: UIAlertAction) -> Void in
+                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .default) { (action: UIAlertAction) -> Void in
                 }
                 alert.addAction(okayAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
                 
             }
         }
         
         do {
-            try reachability!.startNotifier()
+            try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
         }
@@ -100,16 +95,16 @@ class InfoViewController: UIViewController {
         
     }
     
-    @IBAction func segmentedControlIndexChanged(sender: AnyObject) {
+    @IBAction func segmentedControlIndexChanged(_ sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             print("first item selected")
-            myAccountView.hidden = true
-            aboutKubazarView.hidden = false
+            myAccountView.isHidden = true
+            aboutKubazarView.isHidden = false
         case 1:
             print("second item selected")
-            aboutKubazarView.hidden = true
-            myAccountView.hidden = false
+            aboutKubazarView.isHidden = true
+            myAccountView.isHidden = false
             
             
         default:
@@ -117,13 +112,13 @@ class InfoViewController: UIViewController {
         }
     }
 
-    @IBAction func signOutButtonPressed(sender: AnyObject) {
+    @IBAction func signOutButtonPressed(_ sender: AnyObject) {
         try! FIRAuth.auth()!.signOut()
     
         
         print("sign out button pressed")
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let welcomeVC = WelcomeViewController()
         appDelegate.window?.rootViewController = welcomeVC
         

@@ -80,69 +80,103 @@ class CompletedHaikuDetailViewController: UIViewController {
                 // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            return
-        }
+    override func viewWillAppear(_ animated: Bool) {
         
-        reachability!.whenReachable = { reachability in
+        let reachability = Reachability()!
+        
+        reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
-                if reachability.isReachableViaWiFi() {
+            DispatchQueue.main.async() {
+                if reachability.isReachableViaWiFi {
                     print("Reachable via WiFi")
                 } else {
                     print("Reachable via Cellular")
                 }
             }
         }
-        
-        reachability!.whenUnreachable = { reachability in
+        reachability.whenUnreachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async() {
                 print("Not reachable")
-                
-                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default) { (action: UIAlertAction) -> Void in
+                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .default) { (action: UIAlertAction) -> Void in
                 }
                 alert.addAction(okayAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
                 
             }
-        }
         
         do {
-            try reachability!.startNotifier()
+            try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
         }
+        }
+        
+//        do {
+//            reachability = try Reachability.reachabilityForInternetConnection()
+//        } catch {
+//            print("Unable to create Reachability")
+//            return
+//        }
+//        
+//        reachability!.whenReachable = { reachability in
+//            // this is called on a background thread, but UI updates must
+//            // be on the main thread, like this:
+//            DispatchQueue.main.async {
+//                if reachability.isReachableViaWiFi() {
+//                    print("Reachable via WiFi")
+//                } else {
+//                    print("Reachable via Cellular")
+//                }
+//            }
+//        }
+//        
+//        reachability!.whenUnreachable = { reachability in
+//            // this is called on a background thread, but UI updates must
+//            // be on the main thread, like this:
+//            DispatchQueue.main.async {
+//                print("Not reachable")
+//                
+//                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .alert)
+//                let okayAction = UIAlertAction(title: "Ok", style: .default) { (action: UIAlertAction) -> Void in
+//                }
+//                alert.addAction(okayAction)
+//                self.present(alert, animated: true, completion: nil)
+//                
+//            }
+//        }
+//        
+//        do {
+//            try reachability!.startNotifier()
+//        } catch {
+//            print("Unable to start notifier")
+//        }
         
     }
     
     func animateButtons() {
 //        congratsLabel.transform = CGAffineTransformMakeScale(0.6, 0.6)
         
-        shareButton.transform = CGAffineTransformMakeScale(0.9, 0.9)
+        shareButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         
 //        createANewHaikuButton.transform = CGAffineTransformMakeScale(0.9, 0.9)
         
 //        kubazarMascot.transform = CGAffineTransformMakeScale(0.7, 0.7)
         
         completedHaikuDetailImageView.transform =
-            CGAffineTransformMakeScale(0.7, 0.7)
+            CGAffineTransform(scaleX: 0.7, y: 0.7)
         
-        UIView.animateWithDuration(1.6, delay: 0.3, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
+        UIView.animate(withDuration: 1.6, delay: 0.3, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .allowUserInteraction, animations: {
 //            self.congratsLabel.transform = CGAffineTransformIdentity
             
 //            self.kubazarMascot.transform = CGAffineTransformIdentity
             
-            self.completedHaikuDetailImageView.transform = CGAffineTransformIdentity
+            self.completedHaikuDetailImageView.transform = CGAffineTransform.identity
             
-            self.shareButton.transform = CGAffineTransformIdentity
+            self.shareButton.transform = CGAffineTransform.identity
             
 //            self.createANewHaikuButton.transform = CGAffineTransformIdentity
             }, completion: nil)
@@ -153,16 +187,16 @@ class CompletedHaikuDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func backButtonPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func shareButtonPressed(sender: AnyObject) {
+    @IBAction func shareButtonPressed(_ sender: AnyObject) {
         
         let shareableHaikuImage = createShareableHaikuImage()
         let activityItemsArray = [shareableHaikuImage]
         let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
-        presentViewController(activityVC, animated: true, completion: nil)
+        present(activityVC, animated: true, completion: nil)
         
     }
     
@@ -171,11 +205,11 @@ class CompletedHaikuDetailViewController: UIViewController {
         
         var shareableHaikuImage: UIImage
         
-        UIGraphicsBeginImageContextWithOptions(shareableView.bounds.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(shareableView.bounds.size, false, UIScreen.main.scale)
         
-    shareableView.drawViewHierarchyInRect(shareableView.bounds, afterScreenUpdates: true)
+    shareableView.drawHierarchy(in: shareableView.bounds, afterScreenUpdates: true)
         
-        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()
+        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return shareableHaikuImage

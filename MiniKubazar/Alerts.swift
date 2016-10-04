@@ -11,17 +11,17 @@ import Firebase
 
 struct Alerts {
     
-    static func showErrorMessage(errorMessage: String) -> UIAlertController {
-        let alert = UIAlertController(title: "Oops!", message: errorMessage, preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default) { (action: UIAlertAction) -> Void in
+    static func showErrorMessage(_ errorMessage: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Oops!", message: errorMessage, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action: UIAlertAction) -> Void in
         }
         alert.addAction(dismissAction)
         return alert
     }
     
-    static func showSuccessMessage(successMessage: String) -> UIAlertController {
-        let alert = UIAlertController(title: "Success!", message: successMessage, preferredStyle: .Alert)
-        let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action: UIAlertAction) in
+    static func showSuccessMessage(_ successMessage: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Success!", message: successMessage, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default) { (action: UIAlertAction) in
         }
         alert.addAction(okayAction)
         return alert

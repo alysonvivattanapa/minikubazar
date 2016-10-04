@@ -15,34 +15,36 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var activeHaikus = [ActiveHaiku]()
     
-    var imageCache = NSCache()
+    var imageCache = NSCache<AnyObject, AnyObject>()
     
-    var stringCache = NSCache()
     
-    var imageDownloadingQueue = NSOperationQueue()
+    var stringCache = NSCache<AnyObject, AnyObject>()
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    var imageDownloadingQueue = OperationQueue()
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return activeHaikus.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = "activeCell"
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! ActiveCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! ActiveCollectionViewCell
         
-        let activeHaiku = activeHaikus[indexPath.row]
+        let activeHaiku = activeHaikus[(indexPath as NSIndexPath).row]
         
         let imageURL = activeHaiku.imageURLString
         
   
         
-        let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
+        let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
         
         if ((cachedImage) != nil) {
-            cell.updateWithImage(cachedImage)
+            cell.updateWithImage(cachedImage as! UIImage)
         } else {
-            self.imageDownloadingQueue.addOperationWithBlock({
-                let haikuImageRef = FIRStorage.storage().referenceForURL(imageURL)
-                haikuImageRef.dataWithMaxSize(1 * 3000 * 3000) { (data, error) in
+            self.imageDownloadingQueue.addOperation({
+                let haikuImageRef = FIRStorage.storage().reference(forURL: imageURL!)
+                haikuImageRef.data(withMaxSize: 1 * 3000 * 3000) { (data, error) in
                     if (error != nil) {
                         print(error)
                         print("something wrong with active haiku image from storage. check active collection view data source code")
@@ -52,7 +54,7 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                         cell.updateWithImage(haikuImage)
                         
                         if haikuImage != nil {
-                            self.imageCache.setObject(haikuImage!, forKey: imageURL)
+                            self.imageCache.setObject(haikuImage!, forKey: imageURL as AnyObject)
                         }
                     }
                 }

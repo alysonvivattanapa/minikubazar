@@ -29,7 +29,7 @@ class CompletedHaikusCollectionViewCell: UICollectionViewCell {
         updateWithImage(nil)
     }
     
-    func updateWithImage(image: UIImage?) {
+    func updateWithImage(_ image: UIImage?) {
         if let imageToDisplay = image {
             activityIndicator.stopAnimating()
             completedHaikuImageView.image = imageToDisplay

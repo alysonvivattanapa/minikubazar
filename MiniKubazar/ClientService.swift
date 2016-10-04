@@ -27,14 +27,14 @@ struct ClientService {
     
     static let storage = FIRStorage.storage()
     
-    static let storageRef = storage.referenceForURL("gs://kubazar-2.appspot.com")
+    static let storageRef = storage.reference(forURL: "gs://kubazar-2.appspot.com")
     
     static let imagesRef = storageRef.child("images")
     
     static let newCompletedHaikusRef = rootRef.child("newCompletedHaikus")
     
     
-    static func getCurrentUser(closure: (FIRUser) -> Void) {
+    static func getCurrentUser(_ closure: (FIRUser) -> Void) {
         
         if let user = FIRAuth.auth()?.currentUser {
         closure(user)
@@ -61,17 +61,23 @@ struct ClientService {
     }
     
     
-    static func getFriendUIDsForCurrentUser(closure: [String] -> Void) {
+    static func getFriendUIDsForCurrentUser(_ closure: @escaping ([String]) -> Void) {
         
         let currentUserUiD = getCurrentUserUID()
         
-        friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+        friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observe(.value, with: { snapshot in
             
             var arrayOfFriendUIDs = [String]()
             
             for item in snapshot.children {
                 
-                let friendUID = item.value.objectForKey("uid") as! String
+                let newItem = (item as! FIRDataSnapshot).value as! NSDictionary
+                
+                let friendUID = newItem.value(forKey: "uid") as! String
+                
+                
+//                
+//                let friendUID = ((item) as! AnyObject).value.object(forKey: "uid") as! String
                 
                 arrayOfFriendUIDs.append(friendUID)
             }
@@ -82,23 +88,30 @@ struct ClientService {
         
     }
     
-    static func getActiveHaikuObjectsForCurrentUser(closure: [ActiveHaiku] -> Void) {
+    static func getActiveHaikuObjectsForCurrentUser(_ closure: @escaping ([ActiveHaiku]) -> Void) {
         
         let currentUserUid = getCurrentUserUID()
         
-       activeHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+       activeHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observe(.value, with: { snapshot in
             
             var arrayOfActiveHaikuObjects = [ActiveHaiku]()
         
         for haiku in snapshot.children {
-            let firstLineString = haiku.value.objectForKey("firstLineString") as! String
-            let secondLineString = haiku.value.objectForKey("secondLineString") as! String
-            let thirdLineString = haiku.value.objectForKey("thirdLineString") as! String
-            let firstPlayerUUID = haiku.value.objectForKey("firstPlayerUUID") as! String
-            let secondPlayerUUID = haiku.value.objectForKey("secondPlayerUUID") as! String
-            let thirdPlayerUUID = haiku.value.objectForKey("thirdPlayerUUID") as! String
-            let imageURLString = haiku.value.objectForKey("imageURLString") as! String
-            let uniqueHaikuUUID = haiku.value.objectForKey("uniqueHaikuUUID") as! String
+            
+            let newHaiku = (haiku as! FIRDataSnapshot).value as! NSDictionary
+            
+            let firstLineString = newHaiku.value(forKey: "firstLineString") as! String
+            
+            let secondLineString = newHaiku.value(forKey: "secondLineString") as! String
+            
+            let thirdLineString = newHaiku.value(forKey: "thirdLineString") as! String
+            let firstPlayerUUID = newHaiku.value(forKey: "firstPlayerUUID") as! String
+            let secondPlayerUUID = newHaiku.value(forKey: "secondPlayerUUID") as! String
+            
+            let thirdPlayerUUID = newHaiku.value(forKey: "thirdPlayerUUID") as! String
+            
+            let imageURLString = newHaiku.value(forKey: "imageURLString") as! String
+            let uniqueHaikuUUID = newHaiku.value(forKey: "uniqueHaikuUUID") as! String
             
             
             let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID)
@@ -112,23 +125,29 @@ struct ClientService {
     }
     
     
-    static func getCompletedHaikuObjectsForCurrentUser(closure: [ActiveHaiku] -> Void) {
+    static func getCompletedHaikuObjectsForCurrentUser(_ closure: @escaping ([ActiveHaiku]) -> Void) {
         
         let currentUserUid = getCurrentUserUID()
         
-        newCompletedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+        newCompletedHaikusRef.child("\(currentUserUid)").queryOrderedByKey().observe(.value, with: { snapshot in
             
             var arrayOfCompletedHaikuObjects = [ActiveHaiku]()
             
             for haiku in snapshot.children {
-                let firstLineString = haiku.value.objectForKey("firstLineString") as! String
-                let secondLineString = haiku.value.objectForKey("secondLineString") as! String
-                let thirdLineString = haiku.value.objectForKey("thirdLineString") as! String
-                let firstPlayerUUID = haiku.value.objectForKey("firstPlayerUUID") as! String
-                let secondPlayerUUID = haiku.value.objectForKey("secondPlayerUUID") as! String
-                let thirdPlayerUUID = haiku.value.objectForKey("thirdPlayerUUID") as! String
-                let imageURLString = haiku.value.objectForKey("imageURLString") as! String
-                let uniqueHaikuUUID = haiku.value.objectForKey("uniqueHaikuUUID") as! String
+                
+                let newHaiku = (haiku as! FIRDataSnapshot).value as! NSDictionary
+                
+                let firstLineString = newHaiku.object(forKey: "firstLineString") as! String
+                
+                let secondLineString = newHaiku.object(forKey: "secondLineString") as! String
+                
+                let thirdLineString = newHaiku.object(forKey: "thirdLineString") as! String
+                
+                let firstPlayerUUID = newHaiku.object(forKey: "firstPlayerUUID") as! String
+                let secondPlayerUUID = newHaiku.object(forKey: "secondPlayerUUID") as! String
+                let thirdPlayerUUID = newHaiku.object(forKey: "thirdPlayerUUID") as! String
+                let imageURLString = newHaiku.object(forKey: "imageURLString") as! String
+                let uniqueHaikuUUID = newHaiku.object(forKey: "uniqueHaikuUUID") as! String
                 
                 
                 let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID)
@@ -167,17 +186,19 @@ struct ClientService {
 //        
 //    }
     
-    static func getFriendEmailsForCurrentUser(closure: [String] -> Void) {
+    static func getFriendEmailsForCurrentUser(_ closure: @escaping ([String]) -> Void) {
         
         let currentUserUiD = getCurrentUserUID()
         
-        friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+        friendsRef.child("\(currentUserUiD)").queryOrderedByKey().observe(.value, with: { snapshot in
             
             var friendEmails = [String]()
             
             for item in snapshot.children {
                 
-                let friendEmail = item.value.objectForKey("email") as! String
+                let newItem = (item as! FIRDataSnapshot).value as! NSDictionary
+                
+                let friendEmail = newItem.object(forKey: "email") as! String
                 
                 friendEmails.append(friendEmail)
             }
@@ -190,7 +211,7 @@ struct ClientService {
         
     }
 
-    static func addFriendToCurrentUserFriendsList (friend: User) {
+    static func addFriendToCurrentUserFriendsList (_ friend: User) {
         let currentUserUID = ClientService.getCurrentUserUID()
         let currentUserFriendsRef = friendsRef.child(currentUserUID)
         
@@ -200,15 +221,15 @@ struct ClientService {
         
         let userDictionary: NSDictionary = ["uid": uid!, "email": email, "username": username]
         
-        currentUserFriendsRef.child(uid).setValue(userDictionary)
+        currentUserFriendsRef.child(uid!).setValue(userDictionary)
         
     }
     
-    static func addActiveHaikuForSoloPlayer (activeHaiku: ActiveHaiku) {
+    static func addActiveHaikuForSoloPlayer (_ activeHaiku: ActiveHaiku) {
         
     }
     
-    static func addActiveHaikuForPlayers (activeHaiku: ActiveHaiku) {
+    static func addActiveHaikuForPlayers (_ activeHaiku: ActiveHaiku) {
         let currentUserUID = ClientService.getCurrentUserUID()
         let currentUserActiveHaikusRef = activeHaikusRef.child(currentUserUID)
         
@@ -223,23 +244,23 @@ struct ClientService {
         
         let activeHaikuDictionary: NSDictionary = ["firstLineString": firstLineString!, "secondLineString": secondLineString!, "thirdLineString": thirdLineString!, "imageURLString": imageURLString!, "firstPlayerUUID": firstPlayerUUID!, "secondPlayerUUID": secondPlayerUUID!, "thirdPlayerUUID": thirdPlayerUUID!, "uniqueHaikuUUID": uniqueHaikuUUID!]
         
-        currentUserActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+        currentUserActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
         
         if currentUserUID != firstPlayerUUID {
-            let firstPlayerActiveHaikusRef = activeHaikusRef.child(firstPlayerUUID)
-            firstPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+            let firstPlayerActiveHaikusRef = activeHaikusRef.child(firstPlayerUUID!)
+            firstPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
         }
 
         
         if currentUserUID != secondPlayerUUID {
-            let secondPlayerActiveHaikusRef = activeHaikusRef.child(secondPlayerUUID)
-            secondPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+            let secondPlayerActiveHaikusRef = activeHaikusRef.child(secondPlayerUUID!)
+            secondPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
         }
         
         if currentUserUID != thirdPlayerUUID {
-            let thirdPlayerActiveHaikusRef = activeHaikusRef.child(thirdPlayerUUID)
+            let thirdPlayerActiveHaikusRef = activeHaikusRef.child(thirdPlayerUUID!)
             
-            thirdPlayerActiveHaikusRef.child(uniqueHaikuUUID).setValue(activeHaikuDictionary)
+            thirdPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
         }
         
     }
@@ -248,23 +269,23 @@ struct ClientService {
 //        
 //    }
 //    
-    static func fetchActiveHaikuAndMoveToNewCompletedHaikus (uniqueHaikuUUID: String, thirdLineTextString: String) {
+    static func fetchActiveHaikuAndMoveToNewCompletedHaikus (_ uniqueHaikuUUID: String, thirdLineTextString: String) {
         
         print("THIS CLIENT SERVICE FUNCTION SHOULD BE TRIGGGERED OF THIRD TEXT FIELD WAS EDITED for unique id \(uniqueHaikuUUID)")
         
         let currentUserUID = getCurrentUserUID()
         
-        activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { snapshot in
+        activeHaikusRef.child("\(currentUserUID)/\(uniqueHaikuUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
             
             if snapshot.exists() {
             print("CURRENT ACTIVE HAIKU FROM FETCH ACTIVE HAIKU FUCNTION \(snapshot)")
             
-            let firstLine = snapshot.value?.objectForKey("firstLineString") as! String
-            let secondLine = snapshot.value?.objectForKey("secondLineString") as! String
-            let imageURL = snapshot.value?.objectForKey("imageURLString") as! String
-            let firstPlayer = snapshot.value?.objectForKey("firstPlayerUUID") as! String
-            let secondPlayer = snapshot.value?.objectForKey("secondPlayerUUID") as! String
-            let thirdPlayer = snapshot.value?.objectForKey("thirdPlayerUUID") as! String
+            let firstLine = (snapshot.value as AnyObject).object(forKey: "firstLineString") as! String
+            let secondLine = (snapshot.value as AnyObject).object(forKey: "secondLineString") as! String
+            let imageURL = (snapshot.value as AnyObject).object(forKey: "imageURLString") as! String
+            let firstPlayer = (snapshot.value as AnyObject).object(forKey: "firstPlayerUUID") as! String
+            let secondPlayer = (snapshot.value as AnyObject).object(forKey: "secondPlayerUUID") as! String
+            let thirdPlayer = (snapshot.value as AnyObject).object(forKey: "thirdPlayerUUID") as! String
             
             let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID)
             

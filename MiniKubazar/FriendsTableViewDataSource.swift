@@ -14,18 +14,18 @@ class FriendsTableViewDataSource: NSObject, UITableViewDataSource {
     
     var friendArray = [User]()
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return friendArray.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let identifier = "friendsCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! FriendsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FriendsTableViewCell
         
-       let friend = friendArray[indexPath.row]
+       let friend = friendArray[(indexPath as NSIndexPath).row]
         cell.friendsUsername.text = friend.email
         
         return cell

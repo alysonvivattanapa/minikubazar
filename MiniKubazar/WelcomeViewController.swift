@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-var reachability: Reachability?
+let reachability = Reachability()!
 
 class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var kubazarLogo: UIImageView!
     
-    var timer = NSTimer()
+    var timer = Timer()
     
     
     
@@ -35,14 +35,14 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
         passwordTextField.delegate = self
        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WelcomeViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     
 
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         let transformAnimation = CABasicAnimation(keyPath: "transform.translation.y")
         transformAnimation.duration = 1
@@ -50,26 +50,22 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         transformAnimation.autoreverses = false
         transformAnimation.fromValue = -180
         transformAnimation.toValue = 180
-        transformAnimation.removedOnCompletion = false
+        transformAnimation.isRemovedOnCompletion = false
         transformAnimation.fillMode = kCAFillModeForwards
 
     }
   
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            return
-        }
+//        let reachability = Reachability()!
         
-        reachability!.whenReachable = { reachability in
+        
+        reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
-                if reachability.isReachableViaWiFi() {
+            DispatchQueue.main.async {
+                if reachability.isReachableViaWiFi {
                     print("Reachable via WiFi")
                 } else {
                     print("Reachable via Cellular")
@@ -77,38 +73,38 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        reachability!.whenUnreachable = { reachability in
+        reachability.whenUnreachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 print("Not reachable")
                 
-                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default) { (action: UIAlertAction) -> Void in
+                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .default) { (action: UIAlertAction) -> Void in
                 }
                 alert.addAction(okayAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
                 
             }
         }
         
         do {
-            try reachability!.startNotifier()
+            try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
         }
         
 
         
-        kubazarLogo.transform = CGAffineTransformMakeScale(2, 2)
+        kubazarLogo.transform = CGAffineTransform(scaleX: 2, y: 2)
         
-        UIView.animateWithDuration(2.0,
+        UIView.animate(withDuration: 2.0,
                                    delay: 0,
                                    usingSpringWithDamping: 0.37,
                                    initialSpringVelocity: 6.7,
-                                   options: UIViewAnimationOptions.CurveEaseIn,
+                                   options: UIViewAnimationOptions.curveEaseIn,
                                    animations: {
-                                    self.kubazarLogo.transform = CGAffineTransformIdentity
+                                    self.kubazarLogo.transform = CGAffineTransform.identity
             },
                                    completion: { Void in()  }
         )
@@ -127,7 +123,7 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         
         
         
-        UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: CGFloat(0.9), initialSpringVelocity: CGFloat(6.7), options: .CurveEaseIn, animations: {
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: CGFloat(0.9), initialSpringVelocity: CGFloat(6.7), options: .curveEaseIn, animations: {
             self.loginButton.center.y = originLoginY
             self.signupButton.center.y = originSignUpY
             self.emailTextField.center.y = originEmailY
@@ -135,37 +131,37 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
             }, completion: nil)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
        
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func keyboardWillHide(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+    func keyboardWillHide(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
         self.view.frame.origin.y += keyboardSize.height
     }
     
-    func keyboardWillShow(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+    func keyboardWillShow(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
         
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
-        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        let offset: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size
         
         if keyboardSize.height == offset.height {
             if self.view.frame.origin.y == 0 {
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
                     self.view.frame.origin.y -= keyboardSize.height
                 })
             }
         } else {
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.view.frame.origin.y += keyboardSize.height - offset.height
             })
         }
@@ -175,23 +171,23 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func loginButtonPressed(sender: AnyObject) {
+    @IBAction func loginButtonPressed(_ sender: AnyObject) {
         
         if emailTextField.text == "" || passwordTextField.text == "" {
-            self.presentViewController( Alerts.showErrorMessage("Please enter your email & password."), animated: true, completion: nil)
+            self.present( Alerts.showErrorMessage("Please enter your email & password."), animated: true, completion: nil)
             
             
         } else {
             
-            if let email = emailTextField.text, password = passwordTextField.text {
+            if let email = emailTextField.text, let password = passwordTextField.text {
                 
-                FIRAuth.auth()?.signInWithEmail(email, password: password) { (user, error) in
+                FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
                     
                     if error != nil {
-                        self.presentViewController(Alerts.showErrorMessage((error?.localizedDescription)!), animated: true, completion: nil)
+                        self.present(Alerts.showErrorMessage((error?.localizedDescription)!), animated: true, completion: nil)
                     } else {
                         
-                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.tabBarController?.viewControllers?.removeAll()
                         
                         let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
@@ -221,13 +217,13 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
 
 
-    @IBAction func signupButtonPressed(sender: AnyObject) {
+    @IBAction func signupButtonPressed(_ sender: AnyObject) {
                 
         
         let signupVC = SignupViewController()
-        signupVC.modalTransitionStyle = .CrossDissolve
+        signupVC.modalTransitionStyle = .crossDissolve
         
-       presentViewController(signupVC, animated: true, completion: nil)
+       present(signupVC, animated: true, completion: nil)
     }
     
 

@@ -14,6 +14,6 @@ struct Haiku {
         let firstLineHaiku: String!
         let secondLineHaiku: String!
         let thirdLineHaiku: String!
-        let imageHaikuDownloadURL: NSURL!
+        let imageHaikuDownloadURL: URL!
         let uuid: String!
 }

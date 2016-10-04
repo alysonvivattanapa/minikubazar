@@ -102,16 +102,16 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         chooseFriendsTableView.dataSource = chooseFriendsTableViewDataSource
         chooseFriendsTableView.delegate = self
         
-        fetchFriendsAndSetToDataSource()
+        self.fetchFriendsAndSetToDataSource()
         
         let friendsNib = UINib.init(nibName: "FriendsTableViewCell", bundle: nil)
-        chooseFriendsTableView.registerNib(friendsNib, forCellReuseIdentifier: "friendsCell")
+        chooseFriendsTableView.register(friendsNib, forCellReuseIdentifier: "friendsCell")
         
 //    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        
 //    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(StartViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
-    stepOneCreateNewHaiku()
+    self.stepOneCreateNewHaiku()
         
     oneFriendOptionChosen = false
     twoFriendsOptionChosen = false
@@ -119,74 +119,67 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            return
-        }
+        let reachability = Reachability()!
         
-        reachability!.whenReachable = { reachability in
+        reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
-                if reachability.isReachableViaWiFi() {
+            DispatchQueue.main.async() {
+                if reachability.isReachableViaWiFi {
                     print("Reachable via WiFi")
                 } else {
                     print("Reachable via Cellular")
                 }
             }
         }
-        
-        reachability!.whenUnreachable = { reachability in
+        reachability.whenUnreachable = { reachability in
             // this is called on a background thread, but UI updates must
             // be on the main thread, like this:
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async() {
                 print("Not reachable")
-                
-                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default) { (action: UIAlertAction) -> Void in
+                let alert = UIAlertController(title: "Oops!", message: "Please connect to the internet to use Kubazar.", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .default) { (action: UIAlertAction) -> Void in
                 }
                 alert.addAction(okayAction)
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
                 
             }
-        }
-        
-        do {
-            try reachability!.startNotifier()
-        } catch {
-            print("Unable to start notifier")
+            
+            do {
+                try reachability.startNotifier()
+            } catch {
+                print("Unable to start notifier")
+            }
         }
         
         
         firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
         secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
         thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
-        firstLineHaikuTextView.textColor = UIColor.lightGrayColor()
-        secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
-        thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        firstLineHaikuTextView.textColor = UIColor.lightGray
+        secondLineHaikuTextView.textColor = UIColor.lightGray
+        thirdLineHaikuTextView.textColor = UIColor.lightGray
         
-        if createNewHaikuView.hidden == false {
+        if createNewHaikuView.isHidden == false {
             startAnimation()
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        if textView.textColor == UIColor.lightGrayColor() {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.whiteColor()
+            textView.textColor = UIColor.white
             textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
             textView.layer.cornerRadius = 5
             textView.clipsToBounds = true
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,21 +190,21 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func stepOneCreateNewHaiku() {
         
         setAllSubviewsToHidden()
-        createNewHaikuView.hidden = false
+        createNewHaikuView.isHidden = false
         startAnimation()
 
     }
     
     func startAnimation() {
-        byYourselfButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        byYourselfButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         
-        playWithOneFriendButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        playWithOneFriendButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         
-        playWithTwoFriendsButton.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        playWithTwoFriendsButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         
-        firstKubazarMascot.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        firstKubazarMascot.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         
-        createNewHaikuLabel.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        createNewHaikuLabel.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
 
         
 //        animator = UIDynamicAnimator(referenceView: self.createNewHaikuView)
@@ -228,41 +221,41 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        itemBehavior.elasticity = 0.7
 //        animator.addBehavior(itemBehavior)
         
-        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
-            self.byYourselfButton.transform = CGAffineTransformIdentity
-            self.playWithOneFriendButton.transform = CGAffineTransformIdentity
-            self.playWithTwoFriendsButton.transform = CGAffineTransformIdentity
-            self.firstKubazarMascot.transform = CGAffineTransformIdentity
-            self.createNewHaikuLabel.transform = CGAffineTransformIdentity
+        UIView.animate(withDuration: 1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .allowUserInteraction, animations: {
+            self.byYourselfButton.transform = CGAffineTransform.identity
+            self.playWithOneFriendButton.transform = CGAffineTransform.identity
+            self.playWithTwoFriendsButton.transform = CGAffineTransform.identity
+            self.firstKubazarMascot.transform = CGAffineTransform.identity
+            self.createNewHaikuLabel.transform = CGAffineTransform.identity
             }, completion: nil)
         
     }
     
-    func imageViewAnimation(imageView: UIImageView){
-        imageView.transform = CGAffineTransformMakeScale(0.7, 0.7)
-        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
-            imageView.transform = CGAffineTransformIdentity
+    func imageViewAnimation(_ imageView: UIImageView){
+        imageView.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        UIView.animate(withDuration: 1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .allowUserInteraction, animations: {
+            imageView.transform = CGAffineTransform.identity
             }, completion: nil)
     }
     
-    func buttonAnimation(button: UIButton){
-        button.transform = CGAffineTransformMakeScale(0.7, 0.7)
-        UIView.animateWithDuration(1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .AllowUserInteraction, animations: {
-            button.transform = CGAffineTransformIdentity
+    func buttonAnimation(_ button: UIButton){
+        button.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        UIView.animate(withDuration: 1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .allowUserInteraction, animations: {
+            button.transform = CGAffineTransform.identity
             }, completion: nil)
     }
     
     func stepTwoChoosePicture() {
         setAllSubviewsToHidden()
-        choosePictureView.hidden = false
+        choosePictureView.isHidden = false
         buttonAnimation(cameraButton)
         buttonAnimation(cameraRollButton)
         buttonAnimation(inspireMeButton)
-        enterHaikuContinueButton.hidden = true
-        enterHaikuFinishButton.hidden = false
+        enterHaikuContinueButton.isHidden = true
+        enterHaikuFinishButton.isHidden = false
     }
     
-    @IBAction func choosePictureBackButtonPressed(sender: AnyObject) {
+    @IBAction func choosePictureBackButtonPressed(_ sender: AnyObject) {
         stepOneCreateNewHaiku()
        
     }
@@ -270,7 +263,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func stepThreeEnterHaiku() {
         setAllSubviewsToHidden()
-        enterHaikuView.hidden = false
+        enterHaikuView.isHidden = false
         imageViewAnimation(haikuImageView)
     }
     
@@ -294,72 +287,72 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //        stepTwoChoosePicture()
 //    }
     
-    @IBAction func byYourselfButtonPressed(sender: AnyObject) {
+    @IBAction func byYourselfButtonPressed(_ sender: AnyObject) {
         stepTwoChoosePicture()
     }
     
-    @IBAction func thirdBackButtonPressed(sender: AnyObject) {
+    @IBAction func thirdBackButtonPressed(_ sender: AnyObject) {
 //        haikuFirstLine.text? = ""
 //        haikuSecondLine.text? = ""
 //        haikuThirdLine.text? = ""
        stepTwoChoosePicture()
        self.view.endEditing(true)
-        firstLineHaikuTextView.backgroundColor = UIColor.whiteColor()
-        secondLineHaikuTextView.backgroundColor = UIColor.whiteColor()
-        thirdLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        firstLineHaikuTextView.backgroundColor = UIColor.white
+        secondLineHaikuTextView.backgroundColor = UIColor.white
+        thirdLineHaikuTextView.backgroundColor = UIColor.white
         firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
         secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
         thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
-        firstLineHaikuTextView.textColor = UIColor.lightGrayColor()
-        secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
-        thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+        firstLineHaikuTextView.textColor = UIColor.lightGray
+        secondLineHaikuTextView.textColor = UIColor.lightGray
+        thirdLineHaikuTextView.textColor = UIColor.lightGray
         
-        enterHaikuContinueButton.hidden = true
-        enterHaikuFinishButton.hidden = false
+        enterHaikuContinueButton.isHidden = true
+        enterHaikuFinishButton.isHidden = false
     
     }
     
     
     func setAllSubviewsToHidden() {
-        createNewHaikuView.hidden = true
-        choosePictureView.hidden = true
-        enterHaikuView.hidden = true
-        congratsView.hidden = true
-        chooseFriendsView.hidden = true
+        createNewHaikuView.isHidden = true
+        choosePictureView.isHidden = true
+        enterHaikuView.isHidden = true
+        congratsView.isHidden = true
+        chooseFriendsView.isHidden = true
     }
     
-    @IBAction func cameraButtonPressed(sender: AnyObject) {
+    @IBAction func cameraButtonPressed(_ sender: AnyObject) {
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
             imagePicker.allowsEditing = true
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
         
     }
     
-    @IBAction func cameraRollButtonPressed(sender: AnyObject) {
+    @IBAction func cameraRollButtonPressed(_ sender: AnyObject) {
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = true
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
         haikuImageView.image = image
-        self.dismissViewControllerAnimated(true, completion: nil);
+        self.dismiss(animated: true, completion: nil);
         stepThreeEnterHaiku()
     }
     
     
     
-    @IBAction func inspireMeButtonPressed(sender: AnyObject) {
+    @IBAction func inspireMeButtonPressed(_ sender: AnyObject) {
         
         let random = arc4random_uniform(9)
         
@@ -416,26 +409,26 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
    
     
-    func keyboardWillHide(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+    func keyboardWillHide(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
         self.view.frame.origin.y += keyboardSize.height
     }
     
-    func keyboardWillShow(sender: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+    func keyboardWillShow(_ sender: Notification) {
+        let userInfo: [AnyHashable: Any] = (sender as NSNotification).userInfo!
         
-        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
-        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.size
+        let offset: CGSize = (userInfo[UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue.size
         
         if keyboardSize.height == offset.height {
             if self.view.frame.origin.y == 0 {
-                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                UIView.animate(withDuration: 0.1, animations: { () -> Void in
                     self.view.frame.origin.y -= keyboardSize.height
                 })
             }
         } else {
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.view.frame.origin.y += keyboardSize.height - offset.height
             })
         }
@@ -443,14 +436,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
 
     
-    @IBAction func finishButtonPressed(sender: AnyObject) {
+    @IBAction func finishButtonPressed(_ sender: AnyObject) {
         self.view.endEditing(true)
         
         if firstLineHaikuTextView.text == "Enter first line of haiku: 5 syllables" ||
         secondLineHaikuTextView.text == "Enter second line of haiku: 7 syllables" ||
             thirdLineHaikuTextView.text == "Enter third line of haiku: 5 syllables" {
             // prevent player from entering haiku without editing all three lines
-            self.presentViewController(Alerts.showErrorMessage("Please enter a full haiku to finish."), animated: true, completion: nil)
+            self.present(Alerts.showErrorMessage("Please enter a full haiku to finish."), animated: true, completion: nil)
             
         } else {
         
@@ -470,12 +463,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
         
-        let uniqueHaikuUUID = NSUUID().UUIDString
+        let uniqueHaikuUUID = UUID().uuidString
         
         let currentImageRef = imagesRefForCurrentUser.child(uniqueHaikuUUID)
         
         if let data = UIImagePNGRepresentation(finishedImageView.image!) {
-            currentImageRef.putData(data, metadata: nil) {
+            currentImageRef.put(data, metadata: nil) {
                 metadata, error in
                 if (error != nil) {
                     print(error)
@@ -487,8 +480,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let newCompletedHaikusForCurrentUserRef = ClientService.newCompletedHaikusRef.child(currentUserUID)
                     
                     
-                    if let firstLine = self.firstLineHaikuTextView.text, secondLine =
-                        self.secondLineHaikuTextView.text, thirdLine =
+                    if let firstLine = self.firstLineHaikuTextView.text, let secondLine =
+                        self.secondLineHaikuTextView.text, let thirdLine =
                         self.thirdLineHaikuTextView.text {
                         let newHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLine, imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: currentUserUID, secondPlayerUUID: currentUserUID, thirdPlayerUUID: currentUserUID, uniqueHaikuUUID: uniqueHaikuUUID)
                         
@@ -529,7 +522,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                         // }
                         
                         let completedDetailVC = CompletedHaikuDetailViewController()
-                        self.presentViewController(completedDetailVC, animated: false) {
+                        self.present(completedDetailVC, animated: false) {
                             completedDetailVC.completedHaikuDetailImageView.image = self.finishedImageView.image
                             completedDetailVC.firstLineLabel.text = firstLine
                             completedDetailVC.secondLineLabel.text = secondLine
@@ -544,7 +537,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
             return false
@@ -555,14 +548,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     
     
-    @IBAction func shareButtonPressed(sender: AnyObject) {
+    @IBAction func shareButtonPressed(_ sender: AnyObject) {
         
         let shareableHaikuImage = createShareableHaikuImage()
         let activityItemsArray = [shareableHaikuImage]
         let activityVC = UIActivityViewController.init(activityItems: activityItemsArray, applicationActivities: nil)
         //excluded iMessage from activity types because it was messing with keyboard UI with resigningFirstResponder stuff again.
-        activityVC.excludedActivityTypes = [UIActivityTypeMessage]
-        presentViewController(activityVC, animated: true, completion: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.message]
+        present(activityVC, animated: true, completion: nil)
 
     }
     
@@ -570,11 +563,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         var shareableHaikuImage: UIImage
         
-        UIGraphicsBeginImageContextWithOptions(shareableHaikuView.bounds.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(shareableHaikuView.bounds.size, false, UIScreen.main.scale)
         
-        shareableHaikuView.drawViewHierarchyInRect(shareableHaikuView.bounds, afterScreenUpdates: true)
+        shareableHaikuView.drawHierarchy(in: shareableHaikuView.bounds, afterScreenUpdates: true)
 
-        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()
+        shareableHaikuImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return shareableHaikuImage
@@ -582,12 +575,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    @IBAction func createANewHaikuButtonPressed(sender: AnyObject) {
+    @IBAction func createANewHaikuButtonPressed(_ sender: AnyObject) {
         
        stepOneCreateNewHaiku()
-        firstLineHaikuTextView.backgroundColor = UIColor.whiteColor()
-        secondLineHaikuTextView.backgroundColor = UIColor.whiteColor()
-        thirdLineHaikuTextView.backgroundColor = UIColor.whiteColor()
+        firstLineHaikuTextView.backgroundColor = UIColor.white
+        secondLineHaikuTextView.backgroundColor = UIColor.white
+        thirdLineHaikuTextView.backgroundColor = UIColor.white
         
     }
     
@@ -610,21 +603,21 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     //    }
 
     
-    @IBAction func playWithOneFriendButtonPressed(sender: AnyObject) {
+    @IBAction func playWithOneFriendButtonPressed(_ sender: AnyObject) {
         
         selectOneFriend()
         
     }
     
     
-    @IBAction func chooseFriendsBackButtonPressed(sender: AnyObject) {
+    @IBAction func chooseFriendsBackButtonPressed(_ sender: AnyObject) {
         stepOneCreateNewHaiku()
         clearSelectedRows()
         arrayOfChosenFriends = []
         oneFriendOptionChosen = false
         twoFriendsOptionChosen = false
-        enterHaikuContinueButton.hidden = true
-        enterHaikuFinishButton.hidden = false
+        enterHaikuContinueButton.isHidden = true
+        enterHaikuFinishButton.isHidden = false
         
     }
     
@@ -632,9 +625,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if let indexPathsForSelectedRows = chooseFriendsTableView.indexPathsForSelectedRows {
             
             for indexPath in indexPathsForSelectedRows {
-                self.chooseFriendsTableView.deselectRowAtIndexPath(indexPath, animated: true)
-                if let cell = chooseFriendsTableView.cellForRowAtIndexPath(indexPath) {
-                    cell.accessoryType = .None
+                self.chooseFriendsTableView.deselectRow(at: indexPath, animated: true)
+                if let cell = chooseFriendsTableView.cellForRow(at: indexPath) {
+                    cell.accessoryType = .none
                 }
             }
         }
@@ -642,14 +635,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    @IBAction func playWithTwoFriendsButtonPressed(sender: AnyObject) {
+    @IBAction func playWithTwoFriendsButtonPressed(_ sender: AnyObject) {
         selectTwoFriends()
     }
     
     func selectOneFriend() {
         setAllSubviewsToHidden()
         chooseFriendsLabel.text = "Choose one friend."
-        chooseFriendsView.hidden = false
+        chooseFriendsView.isHidden = false
         chooseFriendsTableView.allowsMultipleSelection = false
         chooseFriendsTableView.allowsSelection = true
         oneFriendOptionChosen = true
@@ -659,7 +652,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func selectTwoFriends() {
         setAllSubviewsToHidden()
         chooseFriendsLabel.text = "Choose two friends."
-        chooseFriendsView.hidden = false
+        chooseFriendsView.isHidden = false
         chooseFriendsTableView.allowsMultipleSelection = true
         twoFriendsOptionChosen = true
     }
@@ -672,21 +665,21 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         ClientService.getFriendUIDsForCurrentUser { (arrayOfFriendUIDs) in
             
-            NSOperationQueue.mainQueue().addOperationWithBlock  {
+            OperationQueue.main.addOperation  {
                 let friendUIDArray = arrayOfFriendUIDs
                 
                 self.chooseFriendsTableViewDataSource.friendArray = []
                 
                 for friendUID in friendUIDArray {
-                    ClientService.profileRef.child("\(friendUID)").queryOrderedByKey().observeEventType(.Value, withBlock: { (friend) in
+                    ClientService.profileRef.child("\(friendUID)").queryOrderedByKey().observe(.value, with: { (friend) in
                         print("FRIEND is \(friend)")
-                        let uid = friend.value!.objectForKey("uid") as! String
-                        let email = friend.value!.objectForKey("email") as! String
-                        let username = friend.value!.objectForKey("username") as! String
+                        let uid = (friend.value! as AnyObject).object(forKey: "uid") as! String
+                        let email = (friend.value! as AnyObject).object(forKey: "email") as! String
+                        let username = (friend.value! as AnyObject).object(forKey: "username") as! String
                         let friend = User(username: username, email: email, uid: uid)
                         self.chooseFriendsTableViewDataSource.friendArray.append(friend)
                         
-                        self.chooseFriendsTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                        self.chooseFriendsTableView.reloadSections(IndexSet(integer: 0), with: .none)
                         
                     })
                 }
@@ -694,18 +687,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
         //adjust height later
     }
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let selectedRows = tableView.indexPathsForSelectedRows {
             if selectedRows.count == 2 {
-                let alertController = UIAlertController(title: "Choose only two friends.", message: "You can only choose two friends. To continue, please deselect any additional friends.", preferredStyle: .Alert)
-                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                let alertController = UIAlertController(title: "Choose only two friends.", message: "You can only choose two friends. To continue, please deselect any additional friends.", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                 alertController.addAction(okayAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
             
             if selectedRows.count > 2 {
@@ -717,15 +710,15 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("did select: \(indexPath.row)")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("did select: \((indexPath as NSIndexPath).row)")
         
         let indexPath = tableView.indexPathForSelectedRow
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath!) as! FriendsTableViewCell
+        let selectedCell = tableView.cellForRow(at: indexPath!) as! FriendsTableViewCell
         
-        if selectedCell.selected {
-            selectedCell.accessoryType = .Checkmark
+        if selectedCell.isSelected {
+            selectedCell.accessoryType = .checkmark
             if let email = selectedCell.friendsUsername.text {
                 if self.arrayOfChosenFriends.contains(email) {
                     print("\(email) already added to array")
@@ -747,10 +740,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FriendsTableViewCell
-        cell.accessoryType = .None
+        let cell = tableView.cellForRow(at: indexPath) as! FriendsTableViewCell
+        cell.accessoryType = .none
         if let email = cell.friendsUsername.text {
             let updatedArray = self.arrayOfChosenFriends.filter {$0 != email}
             self.arrayOfChosenFriends = updatedArray
@@ -768,47 +761,47 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func enterNewHaikuWithOneFriend() {
         setAllSubviewsToHidden()
-        choosePictureView.hidden = false
+        choosePictureView.isHidden = false
         
-        enterHaikuFinishButton.hidden = true
-        enterHaikuContinueButton.hidden = false
+        enterHaikuFinishButton.isHidden = true
+        enterHaikuContinueButton.isHidden = false
         
         if let email = arrayOfChosenFriends.first {
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
             secondLineHaikuTextView.text = "\(email) enters second line of haiku."
-            secondLineHaikuTextView.userInteractionEnabled = false
+            secondLineHaikuTextView.isUserInteractionEnabled = false
             
             thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
-            thirdLineHaikuTextView.userInteractionEnabled = false
+            thirdLineHaikuTextView.isUserInteractionEnabled = false
             
-            secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
-            thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+            secondLineHaikuTextView.textColor = UIColor.lightGray
+            thirdLineHaikuTextView.textColor = UIColor.lightGray
         }
     }
     
     func enterNewHaikuWithTwoFriends() {
         setAllSubviewsToHidden()
-        choosePictureView.hidden = false
+        choosePictureView.isHidden = false
         
-        enterHaikuFinishButton.hidden = true
-        enterHaikuContinueButton.hidden = false
+        enterHaikuFinishButton.isHidden = true
+        enterHaikuContinueButton.isHidden = false
         
-        if let firstFriendEmail = arrayOfChosenFriends.first, secondFriendEmail = arrayOfChosenFriends.last {
+        if let firstFriendEmail = arrayOfChosenFriends.first, let secondFriendEmail = arrayOfChosenFriends.last {
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then press Continue."
             secondLineHaikuTextView.text = "\(firstFriendEmail) enters second line of haiku."
-            secondLineHaikuTextView.userInteractionEnabled = false
+            secondLineHaikuTextView.isUserInteractionEnabled = false
             
             thirdLineHaikuTextView.text = "\(secondFriendEmail) enters third line of haiku."
-            thirdLineHaikuTextView.userInteractionEnabled = false
+            thirdLineHaikuTextView.isUserInteractionEnabled = false
             
-            secondLineHaikuTextView.textColor = UIColor.lightGrayColor()
-            thirdLineHaikuTextView.textColor = UIColor.lightGrayColor()
+            secondLineHaikuTextView.textColor = UIColor.lightGray
+            thirdLineHaikuTextView.textColor = UIColor.lightGray
         }
     }
     
     
     
-    @IBAction func chooseFriendsContinueButtonPressed(sender: AnyObject) {
+    @IBAction func chooseFriendsContinueButtonPressed(_ sender: AnyObject) {
         
         print("one friend option chosen = \(oneFriendOptionChosen)")
         print("two friend options chosen = \(twoFriendsOptionChosen)")
@@ -826,15 +819,15 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                 enterNewHaikuWithTwoFriends()
                                 clearSelectedRows()
                             } else {
-                                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .Alert)
-                                let okayAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                                let alertController = UIAlertController(title: "Oops!", message: "Please select the appropriate number of friends.", preferredStyle: .alert)
+                                let okayAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                                 alertController.addAction(okayAction)
-                                self.presentViewController(alertController, animated: true, completion: nil)
+                                self.present(alertController, animated: true, completion: nil)
         }
     }
     
     
-    @IBAction func enterHaikuContinueButtonPressed(sender: AnyObject) {
+    @IBAction func enterHaikuContinueButtonPressed(_ sender: AnyObject) {
         
         print("enterHaikuConinueButton pressed")
         
@@ -846,7 +839,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             if let oneFriend = self.arrayOfChosenFriends.first {
             
-            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(oneFriend)"), animated: true, completion: nil)
+            self.present(Alerts.showSuccessMessage("You started a haiku with \(oneFriend)"), animated: true, completion: nil)
             }
             
            //create active haiku object and save to backend; then populate active tableview
@@ -854,25 +847,25 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             saveActiveHaikuForThreePlayers(currentUserUID)
             //create active haiku object and save to backend; then populate active tableview
-            if let firstFriend = self.arrayOfChosenFriends.first, secondFriend = self.arrayOfChosenFriends.last {
-            self.presentViewController(Alerts.showSuccessMessage("You started a haiku with \(firstFriend) and \(secondFriend)"), animated: true, completion: nil)
+            if let firstFriend = self.arrayOfChosenFriends.first, let secondFriend = self.arrayOfChosenFriends.last {
+            self.present(Alerts.showSuccessMessage("You started a haiku with \(firstFriend) and \(secondFriend)"), animated: true, completion: nil)
             }
         }
     }
     
     
-    func saveActiveHaikuForTwoPlayers(currentUserUID: String) {
+    func saveActiveHaikuForTwoPlayers(_ currentUserUID: String) {
         
         let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
         
-        let uuid = NSUUID().UUIDString
+        let uuid = UUID().uuidString
         
         let currentImageRef = imagesRefForCurrentUser.child(uuid)
         
         let haikuImage = haikuImageView.image
         
         if let data = UIImagePNGRepresentation(haikuImage!) {
-            currentImageRef.putData(data, metadata: nil) {
+            currentImageRef.put(data, metadata: nil) {
                 metadata, error in
                 if (error != nil) {
                     print("uh-oh! trouble saving image")
@@ -882,12 +875,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
                     
                     if let secondPlayerEmail = self.arrayOfChosenFriends.first {
-                        ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(secondPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (friendSnapshot) in
+                        ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: secondPlayerEmail).observeSingleEvent(of: .childAdded, with: { (friendSnapshot) in
                             
                             let firstPlayerUID = currentUserUID
                             let thirdPlayerUID = currentUserUID
                             
-                            let secondPlayerUID = friendSnapshot.value?.objectForKey("uid") as! String
+                            let secondPlayerUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
                             
                             //save image and create imageHiakuDOwnloadURL
                             
@@ -905,18 +898,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    func saveActiveHaikuForThreePlayers(currentUserUID: String) {
+    func saveActiveHaikuForThreePlayers(_ currentUserUID: String) {
         
         let imagesRefForCurrentUser = ClientService.imagesRef.child(currentUserUID)
         
-        let uuid = NSUUID().UUIDString
+        let uuid = UUID().uuidString
         
         let currentImageRef = imagesRefForCurrentUser.child(uuid)
         
         let haikuImage = haikuImageView.image
         
         if let data = UIImagePNGRepresentation(haikuImage!) {
-            currentImageRef.putData(data, metadata: nil) {
+            currentImageRef.put(data, metadata: nil) {
                 metadata, error in
                 if (error != nil) {
                     print("uh-oh! trouble saving image")
@@ -926,17 +919,17 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let imageHaikuDownloadStringFromURL = imageDownloadURL!.absoluteString
                     
                     if let secondPlayerEmail = self.arrayOfChosenFriends.first {
-                        ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(secondPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (secondPlayerSnapshot) in
+                        ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: secondPlayerEmail).observeSingleEvent(of: .childAdded, with: { (secondPlayerSnapshot) in
                             
                             let firstPlayerUID = currentUserUID
                             
-                            let secondPlayerUID = secondPlayerSnapshot.value?.objectForKey("uid") as! String
+                            let secondPlayerUID = (secondPlayerSnapshot.value as AnyObject).object(forKey: "uid") as! String
                             
                             if let thirdPlayerEmail = self.arrayOfChosenFriends.last {
                                 
-                                ClientService.profileRef.queryOrderedByChild("email").queryEqualToValue(thirdPlayerEmail).observeSingleEventOfType(.ChildAdded, withBlock: { (thirdPlayerSnapshot) in
+                                ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: thirdPlayerEmail).observeSingleEvent(of: .childAdded, with: { (thirdPlayerSnapshot) in
                                     
-                                    let thirdPlayerUID = thirdPlayerSnapshot.value?.objectForKey("uid") as! String
+                                    let thirdPlayerUID = (thirdPlayerSnapshot.value as AnyObject).object(forKey: "uid") as! String
                                     
                                     let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                                     

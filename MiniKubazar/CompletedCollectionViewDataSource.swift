@@ -15,28 +15,37 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var completedHaikus = [ActiveHaiku]()
     
-    var imageCache = NSCache()
+    let imageCache = NSCache<AnyObject, AnyObject>()
     
-    var firstLineCache = NSCache()
+    var firstLineCache = NSCache<AnyObject, AnyObject>()
     
-    var secondLineCache = NSCache()
+    var secondLineCache = NSCache<AnyObject, AnyObject>()
     
-    var thirdLineCache = NSCache()
+    var thirdLineCache = NSCache<AnyObject, AnyObject>()
     
-    var imageDownloadingQueue = NSOperationQueue()
+//    var imageCache = NSCache<String, AnyObject>()
+//    
+//    var firstLineCache = NSCache<String, AnyObject>()
+//    
+//    var secondLineCache = NSCache<String, AnyObject>()
+//    
+//    var thirdLineCache = NSCache<String, AnyObject>()
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    var imageDownloadingQueue = OperationQueue()
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
         return completedHaikus.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let identifier = "completedCell"
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! CompletedHaikusCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CompletedHaikusCollectionViewCell
         
-        let completedHaiku = completedHaikus[indexPath.row]
+        let completedHaiku = completedHaikus[(indexPath as NSIndexPath).row]
         
         let imageURL = completedHaiku.imageURLString
         
@@ -46,21 +55,31 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let thirdLine = completedHaiku.thirdLineString
         
-        let cachedImage = imageCache.objectForKey(imageURL) as? UIImage
+         let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
+//        let cachedImage = imageCache.object(forKey: imageURL) as? UIImage
         
-        let cachedFirstLine = firstLineCache.objectForKey(imageURL) as? String
+        let cachedFirstLine = firstLineCache.object(forKey: imageURL as AnyObject)
+
         
-        let cachedSecondLine = secondLineCache.objectForKey(imageURL) as? String
+//        let cachedFirstLine = firstLineCache.object(forKey: imageURL) as? String
         
-        let cachedThirdLine = thirdLineCache.objectForKey(imageURL) as? String
+        let cachedSecondLine = secondLineCache.object(forKey: imageURL as AnyObject)
+        
+//        let cachedSecondLine = secondLineCache.object(forKey: imageURL) as? String
+        
+        let cachedThirdLine = thirdLineCache.object(forKey: imageURL as AnyObject)
+        
+//         let cachedThirdLine = thirdLineCache.object(forKey: imageURL) as? String
         
         if ((cachedImage) != nil) {
-            cell.updateWithImage(cachedImage)
+            if let newCachedImage = cachedImage as? UIImage {
+            cell.updateWithImage(newCachedImage)
+            }
         } else {
         
-        self.imageDownloadingQueue.addOperationWithBlock({
-            let haikuImageRef = FIRStorage.storage().referenceForURL(imageURL)
-            haikuImageRef.dataWithMaxSize(1 * 3000 * 3000) { (data, error) in
+        self.imageDownloadingQueue.addOperation({
+            let haikuImageRef = FIRStorage.storage().reference(forURL: imageURL!)
+            haikuImageRef.data(withMaxSize: 1 * 3000 * 3000) { (data, error) in
                 if (error != nil) {
                     print(error)
                     print("something wrong with completed haiku image from storage. check completed collection view data source code")
@@ -72,14 +91,16 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                     cell.firstHaikuLine.text = firstLine
                     
                     if haikuImage != nil {
-                        self.imageCache.setObject(haikuImage!, forKey: imageURL)
+                        self.imageCache.setObject(haikuImage as AnyObject, forKey: imageURL as AnyObject)
                     }
                 }
             }})
         }
         
         if ((cachedFirstLine) != nil) {
-            cell.firstHaikuLine.text = cachedFirstLine
+            if let newCachedFirstLine = cachedFirstLine as? String {
+            cell.firstHaikuLine.text = newCachedFirstLine
+            }
         } else {
             cell.firstHaikuLine.text = firstLine
         }

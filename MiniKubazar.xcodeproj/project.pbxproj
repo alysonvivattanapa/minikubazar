@@ -20,7 +20,6 @@
 		F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */; };
 		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
 		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
-		F253721A1D8A38E60065D51D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25372191D8A38E60065D51D /* Reachability.swift */; };
 		F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1200A1D82287900A39867 /* AppDelegate.swift */; };
 		F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200C1D82287900A39867 /* Assets.xcassets */; };
 		F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A1200E1D82287900A39867 /* LaunchScreen.storyboard */; };
@@ -45,6 +44,7 @@
 		F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01541D8312710094A45B /* HaikuViewModel.swift */; };
 		F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */; };
 		F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */; };
+		F2EFA0241DA4175300F7678D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA0231DA4175300F7678D /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,6 @@
 		F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
-		F25372191D8A38E60065D51D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F2A120071D82287900A39867 /* MiniKubazar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniKubazar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A1200A1D82287900A39867 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2A1200C1D82287900A39867 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		F2BB01541D8312710094A45B /* HaikuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaikuViewModel.swift; sourceTree = "<group>"; };
 		F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusCollectionViewCell.swift; sourceTree = "<group>"; };
 		F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusCollectionViewCell.xib; sourceTree = "<group>"; };
+		F2EFA0231DA4175300F7678D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +192,7 @@
 				F2A1200A1D82287900A39867 /* AppDelegate.swift */,
 				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
 				F2A120351D822B8700A39867 /* ClientService.swift */,
-				F25372191D8A38E60065D51D /* Reachability.swift */,
+				F2EFA0231DA4175300F7678D /* Reachability.swift */,
 				F2A5A4DC1DA2414C001E3FE1 /* GoogleService-Info.plist */,
 			);
 			name = Supporting;
@@ -263,12 +263,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Alyson Vivattanapa";
 				TargetAttributes = {
 					F2A120061D82287900A39867 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 62QTD3LMCM;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -395,11 +397,11 @@
 				F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */,
 				F220BE391D9AA35400264DFF /* ActiveCollectionViewDataSource.swift in Sources */,
 				F220BE401D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift in Sources */,
+				F2EFA0241DA4175300F7678D /* Reachability.swift in Sources */,
 				F2A120381D822B9700A39867 /* Alerts.swift in Sources */,
 				F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */,
 				F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */,
 				F2A120331D822B6300A39867 /* InfoViewController.swift in Sources */,
-				F253721A1D8A38E60065D51D /* Reachability.swift in Sources */,
 				F2A120291D822B5600A39867 /* BazarViewController.swift in Sources */,
 				F2A1203A1D82303A00A39867 /* User.swift in Sources */,
 				F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */,
@@ -434,8 +436,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -479,8 +483,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -499,6 +505,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -510,12 +517,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 62QTD3LMCM;
 				INFOPLIST_FILE = MiniKubazar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -526,12 +535,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 62QTD3LMCM;
 				INFOPLIST_FILE = MiniKubazar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

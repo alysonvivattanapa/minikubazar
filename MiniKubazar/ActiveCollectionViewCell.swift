@@ -24,7 +24,7 @@ class ActiveCollectionViewCell: UICollectionViewCell {
         updateWithImage(nil)
     }
     
-    func updateWithImage(image: UIImage?) {
+    func updateWithImage(_ image: UIImage?) {
         if let imageToDisplay = image {
             activityIndicator.stopAnimating()
             imageView.image = imageToDisplay
