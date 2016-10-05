@@ -40,7 +40,9 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
         
         if ((cachedImage) != nil) {
-            cell.updateWithImage(cachedImage as! UIImage)
+            if let image = cachedImage as? UIImage {
+            cell.updateWithImage(image)
+            }
         } else {
             self.imageDownloadingQueue.addOperation({
                 let haikuImageRef = FIRStorage.storage().reference(forURL: imageURL!)

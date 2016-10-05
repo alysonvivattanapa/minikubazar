@@ -105,7 +105,21 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             cell.firstHaikuLine.text = firstLine
         }
 
+        if ((cachedSecondLine) != nil) {
+            if let newCachedSecondLine = cachedSecondLine as? String {
+                cell.secondHaikuLineString = newCachedSecondLine
+            }
+        } else {
+            cell.secondHaikuLineString = secondLine
+        }
         
+        if ((cachedThirdLine) != nil) {
+            if let newCachedThirdLine = cachedThirdLine as? String {
+                cell.thirdHaikuLineString = newCachedThirdLine
+            }
+        } else {
+            cell.thirdHaikuLineString = thirdLine
+        }
         
 //        cell.updateWithImage(completedHaiku.image)
         

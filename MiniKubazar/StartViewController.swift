@@ -113,9 +113,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     self.stepOneCreateNewHaiku()
         
-    oneFriendOptionChosen = false
-    twoFriendsOptionChosen = false
-    
+//    oneFriendOptionChosen = false
+//    twoFriendsOptionChosen = false
+//    
         
     }
     
@@ -192,7 +192,22 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         setAllSubviewsToHidden()
         createNewHaikuView.isHidden = false
         startAnimation()
+        oneFriendOptionChosen = false
+        twoFriendsOptionChosen = false
+        resetTextViews()
 
+    }
+    
+    func resetTextViews() {
+        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
+        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
+        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
+        firstLineHaikuTextView.textColor = UIColor.lightGray
+        secondLineHaikuTextView.textColor = UIColor.lightGray
+        thirdLineHaikuTextView.textColor = UIColor.lightGray
+        firstLineHaikuTextView.backgroundColor = UIColor.white
+        secondLineHaikuTextView.backgroundColor = UIColor.white
+        thirdLineHaikuTextView.backgroundColor = UIColor.white
     }
     
     func startAnimation() {

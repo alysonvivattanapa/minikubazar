@@ -532,6 +532,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -551,6 +552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alyson.MiniKubazar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
