@@ -738,11 +738,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("did select: \((indexPath as NSIndexPath).row)")
         
-        let indexPath = tableView.indexPathForSelectedRow
+//        let indexPath = tableView.indexPathForSelectedRow
+//        
+//        let selectedCell = tableView.cellForRow(at: indexPath!) as! FriendsTableViewCell
         
-        let selectedCell = tableView.cellForRow(at: indexPath!) as! FriendsTableViewCell
+        let selectedCell = tableView.cellForRow(at: indexPath) as! FriendsTableViewCell
         
-        if selectedCell.isSelected {
+//        if selectedCell.isSelected {
             selectedCell.accessoryType = .checkmark
             if let email = selectedCell.friendsUsername.text {
                 if self.arrayOfChosenFriends.contains(email) {
@@ -751,7 +753,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 self.arrayOfChosenFriends.append(email)
                 print(self.arrayOfChosenFriends)
                 }
-            }
+            
         }
         
         
