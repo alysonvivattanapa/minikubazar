@@ -738,13 +738,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("did select: \((indexPath as NSIndexPath).row)")
         
-//        let indexPath = tableView.indexPathForSelectedRow
-//        
-//        let selectedCell = tableView.cellForRow(at: indexPath!) as! FriendsTableViewCell
-        
         let selectedCell = tableView.cellForRow(at: indexPath) as! FriendsTableViewCell
         
-//        if selectedCell.isSelected {
             selectedCell.accessoryType = .checkmark
             if let email = selectedCell.friendsUsername.text {
                 if self.arrayOfChosenFriends.contains(email) {
@@ -934,11 +929,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                             let secondPlayerUID = friendSnapshotValue?.object(forKey: "uid") as? String
                             
-//                            let secondPlayerUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
+                            let currentUserEmail = ClientService.getCurrentUserEmail()
                             
                             //save image and create imageHiakuDOwnloadURL
                             
-                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail)'s line.", thirdLineString: "\(currentUserEmail)'s line.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                             
                             ClientService.addActiveHaikuForPlayers(newActiveHaiku)
                             

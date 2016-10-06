@@ -340,7 +340,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
             }
             
-        
+    
             
                         present(activeHaikuDetailVC, animated: true, completion: {
                             
@@ -359,7 +359,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                             
                                             if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("enters second line of haiku.") {
                                                 activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
-                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor.cyan
+                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                                                 activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
                                                 activeHaikuDetailVC.continueButton.isEnabled = true
                                                 activeHaikuDetailVC.continueButton.isHidden = false
@@ -368,7 +368,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                             
                                             if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("Waiting on second player") {
                                                 activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
-                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor.cyan
+                                                activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                                                 activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
                                                 activeHaikuDetailVC.continueButton.isEnabled = true
                                                 activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
@@ -381,7 +381,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                                                 if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("enters second line, you can write third line") && !activeHaiku.secondLineString.contains("Waiting on second player"){
                                 
                                                    activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
-                                                   activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.cyan
+                                                   activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                                                   activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
                                                     activeHaikuDetailVC.continueButton.isEnabled = true
                                                     activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
@@ -391,7 +391,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                                             if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("Write here after second player's turn") && !activeHaiku.secondLineString.contains("Waiting on second player"){
                             
                                                 activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
-                                                activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.cyan
+                                                activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                                                 activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
                                                 activeHaikuDetailVC.continueButton.isEnabled = true
                                                 activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
