@@ -31,7 +31,7 @@
                         <constraint firstAttribute="height" constant="66" id="c3K-kJ-rR5"/>
                     </constraints>
                     <textAttributes key="titleTextAttributes">
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </textAttributes>
                     <items>
                         <navigationItem title="Bazar" id="a6g-1l-5Cf"/>
@@ -114,6 +114,7 @@
                     </variation>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bXi-O9-DB2">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="179" id="0O6-ln-gKO"/>
                         <constraint firstAttribute="height" constant="28" id="Hfy-Vc-38J"/>

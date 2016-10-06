@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
 
+        let navBarImage = UIImage(named: "kubazarNavBar")
+        UINavigationBar.appearance().setBackgroundImage(navBarImage, for:.default)
         
         tabBarController = UITabBarController()
         let firstTab = BazarViewController(nibName: "BazarViewController", bundle: nil)
