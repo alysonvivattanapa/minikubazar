@@ -167,7 +167,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
         
-        resetTextViews()
+//        resetTextViews()
         
 //        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
 //        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
@@ -378,8 +378,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         haikuImageView.image = image
         self.dismiss(animated: true, completion: nil);
         stepThreeEnterHaiku()
+   
+        
     }
-    
+
     
     
     @IBAction func inspireMeButtonPressed(_ sender: AnyObject) {
@@ -587,9 +589,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func createANewHaikuButtonPressed(_ sender: AnyObject) {
         
        stepOneCreateNewHaiku()
-        firstLineHaikuTextView.backgroundColor = UIColor.white
-        secondLineHaikuTextView.backgroundColor = UIColor.white
-        thirdLineHaikuTextView.backgroundColor = UIColor.white
+//        firstLineHaikuTextView.backgroundColor = UIColor.white
+//        secondLineHaikuTextView.backgroundColor = UIColor.white
+//        thirdLineHaikuTextView.backgroundColor = UIColor.white
         
     }
     
@@ -804,6 +806,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    
     func enterNewHaikuWithTwoFriends() {
         setAllSubviewsToHidden()
         choosePictureView.isHidden = false
@@ -1004,5 +1007,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
     }
+    
+   
 
 }
