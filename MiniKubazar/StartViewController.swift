@@ -34,6 +34,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var thirdLineHaikuTextView: UITextView!
     
     
+    @IBOutlet weak var instructionsLabel: UILabel!
+    
+    
     @IBOutlet weak var congratsView: UIView!
     // congratsView should take you to active bazar table view
     // table view selection goes to detail view that includes share button?
@@ -91,9 +94,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var enterHaikuContinueButton: UIButton!
     
+    @IBOutlet weak var instructionsView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       instructionsView.layer.cornerRadius = 25
         
         firstLineHaikuTextView.delegate = self
         secondLineHaikuTextView.delegate = self
@@ -117,6 +124,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //    twoFriendsOptionChosen = false
 //    
         
+        firstLineHaikuTextView.textContainer.maximumNumberOfLines = 1
+        firstLineHaikuTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+        secondLineHaikuTextView.textContainer.maximumNumberOfLines = 1
+        secondLineHaikuTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+        thirdLineHaikuTextView.textContainer.maximumNumberOfLines = 1
+        thirdLineHaikuTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,13 +167,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             }
         }
         
+        resetTextViews()
         
-        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
-        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
-        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
-        firstLineHaikuTextView.textColor = UIColor.lightGray
-        secondLineHaikuTextView.textColor = UIColor.lightGray
-        thirdLineHaikuTextView.textColor = UIColor.lightGray
+//        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
+//        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
+//        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
+//        firstLineHaikuTextView.textColor = UIColor.lightGray
+//        secondLineHaikuTextView.textColor = UIColor.lightGray
+//        thirdLineHaikuTextView.textColor = UIColor.lightGray
         
         if createNewHaikuView.isHidden == false {
             startAnimation()
@@ -172,7 +186,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             textView.text = nil
             textView.textColor = UIColor.white
             textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
-            textView.layer.cornerRadius = 5
+//            textView.layer.cornerRadius = 5
             textView.clipsToBounds = true
         }
     }
@@ -194,8 +208,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         startAnimation()
         oneFriendOptionChosen = false
         twoFriendsOptionChosen = false
-        resetTextViews()
-
+//        disableEditableTextViews()
+    }
+    
+    func enableAllEditableTextViews() {
+        firstLineHaikuTextView.isEditable = true
+        secondLineHaikuTextView.isEditable = true
+        thirdLineHaikuTextView.isEditable = true
     }
     
     func resetTextViews() {
@@ -208,6 +227,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         firstLineHaikuTextView.backgroundColor = UIColor.white
         secondLineHaikuTextView.backgroundColor = UIColor.white
         thirdLineHaikuTextView.backgroundColor = UIColor.white
+    }
+    
+    func disableEditableTextViews() {
+        firstLineHaikuTextView.isEditable = false
+        secondLineHaikuTextView.isEditable = false
+        thirdLineHaikuTextView.isEditable = false
     }
     
     func startAnimation() {
@@ -266,13 +291,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         buttonAnimation(cameraButton)
         buttonAnimation(cameraRollButton)
         buttonAnimation(inspireMeButton)
-        enterHaikuContinueButton.isHidden = true
-        enterHaikuFinishButton.isHidden = false
+//        enterHaikuContinueButton.isHidden = true
+//        enterHaikuFinishButton.isHidden = false
     }
     
     @IBAction func choosePictureBackButtonPressed(_ sender: AnyObject) {
         stepOneCreateNewHaiku()
-       
     }
     
     
@@ -303,27 +327,29 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 //    }
     
     @IBAction func byYourselfButtonPressed(_ sender: AnyObject) {
+        resetTextViews()
+        enableAllEditableTextViews()
+        
+        instructionsView.isHidden = true
+        enterHaikuContinueButton.isHidden = true
+        enterHaikuFinishButton.isHidden = false
         stepTwoChoosePicture()
     }
     
     @IBAction func thirdBackButtonPressed(_ sender: AnyObject) {
-//        haikuFirstLine.text? = ""
-//        haikuSecondLine.text? = ""
-//        haikuThirdLine.text? = ""
+
        stepTwoChoosePicture()
        self.view.endEditing(true)
-        firstLineHaikuTextView.backgroundColor = UIColor.white
-        secondLineHaikuTextView.backgroundColor = UIColor.white
-        thirdLineHaikuTextView.backgroundColor = UIColor.white
-        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
-        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
-        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
-        firstLineHaikuTextView.textColor = UIColor.lightGray
-        secondLineHaikuTextView.textColor = UIColor.lightGray
-        thirdLineHaikuTextView.textColor = UIColor.lightGray
-        
-        enterHaikuContinueButton.isHidden = true
-        enterHaikuFinishButton.isHidden = false
+       resetTextViews()
+//       disableEditableTextViews()
+//        if twoFriendsOptionChosen == true || oneFriendOptionChosen == true {
+//            firstLineHaikuTextView.isEditable = true
+//        } else {
+//            enableAllEditableTextViews()
+//        }
+       
+//        enterHaikuContinueButton.isHidden = true
+//        enterHaikuFinishButton.isHidden = false
     
     }
     
@@ -466,7 +492,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         setShareableHaikuImage()
         saveFinishedHaiku()
         view.endEditing(true)
-        stepFourCongrats()
+//        stepFourCongrats()
         stepOneCreateNewHaiku()
         }
     }
@@ -598,6 +624,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     
     @IBAction func playWithOneFriendButtonPressed(_ sender: AnyObject) {
+        resetTextViews()
+        instructionsView.isHidden = false
+        disableEditableTextViews()
+        firstLineHaikuTextView.isEditable = true
         
         selectOneFriend()
         
@@ -630,25 +660,35 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     
     @IBAction func playWithTwoFriendsButtonPressed(_ sender: AnyObject) {
+        resetTextViews()
+        
+        instructionsView.isHidden = false
+        disableEditableTextViews()
+        firstLineHaikuTextView.isEditable = true
+        
         selectTwoFriends()
     }
     
     func selectOneFriend() {
         setAllSubviewsToHidden()
+        arrayOfChosenFriends = []
         chooseFriendsLabel.text = "Choose one friend."
         chooseFriendsView.isHidden = false
         chooseFriendsTableView.allowsMultipleSelection = false
         chooseFriendsTableView.allowsSelection = true
         oneFriendOptionChosen = true
+        twoFriendsOptionChosen = false
         
     }
     
     func selectTwoFriends() {
         setAllSubviewsToHidden()
+        arrayOfChosenFriends = []
         chooseFriendsLabel.text = "Choose two friends."
         chooseFriendsView.isHidden = false
         chooseFriendsTableView.allowsMultipleSelection = true
         twoFriendsOptionChosen = true
+        oneFriendOptionChosen = false
     }
     
     
@@ -763,13 +803,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if let email = arrayOfChosenFriends.first {
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
             secondLineHaikuTextView.text = "\(email) enters second line of haiku."
-            secondLineHaikuTextView.isUserInteractionEnabled = false
+
             
             thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
-            thirdLineHaikuTextView.isUserInteractionEnabled = false
             
-            secondLineHaikuTextView.textColor = UIColor.lightGray
-            thirdLineHaikuTextView.textColor = UIColor.lightGray
+//            secondLineHaikuTextView.textColor = UIColor.lightGray
+//            thirdLineHaikuTextView.textColor = UIColor.lightGray
         }
     }
     
@@ -783,13 +822,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if let firstFriendEmail = arrayOfChosenFriends.first, let secondFriendEmail = arrayOfChosenFriends.last {
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then press Continue."
             secondLineHaikuTextView.text = "\(firstFriendEmail) enters second line of haiku."
-            secondLineHaikuTextView.isUserInteractionEnabled = false
-            
+
             thirdLineHaikuTextView.text = "\(secondFriendEmail) enters third line of haiku."
-            thirdLineHaikuTextView.isUserInteractionEnabled = false
             
-            secondLineHaikuTextView.textColor = UIColor.lightGray
-            thirdLineHaikuTextView.textColor = UIColor.lightGray
+//            secondLineHaikuTextView.textColor = UIColor.lightGray
+//            thirdLineHaikuTextView.textColor = UIColor.lightGray
         }
     }
     
@@ -874,7 +911,11 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             let firstPlayerUID = currentUserUID
                             let thirdPlayerUID = currentUserUID
                             
-                            let secondPlayerUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
+                            let friendSnapshotValue = friendSnapshot.value as? NSDictionary
+                            
+                            let secondPlayerUID = friendSnapshotValue?.object(forKey: "uid") as? String
+                            
+//                            let secondPlayerUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
                             
                             //save image and create imageHiakuDOwnloadURL
                             
@@ -917,13 +958,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                             let firstPlayerUID = currentUserUID
                             
-                            let secondPlayerUID = (secondPlayerSnapshot.value as AnyObject).object(forKey: "uid") as! String
+                            let secondPlayerSnapshotValue = secondPlayerSnapshot.value as? NSDictionary
+                            
+                             let secondPlayerUID = secondPlayerSnapshotValue?.object(forKey: "uid") as? String
                             
                             if let thirdPlayerEmail = self.arrayOfChosenFriends.last {
                                 
                                 ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: thirdPlayerEmail).observeSingleEvent(of: .childAdded, with: { (thirdPlayerSnapshot) in
                                     
-                                    let thirdPlayerUID = (thirdPlayerSnapshot.value as AnyObject).object(forKey: "uid") as! String
+                                    
+                                    let thirdPlayerSnapshotValue = thirdPlayerSnapshot.value as? NSDictionary
+                                    
+                                    let thirdPlayerUID = thirdPlayerSnapshotValue?.object(forKey: "uid") as? String
                                     
                                     let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                                     
