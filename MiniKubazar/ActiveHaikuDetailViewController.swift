@@ -49,6 +49,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         secondLineTextView.delegate = self
         thirdLineTextView.delegate = self
         
+        firstLineTextView.textContainer.maximumNumberOfLines = 1
+        firstLineTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+        secondLineTextView.textContainer.maximumNumberOfLines = 1
+        secondLineTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+        thirdLineTextView.textContainer.maximumNumberOfLines = 1
+        thirdLineTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -288,4 +294,15 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
 
             }
         }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        //        if textView.textColor == UIColor.lightGray {
+        textView.text = nil
+        textView.textColor = UIColor.white
+        textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
+        //            textView.layer.cornerRadius = 5
+        textView.clipsToBounds = true
+        //   }
+    }
+    
 }
