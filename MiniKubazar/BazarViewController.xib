@@ -99,13 +99,12 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="2mq-TE-I7C"/>
-                        <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" id="Fs2-gu-bhO"/>
+                        <constraint firstAttribute="trailing" secondItem="Jiq-vs-8SC" secondAttribute="trailing" constant="5" id="Fs2-gu-bhO"/>
                         <constraint firstItem="Jiq-vs-8SC" firstAttribute="top" secondItem="nJ2-hc-cP7" secondAttribute="top" id="GZk-rR-7eJ"/>
                         <constraint firstAttribute="bottom" secondItem="Jiq-vs-8SC" secondAttribute="bottom" constant="70" id="Jqu-6D-l8B"/>
-                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" id="niU-du-MGe"/>
+                        <constraint firstItem="Jiq-vs-8SC" firstAttribute="leading" secondItem="nJ2-hc-cP7" secondAttribute="leading" constant="5" id="niU-du-MGe"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -135,7 +134,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUk-IA-J4T" userLabel="ActiveView">
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qpM-SP-dXw">
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3hT-Ae-G36">
                                 <size key="itemSize" width="180" height="180"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -144,12 +143,11 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="qpM-SP-dXw" firstAttribute="top" secondItem="wUk-IA-J4T" secondAttribute="top" id="AkP-cT-x7r"/>
-                        <constraint firstItem="qpM-SP-dXw" firstAttribute="leading" secondItem="wUk-IA-J4T" secondAttribute="leading" id="Bc0-yi-pvX"/>
+                        <constraint firstItem="qpM-SP-dXw" firstAttribute="leading" secondItem="wUk-IA-J4T" secondAttribute="leading" constant="5" id="Bc0-yi-pvX"/>
                         <constraint firstAttribute="bottom" secondItem="qpM-SP-dXw" secondAttribute="bottom" constant="75" id="MKQ-bo-L73"/>
-                        <constraint firstAttribute="trailing" secondItem="qpM-SP-dXw" secondAttribute="trailing" id="epC-o9-Ogt"/>
+                        <constraint firstAttribute="trailing" secondItem="qpM-SP-dXw" secondAttribute="trailing" constant="5" id="epC-o9-Ogt"/>
                     </constraints>
                 </view>
             </subviews>

@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,9 +13,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="019-BD-UoJ">
-                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="7JQ-OK-AMe"/>
                             <constraint firstAttribute="width" constant="200" id="ZM4-97-6Xb"/>
@@ -27,27 +28,23 @@
                         </variation>
                     </imageView>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pqM-Oa-gGt">
-                        <rect key="frame" x="67" y="67" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="BbG-rO-rdR"/>
                             <constraint firstAttribute="height" constant="45" id="qiF-jv-PNq"/>
                         </constraints>
                     </activityIndicatorView>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hs-y1-djP">
-                        <rect key="frame" x="0.0" y="159" width="180" height="21"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-1V-pEg">
-                        <rect key="frame" x="2" y="159" width="176" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="NM1-3S-29q"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="019-BD-UoJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1gL-8d-1tu"/>
@@ -58,9 +55,8 @@
                 <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="LyZ-yT-tcl"/>
                 <constraint firstItem="7Hs-y1-djP" firstAttribute="centerX" secondItem="zRB-1V-pEg" secondAttribute="centerX" id="OTm-JT-5gh"/>
                 <constraint firstAttribute="trailing" secondItem="019-BD-UoJ" secondAttribute="trailing" id="QXO-Jq-Ax4"/>
-                <constraint firstAttribute="trailing" secondItem="zRB-1V-pEg" secondAttribute="trailing" constant="2" id="VKi-Qx-p67"/>
                 <constraint firstItem="7Hs-y1-djP" firstAttribute="centerY" secondItem="zRB-1V-pEg" secondAttribute="centerY" id="gGG-QV-qsN"/>
-                <constraint firstItem="zRB-1V-pEg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="gTc-YS-BWW"/>
+                <constraint firstItem="zRB-1V-pEg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="gTc-YS-BWW"/>
                 <constraint firstItem="7Hs-y1-djP" firstAttribute="height" secondItem="zRB-1V-pEg" secondAttribute="height" id="o9m-Pf-TvI"/>
                 <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="pSa-Ty-8ZH"/>
                 <constraint firstAttribute="bottom" secondItem="zRB-1V-pEg" secondAttribute="bottom" id="x2U-cx-W3a"/>
