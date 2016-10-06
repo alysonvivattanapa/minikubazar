@@ -182,13 +182,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+//        if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.white
             textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
 //            textView.layer.cornerRadius = 5
             textView.clipsToBounds = true
-        }
+     //   }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -340,17 +340,6 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
        stepTwoChoosePicture()
        self.view.endEditing(true)
-       resetTextViews()
-//       disableEditableTextViews()
-//        if twoFriendsOptionChosen == true || oneFriendOptionChosen == true {
-//            firstLineHaikuTextView.isEditable = true
-//        } else {
-//            enableAllEditableTextViews()
-//        }
-       
-//        enterHaikuContinueButton.isHidden = true
-//        enterHaikuFinishButton.isHidden = false
-    
     }
     
     
@@ -640,8 +629,8 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         arrayOfChosenFriends = []
         oneFriendOptionChosen = false
         twoFriendsOptionChosen = false
-        enterHaikuContinueButton.isHidden = true
-        enterHaikuFinishButton.isHidden = false
+//        enterHaikuContinueButton.isHidden = true
+//        enterHaikuFinishButton.isHidden = false
         
     }
     
@@ -801,14 +790,17 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         enterHaikuContinueButton.isHidden = false
         
         if let email = arrayOfChosenFriends.first {
-            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then continue."
+            
+            firstLineHaikuTextView.backgroundColor = UIColor.yellow
+            
+            firstLineHaikuTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+            
+            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables."
+            
             secondLineHaikuTextView.text = "\(email) enters second line of haiku."
 
+            thirdLineHaikuTextView.text = "Then you can enter third line."
             
-            thirdLineHaikuTextView.text = "After \(email) enters second line, you can write third line."
-            
-//            secondLineHaikuTextView.textColor = UIColor.lightGray
-//            thirdLineHaikuTextView.textColor = UIColor.lightGray
         }
     }
     
@@ -820,13 +812,18 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         enterHaikuContinueButton.isHidden = false
         
         if let firstFriendEmail = arrayOfChosenFriends.first, let secondFriendEmail = arrayOfChosenFriends.last {
-            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables. Then press Continue."
+            
+            firstLineHaikuTextView.backgroundColor = UIColor.yellow
+            
+            firstLineHaikuTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+            
+            firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables."
+            
             secondLineHaikuTextView.text = "\(firstFriendEmail) enters second line of haiku."
 
             thirdLineHaikuTextView.text = "\(secondFriendEmail) enters third line of haiku."
             
-//            secondLineHaikuTextView.textColor = UIColor.lightGray
-//            thirdLineHaikuTextView.textColor = UIColor.lightGray
+
         }
     }
     
@@ -860,18 +857,30 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func enterHaikuContinueButtonPressed(_ sender: AnyObject) {
         
-        print("enterHaikuConinueButton pressed")
+        self.view.endEditing(true)
+        
+        print("enterHaikuContinueButton pressed")
+        
+        if firstLineHaikuTextView.text.contains("Enter first line of haiku: 5 syllables") {
+            self.present(Alerts.showErrorMessage("Please enter first line of haiku to continue."), animated: true, completion: nil)
+            
+        } else {
         
         let currentUserUID = ClientService.getCurrentUserUID()
         
         if arrayOfChosenFriends.count == 1 {
             
-            saveActiveHaikuForTwoPlayers(currentUserUID)
+        saveActiveHaikuForTwoPlayers(currentUserUID)
             
             if let oneFriend = self.arrayOfChosenFriends.first {
             
-            self.present(Alerts.showSuccessMessage("You started a haiku with \(oneFriend)"), animated: true, completion: nil)
+            self.present(Alerts.showSuccessMessage("You started a haiku with \(oneFriend). Tap on the Bazar tab to see your active haikus."), animated: true, completion: nil)
             }
+            
+//            showCompletedDetailView()
+//            setShareableHaikuImage()
+            view.endEditing(true)
+            stepOneCreateNewHaiku()
             
            //create active haiku object and save to backend; then populate active tableview
         } else if arrayOfChosenFriends.count == 2 {
@@ -879,11 +888,16 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             saveActiveHaikuForThreePlayers(currentUserUID)
             //create active haiku object and save to backend; then populate active tableview
             if let firstFriend = self.arrayOfChosenFriends.first, let secondFriend = self.arrayOfChosenFriends.last {
-            self.present(Alerts.showSuccessMessage("You started a haiku with \(firstFriend) and \(secondFriend)"), animated: true, completion: nil)
+            self.present(Alerts.showSuccessMessage("You started a haiku with \(firstFriend) and \(secondFriend). Tap on the Bazar tab to see your active haikus."), animated: true, completion: nil)
+                showCompletedDetailView()
+                setShareableHaikuImage()
+                view.endEditing(true)
+                stepOneCreateNewHaiku()
             }
+            
         }
     }
-    
+    }
     
     func saveActiveHaikuForTwoPlayers(_ currentUserUID: String) {
         

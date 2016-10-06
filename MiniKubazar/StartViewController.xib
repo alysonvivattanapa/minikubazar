@@ -819,7 +819,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJ0-lf-FyR">
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRN-Pr-ZRM">
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="192" id="8cL-qh-mVD"/>
                                         <constraint firstAttribute="height" constant="61" id="fQl-4c-VHS"/>
@@ -832,9 +831,9 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="89" id="80S-yB-e3C"/>
                                 <constraint firstItem="kRN-Pr-ZRM" firstAttribute="centerX" secondItem="eJ0-lf-FyR" secondAttribute="centerX" id="ZKc-FB-WcV"/>
-                                <constraint firstAttribute="width" constant="238" id="j58-XS-A7N"/>
+                                <constraint firstAttribute="width" constant="215" id="jcf-rX-3Ci"/>
+                                <constraint firstAttribute="height" constant="75" id="k5v-Ml-Njk"/>
                                 <constraint firstItem="kRN-Pr-ZRM" firstAttribute="centerY" secondItem="eJ0-lf-FyR" secondAttribute="centerY" id="xEm-ba-Ogi"/>
                             </constraints>
                         </view>
