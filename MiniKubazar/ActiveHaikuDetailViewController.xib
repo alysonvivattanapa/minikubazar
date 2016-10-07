@@ -54,6 +54,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="MRE-c2-kUo"/>
                             </constraints>
+                            <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                         </textView>
@@ -130,11 +131,11 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="AyA-iv-9aU"/>
                             <exclude reference="f6S-nD-3Gh"/>
+                            <exclude reference="tAb-T8-gyH"/>
                             <exclude reference="TCS-By-sMe"/>
                             <exclude reference="Un1-23-ZMu"/>
-                            <exclude reference="AyA-iv-9aU"/>
-                            <exclude reference="tAb-T8-gyH"/>
                         </mask>
                     </variation>
                 </view>
@@ -204,10 +205,10 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="rSz-bc-7r5"/>
                     <exclude reference="TWi-wu-rag"/>
                     <exclude reference="bEO-SK-XW1"/>
                     <exclude reference="oyC-Dd-Ux3"/>
-                    <exclude reference="rSz-bc-7r5"/>
                 </mask>
             </variation>
         </view>

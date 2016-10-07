@@ -933,7 +933,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                             //save image and create imageHiakuDOwnloadURL
                             
-                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail)'s line.", thirdLineString: "\(currentUserEmail)'s line.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(currentUserEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                             
                             ClientService.addActiveHaikuForPlayers(newActiveHaiku)
                             
@@ -985,7 +985,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                     
                                     let thirdPlayerUID = thirdPlayerSnapshotValue?.object(forKey: "uid") as? String
                                     
-                                    let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "Waiting on second player.", thirdLineString: "Write here after second player's turn.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                                    let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(thirdPlayerEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
                                     
                                     ClientService.addActiveHaikuForPlayers(newActiveHaiku)
                                     

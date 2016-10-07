@@ -115,9 +115,17 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
                 print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
                 print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
                 
-                let friendUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
-                let friendEmail = (friendSnapshot.value as AnyObject).object(forKey: "email") as! String
-                let friendUsername = (friendSnapshot.value as AnyObject).object(forKey: "username") as! String
+                let friend = friendSnapshot.value as! NSDictionary
+                 
+                let friendUID = friend.object(forKey: "uid") as! String
+                    
+                let friendEmail = friend.object(forKey: "email") as! String
+                    
+                let friendUsername = friend.object(forKey: "username") as! String
+                    
+//                let friendUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
+//                let friendEmail = (friendSnapshot.value as AnyObject).object(forKey: "email") as! String
+//                let friendUsername = (friendSnapshot.value as AnyObject).object(forKey: "username") as! String
                 
                 print("\(friendEmail) & \(friendUID) & \(friendUsername)")
                 

@@ -30,6 +30,10 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     var uniqueHaikuUUID: String?
     
+    var secondPlayerEmail: String?
+    
+    var thirdPlayerEmail: String?
+    
     @IBOutlet weak var waitForOtherPlayersLabel: UILabel!
     
     
@@ -44,6 +48,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         if let uniqueUID = uniqueHaikuUUID {
             print(uniqueUID)
         }
+        
+        print(secondPlayerEmail)
+        print(thirdPlayerEmail)
         
         firstLineTextView.delegate = self
         secondLineTextView.delegate = self
@@ -68,17 +75,31 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     disableUserinteractionForAllTextViews()
     
-    continueButton.isHidden = true
-    
-    waitForOtherPlayersLabel.isHidden = false
-    
-       print("DETAIL FIRST \(firstPlayerUUID)")
-    print("DETAIL SECOND \(secondPlayerUUID)")
-    print("DETAIL THIRD \(thirdPlayerUUID)")
-    
+    if let secondPlayer = secondPlayerUUID {
+       ClientService.getPlayerEmailFromUUID(secondPlayer, closure: { (playerEmail) in
+        self.secondPlayerEmail = playerEmail
+        print(self.secondPlayerEmail)
+       })
+        
     }
     
-
+    if let thirdPlayer = thirdPlayerUUID {
+        ClientService.getPlayerEmailFromUUID(thirdPlayer, closure: { (playerEmail) in
+            self.thirdPlayerEmail = playerEmail
+            print(self.thirdPlayerEmail)
+        })
+    }
+        
+    }
+//
+//    continueButton.isHidden = true
+//    
+//    waitForOtherPlayersLabel.isHidden = false
+//    
+//       print("DETAIL FIRST \(firstPlayerUUID)")
+//    print("DETAIL SECOND \(secondPlayerUUID)")
+//    print("DETAIL THIRD \(thirdPlayerUUID)")
+    
     
     func disableUserinteractionForAllTextViews() {
         firstLineTextView.isUserInteractionEnabled = false
@@ -87,10 +108,10 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    func hideContinueButtonAndLabel() {
-        continueButton.isHidden = true
-        waitForOtherPlayersLabel.isHidden = true
-    }
+//    func hideContinueButtonAndLabel() {
+//        continueButton.isHidden = true
+//        waitForOtherPlayersLabel.isHidden = true
+//    }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         view.endEditing(true)
@@ -138,22 +159,24 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     @IBAction func continueButtonPressed(_ sender: AnyObject) {
         
         print("Active haiku detail view controller continue button pressed")
-        
-        if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") {
+       
+        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
+        if !secondLineTextView.text.contains("enters second line of haiku") && (!secondLineTextView.text.contains("Waiting on second player") || !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku")) {
             
-            if thirdLineTextView.text.contains("enters second line, you can write third line") || thirdLineTextView.text.contains("after second player's turn") {
+            if thirdLineTextView.text.contains("enters second line, you can write third line") || thirdLineTextView.text.contains("after second player's turn") || thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
             
              ifSecondTextFieldWasEdited()
             }
-            
+            }
         }
         
-        if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") && !thirdLineTextView.text.contains("enters second line, you can write third line") && !thirdLineTextView.text.contains("after second player's turn") {
+        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
+        if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") && !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku") && !thirdLineTextView.text.contains("enters second line, you can write third line") && !thirdLineTextView.text.contains("after second player's turn") && !thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
             
             ifThirdTextFieldWasEdited()
             
         }
-        
+        }
     }
     
     func ifSecondTextFieldWasEdited() {
@@ -235,11 +258,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 }
             }
             
-            
-            
-            
-            
-            
             if let thirdPlayer = thirdPlayerUUID {
                 if thirdPlayer != currentUserUID {
                     
@@ -289,20 +307,18 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                 
                 })
                 
+                //here you show Active Detail VC! not an alert controller.
                 present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product?"), animated: true, completion: nil)
-        
 
             }
         }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        //        if textView.textColor == UIColor.lightGray {
+       
         textView.text = nil
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 1)
-        //            textView.layer.cornerRadius = 5
         textView.clipsToBounds = true
-        //   }
     }
     
 }
