@@ -88,7 +88,18 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+ // this should be taken care of by segmented control, but sometimes it takes a while for active haiku to post
+//       activeHaikusRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//        
+//        if self.segmentedControl.selectedSegmentIndex == 0 && snapshot.exists() && self.noHaikusLabel.text == "You don't have any active haikus yet." &&
+//        self.noHaikusView.isHidden == false {
+//            self.fetchActiveHaikusAndSetToDataSource()
+//            self.completedView.isHidden = true
+//            self.activeView.isHidden = false
+//        }
+//        
+//        })
+//        
         
         reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must

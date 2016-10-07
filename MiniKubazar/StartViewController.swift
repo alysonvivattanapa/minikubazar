@@ -166,16 +166,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 print("Unable to start notifier")
             }
         }
-        
-//        resetTextViews()
-        
-//        firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables"
-//        secondLineHaikuTextView.text = "Enter second line of haiku: 7 syllables"
-//        thirdLineHaikuTextView.text = "Enter third line of haiku: 5 syllables"
-//        firstLineHaikuTextView.textColor = UIColor.lightGray
-//        secondLineHaikuTextView.textColor = UIColor.lightGray
-//        thirdLineHaikuTextView.textColor = UIColor.lightGray
-        
+
         if createNewHaikuView.isHidden == false {
             startAnimation()
         }

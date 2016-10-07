@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1004805708128-1is57kg7deum3eq258cdnnv3d9easbf2.apps.googleusercontent.com</string>
+	<string>50160229585-7t2mq9oq29fc2cocso6s7tsep401ot9g.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1004805708128-1is57kg7deum3eq258cdnnv3d9easbf2</string>
+	<string>com.googleusercontent.apps.50160229585-7t2mq9oq29fc2cocso6s7tsep401ot9g</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAW0mkTkw_RQcyMg7clm_h0lv9BBq4vft4</string>
+	<string>AIzaSyBTedNewmWEtBnz_MbSeJ2NHFN4lRovRlw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1004805708128</string>
+	<string>50160229585</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.alyson.MiniKubazar</string>
 	<key>PROJECT_ID</key>
-	<string>kubazar-2</string>
+	<string>kubazar-3</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kubazar-2.appspot.com</string>
+	<string>kubazar-3.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1004805708128:ios:d9944cb1f51973c7</string>
+	<string>1:50160229585:ios:d9944cb1f51973c7</string>
 	<key>DATABASE_URL</key>
-	<string>https://kubazar-2.firebaseio.com</string>
+	<string>https://kubazar-3.firebaseio.com</string>
 </dict>
 </plist>

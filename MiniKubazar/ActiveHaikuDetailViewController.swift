@@ -275,25 +275,34 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     func ifThirdTextFieldWasEdited() {
         
+        thirdLineTextView.backgroundColor = UIColor.white
+        thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+        thirdLineTextView.isUserInteractionEnabled = false
+        waitForOtherPlayersLabel.text = "Excellent haiku! You really created something special there."
+        continueButton.isHidden = true
         
-                            thirdLineTextView.backgroundColor = UIColor.white
-                            thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
-                            thirdLineTextView.isUserInteractionEnabled = false
-                            waitForOtherPlayersLabel.text = "Excellent haiku! You really created something special there."
-                            continueButton.isHidden = true
+        let completedDetailView = CompletedHaikuDetailViewController()
+        self.present(completedDetailView, animated: true) { 
+            if let firstLine = self.firstLineTextView.text, let secondLine = self.secondLineTextView.text, let haikuImage = self.imageView.image, let thirdLine = self.thirdLineTextView.text {
+                completedDetailView.completedHaikuDetailImageView.image = haikuImage
+                completedDetailView.firstLineLabel.text = firstLine
+                completedDetailView.secondLineLabel.text = secondLine
+                completedDetailView.thirdLineLabel.text = thirdLine
+            }
+        }
         
-            print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
+        print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
         
-            if let uniqueUUID = uniqueHaikuUUID, let thirdLineText = thirdLineTextView.text {
+        if let uniqueUUID = uniqueHaikuUUID, let thirdLineText = thirdLineTextView.text {
             
             OperationQueue.main.addOperation({
-                 ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
+                ClientService.fetchActiveHaikuAndMoveToNewCompletedHaikus(uniqueUUID, thirdLineTextString: thirdLineText)
                 
-                    ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
+                ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(uniqueUUID)").removeValue()
                 
                 if let firstPlayer = self.firstPlayerUUID {
-                   if firstPlayer != self.currentUserUID {
-                    ClientService.activeHaikusRef.child("\(firstPlayer)/\(uniqueUUID)").removeValue()
+                    if firstPlayer != self.currentUserUID {
+                        ClientService.activeHaikusRef.child("\(firstPlayer)/\(uniqueUUID)").removeValue()
                     }
                 }
                 
@@ -309,21 +318,47 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                         ClientService.activeHaikusRef.child("\(thirdPlayer)/\(uniqueUUID)").removeValue()
                     }
                 }
-                
-//                self.present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
-                
-                let completedDetailVC = CompletedHaikuDetailViewController()
-                print(self.imageView.image)
-                print(self.firstLineTextView.text)
-                print(self.secondLineTextView.text)
-                print(thirdLineText)
-                
-                
-                })
-                
-                
+            })
         }
     }
+    
+    
+//                self.present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
+                
+//                let completedDetailVC = CompletedHaikuDetailViewController()
+//                print(self.imageView.image)
+//                print(self.firstLineTextView.text)
+//                print(self.secondLineTextView.text)
+//                print(thirdLineText)
+                
+//                if let haikuImage = self.imageView.image {
+//                    completedDetailVC.completedHaikuDetailImageView.image = haikuImage
+//                    completedDetailVC.firstLineLabel.text = self.firstLineTextView.text
+//                    completedDetailVC.secondLineLabel.text = self.secondLineTextView.text
+//                    completedDetailVC.thirdLineLabel.text = thirdLineText
+                
+//                self.present(completedDetailVC, animated: true, completion: {
+//                    if let firstLine = self.firstLineTextView.text, let secondLine = self.secondLineTextView.text {
+//                        completedDetailVC.completedHaikuDetailImageView.image = self.imageView.image
+//                        completedDetailVC.firstLineLabel.text = firstLine
+//                        completedDetailVC.secondLineLabel.text = secondLine
+//                        completedDetailVC.thirdLineLabel.text = thirdLineText
+//                    }
+//                })
+//                    self.present(completedDetailVC, animated: true, completion: nil)
+//                    
+//                    self.addChildViewController(completedDetailVC)
+//                    completedDetailVC.view.frame = CGRect(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
+//                    self.view.addSubview(completedDetailVC.view)
+//                    completedDetailVC.didMove(toParentViewController: self)
+//
+             
+                
+             //   })
+                
+                
+      //  }
+//    }
     
     
     
