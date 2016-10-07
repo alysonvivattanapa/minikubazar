@@ -74,6 +74,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
    override func viewWillAppear(_ animated: Bool) {
     
     disableUserinteractionForAllTextViews()
+    continueButton.isHidden = true
     
     if let secondPlayer = secondPlayerUUID {
        ClientService.getPlayerEmailFromUUID(secondPlayer, closure: { (playerEmail) in
@@ -91,14 +92,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
         
     }
-//
-//    continueButton.isHidden = true
-//    
-//    waitForOtherPlayersLabel.isHidden = false
-//    
-//       print("DETAIL FIRST \(firstPlayerUUID)")
-//    print("DETAIL SECOND \(secondPlayerUUID)")
-//    print("DETAIL THIRD \(thirdPlayerUUID)")
+
     
     
     func disableUserinteractionForAllTextViews() {
@@ -108,10 +102,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     
-//    func hideContinueButtonAndLabel() {
-//        continueButton.isHidden = true
-//        waitForOtherPlayersLabel.isHidden = true
-//    }
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         view.endEditing(true)
@@ -200,32 +190,22 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                     
+                    
+                    
                     let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .alert)
                     let okayAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alertController.addAction(okayAction)
-//                    alertController.modalPresentationStyle = .OverCurrentContext
-                    self.present(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: {
+                        self.waitForOtherPlayersLabel.text = "Great job with that second line! Now wait for your friend to finish the haiku."
+                        self.continueButton.isHidden = true
+                        self.secondLineTextView.isUserInteractionEnabled = false
+                        self.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                        self.secondLineTextView.backgroundColor = UIColor.white
+                    })
+//                    self.present(alertController, animated: true, completion: nil)
                     
-//                    if (self.navigationController?.visibleViewController?.isKindOfClass(UIAlertController)) == true {
-//                    self.presentViewController(alertController, animated: true, completion: nil)
-//                    }
                 }})
-                    
-//                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    
-//                    var rootViewController = appDelegate.keyW
-//                    
-//                    if (rootViewController is UINavigationController) {
-//                        rootViewController = (rootViewController as! UINavigationController).viewControllers.first!
-//                    }
-//                    
-//                    if (rootViewController is UITabBarController) {
-//                        rootViewController = (rootViewController as! UITabBarController).selectedViewController!
-//                    }
-//                    
-                    //this code is still being weird
-                    
-//                    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController?.presentViewController(alertController, animated: true, completion: nil)
+            
                     
         
             if let firstPlayer = firstPlayerUUID {
@@ -277,6 +257,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     func ifThirdTextFieldWasEdited() {
         
+        
+                            thirdLineTextView.backgroundColor = UIColor.white
+                            thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                            thirdLineTextView.isUserInteractionEnabled = false
+                            waitForOtherPlayersLabel.text = "Excellent haiku! You really created something special there."
+                            continueButton.isHidden = true
+        
             print("THIS SHOULD BE TRIGGERED IF THIRD TEXT FIELD WAS EDITED")
         
             if let uniqueUUID = uniqueHaikuUUID, let thirdLineText = thirdLineTextView.text {
@@ -304,14 +291,35 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                         ClientService.activeHaikusRef.child("\(thirdPlayer)/\(uniqueUUID)").removeValue()
                     }
                 }
-                
                 })
                 
-                //here you show Active Detail VC! not an alert controller.
-                present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product?"), animated: true, completion: nil)
-
-            }
+                present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
         }
+    }
+    
+    
+    
+//                 let completedDetailVC = CompletedHaikuDetailViewController()
+//                
+//                completedDetailVC.completedHaikuDetailImageView.image = self.imageView.image
+//                
+////                completedDetailVC.firstLineLabel.text = self.
+//                
+//                completedDetailVC.thirdLineLabel.text = thirdLineText
+//                
+//                self.addChildViewController(completedDetailVC)
+//                completedDetailVC.view.frame = CGRect(x: self.view.bounds.origin.x, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
+//                self.view.addSubview(completedDetailVC.view)
+//                completedDetailVC.didMove(toParentViewController: self)
+//                
+        
+
+//
+
+
+
+            
+        
     
     func textViewDidBeginEditing(_ textView: UITextView) {
        

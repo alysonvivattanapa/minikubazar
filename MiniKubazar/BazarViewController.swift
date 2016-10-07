@@ -324,7 +324,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             if let firstPersonString = activeHaiku.firstPlayerUUID {
                 print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
                 activeHaikuDetailVC.firstPlayerUUID = firstPersonString
-                
             }
             
             if let secondPersonString = activeHaiku.secondPlayerUUID {
@@ -335,12 +334,11 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             if let thirdPersonString = activeHaiku.thirdPlayerUUID {
                 print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
                 activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
-                
             }
             
-            
-            
             present(activeHaikuDetailVC, animated: true, completion: {
+                
+                let currentUserEmail = ClientService.getCurrentUserEmail()
                 
                 activeHaikuDetailVC.imageView.image = cell.imageView.image
                 activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
@@ -355,70 +353,51 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 if let secondPlayer = activeHaikuDetailVC.secondPlayerUUID {
                     
-                    if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("enters second line of haiku.") {
+                    if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("\(currentUserEmail) enters second line of haiku.") {
+                        
                         activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
                         activeHaikuDetailVC.continueButton.isEnabled = true
                         activeHaikuDetailVC.continueButton.isHidden = false
-                        activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
-                    }
-                    
-                    if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("Waiting on second player") {
-                        activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
-                        activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
-                        activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
-                        activeHaikuDetailVC.continueButton.isEnabled = true
-                        activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
-                        activeHaikuDetailVC.continueButton.isHidden = false
+                        activeHaikuDetailVC.waitForOtherPlayersLabel.text = "It's your turn! Press 'Continue' after you enter the second line of the haiku."
                     }
                 }
                 
                 if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID {
                     
-                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("enters second line, you can write third line") && !activeHaiku.secondLineString.contains("Waiting on second player"){
+                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("\(currentUserEmail) enters third line of haiku.") && !activeHaiku.secondLineString.contains("enters second line of haiku."){
                         
                         activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
                         activeHaikuDetailVC.continueButton.isEnabled = true
-                        activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
+                        activeHaikuDetailVC.waitForOtherPlayersLabel.text = "It's your turn! Press 'Continue' after you enter the last line of the haiku."
                         activeHaikuDetailVC.continueButton.isHidden = false
                     }
-                    
-                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("Write here after second player's turn") && !activeHaiku.secondLineString.contains("Waiting on second player"){
-                        
-                        activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
-                        activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
-                        activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
-                        activeHaikuDetailVC.continueButton.isEnabled = true
-                        activeHaikuDetailVC.waitForOtherPlayersLabel.isHidden = true
-                        activeHaikuDetailVC.continueButton.isHidden = false
-                        
-                    } }
-                
-                
+                }
             })
         }
         
         
-        if collectionView == self.completedHaikusCollectionView {
-            
-            let completedHaikuDetailVC = CompletedHaikuDetailViewController()
-            
-            let cell = self.completedHaikusCollectionView.cellForItem(at: indexPath) as! CompletedHaikusCollectionViewCell
-            
-            present(completedHaikuDetailVC, animated: false) {
+        
+                if collectionView == self.completedHaikusCollectionView {
+                
+                let completedHaikuDetailVC = CompletedHaikuDetailViewController()
+                
+                let cell = self.completedHaikusCollectionView.cellForItem(at: indexPath) as! CompletedHaikusCollectionViewCell
+                
+                self.present(completedHaikuDetailVC, animated: false) {
                 let haikuObject = self.completedCollectionViewDataSource.completedHaikus[(indexPath as NSIndexPath).row]
                 completedHaikuDetailVC.completedHaikuDetailImageView.image = cell.completedHaikuImageView.image
                 completedHaikuDetailVC.firstLineLabel.text = haikuObject.firstLineString
                 completedHaikuDetailVC.secondLineLabel.text = haikuObject.secondLineString
                 completedHaikuDetailVC.thirdLineLabel.text = haikuObject.thirdLineString
                 completedHaikuDetailVC.animateButtons()
+                }
             }
         }
-    }
-
-    
-    
+        
+        
+        
 }

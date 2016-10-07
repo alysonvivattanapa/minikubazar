@@ -122,10 +122,6 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
                 let friendEmail = friend.object(forKey: "email") as! String
                     
                 let friendUsername = friend.object(forKey: "username") as! String
-                    
-//                let friendUID = (friendSnapshot.value as AnyObject).object(forKey: "uid") as! String
-//                let friendEmail = (friendSnapshot.value as AnyObject).object(forKey: "email") as! String
-//                let friendUsername = (friendSnapshot.value as AnyObject).object(forKey: "username") as! String
                 
                 print("\(friendEmail) & \(friendUID) & \(friendUsername)")
                 
@@ -148,45 +144,45 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     
     }
     
-    func isFriendAlreadyAdded(_ emailStri: String) {
-        
-        ClientService.getFriendEmailsForCurrentUser { (friendEmails) in
-            let currentUserEmail = ClientService.getCurrentUserEmail()
-            if friendEmails.contains(emailStri) {
-                self.present(Alerts.showErrorMessage("\(emailStri) is already added to your friends list. Try another friend."), animated: true, completion: nil)
-            } else if emailStri == currentUserEmail {
-                //this is working!
-                self.present(Alerts.showErrorMessage("Sorry! You can't add yourself as a friend at this time :)"), animated: true, completion: nil)
-            } else if !friendEmails.contains(emailStri) {
-                
-                ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .childAdded, with: { (snapshot) in
-                    
-                    if snapshot.exists() {
-                        print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
-                        print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
-                        
-                        
-                        let friendUID = (snapshot.value as AnyObject).object(forKey: "uid") as! String
-                        let friendEmail = (snapshot.value as AnyObject).object(forKey: "email") as! String
-                        let friendUsername = (snapshot.value as AnyObject).object(forKey: "username") as! String
-                        
-                        print("\(friendEmail) & \(friendUID) & \(friendUsername)")
-                        
-                        let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
-                        
-                        print(friendUser)
-                        
-                        ClientService.addFriendToCurrentUserFriendsList(friendUser)
-                        
-                    } else {
-                        self.sendInvitationEmail(emailStri)
-                    }
-                })
-                
-            }
-            
-        }
-    }
+//    func isFriendAlreadyAdded(_ emailStri: String) {
+//        
+//        ClientService.getFriendEmailsForCurrentUser { (friendEmails) in
+//            let currentUserEmail = ClientService.getCurrentUserEmail()
+//            if friendEmails.contains(emailStri) {
+//                self.present(Alerts.showErrorMessage("\(emailStri) is already added to your friends list. Try another friend."), animated: true, completion: nil)
+//            } else if emailStri == currentUserEmail {
+//                //this is working!
+//                self.present(Alerts.showErrorMessage("Sorry! You can't add yourself as a friend at this time :)"), animated: true, completion: nil)
+//            } else if !friendEmails.contains(emailStri) {
+//                
+//                ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .childAdded, with: { (snapshot) in
+//                    
+//                    if snapshot.exists() {
+//                        print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
+//                        print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
+//                        
+//                        
+//                        let friendUID = (snapshot.value as AnyObject).object(forKey: "uid") as! String
+//                        let friendEmail = (snapshot.value as AnyObject).object(forKey: "email") as! String
+//                        let friendUsername = (snapshot.value as AnyObject).object(forKey: "username") as! String
+//                        
+//                        print("\(friendEmail) & \(friendUID) & \(friendUsername)")
+//                        
+//                        let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
+//                        
+//                        print(friendUser)
+//                        
+//                        ClientService.addFriendToCurrentUserFriendsList(friendUser)
+//                        
+//                    } else {
+//                        self.sendInvitationEmail(emailStri)
+//                    }
+//                })
+//                
+//            }
+//            
+//        }
+//    }
 
 
     
@@ -253,6 +249,7 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
                         let email = (friend.value! as AnyObject).object(forKey: "email") as! String
                         let username = (friend.value! as AnyObject).object(forKey: "username") as! String
                         let friend = User(username: username, email: email, uid: uid)
+                        print(friend)
                         self.friendsTableViewDataSource.friendArray.append(friend)
                        
                         self.friendsTableView.reloadSections(IndexSet(integer: 0), with: .none)
