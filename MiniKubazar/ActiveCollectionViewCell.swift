@@ -13,6 +13,11 @@ class ActiveCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var overlayView: UIView!
+    
+    @IBOutlet weak var isItYourTurnLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +27,14 @@ class ActiveCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         updateWithImage(nil)
+        updateWithLabelText(nil)
+    }
+    
+    func updateWithLabelText (_ isItYourTurnText:String?) {
+        if isItYourTurnText != nil {
+            isItYourTurnLabel.text = isItYourTurnText
+            overlayView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 0.90)
+        }
     }
     
     func updateWithImage(_ image: UIImage?) {

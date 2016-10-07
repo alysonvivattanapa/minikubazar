@@ -55,6 +55,23 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                         //                cell.imageView.image = haikuImage
                         cell.updateWithImage(haikuImage)
                         
+                        let currentUserUID = ClientService.getCurrentUserUID()
+                        
+                        if let secondPlayer = activeHaiku.secondPlayerUUID, let secondLine = activeHaiku.secondLineString {
+                            if secondPlayer == currentUserUID && secondLine.contains("enters second line of haiku.") {
+                                
+                                   cell.updateWithLabelText("It's your turn!")
+                            }
+                        }
+                        
+                        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let thirdLine = activeHaiku.thirdLineString {
+                            if thirdPlayer == currentUserUID && thirdLine.contains("enters third line of haiku.") {
+                                
+                                cell.updateWithLabelText("It's your turn!"
+                                )
+                            }
+                        }
+                        
                         if haikuImage != nil {
                             self.imageCache.setObject(haikuImage!, forKey: imageURL as AnyObject)
                         }
