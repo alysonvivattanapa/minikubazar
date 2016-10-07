@@ -309,9 +309,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                         ClientService.activeHaikusRef.child("\(thirdPlayer)/\(uniqueUUID)").removeValue()
                     }
                 }
+                
+                self.present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
+                
                 })
                 
-                present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
+                
         }
     }
     

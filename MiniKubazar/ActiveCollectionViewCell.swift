@@ -34,6 +34,10 @@ class ActiveCollectionViewCell: UICollectionViewCell {
         if isItYourTurnText != nil {
             isItYourTurnLabel.text = isItYourTurnText
             overlayView.backgroundColor = UIColor(red: 90.0/255, green: 191.0/255, blue: 188.0/255, alpha: 0.90)
+        } else {
+            isItYourTurnLabel.text = "Waiting for friend."
+            overlayView.backgroundColor = UIColor.black
+            overlayView.alpha = 0.5
         }
     }
     
