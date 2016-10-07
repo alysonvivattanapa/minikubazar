@@ -73,6 +73,24 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
    override func viewWillAppear(_ animated: Bool) {
     
+    waitForOtherPlayersLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+    
+    
+    UIView.animate(withDuration: 1.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 9, options: .transitionCurlUp, animations: {
+        self.waitForOtherPlayersLabel.transform = CGAffineTransform.identity
+        
+     
+                }, completion: nil)
+//    let labelFrameOriginY = waitForOtherPlayersLabel.frame.origin.y
+//    
+    
+//    let animation = CABasicAnimation(keyPath: "position.y")
+//    animation.duration = 1.6
+//    animation.fromValue = -labelFrameOriginY
+//    animation.toValue = labelFrameOriginY
+//    waitForOtherPlayersLabel.layer.add(animation, forKey: nil)
+    
+    
     disableUserinteractionForAllTextViews()
     continueButton.isHidden = true
     

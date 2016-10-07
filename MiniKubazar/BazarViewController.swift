@@ -282,23 +282,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     
-    
-
-//    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let haikuImage = completedCollectionViewDataSource.completedHaikus[indexPath.row]
-//        
-//        let haikuImageIndex = completedCollectionViewDataSource.completedHaikus.indexOf(haikuImage)!
-//        
-//        let haikuImageIndexPath = NSIndexPath(forRow: haikuImageIndex, inSection: 0)
-//        
-//        if let cell = self.completedHaikusCollectionView.cellForItemAtIndexPath(haikuImageIndexPath) as? CompletedHaikusCollectionViewCell {
-//            cell.updateWithImage(haikuImage.image)
-//            
-//        }
-//        
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let screenSize: CGRect = UIScreen.main.bounds
@@ -357,6 +340,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                         
                         activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                        activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.lightGray
                         activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
                         activeHaikuDetailVC.continueButton.isEnabled = true
                         activeHaikuDetailVC.continueButton.isHidden = false
@@ -368,6 +352,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     
                     if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("\(currentUserEmail) enters third line of haiku.") && !activeHaiku.secondLineString.contains("enters second line of haiku."){
                         
+                        activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
@@ -375,6 +360,11 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                         activeHaikuDetailVC.waitForOtherPlayersLabel.text = "It's your turn! Press 'Continue' after you enter the last line of the haiku."
                         activeHaikuDetailVC.continueButton.isHidden = false
                     }
+                }
+                
+
+                        if !activeHaiku.secondLineString.contains("enters second line of haiku.") {
+                            activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                 }
             })
         }
