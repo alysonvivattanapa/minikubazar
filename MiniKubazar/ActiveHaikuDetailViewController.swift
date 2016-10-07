@@ -310,7 +310,14 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
                     }
                 }
                 
-                self.present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
+//                self.present(Alerts.showSuccessMessage("Okay, this haiku should be posted to completed haikus now! Congrats! Include link to view final product? or show detail VC"), animated: true, completion: nil)
+                
+                let completedDetailVC = CompletedHaikuDetailViewController()
+                print(self.imageView.image)
+                print(self.firstLineTextView.text)
+                print(self.secondLineTextView.text)
+                print(thirdLineText)
+                
                 
                 })
                 
