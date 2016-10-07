@@ -14,6 +14,8 @@
 		F220BE401D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */; };
 		F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */; };
 		F235E2D91DA7DB0200826DD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F235E2D81DA7DB0200826DD5 /* GoogleService-Info.plist */; };
+		F235E2DC1DA7FD3100826DD5 /* PopOutImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235E2DA1DA7FD3100826DD5 /* PopOutImageViewController.swift */; };
+		F235E2DD1DA7FD3100826DD5 /* PopOutImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F235E2DB1DA7FD3100826DD5 /* PopOutImageViewController.xib */; };
 		F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */; };
 		F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */; };
 		F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */; };
@@ -58,6 +60,8 @@
 		F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F235E2D71DA44A0800826DD5 /* MiniKubazar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniKubazar.entitlements; sourceTree = "<group>"; };
 		F235E2D81DA7DB0200826DD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F235E2DA1DA7FD3100826DD5 /* PopOutImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOutImageViewController.swift; sourceTree = "<group>"; };
+		F235E2DB1DA7FD3100826DD5 /* PopOutImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOutImageViewController.xib; sourceTree = "<group>"; };
 		F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewDataSource.swift; sourceTree = "<group>"; };
 		F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */,
 				F220BE3E1D9AD3D600264DFF /* ActiveHaikuDetailViewController.swift */,
 				F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */,
+				F235E2DA1DA7FD3100826DD5 /* PopOutImageViewController.swift */,
+				F235E2DB1DA7FD3100826DD5 /* PopOutImageViewController.xib */,
 			);
 			name = "Detail View Controllers";
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				F235E2D91DA7DB0200826DD5 /* GoogleService-Info.plist in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,
 				F2A120101D82287900A39867 /* LaunchScreen.storyboard in Resources */,
+				F235E2DD1DA7FD3100826DD5 /* PopOutImageViewController.xib in Resources */,
 				F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +407,7 @@
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,
 				F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */,
 				F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */,
+				F235E2DC1DA7FD3100826DD5 /* PopOutImageViewController.swift in Sources */,
 				F2A120251D822B5600A39867 /* WelcomeViewController.swift in Sources */,
 				F2AEDBF21D895BB100BB07CC /* CompletedHaiku.swift in Sources */,
 				F220BE391D9AA35400264DFF /* ActiveCollectionViewDataSource.swift in Sources */,

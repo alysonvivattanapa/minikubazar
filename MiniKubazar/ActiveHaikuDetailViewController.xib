@@ -179,9 +179,20 @@
                         </mask>
                     </variation>
                 </label>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hu4-RV-6HQ">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="43" id="196-LO-BXh"/>
+                        <constraint firstAttribute="height" constant="37" id="Kip-lL-EYQ"/>
+                    </constraints>
+                    <state key="normal" image="popOutIcon"/>
+                    <connections>
+                        <action selector="popOutButtonPressed:" destination="-1" eventType="touchUpInside" id="3xl-cL-dxC"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Hu4-RV-6HQ" firstAttribute="top" secondItem="sF1-VU-UfT" secondAttribute="bottom" constant="67" id="2q6-BB-1O6"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="lO1-ty-Xpn" secondAttribute="centerY" id="4Xc-GZ-tVV"/>
                 <constraint firstAttribute="trailing" secondItem="lO1-ty-Xpn" secondAttribute="trailing" id="7ad-yC-9Cc"/>
                 <constraint firstItem="LH4-0t-iuP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AFy-7u-5fi"/>
@@ -191,6 +202,7 @@
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="centerX" secondItem="sF1-VU-UfT" secondAttribute="centerX" id="ON8-YF-6WF"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="height" secondItem="sF1-VU-UfT" secondAttribute="height" id="Q4B-Fw-dSe"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TWi-wu-rag"/>
+                <constraint firstAttribute="trailing" secondItem="Hu4-RV-6HQ" secondAttribute="trailing" constant="7" id="V2l-Xv-Z1J"/>
                 <constraint firstItem="wnP-eC-FdV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Vdr-KS-uZB"/>
                 <constraint firstItem="lO1-ty-Xpn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YEc-7Y-4EE"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bEO-SK-XW1"/>
@@ -205,16 +217,17 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="rSz-bc-7r5"/>
                     <exclude reference="TWi-wu-rag"/>
                     <exclude reference="bEO-SK-XW1"/>
                     <exclude reference="oyC-Dd-Ux3"/>
+                    <exclude reference="rSz-bc-7r5"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="99.5" y="88.5"/>
+            <point key="canvasLocation" x="99" y="88"/>
         </view>
     </objects>
     <resources>
         <image name="Continue" width="465" height="121"/>
+        <image name="popOutIcon" width="44" height="44"/>
     </resources>
 </document>

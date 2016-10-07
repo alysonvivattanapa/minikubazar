@@ -111,6 +111,13 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
     }
 
+    @IBAction func popOutButtonPressed(_ sender: AnyObject) {
+        let popOutVC = PopOutImageViewController()
+        present(popOutVC, animated: true) { 
+            popOutVC.poppedOutImageView.image = self.imageView.image
+        }
+    }
+    
     
     
     func disableUserinteractionForAllTextViews() {

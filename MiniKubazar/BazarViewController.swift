@@ -88,6 +88,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+//        print(completedCollectionViewDataSource.imageCache.object(forKey: <#T##AnyObject#>))
  // this should be taken care of by segmented control, but sometimes it takes a while for active haiku to post
 //       activeHaikusRef.observeSingleEvent(of: .value, with: { (snapshot) in
 //        
