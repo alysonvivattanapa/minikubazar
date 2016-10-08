@@ -355,7 +355,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["info@kubazar.org"])
+            mail.setToRecipients(["ons@crowdeffect.nl"])
             mail.setSubject("[Flag/Report] Inappropriate Content re: Haiku ID# \(haikuID)")
             mail.setSubject(haikuID)
             mail.setMessageBody("<p>Please flag this haiku for inappropriate content.</p>", isHTML: true)

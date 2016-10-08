@@ -228,9 +228,9 @@
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="dKx-EG-Xbc" firstAttribute="leading" secondItem="sOc-kR-Srd" secondAttribute="leading" constant="-7" id="JMy-63-EJi"/>
                         <constraint firstItem="2GF-IO-BKO" firstAttribute="centerX" secondItem="sOc-kR-Srd" secondAttribute="centerX" id="Zpm-u6-E4b"/>
                         <constraint firstAttribute="height" constant="50" id="cZq-20-7Zq"/>
+                        <constraint firstItem="dKx-EG-Xbc" firstAttribute="leading" secondItem="sOc-kR-Srd" secondAttribute="leading" id="fpn-jo-y8L"/>
                         <constraint firstItem="2GF-IO-BKO" firstAttribute="centerY" secondItem="sOc-kR-Srd" secondAttribute="centerY" id="hNM-ax-os7"/>
                         <constraint firstAttribute="width" constant="140" id="s6K-7a-ZgV"/>
                         <constraint firstItem="dKx-EG-Xbc" firstAttribute="top" secondItem="sOc-kR-Srd" secondAttribute="top" id="wbB-ix-h3D"/>
@@ -270,10 +270,10 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="rSz-bc-7r5"/>
                     <exclude reference="TWi-wu-rag"/>
                     <exclude reference="bEO-SK-XW1"/>
                     <exclude reference="oyC-Dd-Ux3"/>
-                    <exclude reference="rSz-bc-7r5"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="99" y="88"/>

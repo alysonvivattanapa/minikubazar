@@ -11,7 +11,7 @@ import MessageUI
 
 class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
-//    @IBOutlet weak var congratsLabel: UILabel!
+    @IBOutlet weak var flagView: UIView!
     
     @IBOutlet weak var completedHaikuDetailImageView: UIImageView!
     
@@ -31,6 +31,10 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        flagView.isHidden = true
+        
+        flagView.layer.cornerRadius = 15
         
         animateButtons()
 
@@ -125,15 +129,24 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     
     @IBAction func dotDotDotButtonPressed(_ sender: AnyObject) {
         
-         flagReportView.isHidden = false
+         flagView.isHidden = false
     }
+    
+    @IBAction func flagReportButtonPressed(_ sender: AnyObject) {
+        
+        if let haikuID = uniqueHaikuUUID {
+        
+        sendFlagReportEmail(haikuID)
+        }
+    }
+    
     
     func sendFlagReportEmail(_ haikuID: String) {
         
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["info@kubazar.org"])
+            mail.setToRecipients(["ons@crowdeffect.nl"])
             mail.setSubject("[Flag/Report] Inappropriate Content re: Haiku ID# \(haikuID)")
             mail.setSubject(haikuID)
             mail.setMessageBody("<p>Please flag this haiku for inappropriate content.</p>", isHTML: true)
@@ -154,7 +167,7 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     }
     
     @IBAction func dismissFlagReportButtonPressed(_ sender: AnyObject) {
-        flagReportView.isHidden = true
+        flagView.isHidden = true
     }
 
 

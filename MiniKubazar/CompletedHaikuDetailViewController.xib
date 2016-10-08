@@ -12,6 +12,7 @@
                 <outlet property="completedHaikuDetailImageView" destination="vhB-P3-hmd" id="ExO-9t-a0I"/>
                 <outlet property="dotDotDotButton" destination="0TO-cT-Me2" id="RZr-Bc-lHS"/>
                 <outlet property="firstLineLabel" destination="XGc-fr-fjG" id="wdw-Oo-c0C"/>
+                <outlet property="flagView" destination="f0q-9j-LQm" id="h2W-rC-u15"/>
                 <outlet property="secondLineLabel" destination="eM1-oB-NaU" id="vSK-5D-rPd"/>
                 <outlet property="shareButton" destination="CmB-i0-MPv" id="SBz-Al-TE1"/>
                 <outlet property="shareableView" destination="aow-Qy-Wbi" id="688-NB-Hi5"/>
@@ -21,7 +22,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXU-e4-Vh8">
@@ -177,6 +178,45 @@
                         <action selector="dotDotDotButtonPressed:" destination="-1" eventType="touchUpInside" id="43e-LE-8Mm"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0q-9j-LQm" userLabel="Flag View">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKY-yZ-8YS">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="6qR-yu-UQC"/>
+                                <constraint firstAttribute="width" constant="101" id="aba-eP-7qE"/>
+                            </constraints>
+                            <state key="normal" title="Flag/Report">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="flagReportButtonPressed:" destination="-1" eventType="touchUpInside" id="tO8-7i-GpH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-x4-ZI1">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="MQR-BF-qnC"/>
+                                <constraint firstAttribute="width" constant="32" id="vGf-lL-nwt"/>
+                            </constraints>
+                            <state key="normal" title="X">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dismissFlagReportButtonPressed:" destination="-1" eventType="touchUpInside" id="AiS-mg-yMA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="7yL-x4-ZI1" firstAttribute="leading" secondItem="f0q-9j-LQm" secondAttribute="leading" id="484-kS-kob"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="BIG-p8-hvI"/>
+                        <constraint firstItem="IKY-yZ-8YS" firstAttribute="centerX" secondItem="f0q-9j-LQm" secondAttribute="centerX" id="CIL-eg-zta"/>
+                        <constraint firstAttribute="height" constant="50" id="Owy-CQ-mvg"/>
+                        <constraint firstItem="IKY-yZ-8YS" firstAttribute="centerY" secondItem="f0q-9j-LQm" secondAttribute="centerY" id="RGi-um-oHM"/>
+                        <constraint firstItem="7yL-x4-ZI1" firstAttribute="top" secondItem="f0q-9j-LQm" secondAttribute="top" id="hlf-vf-0Mx"/>
+                        <constraint firstAttribute="width" constant="140" id="j7O-pW-aU1"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="oMG-B2-0EI"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -189,7 +229,9 @@
                 <constraint firstAttribute="trailing" secondItem="RXU-e4-Vh8" secondAttribute="trailing" id="XZk-8g-aO2"/>
                 <constraint firstAttribute="bottom" secondItem="hoi-xh-en9" secondAttribute="bottom" constant="8" id="Y4s-P2-Vht"/>
                 <constraint firstItem="hoi-xh-en9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="YZf-1l-Q4e"/>
+                <constraint firstItem="IKY-yZ-8YS" firstAttribute="bottom" secondItem="0TO-cT-Me2" secondAttribute="bottom" id="ZTu-rI-LNW"/>
                 <constraint firstItem="CmB-i0-MPv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bEE-e9-7c0"/>
+                <constraint firstItem="f0q-9j-LQm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d3W-hU-Agx"/>
                 <constraint firstItem="RXU-e4-Vh8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="l2a-dj-Uty"/>
                 <constraint firstAttribute="bottom" secondItem="hoi-xh-en9" secondAttribute="bottom" constant="8" id="v0S-2q-SDk"/>
                 <constraint firstAttribute="bottom" secondItem="RXU-e4-Vh8" secondAttribute="bottom" id="vjv-dr-5kj"/>
