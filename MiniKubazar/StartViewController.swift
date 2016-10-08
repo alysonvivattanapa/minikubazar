@@ -486,11 +486,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
            
             if let firstLine = self.firstLineHaikuTextView.text, let secondLine =
                 self.secondLineHaikuTextView.text, let thirdLine =
-                self.thirdLineHaikuTextView.text{
+                self.thirdLineHaikuTextView.text {
             completedDetailVC.completedHaikuDetailImageView.image = self.finishedImageView.image
             completedDetailVC.firstLineLabel.text = firstLine
             completedDetailVC.secondLineLabel.text = secondLine
             completedDetailVC.thirdLineLabel.text = thirdLine
+            completedDetailVC.dotDotDotButton.isHidden = true
             }
             
             completedDetailVC.animateButtons()

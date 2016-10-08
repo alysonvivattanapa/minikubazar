@@ -27,6 +27,8 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         inviteNewFriendsView.layer.cornerRadius = 33
         
         friendsTableView.dataSource = friendsTableViewDataSource

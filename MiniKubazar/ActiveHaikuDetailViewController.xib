@@ -12,6 +12,7 @@
                 <outlet property="backButton" destination="wnP-eC-FdV" id="QzQ-o2-tIL"/>
                 <outlet property="continueButton" destination="LH4-0t-iuP" id="x9Y-5U-yM4"/>
                 <outlet property="firstLineTextView" destination="WPV-A9-cX8" id="iyV-Wt-Dbh"/>
+                <outlet property="flagReportView" destination="sOc-kR-Srd" id="Pki-Qd-sQv"/>
                 <outlet property="imageView" destination="lO1-ty-Xpn" id="EUo-uB-v5P"/>
                 <outlet property="secondLineTextView" destination="caN-La-Yri" id="S5N-eR-zb8"/>
                 <outlet property="thirdLineTextView" destination="AR6-te-0Yh" id="PrP-7E-Mm6"/>
@@ -21,7 +22,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-ty-Xpn">
@@ -189,10 +190,57 @@
                         <action selector="popOutButtonPressed:" destination="-1" eventType="touchUpInside" id="3xl-cL-dxC"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhp-8w-tfa">
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="...">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="dotDotDotButtonPressed:" destination="-1" eventType="touchUpInside" id="FsT-Wo-7jF"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOc-kR-Srd" userLabel="Flag View">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GF-IO-BKO">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="101" id="8zC-K5-vBk"/>
+                                <constraint firstAttribute="height" constant="30" id="Yep-iW-pgl"/>
+                            </constraints>
+                            <state key="normal" title="Flag/Report">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="flagReportButtonPressed:" destination="-1" eventType="touchUpInside" id="5bW-qE-6bU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKx-EG-Xbc">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="DEv-UN-Jqn"/>
+                                <constraint firstAttribute="height" constant="24" id="Iab-uw-Mxc"/>
+                            </constraints>
+                            <state key="normal" title="X">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dismissFlagReportButtonPressed:" destination="-1" eventType="touchUpInside" id="fqL-XR-BvM"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="dKx-EG-Xbc" firstAttribute="leading" secondItem="sOc-kR-Srd" secondAttribute="leading" constant="-7" id="JMy-63-EJi"/>
+                        <constraint firstItem="2GF-IO-BKO" firstAttribute="centerX" secondItem="sOc-kR-Srd" secondAttribute="centerX" id="Zpm-u6-E4b"/>
+                        <constraint firstAttribute="height" constant="50" id="cZq-20-7Zq"/>
+                        <constraint firstItem="2GF-IO-BKO" firstAttribute="centerY" secondItem="sOc-kR-Srd" secondAttribute="centerY" id="hNM-ax-os7"/>
+                        <constraint firstAttribute="width" constant="140" id="s6K-7a-ZgV"/>
+                        <constraint firstItem="dKx-EG-Xbc" firstAttribute="top" secondItem="sOc-kR-Srd" secondAttribute="top" id="wbB-ix-h3D"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Hu4-RV-6HQ" firstAttribute="top" secondItem="sF1-VU-UfT" secondAttribute="bottom" constant="67" id="2q6-BB-1O6"/>
+                <constraint firstItem="Xhp-8w-tfa" firstAttribute="height" secondItem="Hu4-RV-6HQ" secondAttribute="height" id="35h-E9-Zaa"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="lO1-ty-Xpn" secondAttribute="centerY" id="4Xc-GZ-tVV"/>
                 <constraint firstAttribute="trailing" secondItem="lO1-ty-Xpn" secondAttribute="trailing" id="7ad-yC-9Cc"/>
                 <constraint firstItem="LH4-0t-iuP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AFy-7u-5fi"/>
@@ -201,10 +249,14 @@
                 <constraint firstAttribute="bottom" secondItem="wnP-eC-FdV" secondAttribute="bottom" constant="65" id="Nci-qS-IqR"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="centerX" secondItem="sF1-VU-UfT" secondAttribute="centerX" id="ON8-YF-6WF"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="height" secondItem="sF1-VU-UfT" secondAttribute="height" id="Q4B-Fw-dSe"/>
+                <constraint firstItem="sOc-kR-Srd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Q8F-bH-gt8"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TWi-wu-rag"/>
                 <constraint firstAttribute="trailing" secondItem="Hu4-RV-6HQ" secondAttribute="trailing" constant="7" id="V2l-Xv-Z1J"/>
+                <constraint firstItem="Xhp-8w-tfa" firstAttribute="width" secondItem="Hu4-RV-6HQ" secondAttribute="width" id="V4m-xN-8Eb"/>
                 <constraint firstItem="wnP-eC-FdV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Vdr-KS-uZB"/>
+                <constraint firstItem="sOc-kR-Srd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XNR-iO-irj"/>
                 <constraint firstItem="lO1-ty-Xpn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YEc-7Y-4EE"/>
+                <constraint firstItem="Xhp-8w-tfa" firstAttribute="bottom" secondItem="Hu4-RV-6HQ" secondAttribute="bottom" id="a1y-3f-tVF"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bEO-SK-XW1"/>
                 <constraint firstItem="LH4-0t-iuP" firstAttribute="centerY" secondItem="wnP-eC-FdV" secondAttribute="centerY" id="cjM-gE-kPV"/>
                 <constraint firstItem="T8q-pv-tyX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hdS-ah-XPw"/>
@@ -212,6 +264,7 @@
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="olk-Le-kr4"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="lO1-ty-Xpn" secondAttribute="centerY" id="oyC-Dd-Ux3"/>
                 <constraint firstItem="T8q-pv-tyX" firstAttribute="centerY" secondItem="LH4-0t-iuP" secondAttribute="centerY" id="rSz-bc-7r5"/>
+                <constraint firstItem="Hu4-RV-6HQ" firstAttribute="leading" secondItem="Xhp-8w-tfa" secondAttribute="trailing" constant="8" id="tlc-GD-Mde"/>
                 <constraint firstItem="lO1-ty-Xpn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ueP-lq-DB8"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="centerY" secondItem="sF1-VU-UfT" secondAttribute="centerY" id="w9n-j5-GsF"/>
             </constraints>

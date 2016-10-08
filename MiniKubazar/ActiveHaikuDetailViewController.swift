@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
 
-
-class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
+class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -21,6 +21,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var secondLineTextView: UITextView!
     
     @IBOutlet weak var thirdLineTextView: UITextView!
+    
+    @IBOutlet weak var flagReportView: UIView!
+ 
     
     var firstPlayerUUID: String?
     
@@ -44,6 +47,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        flagReportView.isHidden = true
+        flagReportView.layer.cornerRadius = 15
         
         if let uniqueUID = uniqueHaikuUUID {
             print(uniqueUID)
@@ -72,6 +78,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         
         waitForOtherPlayersLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
@@ -277,11 +284,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         
         let completedDetailView = CompletedHaikuDetailViewController()
         self.present(completedDetailView, animated: true) {
-            if let firstLine = self.firstLineTextView.text, let secondLine = self.secondLineTextView.text, let haikuImage = self.imageView.image, let thirdLine = self.thirdLineTextView.text {
+            if let firstLine = self.firstLineTextView.text, let secondLine = self.secondLineTextView.text, let haikuImage = self.imageView.image, let thirdLine = self.thirdLineTextView.text, let haikuUID = self.uniqueHaikuUUID {
                 completedDetailView.completedHaikuDetailImageView.image = haikuImage
                 completedDetailView.firstLineLabel.text = firstLine
                 completedDetailView.secondLineLabel.text = secondLine
                 completedDetailView.thirdLineLabel.text = thirdLine
+                completedDetailView.uniqueHaikuUUID = haikuUID
             }
         }
         
@@ -317,6 +325,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
     }
     
     
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         textView.text = nil
@@ -325,4 +334,48 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate {
         textView.clipsToBounds = true
     }
     
+    @IBAction func dotDotDotButtonPressed(_ sender: AnyObject) {
+        
+        flagReportView.isHidden = false
+    }
+
+    
+    @IBAction func flagReportButtonPressed(_ sender: AnyObject) {
+        
+        if let haikuUID = uniqueHaikuUUID {
+            sendFlagReportEmail(haikuUID)
+        }
+        
+        
+        }
+        
+    
+    func sendFlagReportEmail(_ haikuID: String) {
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["info@kubazar.org"])
+            mail.setSubject("[Flag/Report] Inappropriate Content re: Haiku ID# \(haikuID)")
+            mail.setSubject(haikuID)
+            mail.setMessageBody("<p>Please flag this haiku for inappropriate content.</p>", isHTML: true)
+            
+            present(mail, animated: true, completion: nil)
+            
+        } else {
+            
+            present(Alerts.showErrorMessage("You aren't currently able to send an email through this app. Please directly email info@kubazar.org."), animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true) {
+            
+        }
+    }
+    
+    @IBAction func dismissFlagReportButtonPressed(_ sender: AnyObject) {
+        flagReportView.isHidden = true
+    }
 }

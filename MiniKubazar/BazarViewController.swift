@@ -364,6 +364,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 completedHaikuDetailVC.firstLineLabel.text = haikuObject.firstLineString
                 completedHaikuDetailVC.secondLineLabel.text = haikuObject.secondLineString
                 completedHaikuDetailVC.thirdLineLabel.text = haikuObject.thirdLineString
+                completedHaikuDetailVC.uniqueHaikuUUID = haikuObject.uniqueHaikuUUID
                 completedHaikuDetailVC.animateButtons()
                 }
             }

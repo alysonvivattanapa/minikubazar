@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompletedHaikuDetailViewController" customModule="MiniKubazar" customModuleProvider="target">
             <connections>
                 <outlet property="completedHaikuDetailImageView" destination="vhB-P3-hmd" id="ExO-9t-a0I"/>
+                <outlet property="dotDotDotButton" destination="0TO-cT-Me2" id="RZr-Bc-lHS"/>
                 <outlet property="firstLineLabel" destination="XGc-fr-fjG" id="wdw-Oo-c0C"/>
                 <outlet property="secondLineLabel" destination="eM1-oB-NaU" id="vSK-5D-rPd"/>
                 <outlet property="shareButton" destination="CmB-i0-MPv" id="SBz-Al-TE1"/>
@@ -163,12 +164,27 @@
                         </mask>
                     </variation>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TO-cT-Me2">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="GqS-bD-NQI"/>
+                        <constraint firstAttribute="height" constant="30" id="SRS-TT-eHs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="...">
+                        <color key="titleColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="dotDotDotButtonPressed:" destination="-1" eventType="touchUpInside" id="43e-LE-8Mm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="aow-Qy-Wbi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1sD-n7-Qkn"/>
+                <constraint firstAttribute="trailing" secondItem="0TO-cT-Me2" secondAttribute="trailing" constant="8" id="8EE-lo-pZj"/>
                 <constraint firstItem="hoi-xh-en9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Dqm-eb-jhO"/>
                 <constraint firstItem="aow-Qy-Wbi" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="LOb-n4-hou"/>
+                <constraint firstItem="0TO-cT-Me2" firstAttribute="top" secondItem="aow-Qy-Wbi" secondAttribute="bottom" id="UIX-Ci-XZt"/>
                 <constraint firstAttribute="trailing" secondItem="CmB-i0-MPv" secondAttribute="trailing" constant="8" id="WtM-S3-9C0"/>
                 <constraint firstAttribute="trailing" secondItem="RXU-e4-Vh8" secondAttribute="trailing" id="XZk-8g-aO2"/>
                 <constraint firstAttribute="bottom" secondItem="hoi-xh-en9" secondAttribute="bottom" constant="8" id="Y4s-P2-Vht"/>
