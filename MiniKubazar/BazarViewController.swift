@@ -136,9 +136,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             print("Unable to start notifier")
         }
         
-        
-//           buttonAnimation(howToPlayStartButton)
-//           imageAnimation(kubazarMascot)
     }
     
     func fetchActiveHaikusAndSetToDataSource() {
@@ -151,9 +148,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
         self.activeCollectionView.reloadSections(IndexSet(integer: 0))
         }
         }
-        //get activeHaikuObjects
-        // do something to get image from imageURL in collection view cellForIndexPath
-        // append 
     }
     
     func fetchCompletedHaikusAndSetToDataSource() {
@@ -167,28 +161,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.completedCollectionViewDataSource.completedHaikus = arrayOfCompletedHaikuObjects
                 
                 self.completedHaikusCollectionView.reloadSections(IndexSet(integer: 0))
-                
-//                for 
-//                
-//                for imageString in imageStringArray {
-//                    let haikuImageRef = FIRStorage.storage().referenceForURL(imageString)
-//                    haikuImageRef.dataWithMaxSize(1 * 3000 * 3000, completion: { (data, error) in
-//                        if (error != nil) {
-//                            print(error)
-//                            print("something wrong with image download; maybe file too large")
-//                        } else {
-//                            
-//                            let haikuImage = UIImage(data: data!)
-//                            let completedHaiku = CompletedHaiku(imageString: imageString, image: haikuImage)
-//                            
-//                            print("/(completedHaiku) appended")
-//                            self.completedCollectionViewDataSource.completedHaikus.append(completedHaiku)
-//                            
-//                            self.completedHaikusCollectionView.reloadSections(NSIndexSet(index: 0))
-                      //  }
-                        
-                 //   })
-              //  }
                 
             }
             
@@ -263,8 +235,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 }
             })
             //if there are active haikus, then show active haikus. otherwise, show no haikusview.
-//            buttonAnimation(self.howToPlayStartButton)
-//            imageAnimation(self.kubazarMascot)
 
         case 1:
             
@@ -279,8 +249,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     self.completedView.isHidden = false
                 }
                 })
-
-            
 
         default:
             
@@ -318,17 +286,14 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             let currentUserUID = ClientService.getCurrentUserUID()
             
             if let firstPersonString = activeHaiku.firstPlayerUUID {
-                print("FIRST PERSON STRING FROM BAZARVC \(firstPersonString)")
                 activeHaikuDetailVC.firstPlayerUUID = firstPersonString
             }
             
             if let secondPersonString = activeHaiku.secondPlayerUUID {
-                print("SECOND PERSON STRING FROM BAZARVC \(secondPersonString)")
                 activeHaikuDetailVC.secondPlayerUUID = secondPersonString
             }
             
             if let thirdPersonString = activeHaiku.thirdPlayerUUID {
-                print("THIRD PERSON STRING FROM BAZARVC \(thirdPersonString)")
                 activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
             }
             
@@ -338,8 +303,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 activeHaikuDetailVC.imageView.image = cell.imageView.image
                 activeHaikuDetailVC.firstLineTextView.text = activeHaiku.firstLineString
-                
-                print(activeHaiku)
                 activeHaikuDetailVC.secondLineTextView.text = activeHaiku.secondLineString
                 activeHaikuDetailVC.thirdLineTextView.text = activeHaiku.thirdLineString
                 
@@ -350,7 +313,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 if let secondPlayer = activeHaikuDetailVC.secondPlayerUUID {
                     
                     if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("\(currentUserEmail) enters second line of haiku.") {
-                        
+                        activeHaikuDetailVC.disableUserinteractionForAllTextViews()
                         activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.lightGray
@@ -364,7 +327,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID {
                     
                     if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("\(currentUserEmail) enters third line of haiku.") && !activeHaiku.secondLineString.contains("enters second line of haiku."){
-                        
+                        activeHaikuDetailVC.disableUserinteractionForAllTextViews()
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
@@ -375,9 +338,14 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     }
                 }
                 
-
-                        if !activeHaiku.secondLineString.contains("enters second line of haiku.") {
-                            activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                
+                if !activeHaiku.secondLineString.contains("enters second line of haiku.") {
+                    activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                }
+                
+                if cell.isItYourTurnLabel.text == "Waiting for friend." {
+                    activeHaikuDetailVC.disableUserinteractionForAllTextViews()
+                    activeHaikuDetailVC.continueButton.isHidden = true
                 }
             })
         }
