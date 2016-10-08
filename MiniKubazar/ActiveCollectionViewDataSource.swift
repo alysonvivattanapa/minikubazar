@@ -17,12 +17,6 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     var imageCache = NSCache<AnyObject, AnyObject>()
     
-    
-    var stringCache = NSCache<AnyObject, AnyObject>()
-    
-    
-    var imageDownloadingQueue = OperationQueue()
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return activeHaikus.count
     }
@@ -33,54 +27,59 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let activeHaiku = activeHaikus[(indexPath as NSIndexPath).row]
         
-        let imageURL = activeHaiku.imageURLString
+        let currentUserUID = ClientService.getCurrentUserUID()
         
-  
-        
-        let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
-        
-        if ((cachedImage) != nil) {
-            if let image = cachedImage as? UIImage {
-            cell.updateWithImage(image)
+        if let secondPlayer = activeHaiku.secondPlayerUUID, let secondLine = activeHaiku.secondLineString {
+            if secondPlayer == currentUserUID && secondLine.contains("enters second line of haiku.") {
+                
+                cell.updateWithLabelText("It's your turn!")
             }
-        } else {
-            self.imageDownloadingQueue.addOperation({
-                let haikuImageRef = FIRStorage.storage().reference(forURL: imageURL!)
-                haikuImageRef.data(withMaxSize: 1 * 3000 * 3000) { (data, error) in
-                    if (error != nil) {
-                        print(error)
-                        print("something wrong with active haiku image from storage. check active collection view data source code")
-                    } else {
-                        let haikuImage = UIImage(data: data!)
-                        //                cell.imageView.image = haikuImage
-                        cell.updateWithImage(haikuImage)
-                        
-                        let currentUserUID = ClientService.getCurrentUserUID()
-                        
-                        if let secondPlayer = activeHaiku.secondPlayerUUID, let secondLine = activeHaiku.secondLineString {
-                            if secondPlayer == currentUserUID && secondLine.contains("enters second line of haiku.") {
-                                
-                                   cell.updateWithLabelText("It's your turn!")
-                            }
-                        }
-                        
-                        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let secondLine = activeHaiku.secondLineString, let thirdLine = activeHaiku.thirdLineString {
-                            if thirdPlayer == currentUserUID && !secondLine.contains("enters second line of haiku") && thirdLine.contains("enters third line of haiku.") {
-                                
-                                cell.updateWithLabelText("It's your turn!"
-                                )
-                            }
-                        }
-                        
-                        if haikuImage != nil {
-                            self.imageCache.setObject(haikuImage!, forKey: imageURL as AnyObject)
-                        }
-                    }
-                }
-            })
+        }
+        
+        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let secondLine = activeHaiku.secondLineString, let thirdLine = activeHaiku.thirdLineString {
+            if thirdPlayer == currentUserUID && !secondLine.contains("enters second line of haiku") && thirdLine.contains("enters third line of haiku.") {
+                
+                cell.updateWithLabelText("It's your turn!"
+                )
+            }
         }
         
         
+        if let imageURL = activeHaiku.imageURLString {
+            
+            let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
+            
+            if ((cachedImage) != nil) {
+                if let image = cachedImage as? UIImage {
+                    cell.updateWithImage(image)
+                }
+            } else {
+                DispatchQueue.global().async {
+                    
+                    let haikuImageRef = FIRStorage.storage().reference(forURL: imageURL)
+                    haikuImageRef.data(withMaxSize: 1 * 3000 * 3000) { (data, error) in
+                        if (error != nil) {
+                            print(error)
+                            print("something wrong with active haiku image from storage. check active collection view data source code")
+                        } else {
+                            if let haikuImage = UIImage(data: data!) {
+                                
+                                self.imageCache.setObject(haikuImage, forKey: imageURL as AnyObject)
+                                
+                                DispatchQueue.main.async {
+                                    
+                                    cell.updateWithImage(haikuImage)
+                                }
+                            }
+                            
+                            
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
         
         
             return cell

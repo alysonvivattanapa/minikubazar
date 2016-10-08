@@ -31,6 +31,8 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let firstLine = completedHaiku.firstLineString
         
+        cell.firstHaikuLine.text = firstLine
+        
         if let imageURL = completedHaiku.imageURLString {
             
             let cachedImage = imageCache.object(forKey: imageURL as AnyObject)
@@ -50,9 +52,7 @@ class CompletedCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                             print("something wrong with completed haiku image from storage. check completed collection view data source code")
                         } else {
                             if let haikuImage = UIImage(data: data!) {
-                                
-                                cell.firstHaikuLine.text = firstLine
-                                
+                
                                 self.imageCache.setObject(haikuImage as AnyObject, forKey: imageURL as AnyObject)
                                 
                                 DispatchQueue.main.async {

@@ -36,7 +36,7 @@
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hs-y1-djP">
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-1V-pEg">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-1V-pEg">
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="NM1-3S-29q"/>
                         </constraints>
@@ -51,9 +51,9 @@
                 <constraint firstAttribute="trailing" secondItem="7Hs-y1-djP" secondAttribute="trailing" id="22x-mz-w2U"/>
                 <constraint firstItem="019-BD-UoJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6NM-wD-cmf"/>
                 <constraint firstItem="7Hs-y1-djP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9Iv-gc-GpI"/>
+                <constraint firstAttribute="trailing" secondItem="zRB-1V-pEg" secondAttribute="trailing" constant="7" id="IUl-Pe-qsS"/>
                 <constraint firstAttribute="bottom" secondItem="019-BD-UoJ" secondAttribute="bottom" id="KH8-QT-0AP"/>
                 <constraint firstItem="pqM-Oa-gGt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="LyZ-yT-tcl"/>
-                <constraint firstItem="7Hs-y1-djP" firstAttribute="centerX" secondItem="zRB-1V-pEg" secondAttribute="centerX" id="OTm-JT-5gh"/>
                 <constraint firstAttribute="trailing" secondItem="019-BD-UoJ" secondAttribute="trailing" id="QXO-Jq-Ax4"/>
                 <constraint firstItem="7Hs-y1-djP" firstAttribute="centerY" secondItem="zRB-1V-pEg" secondAttribute="centerY" id="gGG-QV-qsN"/>
                 <constraint firstItem="zRB-1V-pEg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="gTc-YS-BWW"/>

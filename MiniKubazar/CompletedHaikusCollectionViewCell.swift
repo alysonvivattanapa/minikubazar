@@ -16,24 +16,17 @@ class CompletedHaikusCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var firstHaikuLine: UILabel!
     
-    var secondHaikuLineString: String!
-    
-    var thirdHaikuLineString: String!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         updateWithImage(nil)
-        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         updateWithImage(nil)
         firstHaikuLine.text = nil
-        secondHaikuLineString = nil
-        thirdHaikuLineString = nil
     }
     
     func updateWithImage(_ image: UIImage?) {
