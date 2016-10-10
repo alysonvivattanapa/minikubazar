@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         
         FIRApp.configure()
+
+// Firebase persistence enabled causes the app to crash for some reason
+//        FIRDatabase.database().persistenceEnabled = true
+        
         BITHockeyManager.shared().configure(withIdentifier: "aff36663a8984d5c8d947b5bd884e3c6")
         // Do some additional configuration if needed here
         BITHockeyManager.shared().start()

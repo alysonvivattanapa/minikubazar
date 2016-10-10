@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITableViewDelegate {
 
@@ -464,7 +465,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         if firstLineHaikuTextView.text == "Enter first line of haiku: 5 syllables" ||
         secondLineHaikuTextView.text == "Enter second line of haiku: 7 syllables" ||
-            thirdLineHaikuTextView.text == "Enter third line of haiku: 5 syllables" {
+            thirdLineHaikuTextView.text == "Enter third line of haiku: 5 syllables" || firstLineHaikuTextView.text == "" || secondLineHaikuTextView.text == "" || thirdLineHaikuTextView.text == "" {
             // prevent player from entering haiku without editing all three lines
             self.present(Alerts.showErrorMessage("Please enter a full haiku to finish."), animated: true, completion: nil)
             
@@ -523,13 +524,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     
                     let newCompletedHaikusForCurrentUserRef = ClientService.newCompletedHaikusRef.child(currentUserUID)
                     
+                    let currentTimestamp = FIRServerValue.timestamp() as AnyObject
                     
                     if let firstLine = self.firstLineHaikuTextView.text, let secondLine =
                         self.secondLineHaikuTextView.text, let thirdLine =
                         self.thirdLineHaikuTextView.text {
-                        let newHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLine, imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: currentUserUID, secondPlayerUUID: currentUserUID, thirdPlayerUUID: currentUserUID, uniqueHaikuUUID: uniqueHaikuUUID)
+                        let newHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLine, imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: currentUserUID, secondPlayerUUID: currentUserUID, thirdPlayerUUID: currentUserUID, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: currentTimestamp)
                         
-                        let newHaikuDictionary: NSDictionary = ["firstLineString": newHaiku.firstLineString, "secondLineString": newHaiku.secondLineString, "thirdLineString": newHaiku.thirdLineString, "imageURLString": newHaiku.imageURLString, "firstPlayerUUID": newHaiku.firstPlayerUUID, "secondPlayerUUID": newHaiku.secondPlayerUUID, "thirdPlayerUUID": newHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newHaiku.uniqueHaikuUUID]
+                        let newHaikuDictionary: NSDictionary = ["firstLineString": newHaiku.firstLineString, "secondLineString": newHaiku.secondLineString, "thirdLineString": newHaiku.thirdLineString, "imageURLString": newHaiku.imageURLString, "firstPlayerUUID": newHaiku.firstPlayerUUID, "secondPlayerUUID": newHaiku.secondPlayerUUID, "thirdPlayerUUID": newHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newHaiku.uniqueHaikuUUID, "timestamp": newHaiku.timestamp]
                         
                         newCompletedHaikusForCurrentUserRef.child(uniqueHaikuUUID).setValue(newHaikuDictionary)
                         
@@ -923,9 +925,10 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                             let currentUserEmail = ClientService.getCurrentUserEmail()
                             
+                            let currentTimestamp = FIRServerValue.timestamp() as AnyObject
                             //save image and create imageHiakuDOwnloadURL
                             
-                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(currentUserEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                            let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(currentUserEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid, timestamp: currentTimestamp)
                             
                             ClientService.addActiveHaikuForPlayers(newActiveHaiku)
                             
@@ -977,7 +980,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                     
                                     let thirdPlayerUID = thirdPlayerSnapshotValue?.object(forKey: "uid") as? String
                                     
-                                    let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(thirdPlayerEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid)
+                                    let currentTimestamp = FIRServerValue.timestamp() as AnyObject
+                                    
+                                    let newActiveHaiku = ActiveHaiku(firstLineString: self.firstLineHaikuTextView.text, secondLineString: "\(secondPlayerEmail) enters second line of haiku.", thirdLineString: "\(thirdPlayerEmail) enters third line of haiku.", imageURLString: imageHaikuDownloadStringFromURL, firstPlayerUUID: firstPlayerUID, secondPlayerUUID: secondPlayerUID, thirdPlayerUUID: thirdPlayerUID, uniqueHaikuUUID: uuid, timestamp: currentTimestamp)
                                     
                                     ClientService.addActiveHaikuForPlayers(newActiveHaiku)
                                     

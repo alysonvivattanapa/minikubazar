@@ -18,6 +18,7 @@ struct ActiveHaiku {
     let secondPlayerUUID: String!
     let thirdPlayerUUID: String!
     let uniqueHaikuUUID: String!
+    let timestamp: AnyObject!
 
 }
 

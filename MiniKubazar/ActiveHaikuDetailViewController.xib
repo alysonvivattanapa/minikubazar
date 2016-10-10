@@ -182,10 +182,10 @@
                 </label>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hu4-RV-6HQ">
                     <constraints>
-                        <constraint firstAttribute="width" constant="43" id="196-LO-BXh"/>
-                        <constraint firstAttribute="height" constant="37" id="Kip-lL-EYQ"/>
+                        <constraint firstAttribute="width" constant="28" id="Ass-Ld-7Ds"/>
+                        <constraint firstAttribute="height" constant="37" id="HwT-gS-ccS"/>
                     </constraints>
-                    <state key="normal" image="popOutIcon"/>
+                    <state key="normal" image="magnifyingGlass"/>
                     <connections>
                         <action selector="popOutButtonPressed:" destination="-1" eventType="touchUpInside" id="3xl-cL-dxC"/>
                     </connections>
@@ -276,11 +276,11 @@
                     <exclude reference="oyC-Dd-Ux3"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="99" y="88"/>
+            <point key="canvasLocation" x="98.5" y="87.5"/>
         </view>
     </objects>
     <resources>
         <image name="Continue" width="465" height="121"/>
-        <image name="popOutIcon" width="44" height="44"/>
+        <image name="magnifyingGlass" width="40" height="54"/>
     </resources>
 </document>
