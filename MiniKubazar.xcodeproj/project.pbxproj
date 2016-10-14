@@ -46,6 +46,8 @@
 		F2BB01551D8312710094A45B /* HaikuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BB01541D8312710094A45B /* HaikuViewModel.swift */; };
 		F2D9F1D91D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */; };
 		F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */; };
+		F2E296881DB0F1BA00537010 /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E296861DB0F1BA00537010 /* TermsOfServiceViewController.swift */; };
+		F2E296891DB0F1BA00537010 /* TermsOfServiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E296871DB0F1BA00537010 /* TermsOfServiceViewController.xib */; };
 		F2EFA0241DA4175300F7678D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA0231DA4175300F7678D /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,8 @@
 		F2BB01541D8312710094A45B /* HaikuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaikuViewModel.swift; sourceTree = "<group>"; };
 		F2D9F1D71D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikusCollectionViewCell.swift; sourceTree = "<group>"; };
 		F2D9F1D81D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikusCollectionViewCell.xib; sourceTree = "<group>"; };
+		F2E296861DB0F1BA00537010 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		F2E296871DB0F1BA00537010 /* TermsOfServiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsOfServiceViewController.xib; sourceTree = "<group>"; };
 		F2EFA0231DA4175300F7678D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +145,8 @@
 				F2A120321D822B6300A39867 /* InfoViewController.xib */,
 				F2A120231D822B5600A39867 /* StartViewController.swift */,
 				F2A120241D822B5600A39867 /* StartViewController.xib */,
+				F2E296861DB0F1BA00537010 /* TermsOfServiceViewController.swift */,
+				F2E296871DB0F1BA00537010 /* TermsOfServiceViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			files = (
 				F235E2E31DAC330C00826DD5 /* GoogleService-Info.plist in Resources */,
 				F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */,
+				F2E296891DB0F1BA00537010 /* TermsOfServiceViewController.xib in Resources */,
 				F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */,
 				F2A120281D822B5600A39867 /* SignupViewController.xib in Resources */,
 				F2A120301D822B5600A39867 /* StartViewController.xib in Resources */,
@@ -405,6 +412,7 @@
 				F2A120361D822B8700A39867 /* ClientService.swift in Sources */,
 				F2AB4E931D99E3D8003CB6FD /* ActiveHaiku.swift in Sources */,
 				F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */,
+				F2E296881DB0F1BA00537010 /* TermsOfServiceViewController.swift in Sources */,
 				F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */,
 				F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */,
 				F235E2DC1DA7FD3100826DD5 /* PopOutImageViewController.swift in Sources */,

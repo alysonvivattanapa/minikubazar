@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITableViewDelegate {
+    
+    @IBOutlet weak var haikuInputView: UIView!
+    
 
     @IBOutlet weak var firstKubazarMascot: UIImageView!
 
@@ -101,6 +104,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(reduceHaikuTextViewAlpha))
+        
+        haikuImageView.isUserInteractionEnabled = true
+        
+       haikuImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        
        instructionsView.layer.cornerRadius = 25
         
         firstLineHaikuTextView.delegate = self
@@ -131,6 +141,14 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
         secondLineHaikuTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
         thirdLineHaikuTextView.textContainer.maximumNumberOfLines = 1
         thirdLineHaikuTextView.textContainer.lineBreakMode = NSLineBreakMode.byClipping
+    }
+    
+    func reduceHaikuTextViewAlpha() {
+        if haikuInputView.alpha == 1 {
+        haikuInputView.alpha = 0.3
+        } else {
+            haikuInputView.alpha = 1
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,6 +192,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        haikuInputView.alpha = 1
 //        if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.white

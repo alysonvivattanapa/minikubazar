@@ -18,11 +18,10 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yye-JP-Qm8" userLabel="HowToPlayView">
-                    <frame key="frameInset" minY="99" width="600" height="501"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yye-JP-Qm8" userLabel="HowToPlayView">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1: Choose a picture." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-rO-TzI">
                             <constraints>
@@ -41,8 +40,7 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Step 2: Write a haiku." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQd-Kb-SJG">
-                            <frame key="frameInset" minX="5" minY="74" width="590" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Write a haiku." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQd-Kb-SJG">
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -55,8 +53,7 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="A haiku is a form of Japanese poetry consisting of three lines, each with a set number of syllables:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APZ-zJ-6xt">
-                            <frame key="frameInset" minX="5" minY="88" width="590" height="42"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A haiku is a form of Japanese poetry consisting of three lines, each with a set number of syllables:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APZ-zJ-6xt">
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="hjb-bE-RXY"/>
                             </constraints>
@@ -64,17 +61,13 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0">
-                            <frame key="frameInset" minX="5" minY="272" width="590" height="366"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT1-VT-fVV">
-                            <frame key="frameInset" minX="5" minY="10" width="590" height="16"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="kubazarMascotBackgroundRemoved" translatesAutoresizingMaskIntoConstraints="NO" id="48l-it-uG0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to Play Kubazar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fT1-VT-fVV">
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvD-3N-OJd">
-                            <frame key="frameInset" minX="229" minY="237" width="142" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvD-3N-OJd">
                             <constraints>
                                 <constraint firstAttribute="width" constant="142" id="Koo-fz-K4h"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="QLN-I2-jfg"/>
@@ -98,8 +91,7 @@
                                 <constraint firstAttribute="width" constant="31" id="nPp-W8-CRS"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the first line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-g4-0TI">
-                            <frame key="frameInset" minX="219" minY="130" width="162" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the first line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-g4-0TI">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="1ci-QI-BCR"/>
                                 <constraint firstAttribute="width" constant="162" id="R9v-GK-nYp"/>
@@ -114,8 +106,7 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the second line has seven" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgR-Q2-zwX">
-                            <frame key="frameInset" minX="219" minY="151" width="162" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the second line has seven" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgR-Q2-zwX">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="8Rc-G1-ezK"/>
                                 <constraint firstAttribute="width" constant="162" id="O7H-v1-tuC"/>
@@ -124,8 +115,7 @@
                             <color key="textColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the third line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yth-wX-QbJ">
-                            <frame key="frameInset" minX="219" minY="172" width="162" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the third line has five" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yth-wX-QbJ">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="WvZ-IZ-TBr"/>
                                 <constraint firstAttribute="width" constant="131" id="gpi-b3-kNo"/>
@@ -140,8 +130,7 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-1c-kxd">
-                            <frame key="frameInset" minX="384" minY="130" width="11" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-1c-kxd">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Byq-rM-mz7"/>
                                 <constraint firstAttribute="width" constant="11" id="L7w-9Y-3Rx"/>
@@ -150,8 +139,7 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEF-zS-IEB">
-                            <frame key="frameInset" minX="384" minY="151" width="11" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEF-zS-IEB">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="NdC-ZT-WiP"/>
                                 <constraint firstAttribute="width" constant="11" id="tD6-Ma-Ut3"/>
@@ -160,8 +148,7 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbF-dh-So2">
-                            <frame key="frameInset" minX="384" minY="172" width="11" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbF-dh-So2">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="I6U-Ak-JvD"/>
                                 <constraint firstAttribute="width" constant="11" id="aod-Pa-3ko"/>
@@ -243,11 +230,33 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="95R-hp-W6m">
-                    <frame key="frameInset" minY="104" width="600" height="446"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQf-SZ-TBE">
+                    <color key="backgroundColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="R0Q-xF-DuV"/>
+                    </constraints>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Info" id="iyn-e6-h2d"/>
+                    </items>
+                </navigationBar>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kiO-Y4-8BM">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="A05-Dr-6ba"/>
+                    </constraints>
+                    <segments>
+                        <segment title="about kubazar"/>
+                        <segment title="my account"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="qdP-2X-7Mh"/>
+                    </connections>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95R-hp-W6m">
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f20-Zv-NRr">
-                            <frame key="frameInset" minX="263" minY="408" width="73" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f20-Zv-NRr">
                             <constraints>
                                 <constraint firstAttribute="width" constant="73" id="Hce-Lj-QEM"/>
                                 <constraint firstAttribute="width" constant="65" id="Jyi-YN-7GR"/>
@@ -272,8 +281,7 @@
                                 <action selector="signOutButtonPressed:" destination="-1" eventType="touchUpInside" id="Y26-yf-Ukc"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You are currently logged in as: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnO-v6-7PI">
-                            <frame key="frameInset" minX="5" minY="8" width="590" height="42"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are currently logged in as: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JnO-v6-7PI">
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="QeY-1j-mNk"/>
                             </constraints>
@@ -290,37 +298,9 @@
                         <constraint firstAttribute="bottom" secondItem="f20-Zv-NRr" secondAttribute="bottom" constant="8" id="RAb-E0-bMo"/>
                     </constraints>
                 </view>
-                <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQf-SZ-TBE">
-                    <frame key="frameInset" width="600" height="66"/>
-                    <color key="backgroundColor" red="0.35294117650000001" green="0.74901960779999999" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="66" id="R0Q-xF-DuV"/>
-                    </constraints>
-                    <textAttributes key="titleTextAttributes">
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </textAttributes>
-                    <items>
-                        <navigationItem title="Info" id="iyn-e6-h2d"/>
-                    </items>
-                </navigationBar>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kiO-Y4-8BM">
-                    <frame key="frameInset" minX="5" minY="71" width="590" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="A05-Dr-6ba"/>
-                    </constraints>
-                    <segments>
-                        <segment title="about kubazar"/>
-                        <segment title="my account"/>
-                    </segments>
-                    <connections>
-                        <action selector="segmentedControlIndexChanged:" destination="-1" eventType="valueChanged" id="qdP-2X-7Mh"/>
-                    </connections>
-                </segmentedControl>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-Pb-bx5">
-                    <frame key="frameInset" minY="104" width="600" height="496"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKJ-Pb-bx5">
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" image="KubazarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-mI-bvo">
-                            <frame key="frameInset" minX="5" minY="165" width="590" height="261"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="KubazarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-mI-bvo">
                             <constraints>
                                 <constraint firstAttribute="height" constant="128" id="KIV-sb-Gfl"/>
                                 <constraint firstAttribute="width" constant="240" id="UKy-rf-7kB"/>
@@ -332,8 +312,7 @@
                                 </mask>
                             </variation>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="about kubazar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgU-vz-wgQ">
-                            <frame key="frameInset" minX="242" minY="5" width="116" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about kubazar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgU-vz-wgQ">
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="WlD-KL-jP4"/>
                                 <constraint firstAttribute="width" constant="116" id="kmX-pl-wFp"/>
@@ -342,12 +321,10 @@
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD3-lg-xNY">
-                            <frame key="frameInset" minX="15" minY="103" width="570" height="47"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for trying out Kubazar! Stay tuned for the next update." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FD3-lg-xNY">
                             <constraints>
                                 <constraint firstAttribute="height" constant="57" id="QaE-J1-aNR"/>
                             </constraints>
-                            <string key="text">The next version of Kubazar will include additional features, such as allowing users to post photos and write haikus with their friends. Thank you for trying out MiniKubazar! Stay tuned for the next update.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -357,27 +334,41 @@
                                 </mask>
                             </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-gp-T3k">
-                            <frame key="frameInset" minX="15" minY="41" width="570" height="47"/>
-                            <string key="text">Kubazar is a project by Crowd Effect, a startup based in Utrecht, The Netherlands. MiniKubazar is the beta version of the app, which allows users to write and share haikus with pictures.  </string>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1f-gp-T3k">
+                            <string key="text">Kubazar is a project by Crowd Effect, a startup based in Utrecht, The Netherlands. Kubazar allows users to write and share haikus with pictures.  </string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.047058823530000002" green="0.3411764706" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usI-s5-zhs">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="C30-k1-MM6"/>
+                                <constraint firstAttribute="width" constant="203" id="S4k-1L-D8k"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Terms of Service &amp; Privacy Policy">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="termsOfServiceButtonPressed:" destination="-1" eventType="touchUpInside" id="ewd-eH-xso"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="usI-s5-zhs" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="15" id="3Fm-4U-sfl"/>
+                        <constraint firstItem="iLt-mI-bvo" firstAttribute="top" secondItem="usI-s5-zhs" secondAttribute="bottom" constant="15" id="ARJ-vk-9EI"/>
                         <constraint firstItem="iLt-mI-bvo" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="BFf-qc-LcN"/>
                         <constraint firstItem="kgU-vz-wgQ" firstAttribute="centerX" secondItem="qKJ-Pb-bx5" secondAttribute="centerX" id="Jvc-8g-kfh"/>
                         <constraint firstAttribute="trailing" secondItem="FD3-lg-xNY" secondAttribute="trailing" constant="15" id="Lbo-2o-mF3"/>
                         <constraint firstAttribute="trailing" secondItem="iLt-mI-bvo" secondAttribute="trailing" constant="5" id="RlG-zu-War"/>
                         <constraint firstItem="iLt-mI-bvo" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="5" id="Tjy-aj-VQH"/>
                         <constraint firstItem="FD3-lg-xNY" firstAttribute="top" secondItem="b1f-gp-T3k" secondAttribute="bottom" constant="15" id="Vfh-rE-can"/>
+                        <constraint firstItem="usI-s5-zhs" firstAttribute="top" secondItem="FD3-lg-xNY" secondAttribute="bottom" constant="15" id="YHU-nK-Vya"/>
                         <constraint firstItem="b1f-gp-T3k" firstAttribute="top" secondItem="kgU-vz-wgQ" secondAttribute="bottom" constant="15" id="Zzp-Jb-YBO"/>
                         <constraint firstAttribute="trailing" secondItem="b1f-gp-T3k" secondAttribute="trailing" constant="15" id="e4L-xQ-yAw"/>
                         <constraint firstItem="kgU-vz-wgQ" firstAttribute="top" secondItem="qKJ-Pb-bx5" secondAttribute="top" constant="5" id="iy3-GU-xap"/>
                         <constraint firstItem="b1f-gp-T3k" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="15" id="jy3-In-V6a"/>
-                        <constraint firstItem="iLt-mI-bvo" firstAttribute="top" secondItem="FD3-lg-xNY" secondAttribute="bottom" constant="15" id="l7O-Jb-sFx"/>
                         <constraint firstAttribute="bottom" secondItem="iLt-mI-bvo" secondAttribute="bottom" constant="70" id="oEn-dj-R9d"/>
                         <constraint firstItem="FD3-lg-xNY" firstAttribute="leading" secondItem="qKJ-Pb-bx5" secondAttribute="leading" constant="15" id="xV6-dD-IT0"/>
                     </constraints>

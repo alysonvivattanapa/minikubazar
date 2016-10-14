@@ -123,6 +123,13 @@ class InfoViewController: UIViewController {
         appDelegate.window?.rootViewController = welcomeVC
         
     }
+    
+    @IBAction func termsOfServiceButtonPressed(_ sender: AnyObject) {
+        
+        let tosVC = TermsOfServiceViewController()
+        present(tosVC, animated: true, completion: nil)
+    }
+    
   
 
 }

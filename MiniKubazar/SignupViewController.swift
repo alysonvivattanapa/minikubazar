@@ -374,6 +374,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         firstView.alpha = 1
     }
     
+    @IBAction func termsOfServiceAndPrivacyPolicy(_ sender: AnyObject) {
+        
+        let tosVC = TermsOfServiceViewController()
+        present(tosVC, animated: true, completion: nil)
+    }
   
     
 }
