@@ -8,6 +8,9 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseMessaging
+import FirebaseInstanceID
+import OneSignal
 
 class BazarViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -53,6 +56,32 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+ //this code crashes on iphone4 for some reason, dumb dumb dumb. updating ios on the 4 and then run again in the morning
+        OneSignal.idsAvailable({ (userId, pushToken) in
+            
+            if let oneSignalCurrentUserID = userId {
+                
+            ClientService.oneSignalIDsRef.child(self.currentUserUID).setValue(oneSignalCurrentUserID)
+            // save to backend
+                
+            print("UserId: \(oneSignalCurrentUserID)")
+            if (pushToken != nil) {
+                print("Sending Test Noification to this device now")
+                
+                let data = ["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ad4ca147-dfa3-4c5d-a60f-ddcf82b4a47b"]] as [String : Any]
+                
+                OneSignal.postNotification(data)
+                
+//                  OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ad4ca147-dfa3-4c5d-a60f-ddcf82b4a47b"]])
+//                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
+                
+            }
+            }
+        })
+        
+//        let token = FIRInstanceID.instanceID().token()!
+//        print("TOKEN IS \(token)")
         
         let kubazarDarkGreen = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
         
@@ -343,7 +372,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                 }
                 
-                if cell.isItYourTurnLabel.text == "Waiting for friend." {
+                if cell.isItYourTurnLabel.text == "Waiting for a friend" {
                     activeHaikuDetailVC.disableUserinteractionForAllTextViews()
                     activeHaikuDetailVC.continueButton.isHidden = true
                 }

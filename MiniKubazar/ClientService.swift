@@ -19,6 +19,8 @@ struct ClientService {
     
     static let profileRef = rootRef.child("profile")
     
+    static let oneSignalIDsRef = rootRef.child("oneSignalIDs")
+    
     static let activeHaikusRef = rootRef.child("activeHaikus")
     
     static let completedHaikusRef = rootRef.child("completedHaikus")
