@@ -52,9 +52,6 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
- //this code crashes on iphone4 for some reason, dumb dumb dumb. updating ios on the 4 and then run again in the morning
         OneSignal.idsAvailable({ (userId, pushToken) in
             
             if let oneSignalCurrentUserID = userId {
@@ -63,15 +60,21 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             // save to backend
                 
             print("UserId: \(oneSignalCurrentUserID)")
-            if (pushToken != nil) {
-                print("Sending Test Noification to this device now")
+//            if (pushToken != nil) {
+//                print("Sending Test Noification to this device now")
                 
-
-                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
                 
-            }
+                // code to send to other device
+//                 OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ed0020ce-4c66-4854-a7dd-c8ae64178f0d"]])
+                
+                
+//code to send to own device
+//                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
+                
+           // }
             }
         })
+        
         
 //        let token = FIRInstanceID.instanceID().token()!
 //        print("TOKEN IS \(token)")

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import OneSignal
 
 class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITableViewDelegate {
     
@@ -942,6 +943,13 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                             let secondPlayerUID = friendSnapshotValue?.object(forKey: "uid") as? String
                             
+                            ClientService.getPlayerOneSignalIDFromUID(secondPlayerUID!, closure: { (oneSignalID) in
+                                print("THIS IS THE ONESIGNALID FOR SECONDPLAYER \(oneSignalID)")
+                                
+                                OneSignal.postNotification(["contents": ["en": "A friend just started a new haiku with you!  It's your turn. Are you in?"], "include_player_ids": [oneSignalID]])
+                            })
+                            
+                            
                             let currentUserEmail = ClientService.getCurrentUserEmail()
                             
                             let currentTimestamp = FIRServerValue.timestamp() as AnyObject
@@ -990,6 +998,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             
                              let secondPlayerUID = secondPlayerSnapshotValue?.object(forKey: "uid") as? String
                             
+                            ClientService.getPlayerOneSignalIDFromUID(secondPlayerUID!, closure: { (oneSignalID) in
+                                print("THIS IS THE ONESIGNALID FOR SECONDPLAYER \(oneSignalID)")
+                                
+                                OneSignal.postNotification(["contents": ["en": "A friend just started a new haiku with you! It's your turn. Are you in?"], "include_player_ids": [oneSignalID]])
+                            })
+                            
                             if let thirdPlayerEmail = self.arrayOfChosenFriends.last {
                                 
                                 ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: thirdPlayerEmail).observeSingleEvent(of: .childAdded, with: { (thirdPlayerSnapshot) in
@@ -998,6 +1012,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                                     let thirdPlayerSnapshotValue = thirdPlayerSnapshot.value as? NSDictionary
                                     
                                     let thirdPlayerUID = thirdPlayerSnapshotValue?.object(forKey: "uid") as? String
+                                    
+//                                    ClientService.getPlayerOneSignalIDFromUID(thirdPlayerUID!, closure: { (oneSignalID) in
+//                                        print("THIS IS THE ONESIGNALID FOR Third PLAYER \(oneSignalID)")
+//                                        
+//                                        OneSignal.postNotification(["contents": ["en": "A friend just started a new haiku with you, but it isn't your turn yet."], "include_player_ids": [oneSignalID]])
+//                                    })
                                     
                                     let currentTimestamp = FIRServerValue.timestamp() as AnyObject
                                     

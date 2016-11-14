@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import OneSignal
 
 
 class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
@@ -210,8 +211,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                     
                     ClientService.activeHaikusRef.child("\(self.currentUserUID)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
                     
-                    
-                    
                     let alertController = UIAlertController(title: "Success!", message: "You wrote a great second line.", preferredStyle: .alert)
                     let okayAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alertController.addAction(okayAction)
@@ -260,6 +259,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
             if let thirdPlayer = thirdPlayerUUID {
                 if thirdPlayer != currentUserUID {
                     
+                    
+                    
                     OperationQueue.main.addOperation({
                         
                         ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").queryOrderedByKey().observe(.value, with: { snapshot in
@@ -267,7 +268,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                             if snapshot.exists() && snapshot.hasChild("firstLineString") {
                                 
                                 ClientService.activeHaikusRef.child("\(thirdPlayer)/\(haikuUniqeUUID)").updateChildValues(updateDictionary)
+                                
                             }})
+                        
+                        ClientService.getPlayerOneSignalIDFromUID(thirdPlayer, closure: { (oneSignalID) in
+                            OneSignal.postNotification(["contents": ["en": "It's your turn. You can finish up a haiku!"], "include_player_ids": [oneSignalID]])
+                        })
                     })
                 }
             }
@@ -305,14 +311,23 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                 if let firstPlayer = self.firstPlayerUUID {
                     if firstPlayer != self.currentUserUID {
                         ClientService.activeHaikusRef.child("\(firstPlayer)/\(uniqueUUID)").removeValue()
+                        
+                        ClientService.getPlayerOneSignalIDFromUID(firstPlayer, closure: { (oneSignalID) in
+                            OneSignal.postNotification(["contents": ["en": "Hooray! A haiku is complete. Check it out!"], "include_player_ids": [oneSignalID]])
+                        })
+                        
                     }
                 }
                 
                 if let secondPlayer = self.secondPlayerUUID {
                     if secondPlayer != self.currentUserUID {
                         ClientService.activeHaikusRef.child("\(secondPlayer)/\(uniqueUUID)").removeValue()
-                    }
+                        
+                        ClientService.getPlayerOneSignalIDFromUID(secondPlayer, closure: { (oneSignalID) in
+                            OneSignal.postNotification(["contents": ["en": "Hooray! A haiku is complete. Check it out!"], "include_player_ids": [oneSignalID]])
+                    })
                     
+                }
                 }
                 
                 if let thirdPlayer = self.thirdPlayerUUID {

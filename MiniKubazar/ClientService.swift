@@ -35,7 +35,6 @@ struct ClientService {
     
     static let newCompletedHaikusRef = rootRef.child("newCompletedHaikus")
     
-    
     static func getCurrentUser(_ closure: (FIRUser) -> Void) {
         
         if let user = FIRAuth.auth()?.currentUser {
@@ -359,6 +358,18 @@ struct ClientService {
         closure(playerEmail)
     })
     
+    }
+    
+    static func getPlayerOneSignalIDFromUID (_ uid: String, closure: @escaping (String) -> Void) {
+        
+        oneSignalIDsRef.child(uid).observeSingleEvent(of: .value, with: { (oneSignalID) in
+            
+            print(oneSignalID)
+            
+            let oneSignalIDstring = oneSignalID.value as! String
+            
+            closure(oneSignalIDstring)
+        })
     }
 
     
