@@ -38,16 +38,11 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     let activeCollectionViewDataSource = ActiveCollectionViewDataSource()
     
-    // URGENT: probably shouldn't put this here because if there's no internet, it can't do this
-    // should probably specify type here, then declare in viewDidLoad
-    
     let currentUserUID = ClientService.getCurrentUserUID()
     
     let activeHaikusRef = ClientService.activeHaikusRef.child("\(ClientService.getCurrentUserUID())")
     
     let newCompletedHaikusRef = ClientService.newCompletedHaikusRef.child("\(ClientService.getCurrentUserUID())")
-    
-    //up to here ^: should put somewhere else because what if there's no internet connection or internet connection gets lost between 
     
     @IBOutlet weak var noHaikusLabel: UILabel!
   
@@ -56,6 +51,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         
  //this code crashes on iphone4 for some reason, dumb dumb dumb. updating ios on the 4 and then run again in the morning
         OneSignal.idsAvailable({ (userId, pushToken) in
@@ -69,12 +66,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             if (pushToken != nil) {
                 print("Sending Test Noification to this device now")
                 
-                let data = ["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ad4ca147-dfa3-4c5d-a60f-ddcf82b4a47b"]] as [String : Any]
-                
-                OneSignal.postNotification(data)
-                
-//                  OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ad4ca147-dfa3-4c5d-a60f-ddcf82b4a47b"]])
-//                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
+
+                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
                 
             }
             }

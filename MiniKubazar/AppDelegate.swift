@@ -70,30 +70,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = welcomeVC
         }
 
-        if #available(iOS 10.0, *) {
-            let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_,_ in })
-            
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            // For iOS 10 data message (sent via FCM)
-            
-            FIRMessaging.messaging().remoteMessageDelegate = self
-            
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
+//        if #available(iOS 10.0, *) {
+//            let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
+//            UNUserNotificationCenter.current().requestAuthorization(
+//                options: authOptions,
+//                completionHandler: {_,_ in })
+//            
+//            // For iOS 10 display notification (sent via APNS)
+//            UNUserNotificationCenter.current().delegate = self
+//            // For iOS 10 data message (sent via FCM)
+//            
+//            FIRMessaging.messaging().remoteMessageDelegate = self
+//            
+//        } else {
+//            let settings: UIUserNotificationSettings =
+//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//            application.registerUserNotificationSettings(settings)
+//        }
         
-        application.registerForRemoteNotifications()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification),
-                                                         name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+//        application.registerForRemoteNotifications()
+//        
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification),
+//                                                         name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "8c4521e6-3246-4ce9-958c-e5d3121890a8")
+        
+        
         
       /*  OneSignal.initWithLaunchOptions(launchOptions, appId: "8c4521e6-3246-4ce9-958c-e5d3121890a8") { (result) in
             
@@ -157,46 +159,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-        
-        // Print full message.
-        print("%@", userInfo)
-    }
-    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        // If you are receiving a notification message while your app is in the background,
+//        // this callback will not be fired till the user taps on the notification launching the application.
+//        // TODO: Handle data of notification
+//        
+//        // Print message ID.
+//        print("Message ID: \(userInfo["gcm.message_id"]!)")
+//        
+//        // Print full message.
+//        print("%@", userInfo)
+//    }
+//    
 //    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
 //        
 //    }
     
 
+//}
+
+//func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//    print("DEVICE TOKEN = \(deviceToken)")
+//}
+
+//@available(iOS 10, *)
+//extension AppDelegate : UNUserNotificationCenterDelegate {
+//    
+//    // Receive displayed notifications for iOS 10 devices.
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,
+//                                willPresent notification: UNNotification,
+//                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        let userInfo = notification.request.content.userInfo
+//        // Print message ID.
+//        print("Message ID: \(userInfo["gcm.message_id"]!)")
+//        
+//        // Print full message.
+//        print("%@", userInfo)
+//    }
+//}
+//
+//extension AppDelegate : FIRMessagingDelegate {
+//    // Receive data message on iOS 10 devices.
+//    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+//        print("%@", remoteMessage.appData)
+//    }
+//}
+
 }
-
-@available(iOS 10, *)
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-        
-        // Print full message.
-        print("%@", userInfo)
-    }
-}
-
-extension AppDelegate : FIRMessagingDelegate {
-    // Receive data message on iOS 10 devices.
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-        print("%@", remoteMessage.appData)
-    }
-}
-
-
