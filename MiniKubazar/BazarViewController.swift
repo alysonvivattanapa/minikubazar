@@ -59,19 +59,8 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
             ClientService.oneSignalIDsRef.child(self.currentUserUID).setValue(oneSignalCurrentUserID)
             // save to backend
                 
-            print("UserId: \(oneSignalCurrentUserID)")
-//            if (pushToken != nil) {
-//                print("Sending Test Noification to this device now")
-                
-                
-                // code to send to other device
-//                 OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": ["ed0020ce-4c66-4854-a7dd-c8ae64178f0d"]])
-                
-                
-//code to send to own device
-//                OneSignal.postNotification(["contents": ["en": "WOOOHOO test notification"], "include_player_ids": [oneSignalCurrentUserID]])
-                
-           // }
+            print("OneSignal UserId: \(oneSignalCurrentUserID)")
+
             }
         })
         

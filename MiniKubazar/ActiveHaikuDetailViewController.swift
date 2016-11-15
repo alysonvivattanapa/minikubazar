@@ -272,7 +272,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                             }})
                         
                         ClientService.getPlayerOneSignalIDFromUID(thirdPlayer, closure: { (oneSignalID) in
-                            OneSignal.postNotification(["contents": ["en": "It's your turn. You can finish up a haiku!"], "include_player_ids": [oneSignalID]])
+                            OneSignal.postNotification(["headings": ["en": "Your turn!"], "contents": ["en": "It's your turn. You can finish up a haiku!"], "include_player_ids": [oneSignalID]])
                         })
                     })
                 }
@@ -313,7 +313,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                         ClientService.activeHaikusRef.child("\(firstPlayer)/\(uniqueUUID)").removeValue()
                         
                         ClientService.getPlayerOneSignalIDFromUID(firstPlayer, closure: { (oneSignalID) in
-                            OneSignal.postNotification(["contents": ["en": "Hooray! A haiku is complete. Check it out!"], "include_player_ids": [oneSignalID]])
+                            OneSignal.postNotification(["headings": ["en": "Hooray!"], "contents": ["en": "Hooray! A haiku is complete. Check it out."], "include_player_ids": [oneSignalID]])
                         })
                         
                     }
@@ -324,7 +324,7 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
                         ClientService.activeHaikusRef.child("\(secondPlayer)/\(uniqueUUID)").removeValue()
                         
                         ClientService.getPlayerOneSignalIDFromUID(secondPlayer, closure: { (oneSignalID) in
-                            OneSignal.postNotification(["contents": ["en": "Hooray! A haiku is complete. Check it out!"], "include_player_ids": [oneSignalID]])
+                            OneSignal.postNotification(["headings": ["en": "Hooray!"], "contents": ["en": "Hooray! A haiku is complete. Check it out."], "include_player_ids": [oneSignalID]])
                     })
                     
                 }
