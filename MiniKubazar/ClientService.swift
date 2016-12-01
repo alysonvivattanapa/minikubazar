@@ -364,11 +364,16 @@ struct ClientService {
         
         oneSignalIDsRef.child(uid).observeSingleEvent(of: .value, with: { (oneSignalID) in
             
+            if oneSignalID.exists() {
+            
             print(oneSignalID)
             
             let oneSignalIDstring = oneSignalID.value as! String
             
             closure(oneSignalIDstring)
+            } else {
+                closure("no OneSignal ID for user")
+            }
         })
     }
 

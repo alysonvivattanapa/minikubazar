@@ -1001,7 +1001,7 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
                             ClientService.getPlayerOneSignalIDFromUID(secondPlayerUID!, closure: { (oneSignalID) in
                                 print("THIS IS THE ONESIGNALID FOR SECONDPLAYER \(oneSignalID)")
                                 
-                                OneSignal.postNotification(["headings": ["en": "New haiku!"],"contents": ["en": "A friend just started a new haiku with you!  It's your turn. Are you in?"], "include_player_ids": [oneSignalID]])
+                                OneSignal.postNotification(["headings": ["en": "New haiku!"],"contents": ["en": "A friend just started a new haiku with you!  It's your turn. Are you in?"], "ios_badgeType":"Increase", "ios_badgeCount": 1, "include_player_ids": [oneSignalID]])
                             })
                             
                             if let thirdPlayerEmail = self.arrayOfChosenFriends.last {
