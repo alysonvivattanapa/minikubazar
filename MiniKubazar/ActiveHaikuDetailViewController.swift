@@ -13,6 +13,9 @@ import OneSignal
 
 class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
     
+    
+    @IBOutlet weak var haikuInputView: UIView!
+    
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -25,6 +28,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     @IBOutlet weak var flagReportView: UIView!
  
+    @IBOutlet weak var flagReportButton: UIButton!
+    
     
     var firstPlayerUUID: String?
     
@@ -49,6 +54,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(reduceHaikuTextViewAlpha))
+        
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        
         flagReportView.isHidden = true
         flagReportView.layer.cornerRadius = 15
         
@@ -72,6 +83,14 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         //
         //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ActiveHaikuDetailViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func reduceHaikuTextViewAlpha() {
+        if haikuInputView.alpha == 1 {
+            haikuInputView.alpha = 0.3
+        } else {
+            haikuInputView.alpha = 1
+        }
     }
     
     override var prefersStatusBarHidden : Bool {
@@ -393,4 +412,6 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     @IBAction func dismissFlagReportButtonPressed(_ sender: AnyObject) {
         flagReportView.isHidden = true
     }
+    
+    
 }

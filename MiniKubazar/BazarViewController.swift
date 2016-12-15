@@ -383,7 +383,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 }
             }
         }
-        
-        
+    
+   
         
 }

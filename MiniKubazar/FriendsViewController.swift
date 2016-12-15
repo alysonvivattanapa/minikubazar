@@ -27,8 +27,6 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         inviteNewFriendsView.layer.cornerRadius = 33
         
         friendsTableView.dataSource = friendsTableViewDataSource
@@ -46,6 +44,8 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         
         NotificationCenter.default.addObserver(self, selector: #selector(FriendsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FriendsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        friendsTableView.allowsSelection = false
 
     }
         
@@ -350,6 +350,17 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         showInviteFriends()
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let block = UITableViewRowAction(style: .normal, title: "Block") { (action, index) in
+            print("block")
+            self.friendsTableViewDataSource.friendArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            //RIGHT NOW BLOCKING ONLY REMOVES FROM FRIENDS LIST BUT DOES NOT BLOCK. MUST REDESIGN LOGIC FOR THIS.
+        }
+        
+        return [block]
+    }
     
-
+   
 }
