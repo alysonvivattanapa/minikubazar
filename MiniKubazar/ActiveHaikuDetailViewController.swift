@@ -193,8 +193,22 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         print("Active haiku detail view controller continue button pressed")
         
         if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
-            
+            if secondLineTextView.text != secondPlayer && self.turnCounterString == "1" {
+                if thirdLineTextView.text == thirdPlayer {
+                    ifSecondTextFieldWasEdited()
+                }
+            }
         }
+        
+        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
+            
+            if secondLineTextView.text != secondPlayer && self.turnCounterString == "2" {
+                if thirdLineTextView.text != thirdPlayer {
+                ifThirdTextFieldWasEdited()
+                }
+            }
+        }
+        
         
 //        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
 //            if !secondLineTextView.text.contains("enters second line of haiku") && (!secondLineTextView.text.contains("Waiting on second player") || !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku")) {
@@ -222,7 +236,9 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         
         if let haikuUniqeUUID = uniqueHaikuUUID, let secondLineText = secondLineTextView.text {
             
-            let updateDictionary = ["secondLineString": secondLineText]
+             let updateDictionary = ["secondLineString": secondLineText, "turnCounter": "2"]
+            
+//            let updateDictionary = ["secondLineString": secondLineText]
             
             print(updateDictionary)
             

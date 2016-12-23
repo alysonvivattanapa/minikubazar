@@ -112,7 +112,17 @@ struct ClientService {
             
             let timestamp = newHaiku.value(forKey: "timestamp") as AnyObject
             
-            let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp)
+            let firstPlayerEmail = newHaiku.value(forKey: "firstPlayerEmail") as! String
+            
+            let secondPlayerEmail = newHaiku.value(forKey: "secondPlayerEmail") as! String
+            
+            let thirdPlayerEmail = newHaiku.value(forKey: "thirdPlayerEmail") as! String
+            
+            let turnCounterString = newHaiku.value(forKey: "turnCounter") as! String
+            
+            let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, firstPlayerEmail: firstPlayerEmail, secondPlayerUUID: secondPlayerUUID, secondPlayerEmail: secondPlayerEmail, thirdPlayerUUID: thirdPlayerUUID, thirdPlayerEmail: thirdPlayerEmail, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp, turnCounter: turnCounterString)
+            
+//            let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp)
             
             
              arrayOfActiveHaikuObjects.append(newHaikuObject)
@@ -151,7 +161,18 @@ struct ClientService {
                 
                 let timestamp = newHaiku.object(forKey: "timestamp") as AnyObject
                 
-                let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp)
+//                let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, secondPlayerUUID: secondPlayerUUID, thirdPlayerUUID: thirdPlayerUUID, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp)
+                
+                let firstPlayerEmail = newHaiku.value(forKey: "firstPlayerEmail") as! String
+                
+                let secondPlayerEmail = newHaiku.value(forKey: "secondPlayerEmail") as! String
+                
+                let thirdPlayerEmail = newHaiku.value(forKey: "thirdPlayerEmail") as! String
+                
+                let turnCounterString = newHaiku.value(forKey: "turnCounter") as! String
+                
+                let newHaikuObject = ActiveHaiku(firstLineString: firstLineString, secondLineString: secondLineString, thirdLineString: thirdLineString, imageURLString: imageURLString, firstPlayerUUID: firstPlayerUUID, firstPlayerEmail: firstPlayerEmail, secondPlayerUUID: secondPlayerUUID, secondPlayerEmail: secondPlayerEmail, thirdPlayerUUID: thirdPlayerUUID, thirdPlayerEmail: thirdPlayerEmail, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp, turnCounter: turnCounterString)
+
                 
                 arrayOfCompletedHaikuObjects.append(newHaikuObject)
             }
@@ -299,15 +320,24 @@ struct ClientService {
                 
             let thirdPlayer = activeHaiku.object(forKey: "thirdPlayerUUID") as! String
                 
+            let firstPlayerEmail = activeHaiku.object(forKey: "firstPlayerEmail") as! String
+                
+            let secondPlayerEmail = activeHaiku.object(forKey: "secondPlayerEmail") as! String
+            
+            let thirdPlayerEmail = activeHaiku.object(forKey: "thirdPlayerEmail") as! String
+                
+                
 //            let timestamp = activeHaiku.object(forKey: "timestamp")
                 
                 let completedTimestamp = FIRServerValue.timestamp() as AnyObject
          
-//                let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: timestamp as AnyObject!)
+let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, firstPlayerEmail: firstPlayerEmail, secondPlayerUUID: secondPlayer, secondPlayerEmail: secondPlayerEmail, thirdPlayerUUID: thirdPlayer, thirdPlayerEmail: thirdPlayerEmail, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: completedTimestamp, turnCounter: "3")
                 
-                 let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: completedTimestamp)
+//                let newCompleteHaiku = ActiveHaiku(firstLineString: firstLine, secondLineString: secondLine, thirdLineString: thirdLineTextString, imageURLString: imageURL, firstPlayerUUID: firstPlayer, secondPlayerUUID: secondPlayer, thirdPlayerUUID: thirdPlayer, uniqueHaikuUUID: uniqueHaikuUUID, timestamp: completedTimestamp)
             
-            let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID, "timestamp": newCompleteHaiku.timestamp]
+                 let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "firstPlayerEmail": newCompleteHaiku.firstPlayerEmail, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "secondPlayerEmail": newCompleteHaiku.secondPlayerEmail, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "thirdPlayerEmail": newCompleteHaiku.thirdPlayerEmail, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID, "timestamp": newCompleteHaiku.timestamp, "turnCounter": newCompleteHaiku.turnCounter]
+                
+//            let newCompleteHaikuDictionary: NSDictionary = ["firstLineString": newCompleteHaiku.firstLineString, "secondLineString": newCompleteHaiku.secondLineString, "thirdLineString": newCompleteHaiku.thirdLineString, "imageURLString": newCompleteHaiku.imageURLString, "firstPlayerUUID": newCompleteHaiku.firstPlayerUUID, "secondPlayerUUID": newCompleteHaiku.secondPlayerUUID, "thirdPlayerUUID": newCompleteHaiku.thirdPlayerUUID, "uniqueHaikuUUID": newCompleteHaiku.uniqueHaikuUUID, "timestamp": newCompleteHaiku.timestamp]
             
            let currentUserNewCompletedHaikusRef = newCompletedHaikusRef.child(currentUserUID)
             
