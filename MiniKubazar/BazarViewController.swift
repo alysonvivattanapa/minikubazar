@@ -311,6 +311,10 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 activeHaikuDetailVC.thirdPlayerUUID = thirdPersonString
             }
             
+            if let turnCounterString = activeHaiku.turnCounter {
+                activeHaikuDetailVC.turnCounterString = turnCounterString
+            }
+            
             present(activeHaikuDetailVC, animated: true, completion: {
                 
                 let currentUserEmail = ClientService.getCurrentUserEmail()
@@ -326,7 +330,7 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 
                 if let secondPlayer = activeHaikuDetailVC.secondPlayerUUID {
                     
-                    if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("\(currentUserEmail) enters second line of haiku.") {
+                    if secondPlayer == currentUserUID && activeHaiku.secondLineString == currentUserEmail && activeHaikuDetailVC.turnCounterString == "1" {
                         activeHaikuDetailVC.disableUserinteractionForAllTextViews()
                         activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
@@ -338,9 +342,37 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     }
                 }
                 
-                if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID {
+//                if let secondPlayer = activeHaikuDetailVC.secondPlayerUUID {
+//                    
+//                    if secondPlayer == currentUserUID && activeHaiku.secondLineString.contains("\(currentUserEmail) enters second line of haiku.") {
+//                        activeHaikuDetailVC.disableUserinteractionForAllTextViews()
+//                        activeHaikuDetailVC.secondLineTextView.backgroundColor = UIColor.yellow
+//                        activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+//                        activeHaikuDetailVC.thirdLineTextView.textColor = UIColor.lightGray
+//                        activeHaikuDetailVC.secondLineTextView.isUserInteractionEnabled = true
+//                        activeHaikuDetailVC.continueButton.isEnabled = true
+//                        activeHaikuDetailVC.continueButton.isHidden = false
+//                        activeHaikuDetailVC.waitForOtherPlayersLabel.text = "It's your turn! Press 'Continue' after you enter the second line of the haiku."
+//                    }
+//                }
+                
+//                if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID {
+//                    
+//                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("\(currentUserEmail) enters third line of haiku.") && !activeHaiku.secondLineString.contains("enters second line of haiku."){
+//                        activeHaikuDetailVC.disableUserinteractionForAllTextViews()
+//                        activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+//                        activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
+//                        activeHaikuDetailVC.thirdLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+//                        activeHaikuDetailVC.thirdLineTextView.isUserInteractionEnabled = true
+//                        activeHaikuDetailVC.continueButton.isEnabled = true
+//                        activeHaikuDetailVC.waitForOtherPlayersLabel.text = "It's your turn! Press 'Continue' after you enter the last line of the haiku."
+//                        activeHaikuDetailVC.continueButton.isHidden = false
+//                    }
+//                }
+                
+                if let thirdPlayer = activeHaikuDetailVC.thirdPlayerUUID, let secondPlayerEmail = activeHaiku.secondPlayerEmail {
                     
-                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString.contains("\(currentUserEmail) enters third line of haiku.") && !activeHaiku.secondLineString.contains("enters second line of haiku."){
+                    if thirdPlayer == currentUserUID && activeHaiku.thirdLineString == currentUserEmail && activeHaiku.secondLineString != secondPlayerEmail && activeHaiku.turnCounter == "2" {
                         activeHaikuDetailVC.disableUserinteractionForAllTextViews()
                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
                         activeHaikuDetailVC.thirdLineTextView.backgroundColor = UIColor.yellow
@@ -352,10 +384,16 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                     }
                 }
                 
-                
-                if !activeHaiku.secondLineString.contains("enters second line of haiku.") {
-                    activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                if let secondPlayerEmail = activeHaiku.secondPlayerEmail {
+                    if activeHaiku.secondLineString != secondPlayerEmail {
+                         activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+                    }
                 }
+                
+                
+//                if !activeHaiku.secondLineString.contains("enters second line of haiku.") {
+//                    activeHaikuDetailVC.secondLineTextView.textColor = UIColor(red: 12.0/255, green: 87.0/255, blue: 110.0/255, alpha: 1)
+//                }
                 
                 if cell.isItYourTurnLabel.text == "Waiting for a friend" {
                     activeHaikuDetailVC.disableUserinteractionForAllTextViews()
