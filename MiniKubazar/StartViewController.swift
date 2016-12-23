@@ -817,9 +817,15 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables."
             
-            secondLineHaikuTextView.text = "\(email) enters this line."
-
-            thirdLineHaikuTextView.text = "Then you can enter third line."
+            secondLineHaikuTextView.text = "\(email)"
+            
+            let currentUserEmail = ClientService.getCurrentUserEmail()
+            
+            thirdLineHaikuTextView.text = "\(currentUserEmail)"
+            
+//            secondLineHaikuTextView.text = "\(email) enters this line."
+//
+//            thirdLineHaikuTextView.text = "Then you can enter third line."
             
         }
     }
@@ -840,9 +846,9 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             firstLineHaikuTextView.text = "Enter first line of haiku: 5 syllables."
             
-            secondLineHaikuTextView.text = "\(firstFriendEmail)'s line."
+            secondLineHaikuTextView.text = "\(firstFriendEmail)"
             
-            thirdLineHaikuTextView.text = "\(secondFriendEmail)'s line."
+            thirdLineHaikuTextView.text = "\(secondFriendEmail)"
             
 //            secondLineHaikuTextView.text = "\(firstFriendEmail) enters second line of haiku."
 //

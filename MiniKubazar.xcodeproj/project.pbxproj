@@ -15,12 +15,12 @@
 		F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F220BE3F1D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib */; };
 		F235E2DC1DA7FD3100826DD5 /* PopOutImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235E2DA1DA7FD3100826DD5 /* PopOutImageViewController.swift */; };
 		F235E2DD1DA7FD3100826DD5 /* PopOutImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F235E2DB1DA7FD3100826DD5 /* PopOutImageViewController.xib */; };
-		F235E2E31DAC330C00826DD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F235E2E21DAC330C00826DD5 /* GoogleService-Info.plist */; };
 		F236DD2F1D92860800B1FA31 /* FriendsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */; };
 		F236DD3C1D92902300B1FA31 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */; };
 		F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */; };
 		F236DD401D92A90E00B1FA31 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */; };
 		F236DD411D92A90E00B1FA31 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */; };
+		F239921C1E0D33D600EC6931 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F239921B1E0D33D600EC6931 /* GoogleService-Info.plist */; };
 		F24A0B8C1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */; };
 		F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */; };
 		F2A1200B1D82287900A39867 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1200A1D82287900A39867 /* AppDelegate.swift */; };
@@ -63,12 +63,12 @@
 		F235E2D71DA44A0800826DD5 /* MiniKubazar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniKubazar.entitlements; sourceTree = "<group>"; };
 		F235E2DA1DA7FD3100826DD5 /* PopOutImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOutImageViewController.swift; sourceTree = "<group>"; };
 		F235E2DB1DA7FD3100826DD5 /* PopOutImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOutImageViewController.xib; sourceTree = "<group>"; };
-		F235E2E21DAC330C00826DD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F236DD2E1D92860800B1FA31 /* FriendsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewDataSource.swift; sourceTree = "<group>"; };
 		F236DD3A1D92902300B1FA31 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		F236DD3B1D92902300B1FA31 /* FriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsViewController.xib; sourceTree = "<group>"; };
 		F236DD3E1D92A90E00B1FA31 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		F236DD3F1D92A90E00B1FA31 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
+		F239921B1E0D33D600EC6931 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F24A0B8A1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedHaikuDetailViewController.swift; sourceTree = "<group>"; };
 		F24A0B8B1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletedHaikuDetailViewController.xib; sourceTree = "<group>"; };
 		F2A120071D82287900A39867 /* MiniKubazar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniKubazar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,7 +206,7 @@
 				F2BB01541D8312710094A45B /* HaikuViewModel.swift */,
 				F2A120351D822B8700A39867 /* ClientService.swift */,
 				F2EFA0231DA4175300F7678D /* Reachability.swift */,
-				F235E2E21DAC330C00826DD5 /* GoogleService-Info.plist */,
+				F239921B1E0D33D600EC6931 /* GoogleService-Info.plist */,
 			);
 			name = Supporting;
 			sourceTree = "<group>";
@@ -322,7 +322,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F235E2E31DAC330C00826DD5 /* GoogleService-Info.plist in Resources */,
 				F2A1200D1D82287900A39867 /* Assets.xcassets in Resources */,
 				F2E296891DB0F1BA00537010 /* TermsOfServiceViewController.xib in Resources */,
 				F24A0B8D1D85D8CD008ABC93 /* CompletedHaikuDetailViewController.xib in Resources */,
@@ -332,6 +331,7 @@
 				F220BE411D9AD3D600264DFF /* ActiveHaikuDetailViewController.xib in Resources */,
 				F2D9F1DA1D858DFC00E6E43E /* CompletedHaikusCollectionViewCell.xib in Resources */,
 				F2A1202A1D822B5600A39867 /* BazarViewController.xib in Resources */,
+				F239921C1E0D33D600EC6931 /* GoogleService-Info.plist in Resources */,
 				F236DD3D1D92902300B1FA31 /* FriendsViewController.xib in Resources */,
 				F220BE3D1D9AA6BA00264DFF /* ActiveCollectionViewCell.xib in Resources */,
 				F2A120341D822B6300A39867 /* InfoViewController.xib in Resources */,

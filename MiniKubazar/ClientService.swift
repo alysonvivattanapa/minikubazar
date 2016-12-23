@@ -29,7 +29,7 @@ struct ClientService {
     
     static let storage = FIRStorage.storage()
     
-    static let storageRef = storage.reference(forURL: "gs://kubazar-4.appspot.com")
+    static let storageRef = storage.reference(forURL: "gs://kubazar-51608.appspot.com")
     
     static let imagesRef = storageRef.child("images")
     
@@ -258,35 +258,42 @@ struct ClientService {
         let currentUserUID = ClientService.getCurrentUserUID()
         let currentUserActiveHaikusRef = activeHaikusRef.child(currentUserUID)
         
-        let firstLineString = activeHaiku.firstLineString
-        let secondLineString = activeHaiku.secondLineString
-        let thirdLineString = activeHaiku.thirdLineString
-        let imageURLString = activeHaiku.imageURLString
-        let firstPlayerUUID = activeHaiku.firstPlayerUUID
-        let secondPlayerUUID = activeHaiku.secondPlayerUUID
-        let thirdPlayerUUID = activeHaiku.thirdPlayerUUID
-        let uniqueHaikuUUID = activeHaiku.uniqueHaikuUUID
-        let currentTimestamp = FIRServerValue.timestamp() as AnyObject
+//        let firstLineString = activeHaiku.firstLineString
+//        let secondLineString = activeHaiku.secondLineString
+//        let thirdLineString = activeHaiku.thirdLineString
+//        let imageURLString = activeHaiku.imageURLString
+//        let firstPlayerUUID = activeHaiku.firstPlayerUUID
+//        let secondPlayerUUID = activeHaiku.secondPlayerUUID
+//        let thirdPlayerUUID = activeHaiku.thirdPlayerUUID
+//        let uniqueHaikuUUID = activeHaiku.uniqueHaikuUUID
+////        let currentTimestamp = FIRServerValue.timestamp() as AnyObject
+//        let currentTimestamp = activeHaiku.timestamp
+//        let firstPlayerEmail = activeHaiku.firstPlayerEmail
+//        let secondPlayerEmail = activeHaiku.secondPlayerEmail
+//        let thirdPlayerEmail = activeHaiku.thirdPlayerEmail
+//        let turnCounter = activeHaiku.turnCounter
+//        
+           let activeHaikuDictionary: NSDictionary = ["firstLineString": activeHaiku.firstLineString, "secondLineString": activeHaiku.secondLineString, "thirdLineString": activeHaiku.thirdLineString, "imageURLString": activeHaiku.imageURLString, "firstPlayerUUID": activeHaiku.firstPlayerUUID, "firstPlayerEmail": activeHaiku.firstPlayerEmail, "secondPlayerUUID": activeHaiku.secondPlayerUUID, "secondPlayerEmail": activeHaiku.secondPlayerEmail, "thirdPlayerUUID": activeHaiku.thirdPlayerUUID, "thirdPlayerEmail": activeHaiku.thirdPlayerEmail, "uniqueHaikuUUID": activeHaiku.uniqueHaikuUUID, "timestamp": activeHaiku.timestamp, "turnCounter": activeHaiku.turnCounter]
         
-        let activeHaikuDictionary: NSDictionary = ["firstLineString": firstLineString!, "secondLineString": secondLineString!, "thirdLineString": thirdLineString!, "imageURLString": imageURLString!, "firstPlayerUUID": firstPlayerUUID!, "secondPlayerUUID": secondPlayerUUID!, "thirdPlayerUUID": thirdPlayerUUID!, "uniqueHaikuUUID": uniqueHaikuUUID!, "timestamp": currentTimestamp]
+//        let activeHaikuDictionary: NSDictionary = ["firstLineString": firstLineString!, "secondLineString": secondLineString!, "thirdLineString": thirdLineString!, "imageURLString": imageURLString!, "firstPlayerUUID": firstPlayerUUID!, "secondPlayerUUID": secondPlayerUUID!, "thirdPlayerUUID": thirdPlayerUUID!, "uniqueHaikuUUID": uniqueHaikuUUID!, "timestamp": currentTimestamp]
         
-        currentUserActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
+        currentUserActiveHaikusRef.child(activeHaiku.uniqueHaikuUUID).setValue(activeHaikuDictionary)
         
-        if currentUserUID != firstPlayerUUID {
-            let firstPlayerActiveHaikusRef = activeHaikusRef.child(firstPlayerUUID!)
-            firstPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
+        if currentUserUID != activeHaiku.firstPlayerUUID {
+            let firstPlayerActiveHaikusRef = activeHaikusRef.child(activeHaiku.firstPlayerUUID)
+            firstPlayerActiveHaikusRef.child(activeHaiku.uniqueHaikuUUID).setValue(activeHaikuDictionary)
         }
 
         
-        if currentUserUID != secondPlayerUUID {
-            let secondPlayerActiveHaikusRef = activeHaikusRef.child(secondPlayerUUID!)
-            secondPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
+        if currentUserUID != activeHaiku.secondPlayerUUID {
+            let secondPlayerActiveHaikusRef = activeHaikusRef.child(activeHaiku.secondPlayerUUID)
+            secondPlayerActiveHaikusRef.child(activeHaiku.uniqueHaikuUUID).setValue(activeHaikuDictionary)
         }
         
-        if currentUserUID != thirdPlayerUUID {
-            let thirdPlayerActiveHaikusRef = activeHaikusRef.child(thirdPlayerUUID!)
+        if currentUserUID != activeHaiku.thirdPlayerUUID {
+            let thirdPlayerActiveHaikusRef = activeHaikusRef.child(activeHaiku.thirdPlayerUUID)
             
-            thirdPlayerActiveHaikusRef.child(uniqueHaikuUUID!).setValue(activeHaikuDictionary)
+            thirdPlayerActiveHaikusRef.child(activeHaiku.uniqueHaikuUUID).setValue(activeHaikuDictionary)
         }
         
     }
