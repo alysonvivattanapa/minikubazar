@@ -15,10 +15,14 @@ struct ActiveHaiku {
     let thirdLineString: String!
     let imageURLString: String!
     let firstPlayerUUID: String!
+    let firstPlayerEmail: String!
     let secondPlayerUUID: String!
+    let secondPlayerEmail: String!
     let thirdPlayerUUID: String!
+    let thirdPlayerEmail: String!
     let uniqueHaikuUUID: String!
     let timestamp: AnyObject!
+    let turnCounter: String!
 
 }
 

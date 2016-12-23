@@ -29,21 +29,37 @@ class ActiveCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let currentUserUID = ClientService.getCurrentUserUID()
         
-        if let secondPlayer = activeHaiku.secondPlayerUUID, let secondLine = activeHaiku.secondLineString {
-            if secondPlayer == currentUserUID && secondLine.contains("enters second line of haiku.") {
-                
+        if let secondPlayer = activeHaiku.secondPlayerUUID, let turnCounterNumber = activeHaiku.turnCounter {
+            if secondPlayer == currentUserUID && turnCounterNumber == "1" {
                 cell.updateWithLabelText("It's your turn!")
             }
         }
         
-        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let secondLine = activeHaiku.secondLineString, let thirdLine = activeHaiku.thirdLineString {
-            if thirdPlayer == currentUserUID && !secondLine.contains("enters second line of haiku") && thirdLine.contains("enters third line of haiku.") {
+//        if let secondPlayer = activeHaiku.secondPlayerUUID, let secondLine = activeHaiku.secondLineString {
+//            if secondPlayer == currentUserUID && secondLine.contains("enters second line of haiku.") {
+//                
+//                cell.updateWithLabelText("It's your turn!")
+//            }
+//        }
+        
+        
+        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let turnCounterNumber = activeHaiku.turnCounter {
+            if thirdPlayer == currentUserUID && turnCounterNumber == "2" {
                 
                 cell.updateWithLabelText("It's your turn!"
                 )
             }
         }
         
+        
+//        if let thirdPlayer = activeHaiku.thirdPlayerUUID, let secondLine = activeHaiku.secondLineString, let thirdLine = activeHaiku.thirdLineString {
+//            if thirdPlayer == currentUserUID && !secondLine.contains("enters second line of haiku") && thirdLine.contains("enters third line of haiku.") {
+//                
+//                cell.updateWithLabelText("It's your turn!"
+//                )
+//            }
+//        }
+//        
         
         if let imageURL = activeHaiku.imageURLString {
             

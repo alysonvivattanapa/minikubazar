@@ -43,6 +43,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     var thirdPlayerEmail: String?
     
+    var turnCounterString: String?
+    
     @IBOutlet weak var waitForOtherPlayersLabel: UILabel!
     
     
@@ -191,22 +193,26 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         print("Active haiku detail view controller continue button pressed")
         
         if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
-            if !secondLineTextView.text.contains("enters second line of haiku") && (!secondLineTextView.text.contains("Waiting on second player") || !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku")) {
-                
-                if thirdLineTextView.text.contains("enters second line, you can write third line") || thirdLineTextView.text.contains("after second player's turn") || thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
-                    
-                    ifSecondTextFieldWasEdited()
-                }
-            }
+            
         }
         
-        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
-            if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") && !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku") && !thirdLineTextView.text.contains("enters second line, you can write third line") && !thirdLineTextView.text.contains("after second player's turn") && !thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
-                
-                ifThirdTextFieldWasEdited()
-                
-            }
-        }
+//        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
+//            if !secondLineTextView.text.contains("enters second line of haiku") && (!secondLineTextView.text.contains("Waiting on second player") || !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku")) {
+//                
+//                if thirdLineTextView.text.contains("enters second line, you can write third line") || thirdLineTextView.text.contains("after second player's turn") || thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
+//                    
+//                    ifSecondTextFieldWasEdited()
+//                }
+//            }
+//        }
+//        
+//        if let secondPlayer = secondPlayerEmail, let thirdPlayer = thirdPlayerEmail {
+//            if !secondLineTextView.text.contains("enters second line of haiku") && !secondLineTextView.text.contains("Waiting on second player") && !secondLineTextView.text.contains("\(secondPlayer) enters second line of haiku") && !thirdLineTextView.text.contains("enters second line, you can write third line") && !thirdLineTextView.text.contains("after second player's turn") && !thirdLineTextView.text.contains("\(thirdPlayer) enters third line of haiku") {
+//                
+//                ifThirdTextFieldWasEdited()
+//                
+//            }
+//        }
     }
     
     func ifSecondTextFieldWasEdited() {
