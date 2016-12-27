@@ -52,6 +52,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     let currentUserUID = ClientService.getCurrentUserUID()
     
+    @IBOutlet weak var playerIDButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -434,6 +436,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     @IBAction func dismissFlagReportButtonPressed(_ sender: AnyObject) {
         flagReportView.isHidden = true
     }
+    
+    @IBAction func playerIDButtonPressed(_ sender: Any) {
+        
+    }
+ 
+    
     
     
 }

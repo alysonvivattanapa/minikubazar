@@ -27,6 +27,9 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     
     @IBOutlet weak var shareableView: UIView!
     
+    @IBOutlet weak var playerIDButton: UIButton!
+    
+    
     var uniqueHaikuUUID: String?
     
     override func viewDidLoad() {
@@ -170,7 +173,8 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
         flagView.isHidden = true
     }
 
-
+    @IBAction func playerIDButtonPressed(_ sender: Any) {
+    }
     
     
 }
