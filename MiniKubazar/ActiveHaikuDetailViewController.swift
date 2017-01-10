@@ -39,6 +39,8 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     var uniqueHaikuUUID: String?
     
+    var firstPlayerEmail: String?
+    
     var secondPlayerEmail: String?
     
     var thirdPlayerEmail: String?
@@ -54,9 +56,42 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     @IBOutlet weak var playerIDButton: UIButton!
     
+    @IBOutlet weak var firstPlayerEmailLabel: UILabel!
+    
+    @IBOutlet weak var secondPlayerEmailLabel: UILabel!
+    
+    @IBOutlet weak var thirdPlayerEmailLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstPlayerEmailLabel.isHidden = true
+        
+        secondPlayerEmailLabel.isHidden = true
+        
+        thirdPlayerEmailLabel.isHidden = true
+        
+        ///IF LET TO UNWRAP
+        
+        if let firstPlayer = firstPlayerEmail {
+            firstPlayerEmailLabel.text = firstPlayer
+        }
+        
+        if let secondPlayer = secondPlayerEmail {
+            secondPlayerEmailLabel.text = secondPlayer
+        }
+        
+        if let thirdPlayer = thirdPlayerEmail {
+            thirdPlayerEmailLabel.text = thirdPlayer
+        }
+        
+        print("First player email is \(firstPlayerEmail)")
+        
+        print("Second player email is \(secondPlayerEmail)")
+        
+        print("Third player email is \(thirdPlayerEmail)")
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(reduceHaikuTextViewAlpha))
         
@@ -439,7 +474,39 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
     
     @IBAction func playerIDButtonPressed(_ sender: Any) {
         
-    }
+        if firstPlayerEmailLabel.isHidden == true,
+        
+        secondPlayerEmailLabel.isHidden == true,
+        
+            thirdPlayerEmailLabel.isHidden == true {
+        
+        firstPlayerEmailLabel.isHidden = false
+        
+        secondPlayerEmailLabel.isHidden = false
+        
+        thirdPlayerEmailLabel.isHidden = false
+            
+        firstLineTextView.isHidden = true
+            
+        secondLineTextView.isHidden = true
+            
+        thirdLineTextView.isHidden = true
+            
+        } else {
+            
+            firstPlayerEmailLabel.isHidden = true
+            
+            secondPlayerEmailLabel.isHidden = true
+            
+            thirdPlayerEmailLabel.isHidden = true
+            
+            firstLineTextView.isHidden = false
+            
+            secondLineTextView.isHidden = false
+            
+            thirdLineTextView.isHidden = false
+        }
+        }
  
     
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,13 +15,16 @@
                 <outlet property="backButton" destination="wnP-eC-FdV" id="QzQ-o2-tIL"/>
                 <outlet property="continueButton" destination="LH4-0t-iuP" id="x9Y-5U-yM4"/>
                 <outlet property="firstLineTextView" destination="WPV-A9-cX8" id="iyV-Wt-Dbh"/>
+                <outlet property="firstPlayerEmailLabel" destination="Wtv-gZ-b4y" id="t4v-EZ-wOJ"/>
                 <outlet property="flagReportButton" destination="HUh-DX-PBf" id="O4c-7H-llM"/>
                 <outlet property="flagReportView" destination="sOc-kR-Srd" id="Pki-Qd-sQv"/>
                 <outlet property="haikuInputView" destination="sF1-VU-UfT" id="h5i-fA-Iew"/>
                 <outlet property="imageView" destination="lO1-ty-Xpn" id="EUo-uB-v5P"/>
                 <outlet property="playerIDButton" destination="2B9-Pd-tCX" id="IdJ-FH-tKX"/>
                 <outlet property="secondLineTextView" destination="caN-La-Yri" id="S5N-eR-zb8"/>
+                <outlet property="secondPlayerEmailLabel" destination="ZeS-Hn-1o9" id="9GQ-UH-8c5"/>
                 <outlet property="thirdLineTextView" destination="AR6-te-0Yh" id="PrP-7E-Mm6"/>
+                <outlet property="thirdPlayerEmailLabel" destination="PeK-hH-rMH" id="Dpr-Ko-PCB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="waitForOtherPlayersLabel" destination="T8q-pv-tyX" id="i1m-Iu-0tV"/>
             </connections>
@@ -262,35 +265,68 @@
                         <action selector="playerIDButtonPressed:" destination="-1" eventType="touchUpInside" id="smX-kE-rzS"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First player email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtv-gZ-b4y">
+                    <rect key="frame" x="5" y="141" width="335" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second player email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeS-Hn-1o9">
+                    <rect key="frame" x="5" y="173" width="335" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third player email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeK-hH-rMH">
+                    <rect key="frame" x="5" y="205" width="335" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ZeS-Hn-1o9" firstAttribute="width" secondItem="caN-La-Yri" secondAttribute="width" id="2en-oo-kAI"/>
                 <constraint firstItem="2B9-Pd-tCX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="4" id="4EU-mh-stW"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="lO1-ty-Xpn" secondAttribute="centerY" id="4Xc-GZ-tVV"/>
                 <constraint firstAttribute="trailing" secondItem="lO1-ty-Xpn" secondAttribute="trailing" id="7ad-yC-9Cc"/>
                 <constraint firstItem="2B9-Pd-tCX" firstAttribute="top" secondItem="lO1-ty-Xpn" secondAttribute="bottom" constant="4" id="9Hs-m5-BjR"/>
                 <constraint firstItem="LH4-0t-iuP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AFy-7u-5fi"/>
                 <constraint firstItem="Xhp-8w-tfa" firstAttribute="top" secondItem="lO1-ty-Xpn" secondAttribute="bottom" id="CW3-CU-siU"/>
+                <constraint firstItem="PeK-hH-rMH" firstAttribute="centerX" secondItem="AR6-te-0Yh" secondAttribute="centerX" id="EDU-76-3Vc"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="width" secondItem="sF1-VU-UfT" secondAttribute="width" id="EdI-7L-gr1"/>
                 <constraint firstAttribute="trailing" secondItem="sF1-VU-UfT" secondAttribute="trailing" id="Iwp-TI-4PQ"/>
+                <constraint firstItem="PeK-hH-rMH" firstAttribute="height" secondItem="AR6-te-0Yh" secondAttribute="height" id="NPw-XI-FNF"/>
                 <constraint firstAttribute="bottom" secondItem="wnP-eC-FdV" secondAttribute="bottom" constant="50" id="Nci-qS-IqR"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="centerX" secondItem="sF1-VU-UfT" secondAttribute="centerX" id="ON8-YF-6WF"/>
+                <constraint firstItem="PeK-hH-rMH" firstAttribute="centerY" secondItem="AR6-te-0Yh" secondAttribute="centerY" id="PCK-ZE-BCS"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="height" secondItem="sF1-VU-UfT" secondAttribute="height" id="Q4B-Fw-dSe"/>
                 <constraint firstItem="sOc-kR-Srd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Q8F-bH-gt8"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TWi-wu-rag"/>
                 <constraint firstItem="wnP-eC-FdV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Vdr-KS-uZB"/>
+                <constraint firstItem="ZeS-Hn-1o9" firstAttribute="centerY" secondItem="caN-La-Yri" secondAttribute="centerY" id="WJQ-Nj-Q4R"/>
+                <constraint firstItem="Wtv-gZ-b4y" firstAttribute="centerY" secondItem="WPV-A9-cX8" secondAttribute="centerY" id="XI8-WI-83q"/>
                 <constraint firstItem="sOc-kR-Srd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XNR-iO-irj"/>
                 <constraint firstItem="lO1-ty-Xpn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YEc-7Y-4EE"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bEO-SK-XW1"/>
                 <constraint firstItem="LH4-0t-iuP" firstAttribute="centerY" secondItem="wnP-eC-FdV" secondAttribute="centerY" id="cjM-gE-kPV"/>
+                <constraint firstItem="ZeS-Hn-1o9" firstAttribute="height" secondItem="caN-La-Yri" secondAttribute="height" id="deb-vh-Dp7"/>
+                <constraint firstItem="ZeS-Hn-1o9" firstAttribute="centerX" secondItem="caN-La-Yri" secondAttribute="centerX" id="e4F-QT-EWu"/>
                 <constraint firstAttribute="trailing" secondItem="Xhp-8w-tfa" secondAttribute="trailing" constant="8" id="feq-K9-cgj"/>
                 <constraint firstItem="T8q-pv-tyX" firstAttribute="top" secondItem="Xhp-8w-tfa" secondAttribute="bottom" constant="8" id="gBa-8q-S5L"/>
                 <constraint firstItem="T8q-pv-tyX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hdS-ah-XPw"/>
+                <constraint firstItem="Wtv-gZ-b4y" firstAttribute="width" secondItem="WPV-A9-cX8" secondAttribute="width" id="hyX-HF-E7W"/>
+                <constraint firstItem="PeK-hH-rMH" firstAttribute="width" secondItem="AR6-te-0Yh" secondAttribute="width" id="j5u-8l-t5N"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="olk-Le-kr4"/>
                 <constraint firstItem="sF1-VU-UfT" firstAttribute="centerY" secondItem="lO1-ty-Xpn" secondAttribute="centerY" id="oyC-Dd-Ux3"/>
+                <constraint firstItem="Wtv-gZ-b4y" firstAttribute="centerX" secondItem="WPV-A9-cX8" secondAttribute="centerX" id="qGs-G3-aM3"/>
                 <constraint firstItem="T8q-pv-tyX" firstAttribute="centerY" secondItem="LH4-0t-iuP" secondAttribute="centerY" id="rSz-bc-7r5"/>
                 <constraint firstItem="lO1-ty-Xpn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ueP-lq-DB8"/>
                 <constraint firstItem="41B-Sf-xu6" firstAttribute="centerY" secondItem="sF1-VU-UfT" secondAttribute="centerY" id="w9n-j5-GsF"/>
+                <constraint firstItem="Wtv-gZ-b4y" firstAttribute="height" secondItem="WPV-A9-cX8" secondAttribute="height" id="xBm-1T-EgB"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

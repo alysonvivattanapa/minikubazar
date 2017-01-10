@@ -315,6 +315,18 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 activeHaikuDetailVC.turnCounterString = turnCounterString
             }
             
+            if let firstPlayerEmail = activeHaiku.firstPlayerEmail {
+                activeHaikuDetailVC.firstPlayerEmail = firstPlayerEmail
+            }
+            
+            if let secondPlayerEmail = activeHaiku.secondPlayerEmail {
+                activeHaikuDetailVC.secondPlayerEmail = secondPlayerEmail
+            }
+            
+            if let thirdPlayerEmail = activeHaiku.thirdPlayerEmail {
+                activeHaikuDetailVC.thirdPlayerEmail = thirdPlayerEmail
+            }
+            
             present(activeHaikuDetailVC, animated: true, completion: {
                 
                 let currentUserEmail = ClientService.getCurrentUserEmail()
