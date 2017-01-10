@@ -76,15 +76,15 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         ///IF LET TO UNWRAP
         
         if let firstPlayer = firstPlayerEmail {
-            firstPlayerEmailLabel.text = firstPlayer
+            firstPlayerEmailLabel.text = "  \(firstPlayer)"
         }
         
         if let secondPlayer = secondPlayerEmail {
-            secondPlayerEmailLabel.text = secondPlayer
+            secondPlayerEmailLabel.text = "  \(secondPlayer)"
         }
         
         if let thirdPlayer = thirdPlayerEmail {
-            thirdPlayerEmailLabel.text = thirdPlayer
+            thirdPlayerEmailLabel.text = "  \(thirdPlayer)"
         }
         
         print("First player email is \(firstPlayerEmail)")
