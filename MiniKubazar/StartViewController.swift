@@ -503,6 +503,12 @@ class StartViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func showCompletedDetailView() {
         let completedDetailVC = CompletedHaikuDetailViewController()
         
+        let currentUserEmail = ClientService.getCurrentUserEmail()
+        
+        completedDetailVC.firstPlayerEmail = currentUserEmail
+        completedDetailVC.secondPlayerEmail = currentUserEmail
+        completedDetailVC.thirdPlayerEmail = currentUserEmail
+        
         self.present(completedDetailVC, animated: false) {
            
             if let firstLine = self.firstLineHaikuTextView.text, let secondLine =
