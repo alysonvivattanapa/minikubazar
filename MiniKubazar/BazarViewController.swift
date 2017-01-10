@@ -421,14 +421,21 @@ class BazarViewController: UIViewController, UICollectionViewDelegate, UICollect
                 let completedHaikuDetailVC = CompletedHaikuDetailViewController()
                 
                 let cell = self.completedHaikusCollectionView.cellForItem(at: indexPath) as! CompletedHaikusCollectionViewCell
+                    
+                let haikuObject = self.completedCollectionViewDataSource.completedHaikus[(indexPath as NSIndexPath).row]
+                    
+                    completedHaikuDetailVC.firstPlayerEmail = haikuObject.firstPlayerEmail
+                    completedHaikuDetailVC.secondPlayerEmail = haikuObject.secondPlayerEmail
+                    completedHaikuDetailVC.thirdPlayerEmail = haikuObject.thirdPlayerEmail
                 
                 self.present(completedHaikuDetailVC, animated: false) {
-                let haikuObject = self.completedCollectionViewDataSource.completedHaikus[(indexPath as NSIndexPath).row]
+            
                 completedHaikuDetailVC.completedHaikuDetailImageView.image = cell.completedHaikuImageView.image
                 completedHaikuDetailVC.firstLineLabel.text = haikuObject.firstLineString
                 completedHaikuDetailVC.secondLineLabel.text = haikuObject.secondLineString
                 completedHaikuDetailVC.thirdLineLabel.text = haikuObject.thirdLineString
                 completedHaikuDetailVC.uniqueHaikuUUID = haikuObject.uniqueHaikuUUID
+                
                 completedHaikuDetailVC.animateButtons()
                 }
             }

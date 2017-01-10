@@ -29,11 +29,47 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     
     @IBOutlet weak var playerIDButton: UIButton!
     
-    
     var uniqueHaikuUUID: String?
+    
+    var firstPlayerEmail: String?
+    
+    var secondPlayerEmail: String?
+    
+    var thirdPlayerEmail: String?
+    
+    @IBOutlet weak var firstPlayerEmailLabel: UILabel!
+    
+    @IBOutlet weak var secondPlayerEmailLabel: UILabel!
+    
+    @IBOutlet weak var thirdPlayerEmailLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("First player email is \(firstPlayerEmail)")
+        
+        print("Second player email is \(secondPlayerEmail)")
+        
+        print("Third player email is \(thirdPlayerEmail)")
+        
+        firstPlayerEmailLabel.isHidden = true
+        
+        secondPlayerEmailLabel.isHidden = true
+        
+        thirdPlayerEmailLabel.isHidden = true
+        
+        if let firstPlayer = firstPlayerEmail {
+            firstPlayerEmailLabel.text = "  \(firstPlayer)"
+        }
+        
+        if let secondPlayer = secondPlayerEmail {
+            secondPlayerEmailLabel.text = "  \(secondPlayer)"
+        }
+        
+        if let thirdPlayer = thirdPlayerEmail {
+            thirdPlayerEmailLabel.text = "  \(thirdPlayer)"
+        }
         
         flagView.isHidden = true
         
@@ -174,7 +210,41 @@ class CompletedHaikuDetailViewController: UIViewController, MFMailComposeViewCon
     }
 
     @IBAction func playerIDButtonPressed(_ sender: Any) {
+        
+        if firstPlayerEmailLabel.isHidden == true,
+            
+            secondPlayerEmailLabel.isHidden == true,
+            
+            thirdPlayerEmailLabel.isHidden == true {
+            
+            firstPlayerEmailLabel.isHidden = false
+            
+            secondPlayerEmailLabel.isHidden = false
+            
+            thirdPlayerEmailLabel.isHidden = false
+            
+            firstLineLabel.isHidden = true
+            
+            secondLineLabel.isHidden = true
+            
+            thirdLineLabel.isHidden = true
+            
+        } else {
+            
+            firstPlayerEmailLabel.isHidden = true
+            
+            secondPlayerEmailLabel.isHidden = true
+            
+            thirdPlayerEmailLabel.isHidden = true
+            
+            firstLineLabel.isHidden = false
+            
+            secondLineLabel.isHidden = false
+            
+            thirdLineLabel.isHidden = false
+        }
     }
+    
     
     
 }
