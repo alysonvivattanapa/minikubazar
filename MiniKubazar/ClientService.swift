@@ -253,12 +253,17 @@ struct ClientService {
         
         let currentUserUID = ClientService.getCurrentUserUID()
         
+        let currentUserFriendsRef = friendsRef.child(currentUserUID)
+        
         let currentUserBlockedFriendsRef = blockedFriendsRef.child(currentUserUID)
         
         if let uid = friend.uid, let email = friend.email, let username = friend.username {
             
              let userDictionary: NSDictionary = ["uid": uid, "email": email, "username": username]
             currentUserBlockedFriendsRef.child(uid).setValue(userDictionary)
+            
+        currentUserFriendsRef.child(uid).removeValue()
+            
         }
         
         
