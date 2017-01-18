@@ -354,9 +354,20 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         
         let block = UITableViewRowAction(style: .normal, title: "Block") { (action, index) in
             print("block")
+            
+            print(self.friendsTableViewDataSource.friendArray[indexPath.row])
+            
+            let blockedFriend = self.friendsTableViewDataSource.friendArray[indexPath.row]
+            
+            ClientService.blockFriend(blockedFriend)
+            
+//            print(self.friendsTableViewDataSource.friendArray(at: indexPath.row))
             self.friendsTableViewDataSource.friendArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             //RIGHT NOW BLOCKING ONLY REMOVES FROM FRIENDS LIST BUT DOES NOT BLOCK. MUST REDESIGN LOGIC FOR THIS.
+            
+            
+            
         }
         
         return [block]

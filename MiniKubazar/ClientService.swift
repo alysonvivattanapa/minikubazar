@@ -27,6 +27,8 @@ struct ClientService {
     
     static let friendsRef = rootRef.child("friends")
     
+    static let blockedFriendsRef = rootRef.child("blockedFriends")
+    
     static let storage = FIRStorage.storage()
     
     static let storageRef = storage.reference(forURL: "gs://kubazar-51608.appspot.com")
@@ -245,7 +247,19 @@ struct ClientService {
                 
         currentUserFriendsRef.child(uid).setValue(userDictionary)
         }
+    }
+    
+    static func blockFriend (_ friend: User) {
         
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
+        let currentUserBlockedFriendsRef = blockedFriendsRef.child(currentUserUID)
+        
+        if let uid = friend.uid, let email = friend.email, let username = friend.username {
+            
+             let userDictionary: NSDictionary = ["uid": uid, "email": email, "username": username]
+            currentUserBlockedFriendsRef.child(uid).setValue(userDictionary)
+        }
         
         
     }
