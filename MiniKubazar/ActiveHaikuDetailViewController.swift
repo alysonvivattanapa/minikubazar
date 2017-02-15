@@ -367,6 +367,12 @@ class ActiveHaikuDetailViewController: UIViewController, UITextViewDelegate, MFM
         continueButton.isHidden = true
         
         let completedDetailView = CompletedHaikuDetailViewController()
+        
+        completedDetailView.firstPlayerEmail = self.firstPlayerEmail
+        completedDetailView.secondPlayerEmail = self.secondPlayerEmail
+        completedDetailView.thirdPlayerEmail = self.thirdPlayerEmail
+       
+        
         self.present(completedDetailView, animated: true) {
             if let firstLine = self.firstLineTextView.text, let secondLine = self.secondLineTextView.text, let haikuImage = self.imageView.image, let thirdLine = self.thirdLineTextView.text, let haikuUID = self.uniqueHaikuUUID {
                 completedDetailView.completedHaikuDetailImageView.image = haikuImage

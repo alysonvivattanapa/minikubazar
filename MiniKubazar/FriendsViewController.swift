@@ -91,7 +91,18 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     }
     
-    
+//    func checkIfUserIsBlocked(_ emailStri: String) {
+//        
+//        let currentUserUID = ClientService.getCurrentUserUID()
+//        
+//        ClientService.blockedFriendsRef.child(currentUserUID).queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if snapshot.exists() {
+//               self.present(Alerts.showErrorMessage("\(emailStri) is blocked. Try another friend."), animated: true, completion: nil)
+//            }
+//        })
+//        
+//        
+//    }
     
     func checkIfUserIsTryingToAddSelfAsFriend(_ emailStr: String) -> Bool {
         let currentUserEmail = ClientService.getCurrentUserEmail()
@@ -107,86 +118,49 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
     
     func checkIfFriendAlreadyUsesKubazar(_ emailStri: String) {
         
+        let currentUserUID = ClientService.getCurrentUserUID()
+        
         //block only fires when snapshot exists
         
         ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .value, with: { (snapshot) in
             
+            OperationQueue.main.addOperation {
+            
             if snapshot.exists() {
                 
-                ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .childAdded, with: { (friendSnapshot) in
-                print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
-                print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
-                
-                let friend = friendSnapshot.value as! NSDictionary
-                 
-                let friendUID = friend.object(forKey: "uid") as! String
-                    
-                let friendEmail = friend.object(forKey: "email") as! String
-                    
-                let friendUsername = friend.object(forKey: "username") as! String
-                
-                print("\(friendEmail) & \(friendUID) & \(friendUsername)")
-                
-                let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
-                
-                print(friendUser)
-                
-                ClientService.addFriendToCurrentUserFriendsList(friendUser)
-                
-                self.present(Alerts.showSuccessMessage("\(emailStri) added to friends list. Add another friend."), animated: true, completion: nil)
-                })
-                
-            } else {
-                self.sendInvitationEmail(emailStri)
-            }
-            
-            
-        })
-
-    
-    }
-    
-//    func isFriendAlreadyAdded(_ emailStri: String) {
-//        
-//        ClientService.getFriendEmailsForCurrentUser { (friendEmails) in
-//            let currentUserEmail = ClientService.getCurrentUserEmail()
-//            if friendEmails.contains(emailStri) {
-//                self.present(Alerts.showErrorMessage("\(emailStri) is already added to your friends list. Try another friend."), animated: true, completion: nil)
-//            } else if emailStri == currentUserEmail {
-//                //this is working!
-//                self.present(Alerts.showErrorMessage("Sorry! You can't add yourself as a friend at this time :)"), animated: true, completion: nil)
-//            } else if !friendEmails.contains(emailStri) {
-//                
-//                ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .childAdded, with: { (snapshot) in
-//                    
-//                    if snapshot.exists() {
-//                        print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
-//                        print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
-//                        
-//                        
-//                        let friendUID = (snapshot.value as AnyObject).object(forKey: "uid") as! String
-//                        let friendEmail = (snapshot.value as AnyObject).object(forKey: "email") as! String
-//                        let friendUsername = (snapshot.value as AnyObject).object(forKey: "username") as! String
-//                        
-//                        print("\(friendEmail) & \(friendUID) & \(friendUsername)")
-//                        
-//                        let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
-//                        
-//                        print(friendUser)
-//                        
-//                        ClientService.addFriendToCurrentUserFriendsList(friendUser)
-//                        
-//                    } else {
-//                        self.sendInvitationEmail(emailStri)
-//                    }
-//                })
-//                
-//            }
-//            
-//        }
-//    }
-
-
+                ClientService.blockedFriendsRef.child(currentUserUID).queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        self.present(Alerts.showErrorMessage("\(emailStri) is blocked. Try another friend."), animated: true, completion: nil)
+                    } else {
+                        ClientService.profileRef.queryOrdered(byChild: "email").queryEqual(toValue: emailStri).observeSingleEvent(of: .childAdded, with: { (friendSnapshot) in
+                            print("THIS IS THE PROFILE SNAPSHOT: \(snapshot)")
+                            print("THIS IS THE PROFILE SNAPSHOT.VALUE: \(snapshot.value)")
+                            
+                            let friend = friendSnapshot.value as! NSDictionary
+                            
+                            let friendUID = friend.object(forKey: "uid") as! String
+                            
+                            let friendEmail = friend.object(forKey: "email") as! String
+                            
+                            let friendUsername = friend.object(forKey: "username") as! String
+                            
+                            print("\(friendEmail) & \(friendUID) & \(friendUsername)")
+                            
+                            let friendUser = User(username: friendUsername, email: friendEmail, uid: friendUID)
+                            
+                            print(friendUser)
+                            
+                            ClientService.addFriendToCurrentUserFriendsList(friendUser)
+                            
+                            self.present(Alerts.showSuccessMessage("\(emailStri) added to friends list. Add another friend."), animated: true, completion: nil)
+                        })
+                        
+                    }}
+                )} else {
+                    self.sendInvitationEmail(emailStri)
+                }}})}
+        
+          
     
     func isValidEmail(_ emailStr: String) -> Bool {
         if emailStr.contains("@") {
@@ -350,28 +324,30 @@ class FriendsViewController: UIViewController, MFMailComposeViewControllerDelega
         showInviteFriends()
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let block = UITableViewRowAction(style: .normal, title: "Block") { (action, index) in
-            print("block")
-            
-            print(self.friendsTableViewDataSource.friendArray[indexPath.row])
-            
-            let blockedFriend = self.friendsTableViewDataSource.friendArray[indexPath.row]
-            
-            ClientService.blockFriend(blockedFriend)
-            
-//            print(self.friendsTableViewDataSource.friendArray(at: indexPath.row))
-            self.friendsTableViewDataSource.friendArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            //RIGHT NOW BLOCKING ONLY REMOVES FROM FRIENDS LIST BUT DOES NOT BLOCK. MUST REDESIGN LOGIC FOR THIS.
-            
-            
-            
-        }
-        
-        return [block]
-    }
+//COMMENTED OUT editActionsForRowAtindexPath because blocking is really complicated. So taking out blocking function.
+    
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        
+//        let block = UITableViewRowAction(style: .normal, title: "Block") { (action, index) in
+//            print("block")
+//            
+//            print(self.friendsTableViewDataSource.friendArray[indexPath.row])
+//            
+//            let blockedFriend = self.friendsTableViewDataSource.friendArray[indexPath.row]
+//            
+//            ClientService.blockFriend(blockedFriend)
+//            
+////            print(self.friendsTableViewDataSource.friendArray(at: indexPath.row))
+//            self.friendsTableViewDataSource.friendArray.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            //RIGHT NOW BLOCKING ONLY REMOVES FROM FRIENDS LIST BUT DOES NOT BLOCK. MUST REDESIGN LOGIC FOR THIS.
+//            
+//            
+//            
+//        }
+//        
+//        return [block]
+//    }
     
    
 }
