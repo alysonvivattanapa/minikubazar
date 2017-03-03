@@ -169,9 +169,6 @@
                     <exclude reference="rAQ-QS-9L2"/>
                     <exclude reference="rs7-xf-FIQ"/>
                     <exclude reference="yYQ-d0-OIc"/>
-                    <exclude reference="Bcj-x5-KRL"/>
-                    <exclude reference="HFy-Ir-BWN"/>
-                    <exclude reference="jlc-AB-Nwb"/>
                     <exclude reference="05z-Hd-30O"/>
                     <exclude reference="77C-8w-njU"/>
                     <exclude reference="9hI-tq-LKO"/>
@@ -182,11 +179,14 @@
                     <exclude reference="gwF-tU-TEL"/>
                     <exclude reference="oFE-zc-kJu"/>
                     <exclude reference="xwo-H4-CuX"/>
+                    <exclude reference="9on-Zf-aR0"/>
+                    <exclude reference="nbN-Lc-O3q"/>
                     <exclude reference="SgO-gi-z97"/>
                     <exclude reference="h2v-Mp-izE"/>
                     <exclude reference="rD7-y5-DH3"/>
-                    <exclude reference="9on-Zf-aR0"/>
-                    <exclude reference="nbN-Lc-O3q"/>
+                    <exclude reference="Bcj-x5-KRL"/>
+                    <exclude reference="HFy-Ir-BWN"/>
+                    <exclude reference="jlc-AB-Nwb"/>
                 </mask>
             </variation>
         </view>
